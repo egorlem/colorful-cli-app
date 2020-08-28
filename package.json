@@ -1,0 +1,42 @@
+{
+  "name": "easyprompt",
+  "version": "0.0.1",
+  "description": "Easy prompt style generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development --open"
+  },
+  "keywords": [
+    "shell",
+    "js",
+    "webpack",
+    "zsh",
+    "bach"
+  ],
+  "author": "Egor Lem",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "autoprefixer": "^9.8.6",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^4.2.2",
+    "file-loader": "^6.0.0",
+    "jest": "^26.4.2",
+    "mini-css-extract-plugin": "^0.11.0",
+    "postcss-loader": "^3.0.0",
+    "redux": "^4.0.5",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.1",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "html-webpack-plugin": "^4.3.0"
+  }
+}
