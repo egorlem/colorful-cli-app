@@ -4,8 +4,84 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <h2>test</h2>
+    <header>
+      <div class="header-container">
+        <div class="logo">
+          <h2 class="logo__text">~ esy sh prmt sly</h2>
+          <span class="logo__cursor">|</span>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="shell-container">
+        <section class="shell-options">
+          <div class="container">
+            <div class="controllers">
+              <div class="contrellers__title">init title</div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="shell-window">
+            <div class="prompt">
+              <span class="prompt__name">bash-3.2$</span>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- shell-prompt-line statr  -->
+      <div class="global--divider">
+        <div class="shell-prompt-line">
+          <div class="no-name-line">
+            <div class="line--divider">
+              <svg
+                class="line--divider-icon-left"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                height="16"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"
+                ></path>
+              </svg>
+              <svg
+                class="line--divider-icon-right"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                height="16"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"
+                ></path>
+              </svg>
+              <div class="line">
+                <div>
+                  <div class="line__item">
+                    <span class="test">The current working directory</span>
+                  </div>
+                </div>
+                <button class="line__editbtn">
+                  edit <i class="far fa-edit"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

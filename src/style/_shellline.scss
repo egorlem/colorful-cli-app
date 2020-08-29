@@ -1,0 +1,88 @@
+.shell-prompt-line {
+  font-family: $mainfont;
+  position: relative;
+  font-size: 1.8rem;
+  width: 1200px;
+  z-index: 2;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+}
+.no-name-line {
+  width: 100px;
+  background-color: white;
+  margin: 0 10px;
+}
+.line--divider {
+  border: 1px solid black;
+  position: relative;
+  border-radius: 6px;
+  min-height: 50px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    border: 1px solid rgb(16, 181, 223);
+    .line--divider-icon-left,
+    .line--divider-icon-right {
+      fill: red;
+    }
+  }
+  &.active {
+    border: 1px solid rgb(16, 181, 223);
+    .line--divider-icon-left,
+    .line--divider-icon-right {
+      fill: red;
+    }
+  }
+  &-icon-left {
+    position: absolute;
+    top: calc(50% - 6px);
+    left: -9px;
+    background-color: white;
+    padding: 2px;
+    transition: all 0.3s ease-in-out;
+  }
+  &-icon-right {
+    position: absolute;
+    top: calc(50% - 6px);
+    right: -9px;
+    background-color: white;
+    padding: 2px;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.line {
+  color: black;
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  &__item {
+    display: inline-block;
+  }
+  &__color {
+    display: inline-block;
+  }
+  &__line__editbtn {
+    display: block;
+    width: 100%;
+  }
+  &__line__editbtn::before {
+    content: "\f044";
+  }
+}
+.global--divider {
+  position: relative;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  min-height: 60px;
+  z-index: 1;
+}
+.global--divider::after {
+  content: "";
+  position: absolute;
+  border-bottom: 1px solid black;
+  width: 100%;
+  top: 31px;
+}

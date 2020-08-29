@@ -1,0 +1,19 @@
+@import "./var";
+
+.shell-window {
+  font-family: $mainfont;
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 600px;
+  height: 400px;
+  background-color: black;
+  overflow: hidden;
+  .prompt {
+    &__name {
+      color: white;
+    }
+  }
+}

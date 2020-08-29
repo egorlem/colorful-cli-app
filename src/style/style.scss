@@ -1,4 +1,32 @@
-h2 {
-  font-size: 40px;
-  color: red;
+@import "./var";
+@import "./reset.scss";
+@import "./header";
+@import "./shelloptions";
+@import "./shellwindow";
+@import "./shellline";
+main {
+  background-color: grey;
+}
+.shell-container {
+  display: flex;
+  width: 1200px;
+  margin: 0 auto;
+  background-color: grey;
+}
+
+section {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.font-test {
+  font-family: $mainfont;
+  .reg {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  .bold {
+    font-size: 1.8rem;
+    font-weight: 400;
+  }
 }
