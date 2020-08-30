@@ -6,12 +6,12 @@
   z-index: 2;
   margin: 0 auto;
   height: 100%;
-  display: flex;
 }
 .no-name-line {
-  width: 100px;
+  width: 150px;
   background-color: white;
   margin: 0 10px;
+  display: inline-block;
 }
 .line--divider {
   border: 1px solid black;

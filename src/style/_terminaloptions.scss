@@ -1,0 +1,96 @@
+.terminal-options {
+  background-color: white;
+  padding: 10px;
+  font-family: $mainfont;
+  position: absolute;
+  width: 380px;
+  top: 0;
+  right: 51px;
+  display: none;
+  &.open {
+    display: block;
+  }
+}
+.terminal-select {
+  font-size: 2.4rem;
+  border-bottom: 1px solid $dividergray;
+  padding: 10px;
+}
+.terminal-shell {
+  font-family: $mainfont;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  border-bottom: 1px solid $dividergray;
+  padding: 10px;
+  &__title {
+    padding-right: 2px;
+  }
+  &__name {
+  }
+}
+.term-color-line {
+  border-bottom: 1px solid $dividergray;
+  padding: 10px;
+  &-dark {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  &-light {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__item-l,
+  &__item-d {
+    border-radius: 3px;
+    border: 1px solid $dividergray;
+    width: 40px;
+    height: 15px;
+  }
+}
+
+.terminal-font {
+  display: flex;
+  font-family: $mainfont;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  border-bottom: 1px solid $dividergray;
+  padding: 10px;
+  &__name {
+    margin-right: 4px;
+  }
+  &__typeface {
+    margin-right: 4px;
+  }
+  &__size {
+  }
+}
+.terminal-options-disclaimer {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+  &.close {
+    visibility: hidden;
+    opacity: 0;
+  }
+  &__title {
+    font-size: 3rem;
+    color: red;
+    background-color: rgb(255, 220, 220);
+    margin-bottom: 6px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    .disclaimer--close {
+      color: black;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+  }
+  &__text {
+    border-top: 1px solid black;
+    font-size: 1.4rem;
+    padding: 10px;
+    border: 1px solid rgb(255, 220, 220);
+  }
+}
