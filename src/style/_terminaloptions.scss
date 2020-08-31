@@ -56,6 +56,11 @@
   margin-bottom: 10px;
   border-bottom: 1px solid $dividergray;
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  .font--container {
+    display: flex;
+  }
   &__name {
     margin-right: 4px;
   }
@@ -63,6 +68,11 @@
     margin-right: 4px;
   }
   &__size {
+  }
+  .font--select {
+    color: black;
+    font-size: 1.4rem;
+    cursor: pointer;
   }
 }
 .terminal-options-disclaimer {
