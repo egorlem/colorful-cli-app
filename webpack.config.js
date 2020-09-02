@@ -25,6 +25,20 @@ const cssLoader = (ext) => {
   }
   return config;
 };
+const babelLoader = (ext) => {
+  const config = {
+    presets: ["@babel/preset-env", "@babel/preset-react"],
+    plugins: [
+      "@babel/plugin-syntax-class-properties",
+      "@babel/plugin-proposal-class-properties",
+    ],
+  };
+
+  if (ext) {
+    config.presets.push(ext);
+  }
+  return config;
+};
 
 module.exports = {
   context: path.resolve(__dirname, "src"),
@@ -46,10 +60,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: {
           loader: "babel-loader",
+          options: babelLoader(),
         },
       },
       {

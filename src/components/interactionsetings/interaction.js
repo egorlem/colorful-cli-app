@@ -1,17 +1,21 @@
-import { store } from "../../redux/store";
-import { Select } from "../global/select/select";
+import React from "react";
+import { PsOneOptions } from "./setpsone";
+import { connect } from "react-redux";
+import { getFgColor, getBgColor } from "../../redux/initReducer";
+import "./_psoneoptions.scss";
 
-console.log(store.getState());
-const psone = new Select("div.psone-el", {
-  placeholder: "выбери элемент",
-  selectedId: 4,
-  data: [
-    { id: 1, value: 'The date in "Weekday Month Date" format' },
-    { id: 2, value: "The version of shell" },
-    { id: 3, value: "The name of the shell" },
-    { id: 4, value: "The basename of the current directory" },
-  ],
-  onSelect(item) {
-    console.log(item);
-  },
-});
+const InteractionLayOut = (props) => {
+  return (
+    <>
+      <PsOneOptions state={props} />
+    </>
+  );
+};
+
+function mapStateToProps(state) {
+  return { state: state.init };
+}
+
+export default connect(mapStateToProps, { getFgColor, getBgColor })(
+  InteractionLayOut
+);

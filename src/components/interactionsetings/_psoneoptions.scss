@@ -1,0 +1,109 @@
+@import "../../style/var";
+@font-face {
+  font-family: "JetBrains";
+  src: url("../../fonts/JetBrainsMono-Regular.ttf");
+}
+
+@mixin defaultPosition {
+  font-size: 1.6rem;
+  padding: 10px;
+  border-bottom: 1px solid $dividergray;
+}
+
+.psone-container {
+  border-right: $dividergray;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  font-family: $mainfont;
+  background-color: white;
+}
+.psone-title {
+  font-size: 2.4rem;
+  padding: 10px;
+  border-bottom: 1px solid $dividergray;
+}
+.psone-elemet-select {
+  @include defaultPosition();
+}
+.psone-color-mode {
+  @include defaultPosition();
+  margin-bottom: 10px;
+}
+.psone-colors-options {
+}
+.color-contrellers {
+  display: flex;
+  flex-direction: column;
+  &__text {
+    @include defaultPosition();
+    display: flex;
+    justify-content: space-between;
+  }
+  &__control-range {
+    padding-top: 10px;
+  }
+  &__control-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid $dividergray;
+    margin-bottom: 10px;
+  }
+}
+//// HANDLERS
+.color-mode-nandler {
+  cursor: pointer;
+  font-family: "JetBrains";
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+  font-size: 1.2rem;
+  color: rgb(180, 180, 180);
+  transition: color 0.2s ease-in-out;
+  &:hover {
+    color: black;
+  }
+}
+
+////// info
+.psone-options-info {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+  &.close {
+    visibility: hidden;
+    opacity: 0;
+  }
+  &__title {
+    font-size: 3rem;
+    color: rgb(26, 101, 240);
+    background-color: rgb(177, 196, 233);
+    margin-bottom: 6px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    .disclaimer--close {
+      color: black;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+  }
+  &__text {
+    border-top: 1px solid black;
+    font-size: 1.4rem;
+    padding: 10px;
+    border: 1px solid rgb(177, 196, 233);
+    .info-cont {
+      padding: 3px 0;
+    }
+    .c-name {
+      padding: 2px 0;
+      background-color: hsl(0, 0%, 97%);
+    }
+    .c-res {
+      padding-left: 10px;
+    }
+  }
+}

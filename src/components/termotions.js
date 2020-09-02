@@ -1,3 +1,5 @@
+/* 
+
 import { store } from "../redux/store";
 import { initSetings } from "../redux/termsetingsReducer";
 
@@ -37,3 +39,4 @@ const termOptionsRender = () => {
 };
 store.subscribe(termOptionsRender);
 store.dispatch(initSetings());
+*/

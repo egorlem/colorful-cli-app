@@ -1,10 +1,14 @@
 import "./style/style.scss";
 import { store } from "./redux/store";
-// components
-import {} from "./components/termotions";
-import {} from "./components/appgglobalevents";
-import {} from "./components/result/result";
-import {} from "./components/interactionsetings/interaction";
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./app.jsx";
+import { Provider } from "react-redux";
 
-window.store = store;
-let state = store.getState();
+const app = (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+ReactDOM.render(app, document.getElementById("root"));

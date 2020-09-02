@@ -1,19 +1,56 @@
+import { globalcolors } from "./techstate/colors";
+
 let initialState = {
-  test: "test reducer",
-  name: "ok",
+  globalcolors: globalcolors,
+  fgcolor: {
+    colorInfo: false,
+    colorId: 255,
+    hexString: "#eeeeee",
+    rgb: { r: 238, g: 238, b: 238 },
+    hsl: { h: 0, s: 0, l: 93 },
+    name: "Grey93",
+  },
+  bgcolor: {
+    colorInfo: false,
+    colorId: 0,
+    hexString: "#000000",
+    rgb: { r: 0, g: 0, b: 0 },
+    hsl: { h: 0, s: 0, l: 0 },
+    name: "Black",
+  },
 };
 
 export function initReduser(state = initialState, action) {
   switch (action.type) {
-    case "INIT":
-      return { ...state, name: action.payload };
+    case "GET_BG_COLOR":
+      return {
+        ...state,
+        bgcolor: state.globalcolors.find((e) => +action.payload === e.colorId),
+      };
+    case "GET_FG_COLOR":
+      return {
+        ...state,
+        fgcolor: state.globalcolors.find((e) => +action.payload === e.colorId),
+      };
   }
   return state;
 }
 
-export const setBntName = (name) => {
+/// AC
+export const getFgColor = (payload) => {
   return {
-    type: "INIT",
-    payload: name,
+    type: "GET_FG_COLOR",
+    payload: payload,
   };
+};
+
+export const getBgColor = (payload) => {
+  return {
+    type: "GET_BG_COLOR",
+    payload: payload,
+  };
+};
+
+export const isColorInfoOpen = () => {
+  return {};
 };
