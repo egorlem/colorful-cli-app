@@ -1,8 +1,27 @@
 import React from "react";
 import { Input } from "../global/select/inputrange";
+const Palate = ({ color }) => {
+  const paletteHantler = (e) => {
+    console.log(e.target.id);
+  };
+  let res = color.map((e) => {
+    const style = {
+      background: e.hexString,
+    };
+    return (
+      <div
+        onClick={paletteHantler}
+        className="palette__item"
+        id={e.colorId}
+        key={e.colorId}
+        style={style}
+      ></div>
+    );
+  });
 
+  return <div className="palette">{res}</div>;
+};
 const ColorInfo = ({ color }) => {
-  console.log(color);
   return (
     <div className="psone-options-info">
       <div className="psone-options-info__title">
@@ -160,6 +179,7 @@ export const PsOneOptions = ({ state }) => {
         </div>
       </div>
       <ColorInfo color={state.state.fgcolor} />
+      {false && <Palate color={state.state.globalcolors} />}
     </div>
   );
 };

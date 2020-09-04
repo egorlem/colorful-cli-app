@@ -1,0 +1,52 @@
+@font-face {
+  font-family: "JetBrains";
+  src: url("../../fonts/JetBrainsMono-Regular.ttf");
+}
+
+.term-bg-container {
+  background-color: black;
+  flex: 1;
+  height: 400px;
+}
+
+.shell-window {
+  border-right: 1px solid #1b1b1b;
+  border-left: 1px solid #1b1b1b;
+  margin: 15px auto;
+  background: transparent;
+  width: 576px;
+  min-height: 337px;
+  padding: 4px 6px 2px 6px;
+  font-size: 1.4rem;
+  line-height: 1;
+
+  .prompt {
+    background: transparent;
+    &__name {
+      color: white;
+    }
+  }
+}
+
+.test--line {
+  font-size: 1.4rem;
+  color: white;
+  font-weight: 400;
+}
+.test-typing {
+  animation: test2222 0.3s steps(100);
+  overflow: hidden;
+  white-space: nowrap;
+  color: cyan;
+  font-size: 1.4rem;
+  transition-delay: 5s;
+}
+
+@keyframes test2222 {
+  0% {
+    width: 0ch;
+  }
+  100% {
+    width: 60ch;
+  }
+}

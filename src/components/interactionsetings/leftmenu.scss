@@ -1,0 +1,13 @@
+$dividergray: #e1e4e8;
+.left-menu-container {
+  width: 60px;
+  background-color: white;
+  border-right: 1px solid $dividergray;
+  height: 100vh;
+  position: relative;
+  padding: 20px 10px;
+}
+.left-menu-psone-btn {
+  font-size: 1.6rem;
+  cursor: pointer;
+}
