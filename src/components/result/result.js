@@ -2,24 +2,25 @@ import React from "react";
 
 export const Result = () => {
   return (
-    <div class="result--container">
-      <div class="result--limiter">
-        <div class="result-header">
-          <div class="result-header__title">
+    <div className="result--container">
+      <div className="result--limiter">
+        <div className="result-header">
+          <div className="result-header__title">
             copy and paste into your .bashrc file
           </div>
-          <button class="result-header__copybtn">Copy</button>
+          <button className="result-header__copybtn">Copy</button>
         </div>
-        <table class="result">
-          <tbody></tbody>
-          <tr class="result__string">
-            <td class="result__line">#</td>
-            <td class="result__text"></td>
-          </tr>
-          <tr class="result__string">
-            <td class="result__line">#</td>
-            <td class="result__text"></td>
-          </tr>
+        <table className="result">
+          <tbody>
+            <tr className="result__string">
+              <td className="result__line">#</td>
+              <td className="result__text"></td>
+            </tr>
+            <tr className="result__string">
+              <td className="result__line">#</td>
+              <td className="result__text"></td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>

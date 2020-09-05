@@ -3,9 +3,9 @@
   padding: 10px;
   font-family: $mainfont;
   position: absolute;
-  width: 380px;
+  width: 295px;
   top: 0;
-  right: 51px;
+  right: 50px;
   display: block;
   &.open {
     display: block;
@@ -44,7 +44,7 @@
   &__item-d {
     border-radius: 3px;
     border: 1px solid $dividergray;
-    width: 40px;
+    width: 30px;
     height: 15px;
   }
 }
@@ -84,7 +84,7 @@
     opacity: 0;
   }
   &__title {
-    font-size: 3rem;
+    font-size: 2.6rem;
     color: red;
     background-color: rgb(255, 220, 220);
     margin-bottom: 6px;

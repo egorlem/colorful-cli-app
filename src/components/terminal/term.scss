@@ -4,14 +4,15 @@
 }
 
 .term-bg-container {
-  background-color: black;
+  background-color: #111111;
   flex: 1;
   height: 400px;
+  width: 100%;
 }
 
 .shell-window {
-  border-right: 1px solid #1b1b1b;
-  border-left: 1px solid #1b1b1b;
+  border-right: 1px solid #1f1f1f;
+  border-left: 1px solid #1f1f1f;
   margin: 15px auto;
   background: transparent;
   width: 576px;
@@ -19,7 +20,12 @@
   padding: 4px 6px 2px 6px;
   font-size: 1.4rem;
   line-height: 1;
-
+  &-header {
+    color: rgb(180, 180, 180);
+    font-size: 1rem;
+    font-weight: 300;
+    border-bottom: 1px solid #1f1f1f;
+  }
   .prompt {
     background: transparent;
     &__name {

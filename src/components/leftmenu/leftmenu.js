@@ -5,22 +5,22 @@ import { getFgColor, getBgColor } from "../../redux/initReducer";
 import "./_psoneoptions.scss";
 import "./leftmenu.scss";
 
-const InteractionLayOut = (props) => {
+const LeftNavMenu = (props) => {
   const [leftMenu, isLeftMenuOpen] = useState(false);
   return (
-    <>
+    <div className="left-menu--relative">
       <div className="left-menu-container">
         <span
           onClick={() => {
             leftMenu ? isLeftMenuOpen(false) : isLeftMenuOpen(true);
           }}
-          class="left-menu-psone-btn"
+          className="left-menu-psone-btn"
         >
           [PS1]
         </span>
         {leftMenu && <PsOneOptions state={props} />}
       </div>
-    </>
+    </div>
   );
 };
 
@@ -29,5 +29,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { getFgColor, getBgColor })(
-  InteractionLayOut
+  LeftNavMenu
 );

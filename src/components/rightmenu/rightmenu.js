@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./rightmenu.scss";
 const Menu = () => {
   return (
     <>
@@ -57,25 +57,25 @@ const Menu = () => {
   );
 };
 
-const Nav = () => {
+const RightNavMenu = () => {
   const [isOpen, openMenu] = useState(false);
   return (
-    <>
-      <nav class="left--menu">
-        <div class="options-btn">
+    <div className="right-menu--relative">
+      <nav className="right--menu">
+        <div className="options-btn">
           <span
             onClick={() => {
               isOpen ? openMenu(false) : openMenu(true);
             }}
-            class="options-btn__controll"
+            className="options-btn__controll"
           >
             [i]
           </span>
           {isOpen && <Menu />}
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 
-export default Nav;
+export default RightNavMenu;

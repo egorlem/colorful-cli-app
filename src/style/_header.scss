@@ -1,21 +1,26 @@
 @import "./var";
 header {
-  min-height: 60px;
-  background-color: rgb(230, 230, 230);
+  min-height: 30px;
+  background-color: rgb(255, 255, 255);
+  border-bottom: 1px solid $dividergray;
 }
 .header-container {
+  font-family: $mainfont;
   width: 1200px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
 }
 
 .logo {
-  font-family: $mainfont;
   font-size: 2rem;
-  color: white;
-  background-color: black;
+  color: black;
   &__text {
   }
   &__cursor {
   }
+}
+.header-nav {
+  font-size: 1.5rem;
 }
 // payload

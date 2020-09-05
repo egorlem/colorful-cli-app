@@ -9,28 +9,30 @@ const Window = () => {
   let vt220Long = new Array(134).fill("░");
   let colums = new Array(23).fill("");
 
-  let layOut = colums.map((e) => {
-    let shortString = vt220Short.map((e) => {
-      return <span className="term-short-symbol">{e}</span>;
+  let layOut = colums.map((e, i) => {
+    let shortString = vt220Short.map((e, i) => {
+      return (
+        <span key={i} className="term-short-symbol">
+          {e}
+        </span>
+      );
     });
-    return <div className="test--line short">{shortString}</div>;
+    return (
+      <div key={i} className="test--line short">
+        {shortString}
+      </div>
+    );
   });
 
-  let shortString = vt220Short.map((e) => {
-    return <span className="term-short-symbol">{e}</span>;
-  });
-  let longString = vt220Long.map((e) => {
-    return <span className="term-long-symbol">{e}</span>;
-  });
   return (
     <>
       <div className="shell-window">
-        <div className="shell-window-header"> bash -- </div>
+        <div className="shell-window-header"> bash ⸻ 24 rows ⸻ 80 columns;</div>
         <div className="prompt">
           {layOut}
           <div className="test--line short test-typing">
-            [MacBook@EgorL] IT IS a ematation of string with 80 sybols
-            ok_______999999 000G1
+            [MacBook@EgorL] All settings presented in this menu are decoration.
+            TTY01 123456
           </div>
         </div>
       </div>
