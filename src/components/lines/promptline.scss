@@ -2,3 +2,22 @@
   padding: 10px;
   display: inline-block;
 }
+.psone-line-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 1.6rem;
+  padding: 10px 0;
+}
+
+.psone-line__item {
+  padding: 5px 10px;
+  background-color: white;
+  margin: 0 5px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+.psone-line__item::after {
+  content: "::";
+  padding-left: 4px;
+}
