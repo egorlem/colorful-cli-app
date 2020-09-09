@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import "./promptline.scss";
 import { useDrag, useDrop } from "react-dnd";
-import update from "immutability-helper";
-const items = [
-  { id: 1, text: "The hostname" },
-  { id: 2, text: "The name of the sh" },
-  { id: 3, text: "The username" },
-  { id: 4, text: "The version of sh" },
-  { id: 5, text: "The date" },
-];
+import { connect } from "react-redux";
+import { setNewLine } from "../../redux/promptreducer";
 
 const PsOneItem = ({ id, text, findCard, moveCard }) => {
   const oringIndex = findCard(id).index;
@@ -52,20 +46,14 @@ const PsOneItem = ({ id, text, findCard, moveCard }) => {
   );
 };
 
-const LineContainer = () => {
-  const [cards, setCards] = useState(items);
+const LineContainer = ({ state }) => {
+  console.log;
+  const cards = state.items;
+  // const [cards, setCards] = useState(items);
 
   function moveCard(id, atIndex) {
     const { card, index } = findCard(id);
-
-    setCards(
-      update(cards, {
-        $splice: [
-          [index, 1],
-          [atIndex, 0, card],
-        ],
-      })
-    );
+    state.setNewLine({ index, card, atIndex });
   }
   function findCard(id) {
     const card = cards.filter((c) => `${c.id}` === id)[0];
@@ -92,12 +80,18 @@ const LineContainer = () => {
   );
 };
 
-const PromptPsOneLine = () => {
+const PromptPsOneLine = (state) => {
   return (
     <>
-      <LineContainer />
+      <LineContainer state={state} />
     </>
   );
 };
 
-export default PromptPsOneLine;
+const mstp = (state) => {
+  let newstate = state.promptline;
+  return newstate;
+};
+const mdtp = () => {};
+
+export default connect(mstp, { setNewLine })(PromptPsOneLine);

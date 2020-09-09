@@ -1,10 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 import "./term.scss";
 
 //let vt220Short = new Array(80).fill("░");
 let vt220Lont = new Array(134);
 
-const Window = () => {
+const Window = ({ state }) => {
+  let line = state.items.map((e) => e.sequences);
   let vt220Short = new Array(80).fill(" ");
   let vt220Long = new Array(134).fill("░");
   let colums = new Array(23).fill("");
@@ -30,23 +32,25 @@ const Window = () => {
         <div className="shell-window-header"> bash ⸻ 24 rows ⸻ 80 columns;</div>
         <div className="prompt">
           {layOut}
-          <div className="test--line short test-typing">
-            [MacBook@EgorL] All settings presented in this menu are decoration.
-            TTY01 123456
-          </div>
+          <div className="test--line short test-typing">{line}</div>
         </div>
       </div>
     </>
   );
 };
 
-const TerminalWindow = () => {
+const TerminalWindow = (state) => {
   return (
     <div className="term-bg-container">
-      <Window />
+      <Window state={state} />
     </div>
   );
 };
 
-export default TerminalWindow;
+const mstp = (state) => {
+  let promptline = state.promptline;
+  return promptline;
+};
+
+export default connect(mstp, null)(TerminalWindow);
 // IT IS a ematation of string with 80 sybols ok _______999999 000 GUEZWHOZZZZZ
