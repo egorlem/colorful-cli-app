@@ -1,7 +1,6 @@
 import { store } from "./store";
 
 let initialState = {
-  conlor: 10,
   modules: {
     bell: {
       color: false,

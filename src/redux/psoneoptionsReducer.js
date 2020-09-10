@@ -1,6 +1,17 @@
 import { globalcolors } from "./techstate/colors";
+import update from "immutability-helper";
 
 let initialState = {
+  mode: "",
+  newPromptEl: {
+    id: null,
+    text: "init",
+    sequences: "init",
+    code: "init",
+    bg: "",
+    fg: "",
+  },
+  targetPromptEl: {},
   globalcolors: globalcolors,
   fgcolor: {
     colorInfo: false,
@@ -20,7 +31,7 @@ let initialState = {
   },
 };
 
-export function initReduser(state = initialState, action) {
+export function psOneOptionsReducer(state = initialState, action) {
   switch (action.type) {
     case "GET_BG_COLOR":
       return {

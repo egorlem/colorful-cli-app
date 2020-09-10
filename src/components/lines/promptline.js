@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import "./promptline.scss";
 import { useDrag, useDrop } from "react-dnd";
 import { connect } from "react-redux";
-import { setNewLine } from "../../redux/promptreducer";
+import { setNewLine, editModOn, editModOff } from "../../redux/promptreducer";
 
-const PsOneItem = ({ id, text, findCard, moveCard }) => {
+const PsOneItem = ({ id, text, findCard, moveCard, state }) => {
   const oringIndex = findCard(id).index;
 
   const [{ isDragging }, drag] = useDrag({
     item: { type: "TEST_TWO", id, oringIndex },
     collect: (monitor) => ({ isDragging: monitor.isDragging() }),
-
+    begin: () => {
+      state.editModOn(id);
+    },
     end: (dropResult, monitor) => {
+      state.editModOff();
       const { id: droppedID, oringIndex } = monitor.getItem();
       const didDrop = monitor.didDrop();
       if (!didDrop) {
@@ -47,7 +50,6 @@ const PsOneItem = ({ id, text, findCard, moveCard }) => {
 };
 
 const LineContainer = ({ state }) => {
-  console.log;
   const cards = state.items;
   // const [cards, setCards] = useState(items);
 
@@ -74,6 +76,7 @@ const LineContainer = ({ state }) => {
           text={cards.text}
           findCard={findCard}
           moveCard={moveCard}
+          state={state}
         />
       ))}
     </div>
@@ -94,4 +97,6 @@ const mstp = (state) => {
 };
 const mdtp = () => {};
 
-export default connect(mstp, { setNewLine })(PromptPsOneLine);
+export default connect(mstp, { setNewLine, editModOn, editModOff })(
+  PromptPsOneLine
+);

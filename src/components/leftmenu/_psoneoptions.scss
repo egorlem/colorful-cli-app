@@ -20,7 +20,7 @@
   background-color: white;
   position: absolute;
   top: 0;
-  left: 50px;
+  left: 45px;
 }
 .psone-title {
   font-size: 2.4rem;
@@ -115,11 +115,14 @@
   font-family: "JetBrains";
   &__item {
     display: inline-block;
-    width: 40px;
+    width: 15px;
     height: 15px;
     padding: 1px;
     margin: 1px;
-    border-radius: 3px;
+    border-radius: 2px;
     cursor: pointer;
+    &:hover {
+      border: 1px solid dimgray;
+    }
   }
 }

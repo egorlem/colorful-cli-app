@@ -1,6 +1,5 @@
 import { store } from "./store";
 import update from "immutability-helper";
-import { data } from "autoprefixer";
 
 let initialState = {
   items: [
@@ -9,17 +8,75 @@ let initialState = {
       text: "The hostname (short)",
       sequences: "LocalHost",
       code: "\\h",
+      bg: "",
+      fg: "",
     },
-    { id: 2, text: "The base name of term", sequences: "ttys001", code: "\\l" },
-    { id: 3, text: "The name of shell", sequences: "bash", code: "\\s" },
-    { id: 4, text: "The current time", sequences: "16:00:03", code: "\\t" },
-    { id: 5, text: "The username", sequences: "EgorL", code: "\\u" },
-    { id: 6, text: "The version of shell", sequences: "3.2", code: "\\v" },
-    { id: 7, text: "The version of shell", sequences: "3.2", code: "\\v" },
-    { id: 8, text: "The version of shell", sequences: "3.2", code: "\\v" },
-    { id: 9, text: "space", sequences: " ", code: "\\v" },
+    {
+      id: 2,
+      text: "The base name of term",
+      sequences: "ttys001",
+      code: "\\l",
+      bg: "",
+      fg: "",
+    },
+    {
+      id: 3,
+      text: "The name of shell",
+      sequences: "bash",
+      code: "\\s",
+      bg: "",
+      fg: "",
+    },
+    {
+      id: 4,
+      text: "The current time",
+      sequences: "16:00:03",
+      code: "\\t",
+      bg: "",
+      fg: "",
+    },
+    {
+      id: 5,
+      text: "The username",
+      sequences: "EgorL",
+      code: "\\u",
+      bg: "",
+      fg: "",
+    },
+    {
+      id: 6,
+      text: "The version of shell",
+      sequences: "3.2",
+      code: "\\v",
+      bg: "",
+      fg: "",
+    },
+    {
+      id: 7,
+      text: "The version of shell",
+      sequences: "3.2",
+      code: "\\v",
+      bg: "",
+      fg: "",
+    },
+    {
+      id: 8,
+      text: "The version of shell",
+      sequences: "3.2",
+      code: "\\v",
+      bg: "",
+      fg: "",
+    },
+    {
+      id: 9,
+      text: "space space space",
+      sequences: " ",
+      code: "\\v",
+      bg: "",
+      fg: "",
+    },
   ],
-  ok: "immutablility",
+  cli: [],
 };
 
 export function promptReaducer(state = initialState, action) {
@@ -33,10 +90,45 @@ export function promptReaducer(state = initialState, action) {
           ],
         },
       });
+    case "EDIT_MODE_ON":
+      return update(state, {
+        items: {
+          $apply: (items) => {
+            return items.map((e) => {
+              if (e.id === +action.payload) {
+                return e;
+              }
+              return { ...e, fg: "#b4b4b4" };
+            });
+          },
+        },
+      });
+    case "EDIT_MODE_OFF":
+      return update(state, {
+        items: {
+          $apply: (items) => {
+            return items.map((e) => {
+              return { ...e, fg: "" };
+            });
+          },
+        },
+      });
+    case "ADD_NEW_PROMPT_ELEMENT":
+      return update(state, { items: { $push: [action.payload] } });
   }
   return state;
 }
 
 export const setNewLine = (payload) => {
   return { type: "EDIT_NEW_LINE", payload };
+};
+export const editModOn = (payload) => {
+  return { type: "EDIT_MODE_ON", payload };
+};
+export const editModOff = () => {
+  return { type: "EDIT_MODE_OFF" };
+};
+export const addNewPromptElem = (payload) => {
+  console.log(payload);
+  return { type: "ADD_NEW_PROMPT_ELEMENT", payload };
 };

@@ -6,7 +6,12 @@ import "./term.scss";
 let vt220Lont = new Array(134);
 
 const Window = ({ state }) => {
-  let line = state.items.map((e) => e.sequences);
+  let line = state.items.map((e) => (
+    <span key={e.id} style={{ color: e.fg, background: e.bg }}>
+      {e.sequences}
+    </span>
+  ));
+
   let vt220Short = new Array(80).fill(" ");
   let vt220Long = new Array(134).fill("░");
   let colums = new Array(23).fill("");
@@ -31,7 +36,6 @@ const Window = ({ state }) => {
       <div className="shell-window">
         <div className="shell-window-header"> bash ⸻ 24 rows ⸻ 80 columns;</div>
         <div className="prompt">
-          {layOut}
           <div className="test--line short test-typing">{line}</div>
         </div>
       </div>

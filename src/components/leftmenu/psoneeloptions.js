@@ -1,5 +1,7 @@
 import React from "react";
 import { Input } from "../global/select/inputrange";
+import update from "immutability-helper";
+
 const Palate = ({ color }) => {
   const paletteHantler = (e) => {
     console.log(e.target.id);
@@ -100,12 +102,19 @@ export const PsOneOptions = ({ state }) => {
 
   return (
     <div className="psone-container">
-      <div className="psone-title">PS1 prompt options</div>
-      <div className="psone-elemet-select">init cur element</div>
-      <div className="psone-color-mode">
-        <span>Color mode:</span>
-        <span> 8 bit</span>
+      <div
+        className="psone-title"
+        onClick={() => {
+          let newPromptEl = update(state.state.newPromptEl, {
+            id: { $set: state.linelength + 1 },
+            text: { $set: "работает" },
+          });
+          state.addNewPromptElem(newPromptEl);
+        }}
+      >
+        add
       </div>
+      <div className="psone-elemet-select">init cur element</div>
       <div className="psone-colors-options">
         <div className="color-contrellers psone-foreground">
           <div className="color-contrellers__text">
@@ -178,8 +187,8 @@ export const PsOneOptions = ({ state }) => {
           </div>
         </div>
       </div>
-      <ColorInfo color={state.state.fgcolor} />
-      {false && <Palate color={state.state.globalcolors} />}
+      {false && <ColorInfo color={state.state.fgcolor} />}
+      {<Palate color={state.state.globalcolors} />}
     </div>
   );
 };

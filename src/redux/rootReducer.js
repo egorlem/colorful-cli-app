@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
-import { initReduser } from "./initReducer";
+import { psOneOptionsReducer } from "./psoneoptionsReducer";
 import { termSetReducer } from "./termsetingsReducer";
 import { resultReducer } from "./resultReducer";
 import { psoneReducer } from "./interactionReducer";
-import { promptReaducer } from "./promptreducer";
+import { promptReaducer } from "./promptReducer";
 
 export const rootReducer = combineReducers({
-  init: initReduser,
+  init: psOneOptionsReducer,
   term: termSetReducer,
   result: resultReducer,
   psone: psoneReducer,
