@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { PsOneOptions } from "./psoneeloptions";
 import { connect } from "react-redux";
 import { getFgColor, getBgColor } from "../../redux/psoneoptionsReducer";
-import { addNewPromptElem } from "../../redux/promptReducer";
+import { addNewPromptElem, setCurrentElement } from "../../redux/promptReducer";
 import "./_psoneoptions.scss";
 import "./leftmenu.scss";
 
-const LeftNavMenu = (props) => {
+const LeftNavMenu = ({
+  state,
+  getFgColor,
+  getBgColor,
+  addNewPromptElem,
+  setCurrentElement,
+}) => {
   const [leftMenu, isLeftMenuOpen] = useState(true);
   return (
     <div className="left-menu--relative">
@@ -19,18 +25,27 @@ const LeftNavMenu = (props) => {
         >
           [PS1]
         </span>
-        {leftMenu && <PsOneOptions state={props} />}
+        {leftMenu && (
+          <PsOneOptions
+            state={state}
+            getFgColor={getFgColor}
+            getBgColor={getBgColor}
+            addNewPromptElem={addNewPromptElem}
+            setCurrentElement={setCurrentElement}
+          />
+        )}
       </div>
     </div>
   );
 };
 
 function mapStateToProps(state) {
-  return { state: state.init, linelength: state.promptline.items.length };
+  return { state: { init: state.init, promptline: state.promptline } };
 }
 
 export default connect(mapStateToProps, {
   getFgColor,
   getBgColor,
   addNewPromptElem,
+  setCurrentElement,
 })(LeftNavMenu);

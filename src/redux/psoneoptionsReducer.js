@@ -2,16 +2,6 @@ import { globalcolors } from "./techstate/colors";
 import update from "immutability-helper";
 
 let initialState = {
-  mode: "",
-  newPromptEl: {
-    id: null,
-    text: "init",
-    sequences: "init",
-    code: "init",
-    bg: "",
-    fg: "",
-  },
-  targetPromptEl: {},
   globalcolors: globalcolors,
   fgcolor: {
     colorInfo: false,
@@ -60,8 +50,4 @@ export const getBgColor = (payload) => {
     type: "GET_BG_COLOR",
     payload: payload,
   };
-};
-
-export const isColorInfoOpen = () => {
-  return {};
 };

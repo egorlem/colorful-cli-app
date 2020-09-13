@@ -1,7 +1,7 @@
 import React from "react";
 import { Input } from "../global/select/inputrange";
 import update from "immutability-helper";
-
+import Select from "../global/select/select.jsx";
 const Palate = ({ color }) => {
   const paletteHantler = (e) => {
     console.log(e.target.id);
@@ -58,42 +58,48 @@ const ColorInfo = ({ color }) => {
   );
 };
 
-export const PsOneOptions = ({ state }) => {
+export const PsOneOptions = ({
+  state,
+  getFgColor,
+  getBgColor,
+  addNewPromptElem,
+  setCurrentElement,
+}) => {
   const incrColorHandler = (e) => {
     if (e.target.id === "FG") {
-      let incrColorNum = state.state.fgcolor.colorId;
-      if (state.state.fgcolor.colorId === 255) {
+      let incrColorNum = state.init.fgcolor.colorId;
+      if (state.init.fgcolor.colorId === 255) {
         return;
       }
-      state.getFgColor(++incrColorNum);
+      getFgColor(++incrColorNum);
     } else if (e.target.id === "BG") {
-      let incrColorNum = state.state.bgcolor.colorId;
-      if (state.state.bgcolor.colorId === 255) {
+      let incrColorNum = state.init.bgcolor.colorId;
+      if (state.init.bgcolor.colorId === 255) {
         return;
       }
-      state.getBgColor(++incrColorNum);
+      getBgColor(++incrColorNum);
     }
   };
   const dicrColorHandler = (e) => {
     if (e.target.id === "FG") {
-      let dicrColorNum = state.state.fgcolor.colorId;
-      if (state.state.fgcolor.colorId === 0) {
+      let dicrColorNum = state.init.fgcolor.colorId;
+      if (state.init.fgcolor.colorId === 0) {
         return;
       }
-      state.getFgColor(--dicrColorNum);
+      getFgColor(--dicrColorNum);
     } else if (e.target.id === "BG") {
-      let dicrColorNum = state.state.bgcolor.colorId;
-      if (state.state.bgcolor.colorId === 0) {
+      let dicrColorNum = state.init.bgcolor.colorId;
+      if (state.init.bgcolor.colorId === 0) {
         return;
       }
-      state.getBgColor(--dicrColorNum);
+      getBgColor(--dicrColorNum);
     }
   };
   const resetColor = (e) => {
     if (e.target.id === "FG") {
-      state.getFgColor(255);
+      getFgColor(255);
     } else if (e.target.id === "BG") {
-      state.getBgColor(0);
+      getBgColor(0);
     }
   };
   const getCurrentColor = (e) => {
@@ -105,16 +111,19 @@ export const PsOneOptions = ({ state }) => {
       <div
         className="psone-title"
         onClick={() => {
-          let newPromptEl = update(state.state.newPromptEl, {
-            id: { $set: state.linelength + 1 },
-            text: { $set: "работает" },
-          });
-          state.addNewPromptElem(newPromptEl);
+          addNewPromptElem(state.promptline.currentElement);
         }}
       >
         add
       </div>
-      <div className="psone-elemet-select">init cur element</div>
+      <div className="psone-elemet-select">
+        <Select
+          bgcolor={state.init.bgcolor.hexString}
+          fgcolor={state.init.fgcolor.hexString}
+          elements={state.promptline.cliOptions}
+          setCurrentElement={setCurrentElement}
+        />
+      </div>
       <div className="psone-colors-options">
         <div className="color-contrellers psone-foreground">
           <div className="color-contrellers__text">
@@ -125,9 +134,9 @@ export const PsOneOptions = ({ state }) => {
           </div>
           <div className="color-contrellers__control-range">
             <Input
-              color={state.state.fgcolor.hexString}
-              handler={state.getFgColor}
-              value={state.state.fgcolor.colorId}
+              color={state.init.fgcolor.hexString}
+              handler={getFgColor}
+              value={state.init.fgcolor.colorId}
             />
           </div>
           <div className="color-contrellers__control-buttons">
@@ -160,9 +169,9 @@ export const PsOneOptions = ({ state }) => {
           </div>
           <div className="color-contrellers__control-range">
             <Input
-              color={state.state.bgcolor.hexString}
-              handler={state.getBgColor}
-              value={state.state.bgcolor.colorId}
+              color={state.init.bgcolor.hexString}
+              handler={getBgColor}
+              value={state.init.bgcolor.colorId}
             />
           </div>
 
@@ -187,8 +196,8 @@ export const PsOneOptions = ({ state }) => {
           </div>
         </div>
       </div>
-      {false && <ColorInfo color={state.state.fgcolor} />}
-      {<Palate color={state.state.globalcolors} />}
+      {false && <ColorInfo color={state.init.fgcolor} />}
+      {<Palate color={state.init.globalcolors} />}
     </div>
   );
 };

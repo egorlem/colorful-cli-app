@@ -19,6 +19,24 @@ let initialState = {
       bg: "",
       fg: "",
     },
+  ],
+  cliOptions: [
+    {
+      id: 1,
+      text: "The hostname (short)",
+      sequences: "LocalHost",
+      code: "\\h",
+      bg: "",
+      fg: "",
+    },
+    {
+      id: 2,
+      text: "The base name of term",
+      sequences: "ttys001",
+      code: "\\l",
+      bg: "",
+      fg: "",
+    },
     {
       id: 3,
       text: "The name of shell",
@@ -53,30 +71,14 @@ let initialState = {
     },
     {
       id: 7,
-      text: "The version of shell",
-      sequences: "3.2",
-      code: "\\v",
-      bg: "",
-      fg: "",
-    },
-    {
-      id: 8,
-      text: "The version of shell",
-      sequences: "3.2",
-      code: "\\v",
-      bg: "",
-      fg: "",
-    },
-    {
-      id: 9,
-      text: "space space space",
+      text: "symbol symbol",
       sequences: " ",
       code: "\\v",
       bg: "",
       fg: "",
     },
   ],
-  cli: [],
+  currentElement: {},
 };
 
 export function promptReaducer(state = initialState, action) {
@@ -115,6 +117,10 @@ export function promptReaducer(state = initialState, action) {
       });
     case "ADD_NEW_PROMPT_ELEMENT":
       return update(state, { items: { $push: [action.payload] } });
+    case "SET_CURRENT_ELEMENT":
+      return update(state, {
+        currentElement: { $set: action.payload },
+      });
   }
   return state;
 }
@@ -129,6 +135,9 @@ export const editModOff = () => {
   return { type: "EDIT_MODE_OFF" };
 };
 export const addNewPromptElem = (payload) => {
-  console.log(payload);
   return { type: "ADD_NEW_PROMPT_ELEMENT", payload };
+};
+export const setCurrentElement = (payload) => {
+  console.log(payload);
+  return { type: "SET_CURRENT_ELEMENT", payload };
 };
