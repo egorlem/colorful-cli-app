@@ -23,8 +23,7 @@
   left: 45px;
 }
 .psone-title {
-  font-size: 2.4rem;
-  padding: 10px;
+  font-size: 1.4rem;
   border-bottom: 1px solid $dividergray;
 }
 .psone-elemet-select {
@@ -69,3 +68,35 @@
     color: black;
   }
 }
+
+/// PS ONE OPTIONS CONTROLOS AND BLOCK STYLES
+/// MUST REUSE IN FUTURE
+
+.psone-container {
+  border-right: $dividergray;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 295px;
+  font-family: $mainfont;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 45px;
+  background-color: white;
+}
+.option-item {
+  font-size: 1.4rem;
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $dividergray;
+    padding: 5px 0;
+  }
+  &-controlls {
+    border-bottom: 1px solid $dividergray;
+    padding: 5px 0;
+  }
+}
+
+//  display: ${(props) => (props.open ? "none" : "block")};

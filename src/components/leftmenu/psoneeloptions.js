@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import MovePanel from "../global/buttons/movepanel";
 import update from "immutability-helper";
 import DropDownMenu from "../global/select/dropdown.jsx";
 import Palate from "./psonecontrolls/palate";
 import ColorInfo from "./psonecontrolls/colorinfo";
 import SelectElement from "./psonecontrolls/selectpromptel";
+import {
+  StaticIcon,
+  LeftDivider,
+  RightDivider,
+  ControllWrapper,
+  Preview,
+} from "../global/select/controls";
 
 export const PsOneOptions = ({
   state,
@@ -13,6 +20,7 @@ export const PsOneOptions = ({
   addNewPromptElem,
   setCurrentElement,
 }) => {
+  console.log(state);
   const incrColorHandler = (e) => {
     if (e.target.id === "FG") {
       let incrColorNum = state.init.fgcolor.colorId;
@@ -53,65 +61,86 @@ export const PsOneOptions = ({
   const getCurrentColor = (e) => {
     console.log(e);
   };
-
+  const [open, OpenClose] = useState(true);
   return (
     <div className="psone-container">
-      <div
-        className="psone-title"
-        onClick={() => {
-          addNewPromptElem(state.promptline.currentElement);
-        }}
-      >
-        add
-      </div>
-      <div className="psone-elemet-select">
-        <DropDownMenu selectedItem={state.promptline.currentElement.text}>
-          <SelectElement
-            bgcolor={state.init.bgcolor.hexString}
-            fgcolor={state.init.fgcolor.hexString}
-            elements={state.promptline.cliOptions}
-            setCurrentElement={setCurrentElement}
-          />
-        </DropDownMenu>
-      </div>
-      <div className="psone-colors-options">
-        <div className="color-contrellers psone-foreground">
-          <div className="color-contrellers__text">
-            <span style={{ background: state.init.fgcolor.hexString }}>
-              Foreground colors
-            </span>
-            <span onClick={getCurrentColor} className="nav-handler">
-              {"[i]"}
-            </span>
-          </div>
+      <div className="option-item">
+        <div className="option-item-controlls">
           <DropDownMenu selectedItem={state.promptline.currentElement.text}>
-            <Palate color={state.init.globalcolors} handler={getFgColor} />
-            <MovePanel
-              name={"FG"}
-              prev={dicrColorHandler}
-              reset={resetColor}
-              next={incrColorHandler}
+            <SelectElement
+              bgcolor={state.init.bgcolor.hexString}
+              fgcolor={state.init.fgcolor.hexString}
+              elements={state.promptline.cliOptions}
+              setCurrentElement={setCurrentElement}
             />
           </DropDownMenu>
         </div>
-        <div className="color-contrellers psone-background">
-          <div className="color-contrellers__text">
-            <span style={{ background: state.init.bgcolor.hexString }}>
-              Background colors
-            </span>
-            <span onClick={getCurrentColor} className="nav-handler">
-              {"[i]"}
-            </span>
+      </div>
+      <div>
+        <div className="option-item">
+          <div className="option-item-header">
+            <div className="option-item__title">
+              <Preview style={{ color: state.init.fgcolor.hexString }}>
+                {"***"}
+              </Preview>
+              Foreground colors
+            </div>
+            <ControllWrapper
+              open={open}
+              onClick={() => {
+                getCurrentColor();
+                open ? OpenClose(false) : OpenClose(true);
+              }}
+            >
+              <LeftDivider open={open}>{"["}</LeftDivider>
+              <StaticIcon>{"i"}</StaticIcon>
+              <RightDivider open={open}>{"]"}</RightDivider>
+            </ControllWrapper>
           </div>
-          <DropDownMenu selectedItem={state.promptline.currentElement.text}>
-            <Palate color={state.init.globalcolors} handler={getBgColor} />
-            <MovePanel
-              name={"BG"}
-              prev={dicrColorHandler}
-              reset={resetColor}
-              next={incrColorHandler}
-            />
-          </DropDownMenu>
+          <div className="option-item-controlls">
+            <DropDownMenu selectedItem={state.init.fgcolor.name}>
+              <Palate color={state.init.globalcolors} handler={getFgColor} />
+              <MovePanel
+                name={"FG"}
+                prev={dicrColorHandler}
+                reset={resetColor}
+                next={incrColorHandler}
+              />
+            </DropDownMenu>
+          </div>
+        </div>
+        <div className="option-item">
+          <div className="option-item-header">
+            <div className="option-item__title">
+              <Preview style={{ color: state.init.bgcolor.hexString }}>
+                {"***"}
+              </Preview>
+              Background colors
+            </div>
+            <ControllWrapper onClick={getCurrentColor} open={true}>
+              <LeftDivider open={true}>{"["}</LeftDivider>
+              <StaticIcon>{"i"}</StaticIcon>
+              <RightDivider open={true}>{"]"}</RightDivider>
+            </ControllWrapper>
+          </div>
+          <div className="option-item-controlls">
+            <DropDownMenu selectedItem={state.init.bgcolor.name}>
+              <Palate color={state.init.globalcolors} handler={getBgColor} />
+              <MovePanel
+                name={"BG"}
+                prev={dicrColorHandler}
+                reset={resetColor}
+                next={incrColorHandler}
+              />
+            </DropDownMenu>
+          </div>
+        </div>
+        <div
+          onClick={() => {
+            addNewPromptElem(state.promptline.currentElement);
+          }}
+        >
+          кнопка
         </div>
       </div>
       {false && <ColorInfo color={state.init.fgcolor} />}

@@ -1,25 +1,33 @@
 import React from "react";
-import styled from "styled-components";
+import Styled from "styled-components";
 import update from "immutability-helper";
 
-const SelectWrapper = styled.ul`
+const SelectWrapper = Styled.ul`
   width: 100%;
-  max-height: 100px;
   background: white;
-  overflow-y: auto;
-  display: ${(props) => (props.open ? "none" : "block")};
   visibility: ${(props) => (props.open ? "hidden" : "visible")};
+  border-left: 5px solid #f1f1f1;
 `;
-const SelectItem = styled.li`
+const SelectItem = Styled.li`
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
   border-bottom: 1px solid #e1e4e8;
-  padding: 5px 0;
+  padding: 5px 0 5px 2px;
   background: ${(props) => (props.selected ? "#f2f2f2" : "#ffffff")};
   &:first-child {
     border-top: 1px solid #e1e4e8;
-    margin-top: 5px;
   }
   &:hover {
     background: #f2f2f2;
+  }
+`;
+const ItemTitele = Styled.div``;
+const ItemPreview = Styled.div`
+  font-size: 1.1rem;
+  padding-right: 3px;
+  &:before {
+    content: '|'
   }
 `;
 
@@ -44,7 +52,8 @@ const SelectElement = ({ elements, setCurrentElement, bgcolor, fgcolor }) => {
           );
         }}
       >
-        {e.text}
+        <ItemTitele>{e.text}</ItemTitele>
+        <ItemPreview>{e.sequences}</ItemPreview>
       </SelectItem>
     );
   });

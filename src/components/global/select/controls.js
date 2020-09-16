@@ -13,15 +13,22 @@ export const ControllWrapper = styled.div`
     color: black;
   }
 `;
-export const Icon = styled.div`
+const Icon = styled.div`
   font-family: "JetBrains";
   line-height: 100%;
   display: inline-block;
-  transform: ${(props) => (props.open ? "rotate(270deg)" : "rotate(90deg);")};
-  transform-origin: 50% 50%;
   transition: transform 0.2s, color 0.2s;
   transition-delay: 0.1s;
   transition-property: transform;
+  background: transparent;
+  min-width: 16px;
+`;
+export const StaticIcon = styled(Icon)`
+  padding: 0 4px;
+`;
+export const AnimatedIcon = styled(Icon)`
+  transform: ${(props) => (props.open ? "rotate(270deg)" : "rotate(90deg);")};
+  transform-origin: 50% 50%;
 `;
 export const LeftDivider = styled.div`
   font-family: "Arial";
@@ -34,4 +41,10 @@ export const RightDivider = styled.div`
   display: inline-block;
   transition: padding 0.1s;
   padding-left: ${(props) => (props.open ? "0" : "4px")};
+`;
+
+export const Preview = styled.div`
+  display: inline-block;
+  font-family: "JetBrains";
+  background-color: #fafafa;
 `;

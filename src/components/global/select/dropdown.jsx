@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { ControllWrapper, Icon, LeftDivider, RightDivider } from "./controls";
+import {
+  ControllWrapper,
+  AnimatedIcon,
+  LeftDivider,
+  RightDivider,
+} from "./controls";
+
 const DropDownMain = styled.div`
   display: flex;
   justify-content: space-between;
@@ -8,17 +14,19 @@ const DropDownMain = styled.div`
   width: 100%;
   position: relative;
 `;
-const DropDownWrapper = styled.ul`
+const DropDownWrapper = styled.div`
+  transition: max-height 0.4s, opacity 0.4s;
   width: 100%;
-  max-height: 100px;
+  visibility: ${(props) => (props.open ? "hidden" : "visible")};
+  opacity: ${(props) => (props.open ? "0" : "1")};
+  max-height: ${(props) => (props.open ? "0" : "100px")};
   background: white;
   overflow-y: auto;
-  display: ${(props) => (props.open ? "none" : "block")};
-  visibility: ${(props) => (props.open ? "hidden" : "visible")};
 `;
 const DropDownTitle = styled.div`
   display: flex;
   justify-content: space-between;
+  padding-bottom: ${(props) => (props.open ? "0" : "4px")};
 `;
 const DropDownMenu = ({
   children,
@@ -26,9 +34,10 @@ const DropDownMenu = ({
 }) => {
   const [open, OpenClose] = useState(true);
   return (
-    <DropDownMain>
-      <DropDownTitle>
+    <DropDownMain open={open}>
+      <DropDownTitle open={open}>
         {selectedItem}
+
         <ControllWrapper
           open={open}
           onClick={() => {
@@ -36,7 +45,7 @@ const DropDownMenu = ({
           }}
         >
           <LeftDivider open={open}>{"["}</LeftDivider>
-          <Icon open={open}>{"|>"}</Icon>
+          <AnimatedIcon open={open}>{"|>"}</AnimatedIcon>
           <RightDivider open={open}>{"]"}</RightDivider>
         </ControllWrapper>
       </DropDownTitle>
