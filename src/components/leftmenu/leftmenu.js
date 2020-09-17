@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { PsOneOptions } from "./psoneeloptions";
 import { connect } from "react-redux";
-import { getFgColor, getBgColor } from "../../redux/psoneoptionsReducer";
+import {
+  getFgColor,
+  getBgColor,
+  changeSelection,
+} from "../../redux/psoneoptionsReducer";
 import { addNewPromptElem, setCurrentElement } from "../../redux/promptReducer";
 import "./_psoneoptions.scss";
 import "./leftmenu.scss";
@@ -12,6 +16,7 @@ const LeftNavMenu = ({
   getBgColor,
   addNewPromptElem,
   setCurrentElement,
+  changeSelection,
 }) => {
   const [leftMenu, isLeftMenuOpen] = useState(true);
   return (
@@ -32,6 +37,7 @@ const LeftNavMenu = ({
             getBgColor={getBgColor}
             addNewPromptElem={addNewPromptElem}
             setCurrentElement={setCurrentElement}
+            changeSelection={changeSelection}
           />
         )}
       </div>
@@ -48,4 +54,5 @@ export default connect(mapStateToProps, {
   getBgColor,
   addNewPromptElem,
   setCurrentElement,
+  changeSelection,
 })(LeftNavMenu);

@@ -19,8 +19,10 @@ export const PsOneOptions = ({
   getBgColor,
   addNewPromptElem,
   setCurrentElement,
+  changeSelection,
 }) => {
-  console.log(state);
+  const isElSelected = state.init.elementSelected;
+
   const incrColorHandler = (e) => {
     if (e.target.id === "FG") {
       let incrColorNum = state.init.fgcolor.colorId;
@@ -68,10 +70,9 @@ export const PsOneOptions = ({
         <div className="option-item-controlls">
           <DropDownMenu selectedItem={state.promptline.currentElement.text}>
             <SelectElement
-              bgcolor={state.init.bgcolor.hexString}
-              fgcolor={state.init.fgcolor.hexString}
               elements={state.promptline.cliOptions}
               setCurrentElement={setCurrentElement}
+              changeSelection={changeSelection}
             />
           </DropDownMenu>
         </div>
@@ -97,17 +98,21 @@ export const PsOneOptions = ({
               <RightDivider open={open}>{"]"}</RightDivider>
             </ControllWrapper>
           </div>
-          <div className="option-item-controlls">
-            <DropDownMenu selectedItem={state.init.fgcolor.name}>
-              <Palate color={state.init.globalcolors} handler={getFgColor} />
-              <MovePanel
-                name={"FG"}
-                prev={dicrColorHandler}
-                reset={resetColor}
-                next={incrColorHandler}
-              />
-            </DropDownMenu>
-          </div>
+          {isElSelected && (
+            <div className="option-item-controlls">
+              <DropDownMenu selectedItem={state.init.fgcolor.name}>
+                <Palate color={state.init.globalcolors} handler={getFgColor} />
+              </DropDownMenu>
+              {false && (
+                <MovePanel
+                  name={"FG"}
+                  prev={dicrColorHandler}
+                  reset={resetColor}
+                  next={incrColorHandler}
+                />
+              )}
+            </div>
+          )}
         </div>
         <div className="option-item">
           <div className="option-item-header">
@@ -123,25 +128,31 @@ export const PsOneOptions = ({
               <RightDivider open={true}>{"]"}</RightDivider>
             </ControllWrapper>
           </div>
-          <div className="option-item-controlls">
-            <DropDownMenu selectedItem={state.init.bgcolor.name}>
-              <Palate color={state.init.globalcolors} handler={getBgColor} />
-              <MovePanel
-                name={"BG"}
-                prev={dicrColorHandler}
-                reset={resetColor}
-                next={incrColorHandler}
-              />
-            </DropDownMenu>
+          {isElSelected && (
+            <div className="option-item-controlls">
+              <DropDownMenu selectedItem={state.init.bgcolor.name}>
+                <Palate color={state.init.globalcolors} handler={getBgColor} />
+              </DropDownMenu>
+              {false && (
+                <MovePanel
+                  name={"BG"}
+                  prev={dicrColorHandler}
+                  reset={resetColor}
+                  next={incrColorHandler}
+                />
+              )}
+            </div>
+          )}
+        </div>
+        {isElSelected && (
+          <div
+            onClick={() => {
+              addNewPromptElem(state.promptline.currentElement);
+            }}
+          >
+            кнопка
           </div>
-        </div>
-        <div
-          onClick={() => {
-            addNewPromptElem(state.promptline.currentElement);
-          }}
-        >
-          кнопка
-        </div>
+        )}
       </div>
       {false && <ColorInfo color={state.init.fgcolor} />}
     </div>
