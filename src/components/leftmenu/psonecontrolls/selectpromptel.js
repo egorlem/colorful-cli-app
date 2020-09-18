@@ -31,7 +31,7 @@ const ItemPreview = Styled.div`
   }
 `;
 
-const SelectElement = ({ elements, setCurrentElement, bgcolor, fgcolor }) => {
+const SelectElement = ({ changeSelection, elements, setCurrentElement }) => {
   const optionsList = elements.map((e) => {
     return (
       <SelectItem
@@ -39,10 +39,9 @@ const SelectElement = ({ elements, setCurrentElement, bgcolor, fgcolor }) => {
         data-name={e.text}
         key={e.id}
         onClick={() => {
+          changeSelection(true);
           setCurrentElement(
             update(e, {
-              bg: { $set: bgcolor },
-              fg: { $set: fgcolor },
               id: {
                 $apply: function (x) {
                   return ++elements.length;

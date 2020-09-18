@@ -19,6 +19,7 @@ let initialState = {
     hsl: { h: 0, s: 0, l: 0 },
     name: "Black",
   },
+  elementSelected: false,
 };
 
 export function psOneOptionsReducer(state = initialState, action) {
@@ -33,6 +34,8 @@ export function psOneOptionsReducer(state = initialState, action) {
         ...state,
         fgcolor: state.globalcolors.find((e) => +action.payload === e.colorId),
       };
+    case "CHANGE_ELEMENT_SELECTION_STATUS":
+      return update(state, { elementSelected: { $set: action.payload } });
   }
   return state;
 }
@@ -49,5 +52,12 @@ export const getBgColor = (payload) => {
   return {
     type: "GET_BG_COLOR",
     payload: payload,
+  };
+};
+
+export const changeSelection = (payload) => {
+  return {
+    type: "CHANGE_ELEMENT_SELECTION_STATUS",
+    payload,
   };
 };
