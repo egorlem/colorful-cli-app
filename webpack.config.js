@@ -55,7 +55,11 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: "./index.html",
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      verbose: true,
+      dry: false,
+      cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, "./icons")],
+    }),
   ],
   module: {
     rules: [
@@ -78,6 +82,16 @@ module.exports = {
       {
         test: /\.(ttf|eot|woff)$/,
         use: ["file-loader"],
+      },
+      {
+        test: /\.(png|jpg|svg|gif)$/i,
+        loader: {
+          loader: "file-loader",
+          options: {
+            name: "[name].[ext]",
+            outputPath: "icons",
+          },
+        },
       },
     ],
   },
