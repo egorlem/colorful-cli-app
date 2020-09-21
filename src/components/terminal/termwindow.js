@@ -6,13 +6,16 @@ import "./term.scss";
 let vt220Lont = new Array(134);
 
 const Window = ({ state }) => {
-  let line = state.items.map((e) => (
-    <span key={e.id} style={{ color: e.fg, background: e.bg }}>
+  let line = state.curLine.map((e) => (
+    <span
+      key={e.id}
+      style={{ color: e.fg.hexString, background: e.bg.hexString }}
+    >
       {e.sequences}
     </span>
   ));
 
-  let vt220Short = new Array(80).fill(" ");
+  let vt220Short = new Array(80).fill("M");
   let vt220Long = new Array(134).fill("░");
   let colums = new Array(23).fill("");
 
@@ -36,7 +39,10 @@ const Window = ({ state }) => {
       <div className="shell-window">
         <div className="shell-window-header"> bash ⸻ 24 rows ⸻ 80 columns;</div>
         <div className="prompt">
-          <div className="test--line short test-typing">{line}</div>
+          <div className="test--line short test-typing">
+            {layOut}
+            {line}
+          </div>
         </div>
       </div>
     </>
@@ -52,8 +58,7 @@ const TerminalWindow = (state) => {
 };
 
 const mstp = (state) => {
-  let promptline = state.promptline;
-  return promptline;
+  return { curLine: state.result.resPsOneLine };
 };
 
 export default connect(mstp, null)(TerminalWindow);

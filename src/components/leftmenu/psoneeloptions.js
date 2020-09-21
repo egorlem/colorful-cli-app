@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import MovePanel from "../global/buttons/movepanel";
-import update from "immutability-helper";
 import DropDownMenu from "../global/select/dropdown.jsx";
 import Palate from "./psonecontrolls/palate";
 import ColorInfo from "./psonecontrolls/colorinfo";
@@ -20,19 +19,41 @@ export const PsOneOptions = ({
   addNewPromptElem,
   setCurrentElement,
   changeSelection,
+  setCurrentElementColor,
+  resetOptions,
+  openControl,
+  closeControl,
 }) => {
-  const isElSelected = state.init.elementSelected;
-
+  const {
+    sequences,
+    currentElement,
+    bgcolor,
+    fgcolor,
+    globalcolors,
+    isElSelected,
+    id,
+    controls,
+  } = state;
+  const [elMenu, bgcMenu, fgcMenu] = controls;
+  const setNewElement = () => {
+    let newElement = {
+      ...currentElement,
+      bg: bgcolor,
+      fg: fgcolor,
+    };
+    addNewPromptElem(newElement);
+    resetOptions();
+  };
   const incrColorHandler = (e) => {
     if (e.target.id === "FG") {
-      let incrColorNum = state.init.fgcolor.colorId;
-      if (state.init.fgcolor.colorId === 255) {
+      let incrColorNum = fgcolor.colorId;
+      if (fgcolor.colorId === 255) {
         return;
       }
       getFgColor(++incrColorNum);
     } else if (e.target.id === "BG") {
-      let incrColorNum = state.init.bgcolor.colorId;
-      if (state.init.bgcolor.colorId === 255) {
+      let incrColorNum = bgcolor.colorId;
+      if (bgcolor.colorId === 255) {
         return;
       }
       getBgColor(++incrColorNum);
@@ -40,14 +61,14 @@ export const PsOneOptions = ({
   };
   const dicrColorHandler = (e) => {
     if (e.target.id === "FG") {
-      let dicrColorNum = state.init.fgcolor.colorId;
-      if (state.init.fgcolor.colorId === 0) {
+      let dicrColorNum = fgcolor.colorId;
+      if (fgcolor.colorId === 0) {
         return;
       }
       getFgColor(--dicrColorNum);
     } else if (e.target.id === "BG") {
-      let dicrColorNum = state.init.bgcolor.colorId;
-      if (state.init.bgcolor.colorId === 0) {
+      let dicrColorNum = bgcolor.colorId;
+      if (bgcolor.colorId === 0) {
         return;
       }
       getBgColor(--dicrColorNum);
@@ -60,19 +81,25 @@ export const PsOneOptions = ({
       getBgColor(0);
     }
   };
-  const getCurrentColor = (e) => {
-    console.log(e);
-  };
   const [open, OpenClose] = useState(true);
   return (
     <div className="psone-container">
       <div className="option-item">
         <div className="option-item-controlls">
-          <DropDownMenu selectedItem={state.promptline.currentElement.text}>
+          <DropDownMenu
+            isOpen={elMenu.isOpen}
+            selectedItem={currentElement.text}
+            id={"elementMenu"}
+            handler={elMenu.isOpen ? closeControl : openControl}
+          >
             <SelectElement
-              elements={state.promptline.cliOptions}
+              id={id}
+              elements={sequences}
               setCurrentElement={setCurrentElement}
               changeSelection={changeSelection}
+              setCurrentElementColor={setCurrentElementColor}
+              bgcolor={bgcolor}
+              fgcolor={fgcolor}
             />
           </DropDownMenu>
         </div>
@@ -80,16 +107,10 @@ export const PsOneOptions = ({
       <div>
         <div className="option-item">
           <div className="option-item-header">
-            <div className="option-item__title">
-              <Preview style={{ color: state.init.fgcolor.hexString }}>
-                {"***"}
-              </Preview>
-              Foreground colors
-            </div>
+            <div className="option-item__title">Foreground colors</div>
             <ControllWrapper
               open={open}
               onClick={() => {
-                getCurrentColor();
                 open ? OpenClose(false) : OpenClose(true);
               }}
             >
@@ -100,8 +121,18 @@ export const PsOneOptions = ({
           </div>
           {isElSelected && (
             <div className="option-item-controlls">
-              <DropDownMenu selectedItem={state.init.fgcolor.name}>
-                <Palate color={state.init.globalcolors} handler={getFgColor} />
+              <DropDownMenu
+                isOpen={fgcMenu.isOpen}
+                handler={fgcMenu.isOpen ? closeControl : openControl}
+                id={"fgColorMenu"}
+                selectedItem={fgcolor.name}
+                preview={
+                  <Preview style={{ color: fgcolor.hexString }}>
+                    {"░░░"}
+                  </Preview>
+                }
+              >
+                <Palate color={globalcolors} handler={getFgColor} />
               </DropDownMenu>
               {false && (
                 <MovePanel
@@ -116,13 +147,8 @@ export const PsOneOptions = ({
         </div>
         <div className="option-item">
           <div className="option-item-header">
-            <div className="option-item__title">
-              <Preview style={{ color: state.init.bgcolor.hexString }}>
-                {"***"}
-              </Preview>
-              Background colors
-            </div>
-            <ControllWrapper onClick={getCurrentColor} open={true}>
+            <div className="option-item__title">Background colors</div>
+            <ControllWrapper open={true}>
               <LeftDivider open={true}>{"["}</LeftDivider>
               <StaticIcon>{"i"}</StaticIcon>
               <RightDivider open={true}>{"]"}</RightDivider>
@@ -130,8 +156,18 @@ export const PsOneOptions = ({
           </div>
           {isElSelected && (
             <div className="option-item-controlls">
-              <DropDownMenu selectedItem={state.init.bgcolor.name}>
-                <Palate color={state.init.globalcolors} handler={getBgColor} />
+              <DropDownMenu
+                isOpen={bgcMenu.isOpen}
+                handler={bgcMenu.isOpen ? closeControl : openControl}
+                id={"bgColorMenu"}
+                selectedItem={bgcolor.name}
+                preview={
+                  <Preview style={{ color: bgcolor.hexString }}>
+                    {"░░░"}
+                  </Preview>
+                }
+              >
+                <Palate color={globalcolors} handler={getBgColor} />
               </DropDownMenu>
               {false && (
                 <MovePanel
@@ -144,17 +180,9 @@ export const PsOneOptions = ({
             </div>
           )}
         </div>
-        {isElSelected && (
-          <div
-            onClick={() => {
-              addNewPromptElem(state.promptline.currentElement);
-            }}
-          >
-            кнопка
-          </div>
-        )}
+        {isElSelected && <div onClick={setNewElement}>кнопка</div>}
       </div>
-      {false && <ColorInfo color={state.init.fgcolor} />}
+      {false && <ColorInfo color={fgcolor} />}
     </div>
   );
 };

@@ -6,7 +6,6 @@ import {
   LeftDivider,
   RightDivider,
 } from "./controls";
-
 const DropDownMain = styled.div`
   display: flex;
   justify-content: space-between;
@@ -19,7 +18,7 @@ const DropDownWrapper = styled.div`
   width: 100%;
   visibility: ${(props) => (props.open ? "hidden" : "visible")};
   opacity: ${(props) => (props.open ? "0" : "1")};
-  max-height: ${(props) => (props.open ? "0" : "100px")};
+  max-height: ${(props) => (props.open ? "0" : "130px")};
   background: white;
   overflow-y: auto;
 `;
@@ -31,25 +30,24 @@ const DropDownTitle = styled.div`
 const DropDownMenu = ({
   children,
   selectedItem = "Select escape sequences",
+  preview = null,
+  isOpen = true,
+  id,
+  handler,
 }) => {
   const [open, OpenClose] = useState(true);
   return (
-    <DropDownMain open={open}>
-      <DropDownTitle open={open}>
+    <DropDownMain open={isOpen}>
+      <DropDownTitle open={isOpen}>
+        {preview}
         {selectedItem}
-
-        <ControllWrapper
-          open={open}
-          onClick={() => {
-            open ? OpenClose(false) : OpenClose(true);
-          }}
-        >
-          <LeftDivider open={open}>{"["}</LeftDivider>
-          <AnimatedIcon open={open}>{"|>"}</AnimatedIcon>
-          <RightDivider open={open}>{"]"}</RightDivider>
+        <ControllWrapper open={isOpen} onClick={() => handler(id)}>
+          <LeftDivider open={isOpen}>{"["}</LeftDivider>
+          <AnimatedIcon open={isOpen}>{"|>"}</AnimatedIcon>
+          <RightDivider open={isOpen}>{"]"}</RightDivider>
         </ControllWrapper>
       </DropDownTitle>
-      <DropDownWrapper open={open}>{children}</DropDownWrapper>
+      <DropDownWrapper open={isOpen}>{children}</DropDownWrapper>
     </DropDownMain>
   );
 };
