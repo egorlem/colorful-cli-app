@@ -5,8 +5,12 @@ import {
   getFgColor,
   getBgColor,
   changeSelection,
-} from "../../redux/psoneoptionsReducer";
-import { addNewPromptElem, setCurrentElement } from "../../redux/promptReducer";
+  setCurrentElement,
+  resetOptions,
+  openControl,
+  closeControl,
+} from "../../redux/psOneOptionsReducer";
+import { addNewPromptElem } from "../../redux/resultReducer";
 import "./_psoneoptions.scss";
 import "./leftmenu.scss";
 
@@ -17,36 +21,42 @@ const LeftNavMenu = ({
   addNewPromptElem,
   setCurrentElement,
   changeSelection,
+  setCurrentElementColor,
+  resetOptions,
+  openControl,
+  closeControl,
 }) => {
-  const [leftMenu, isLeftMenuOpen] = useState(true);
   return (
-    <div className="left-menu--relative">
-      <div className="left-menu-container">
-        <span
-          onClick={() => {
-            leftMenu ? isLeftMenuOpen(false) : isLeftMenuOpen(true);
-          }}
-          className="left-menu-psone-btn"
-        >
-          [PS1]
-        </span>
-        {leftMenu && (
-          <PsOneOptions
-            state={state}
-            getFgColor={getFgColor}
-            getBgColor={getBgColor}
-            addNewPromptElem={addNewPromptElem}
-            setCurrentElement={setCurrentElement}
-            changeSelection={changeSelection}
-          />
-        )}
-      </div>
+    <div className="left-menu">
+      <PsOneOptions
+        state={state}
+        getFgColor={getFgColor}
+        getBgColor={getBgColor}
+        addNewPromptElem={addNewPromptElem}
+        setCurrentElement={setCurrentElement}
+        changeSelection={changeSelection}
+        setCurrentElementColor={setCurrentElementColor}
+        resetOptions={resetOptions}
+        openControl={openControl}
+        closeControl={closeControl}
+      />
     </div>
   );
 };
 
 function mapStateToProps(state) {
-  return { state: { init: state.init, promptline: state.promptline } };
+  return {
+    state: {
+      sequences: state.psOneOptions.psOneSequences,
+      currentElement: state.psOneOptions.currentElement,
+      fgcolor: state.psOneOptions.fgcolor,
+      bgcolor: state.psOneOptions.bgcolor,
+      globalcolors: state.psOneOptions.globalcolors,
+      isElSelected: state.psOneOptions.isElementSelected,
+      id: state.result.resPsOneLine.length,
+      controls: state.psOneOptions.activeControls,
+    },
+  };
 }
 
 export default connect(mapStateToProps, {
@@ -55,4 +65,7 @@ export default connect(mapStateToProps, {
   addNewPromptElem,
   setCurrentElement,
   changeSelection,
+  resetOptions,
+  openControl,
+  closeControl,
 })(LeftNavMenu);

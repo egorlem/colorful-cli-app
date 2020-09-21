@@ -4,56 +4,6 @@
   src: url("../../fonts/JetBrainsMono-Regular.ttf");
 }
 
-@mixin defaultPosition {
-  font-size: 1.6rem;
-  padding: 10px;
-  border-bottom: 1px solid $dividergray;
-}
-
-.psone-container {
-  border-right: $dividergray;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  width: 295px;
-  font-family: $mainfont;
-  background-color: white;
-  position: absolute;
-  top: 0;
-  left: 45px;
-}
-.psone-title {
-  font-size: 1.4rem;
-  border-bottom: 1px solid $dividergray;
-}
-.psone-elemet-select {
-  @include defaultPosition();
-}
-.psone-color-mode {
-  @include defaultPosition();
-  margin-bottom: 10px;
-}
-.psone-colors-options {
-}
-.color-contrellers {
-  display: flex;
-  flex-direction: column;
-  &__text {
-    @include defaultPosition();
-    display: flex;
-    justify-content: space-between;
-  }
-  &__control-range {
-    padding-top: 10px;
-  }
-  &__control-buttons {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid $dividergray;
-    margin-bottom: 10px;
-  }
-}
 //// HANDLERS
 .color-mode-nandler {
   cursor: pointer;
@@ -77,10 +27,9 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
-  width: 295px;
+  width: 100%;
   font-family: $mainfont;
   background-color: white;
-  position: absolute;
   top: 0;
   left: 45px;
   background-color: white;

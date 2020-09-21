@@ -2,7 +2,8 @@ import React from "react";
 import "./promptline.scss";
 import { useDrag, useDrop } from "react-dnd";
 import { connect } from "react-redux";
-import { setNewLine, editModOn, editModOff } from "../../redux/promptreducer";
+//import { editModOn, editModOff } from "../../redux/termWinReducer";
+import { changeElemPosition } from "../../redux/resultReducer";
 
 const PsOneItem = ({ id, text, findCard, moveCard, state }) => {
   const oringIndex = findCard(id).index;
@@ -10,11 +11,8 @@ const PsOneItem = ({ id, text, findCard, moveCard, state }) => {
   const [{ isDragging }, drag] = useDrag({
     item: { type: "TEST_TWO", id, oringIndex },
     collect: (monitor) => ({ isDragging: monitor.isDragging() }),
-    begin: () => {
-      state.editModOn(id);
-    },
+    begin: () => {},
     end: (dropResult, monitor) => {
-      state.editModOff();
       const { id: droppedID, oringIndex } = monitor.getItem();
       const didDrop = monitor.didDrop();
       if (!didDrop) {
@@ -50,12 +48,12 @@ const PsOneItem = ({ id, text, findCard, moveCard, state }) => {
 };
 
 const LineContainer = ({ state }) => {
-  const cards = state.items;
+  const cards = state.result.resPsOneLine;
   // const [cards, setCards] = useState(items);
 
   function moveCard(id, atIndex) {
     const { card, index } = findCard(id);
-    state.setNewLine({ index, card, atIndex });
+    state.changeElemPosition({ index, card, atIndex });
   }
   function findCard(id) {
     const card = cards.filter((c) => `${c.id}` === id)[0];
@@ -92,11 +90,7 @@ const PromptPsOneLine = (state) => {
 };
 
 const mstp = (state) => {
-  let newstate = state.promptline;
-  return newstate;
+  return state;
 };
-const mdtp = () => {};
 
-export default connect(mstp, { setNewLine, editModOn, editModOff })(
-  PromptPsOneLine
-);
+export default connect(mstp, { changeElemPosition })(PromptPsOneLine);

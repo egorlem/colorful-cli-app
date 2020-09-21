@@ -14,7 +14,6 @@ const SelectItem = Styled.li`
   justify-content: space-between;
   border-bottom: 1px solid #e1e4e8;
   padding: 5px 0 5px 2px;
-  background: ${(props) => (props.selected ? "#f2f2f2" : "#ffffff")};
   &:first-child {
     border-top: 1px solid #e1e4e8;
   }
@@ -25,13 +24,18 @@ const SelectItem = Styled.li`
 const ItemTitele = Styled.div``;
 const ItemPreview = Styled.div`
   font-size: 1.1rem;
-  padding-right: 3px;
+  padding-right: 10px;
   &:before {
     content: '|'
   }
 `;
 
-const SelectElement = ({ changeSelection, elements, setCurrentElement }) => {
+const SelectElement = ({
+  changeSelection,
+  elements,
+  setCurrentElement,
+  id,
+}) => {
   const optionsList = elements.map((e) => {
     return (
       <SelectItem
@@ -40,15 +44,7 @@ const SelectElement = ({ changeSelection, elements, setCurrentElement }) => {
         key={e.id}
         onClick={() => {
           changeSelection(true);
-          setCurrentElement(
-            update(e, {
-              id: {
-                $apply: function (x) {
-                  return ++elements.length;
-                },
-              },
-            })
-          );
+          setCurrentElement({ ...e, id: ++id });
         }}
       >
         <ItemTitele>{e.text}</ItemTitele>

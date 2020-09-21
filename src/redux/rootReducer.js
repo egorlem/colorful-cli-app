@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import { psOneOptionsReducer } from "./psoneoptionsReducer";
+import { psOneOptionsReducer } from "./psOneOptionsReducer";
 import { resultReducer } from "./resultReducer";
-import { promptReaducer } from "./promptReducer";
+import { termWinReaducer } from "./termWinReducer";
 
 export const rootReducer = combineReducers({
-  init: psOneOptionsReducer,
+  psOneOptions: psOneOptionsReducer,
+  termWin: termWinReaducer,
   result: resultReducer,
-  promptline: promptReaducer,
 });

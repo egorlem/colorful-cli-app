@@ -40,7 +40,7 @@ echo "$DIVIDER"
 echo "TERM: $TERM"
 echo "$DIVIDER"
 
-BODY="term=$TERM" 
+BODY="term=$TERM"
 BASEURL=http://localhost:5000/data
 
 function myfunc() {

@@ -1,17 +1,14 @@
 $dividergray: #e1e4e8;
-.left-menu--relative {
-  width: 50px;
-  background-color: rgb(255, 255, 255);
-  position: relative;
+//  background-color: rgb(255, 255, 255);
+.left-menu {
+  width: 500px;
   z-index: 100;
   border-right: 1px solid $dividergray;
+  background-color: white;
 }
 .left-menu-container {
   background-color: white;
   padding: 20px 2px;
   position: fixed;
 }
-.left-menu-psone-btn {
-  font-size: 1.6rem;
-  cursor: pointer;
-}
+
