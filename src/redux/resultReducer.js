@@ -1,4 +1,3 @@
-import { store } from "./store";
 import update from "immutability-helper";
 
 let initialState = {
@@ -8,16 +7,43 @@ let initialState = {
       text: "The hostname (short)",
       sequences: "LocalHost",
       code: "\\h",
-      bg: "",
-      fg: "",
+      style: ["regular"],
+      bg: {
+        colorInfo: false,
+        colorId: 0,
+        hexString: "#000000",
+        rgb: { r: 0, g: 0, b: 0 },
+        hsl: { h: 0, s: 0, l: 0 },
+        name: "Black",
+      },
+      fg: {
+        colorId: 156,
+        hexString: "#afff87",
+        rgb: { r: 175, g: 255, b: 135 },
+        hsl: { h: 100, s: 100, l: 76 },
+        name: "PaleGreen1",
+      },
     },
     {
       id: 2,
       text: "The base name of term",
       sequences: "ttys001",
       code: "\\l",
-      bg: "",
-      fg: "",
+      style: ["regular"],
+      bg: {
+        colorId: 0,
+        hexString: "#000000",
+        rgb: { r: 0, g: 0, b: 0 },
+        hsl: { h: 0, s: 0, l: 0 },
+        name: "Black",
+      },
+      fg: {
+        colorId: 156,
+        hexString: "#afff87",
+        rgb: { r: 175, g: 255, b: 135 },
+        hsl: { h: 100, s: 100, l: 76 },
+        name: "PaleGreen1",
+      },
     },
   ],
 };

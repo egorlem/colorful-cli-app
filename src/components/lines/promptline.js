@@ -4,8 +4,10 @@ import { useDrag, useDrop } from "react-dnd";
 import { connect } from "react-redux";
 //import { editModOn, editModOff } from "../../redux/termWinReducer";
 import { changeElemPosition } from "../../redux/resultReducer";
+import { updateElement } from "../../redux/psOneOptionsReducer";
 
 const PsOneItem = ({ id, text, findCard, moveCard, state }) => {
+  const curCard = state.result.resPsOneLine.find((e) => +e.id === +id);
   const oringIndex = findCard(id).index;
 
   const [{ isDragging }, drag] = useDrag({
@@ -36,6 +38,9 @@ const PsOneItem = ({ id, text, findCard, moveCard, state }) => {
   const opacity = isDragging ? 0.3 : 1;
   return (
     <div
+      onClick={() => {
+        state.updateElement(curCard);
+      }}
       style={{ opacity }}
       className="psone-line__item"
       ref={(node) => {
@@ -93,4 +98,6 @@ const mstp = (state) => {
   return state;
 };
 
-export default connect(mstp, { changeElemPosition })(PromptPsOneLine);
+export default connect(mstp, { changeElemPosition, updateElement })(
+  PromptPsOneLine
+);

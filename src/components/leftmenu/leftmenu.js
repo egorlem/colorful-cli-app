@@ -9,6 +9,8 @@ import {
   resetOptions,
   openControl,
   closeControl,
+  setElementStyle,
+  removeElemtStyle,
 } from "../../redux/psOneOptionsReducer";
 import { addNewPromptElem } from "../../redux/resultReducer";
 import "./_psoneoptions.scss";
@@ -25,6 +27,8 @@ const LeftNavMenu = ({
   resetOptions,
   openControl,
   closeControl,
+  setElementStyle,
+  removeElemtStyle,
 }) => {
   return (
     <div className="left-menu">
@@ -39,6 +43,8 @@ const LeftNavMenu = ({
         resetOptions={resetOptions}
         openControl={openControl}
         closeControl={closeControl}
+        setElementStyle={setElementStyle}
+        removeElemtStyle={removeElemtStyle}
       />
     </div>
   );
@@ -49,12 +55,13 @@ function mapStateToProps(state) {
     state: {
       sequences: state.psOneOptions.psOneSequences,
       currentElement: state.psOneOptions.currentElement,
-      fgcolor: state.psOneOptions.fgcolor,
-      bgcolor: state.psOneOptions.bgcolor,
+      fgcolor: state.psOneOptions.currentElement.fg,
+      bgcolor: state.psOneOptions.currentElement.bg,
       globalcolors: state.psOneOptions.globalcolors,
       isElSelected: state.psOneOptions.isElementSelected,
       id: state.result.resPsOneLine.length,
       controls: state.psOneOptions.activeControls,
+      textdecoration: state.psOneOptions.textdecoration,
     },
   };
 }
@@ -68,4 +75,6 @@ export default connect(mapStateToProps, {
   resetOptions,
   openControl,
   closeControl,
+  setElementStyle,
+  removeElemtStyle,
 })(LeftNavMenu);
