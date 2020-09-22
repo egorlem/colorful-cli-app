@@ -4,6 +4,7 @@ import DropDownMenu from "../global/select/dropdown.jsx";
 import Palate from "./psonecontrolls/palate";
 import ColorInfo from "./psonecontrolls/colorinfo";
 import SelectElement from "./psonecontrolls/selectpromptel";
+import TextDecoration from "./psonecontrolls/textdecoration";
 import {
   StaticIcon,
   LeftDivider,
@@ -23,6 +24,8 @@ export const PsOneOptions = ({
   resetOptions,
   openControl,
   closeControl,
+  setElementStyle,
+  removeElemtStyle,
 }) => {
   const {
     sequences,
@@ -33,6 +36,7 @@ export const PsOneOptions = ({
     isElSelected,
     id,
     controls,
+    textdecoration,
   } = state;
   const [elMenu, bgcMenu, fgcMenu] = controls;
   const setNewElement = () => {
@@ -88,7 +92,11 @@ export const PsOneOptions = ({
         <div className="option-item-controlls">
           <DropDownMenu
             isOpen={elMenu.isOpen}
-            selectedItem={currentElement.text}
+            selectedItem={
+              currentElement.text
+                ? currentElement.text
+                : "Select escape sequences"
+            }
             id={"elementMenu"}
             handler={elMenu.isOpen ? closeControl : openControl}
           >
@@ -125,7 +133,7 @@ export const PsOneOptions = ({
                 isOpen={fgcMenu.isOpen}
                 handler={fgcMenu.isOpen ? closeControl : openControl}
                 id={"fgColorMenu"}
-                selectedItem={fgcolor.name}
+                selectedItem={fgcolor.name ? fgcolor.name : ""}
                 preview={
                   <Preview style={{ color: fgcolor.hexString }}>
                     {"░░░"}
@@ -160,7 +168,7 @@ export const PsOneOptions = ({
                 isOpen={bgcMenu.isOpen}
                 handler={bgcMenu.isOpen ? closeControl : openControl}
                 id={"bgColorMenu"}
-                selectedItem={bgcolor.name}
+                selectedItem={bgcolor.name ? bgcolor.name : ""}
                 preview={
                   <Preview style={{ color: bgcolor.hexString }}>
                     {"░░░"}
@@ -180,6 +188,19 @@ export const PsOneOptions = ({
             </div>
           )}
         </div>
+        {isElSelected && (
+          <div className="option-item">
+            <div className="option-item-header">text docr</div>
+            <div className="option-item-controlls">
+              <TextDecoration
+                textdecoration={textdecoration}
+                setElementStyle={setElementStyle}
+                currentElement={currentElement}
+                removeElemtStyle={removeElemtStyle}
+              />
+            </div>
+          </div>
+        )}
         {isElSelected && <div onClick={setNewElement}>кнопка</div>}
       </div>
       {false && <ColorInfo color={fgcolor} />}

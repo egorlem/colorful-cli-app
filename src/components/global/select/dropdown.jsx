@@ -29,7 +29,7 @@ const DropDownTitle = styled.div`
 `;
 const DropDownMenu = ({
   children,
-  selectedItem = "Select escape sequences",
+  selectedItem,
   preview = null,
   isOpen = true,
   id,

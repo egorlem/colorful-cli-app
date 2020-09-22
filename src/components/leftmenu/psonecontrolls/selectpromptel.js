@@ -41,7 +41,7 @@ const SelectElement = ({
       <SelectItem
         selected={e.selected}
         data-name={e.text}
-        key={e.id}
+        key={e.text}
         onClick={() => {
           changeSelection(true);
           setCurrentElement({ ...e, id: ++id });

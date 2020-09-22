@@ -6,11 +6,14 @@ import logger from "redux-logger";
 const persistedState = loadState();
 
 //applyMiddleware(logger)
-export const store = createStore(rootReducer, applyMiddleware(logger));
-/*
+export const store = createStore(
+  rootReducer,
+  persistedState,
+  applyMiddleware(logger)
+);
+
 store.subscribe(() => {
   saveState({
     result: store.getState().result,
   });
 });
-*/
