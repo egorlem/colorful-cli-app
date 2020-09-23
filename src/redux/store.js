@@ -3,17 +3,13 @@ import { rootReducer } from "./rootReducer";
 import { saveState, loadState } from "./localstorage/localstorage";
 import logger from "redux-logger";
 
-const persistedState = loadState();
+// const persistedState = loadState();
 
 //applyMiddleware(logger)
-export const store = createStore(
-  rootReducer,
-  persistedState,
-  applyMiddleware(logger)
-);
+export const store = createStore(rootReducer, applyMiddleware(logger));
 
-store.subscribe(() => {
-  saveState({
-    result: store.getState().result,
-  });
-});
+// store.subscribe(() => {
+//   saveState({
+//     result: store.getState().result,
+//   });
+// });

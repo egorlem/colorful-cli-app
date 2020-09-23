@@ -10,6 +10,9 @@ import { DndProvider } from "react-dnd";
 const ContentContainer = styled.div`
   width: 100%;
 `;
+const SetingsNavMenu = () => {
+  return <>{"PS1"}</>;
+};
 
 function App() {
   return (
@@ -17,6 +20,7 @@ function App() {
       <div className="shell-container">
         <LeftNavMenu />
         <ContentContainer>
+          <SetingsNavMenu />
           <TerminalWindow />
           <DndProvider backend={HTML5Backend}>
             <PromptPsOneLine />

@@ -5,7 +5,7 @@ import update from "immutability-helper";
 const SelectWrapper = Styled.ul`
   width: 100%;
   background: white;
-  visibility: ${(props) => (props.open ? "hidden" : "visible")};
+  visibility: ${(props) => (props.flag ? "hidden" : "visible")};
   border-left: 5px solid #f1f1f1;
 `;
 const SelectItem = Styled.li`
@@ -29,22 +29,30 @@ const ItemPreview = Styled.div`
     content: '|'
   }
 `;
+const SelectElement = (state) => {
+  //STATE
+  const {
+    psOneOptions: { psOneSequences, status, currentElement },
+    changeSelection,
+    setCurrentElement,
+    changeModeStatus,
+    addNewPromptElem,
+  } = state;
+  const statusHandler = (e) => {
+    setCurrentElement({ ...e });
+    if (status === null && status !== "UDATE_CURRENT") {
+      changeModeStatus("ADD_NEW");
+    }
+  };
 
-const SelectElement = ({
-  changeSelection,
-  elements,
-  setCurrentElement,
-  id,
-}) => {
-  const optionsList = elements.map((e) => {
+  const PromptSequence = psOneSequences.map((e) => {
     return (
       <SelectItem
         selected={e.selected}
         data-name={e.text}
         key={e.text}
         onClick={() => {
-          changeSelection(true);
-          setCurrentElement({ ...e, id: ++id });
+          statusHandler(e);
         }}
       >
         <ItemTitele>{e.text}</ItemTitele>
@@ -52,7 +60,7 @@ const SelectElement = ({
       </SelectItem>
     );
   });
-  return <SelectWrapper>{optionsList}</SelectWrapper>;
+  return <SelectWrapper>{PromptSequence}</SelectWrapper>;
 };
 
 export default SelectElement;
