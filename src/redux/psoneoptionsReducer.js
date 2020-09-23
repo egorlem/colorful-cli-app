@@ -4,6 +4,7 @@ import { textdecoration } from "./techstate/textdecoration";
 import update from "immutability-helper";
 
 let initialState = {
+  status: null,
   initElement: {
     id: null,
     text: null,
@@ -28,9 +29,9 @@ let initialState = {
     },
   },
   activeControls: [
-    { name: "elementMenu", isOpen: true },
-    { name: "bgColorMenu", isOpen: true },
-    { name: "fgColorMenu", isOpen: true },
+    { name: "elementMenu", flag: true },
+    { name: "bgColorMenu", flag: true },
+    { name: "fgColorMenu", flag: true },
   ],
   globalcolors: globalcolors,
   textdecoration: textdecoration,
@@ -50,8 +51,8 @@ let initialState = {
     hsl: { h: 0, s: 0, l: 0 },
     name: "Black",
   },
-  isElementSelected: false,
   psOneSequences: psOneSequences,
+  orignIndex: null,
   currentElement: {
     id: null,
     text: null,
@@ -83,14 +84,14 @@ export function psOneOptionsReducer(state = initialState, action) {
       return {
         ...state,
         activeControls: state.activeControls.map((e) =>
-          e.name === action.payload ? { ...e, isOpen: true } : e
+          e.name === action.payload ? { ...e, flag: false } : e
         ),
       };
     case "CLOSE_CURRENT_CONTROL":
       return {
         ...state,
         activeControls: state.activeControls.map((e) =>
-          e.name === action.payload ? { ...e, isOpen: false } : e
+          e.name === action.payload ? { ...e, flag: true } : e
         ),
       };
 
@@ -100,21 +101,13 @@ export function psOneOptionsReducer(state = initialState, action) {
         currentElement: { $merge: action.payload },
       });
     case "SET_BG_COLOR":
-      return {
-        ...state,
-        currentElement: {
-          ...state.currentElement,
-          bg: state.globalcolors.find((e) => +action.payload === e.colorId),
-        },
-      };
+      return update(state, {
+        currentElement: { bg: { $set: action.payload } },
+      });
     case "SET_FG_COLOR":
-      return {
-        ...state,
-        currentElement: {
-          ...state.currentElement,
-          fg: state.globalcolors.find((e) => +action.payload === e.colorId),
-        },
-      };
+      return update(state, {
+        currentElement: { fg: { $set: action.payload } },
+      });
     case "LEFT_MENU_STATUS/ENABLE_ELEMENT_OPTIONS":
       return update(state, { isElementSelected: { $set: action.payload } });
     case "LEFT_MENU_STATUS/RESET/DISABLE_ELEMENT_OPTIONS":
@@ -126,8 +119,9 @@ export function psOneOptionsReducer(state = initialState, action) {
       });
     case "UPDATE_CURRENT_ELEMENT":
       return update(state, {
-        currentElement: { $set: action.payload },
+        currentElement: { $set: action.payload.curCard },
         isElementSelected: { $set: true },
+        orignIndex: { $set: action.payload.oringIndex },
       });
     case "SET_TEXT_STYLE":
       return update(state, {
@@ -136,6 +130,10 @@ export function psOneOptionsReducer(state = initialState, action) {
     case "REMOVE_TEXT_STYLE":
       return update(state, {
         currentElement: { style: { $splice: [[action.payload.index, 1]] } },
+      });
+    case "PSONE/CHANGE_EDIT_MOD_STATUS":
+      return update(state, {
+        status: { $set: action.payload },
       });
   }
   return state;
@@ -174,6 +172,7 @@ export const closeControl = (payload) => {
   return { type: "CLOSE_CURRENT_CONTROL", payload };
 };
 export const updateElement = (payload) => {
+  console.log(payload);
   return { type: "UPDATE_CURRENT_ELEMENT", payload };
 };
 
@@ -181,6 +180,9 @@ export const setElementStyle = (payload) => {
   return { type: "SET_TEXT_STYLE", payload };
 };
 export const removeElemtStyle = (payload) => {
-  console.log(payload);
   return { type: "REMOVE_TEXT_STYLE", payload };
+};
+
+export const changeModeStatus = (payload) => {
+  return { type: "PSONE/CHANGE_EDIT_MOD_STATUS", payload };
 };

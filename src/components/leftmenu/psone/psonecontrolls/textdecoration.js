@@ -6,19 +6,23 @@ const DecorButton = styled.div`
   margin: 5px;
 `;
 
-const TextDecoration = ({
-  textdecoration,
-  setElementStyle,
-  currentElement,
-  removeElemtStyle,
-}) => {
-  const decorOptions = textdecoration.map((e) => {
+const TextDecoration = (state) => {
+  // STATE
+  const {
+    psOneOptions: { textdecoration, currentElement },
+    removeElemtStyle,
+    setElementStyle,
+  } = state;
+
+  const DecorationProperty = textdecoration.map((e) => {
     const active = currentElement.style.includes(e.style);
+
     const curStyleIndex = (arr) => {
       let styleIndex = arr.style.indexOf(e.style);
       return styleIndex;
     };
     let index = curStyleIndex(currentElement);
+
     return (
       <DecorButton
         active={active}
@@ -32,7 +36,7 @@ const TextDecoration = ({
     );
   });
 
-  return <div>{decorOptions}</div>;
+  return <div>{DecorationProperty}</div>;
 };
 
 export default TextDecoration;

@@ -4,7 +4,10 @@ import { useDrag, useDrop } from "react-dnd";
 import { connect } from "react-redux";
 //import { editModOn, editModOff } from "../../redux/termWinReducer";
 import { changeElemPosition } from "../../redux/resultReducer";
-import { updateElement } from "../../redux/psOneOptionsReducer";
+import {
+  changeModeStatus,
+  updateElement,
+} from "../../redux/psOneOptionsReducer";
 
 const PsOneItem = ({ id, text, findCard, moveCard, state }) => {
   const curCard = state.result.resPsOneLine.find((e) => +e.id === +id);
@@ -39,7 +42,8 @@ const PsOneItem = ({ id, text, findCard, moveCard, state }) => {
   return (
     <div
       onClick={() => {
-        state.updateElement(curCard);
+        state.updateElement({ curCard, oringIndex });
+        state.changeModeStatus("UDATE_CURRENT");
       }}
       style={{ opacity }}
       className="psone-line__item"
@@ -52,7 +56,7 @@ const PsOneItem = ({ id, text, findCard, moveCard, state }) => {
   );
 };
 
-const LineContainer = ({ state }) => {
+const LineContainer = (state) => {
   const cards = state.result.resPsOneLine;
   // const [cards, setCards] = useState(items);
 
@@ -89,7 +93,7 @@ const LineContainer = ({ state }) => {
 const PromptPsOneLine = (state) => {
   return (
     <>
-      <LineContainer state={state} />
+      <LineContainer {...state} />
     </>
   );
 };
@@ -98,6 +102,8 @@ const mstp = (state) => {
   return state;
 };
 
-export default connect(mstp, { changeElemPosition, updateElement })(
-  PromptPsOneLine
-);
+export default connect(mstp, {
+  changeElemPosition,
+  updateElement,
+  changeModeStatus,
+})(PromptPsOneLine);

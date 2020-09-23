@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { PsOneOptions } from "./psoneeloptions";
+import React from "react";
+import { PsOneMenu } from "./psone/psonemenu";
 import { connect } from "react-redux";
 import {
   getFgColor,
@@ -11,59 +11,26 @@ import {
   closeControl,
   setElementStyle,
   removeElemtStyle,
+  changeModeStatus,
 } from "../../redux/psOneOptionsReducer";
-import { addNewPromptElem } from "../../redux/resultReducer";
+import {
+  updateSelectedElement,
+  deleteSelectedElement,
+  addNewPromptElem,
+} from "../../redux/resultReducer";
 import "./_psoneoptions.scss";
 import "./leftmenu.scss";
 
-const LeftNavMenu = ({
-  state,
-  getFgColor,
-  getBgColor,
-  addNewPromptElem,
-  setCurrentElement,
-  changeSelection,
-  setCurrentElementColor,
-  resetOptions,
-  openControl,
-  closeControl,
-  setElementStyle,
-  removeElemtStyle,
-}) => {
+const LeftNavMenu = (state) => {
   return (
     <div className="left-menu">
-      <PsOneOptions
-        state={state}
-        getFgColor={getFgColor}
-        getBgColor={getBgColor}
-        addNewPromptElem={addNewPromptElem}
-        setCurrentElement={setCurrentElement}
-        changeSelection={changeSelection}
-        setCurrentElementColor={setCurrentElementColor}
-        resetOptions={resetOptions}
-        openControl={openControl}
-        closeControl={closeControl}
-        setElementStyle={setElementStyle}
-        removeElemtStyle={removeElemtStyle}
-      />
+      <PsOneMenu {...state} />
     </div>
   );
 };
 
 function mapStateToProps(state) {
-  return {
-    state: {
-      sequences: state.psOneOptions.psOneSequences,
-      currentElement: state.psOneOptions.currentElement,
-      fgcolor: state.psOneOptions.currentElement.fg,
-      bgcolor: state.psOneOptions.currentElement.bg,
-      globalcolors: state.psOneOptions.globalcolors,
-      isElSelected: state.psOneOptions.isElementSelected,
-      id: state.result.resPsOneLine.length,
-      controls: state.psOneOptions.activeControls,
-      textdecoration: state.psOneOptions.textdecoration,
-    },
-  };
+  return state;
 }
 
 export default connect(mapStateToProps, {
@@ -77,4 +44,7 @@ export default connect(mapStateToProps, {
   closeControl,
   setElementStyle,
   removeElemtStyle,
+  changeModeStatus,
+  updateSelectedElement,
+  deleteSelectedElement,
 })(LeftNavMenu);

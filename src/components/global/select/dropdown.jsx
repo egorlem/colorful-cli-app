@@ -23,6 +23,7 @@ const DropDownWrapper = styled.div`
   overflow-y: auto;
 `;
 const DropDownTitle = styled.div`
+  transition: padding-bottom 0.4s;
   display: flex;
   justify-content: space-between;
   padding-bottom: ${(props) => (props.open ? "0" : "4px")};
@@ -31,23 +32,22 @@ const DropDownMenu = ({
   children,
   selectedItem,
   preview = null,
-  isOpen = true,
-  id,
+  flag = true,
+  accessory,
   handler,
 }) => {
-  const [open, OpenClose] = useState(true);
   return (
-    <DropDownMain open={isOpen}>
-      <DropDownTitle open={isOpen}>
+    <DropDownMain open={flag}>
+      <DropDownTitle open={flag}>
         {preview}
         {selectedItem}
-        <ControllWrapper open={isOpen} onClick={() => handler(id)}>
-          <LeftDivider open={isOpen}>{"["}</LeftDivider>
-          <AnimatedIcon open={isOpen}>{"|>"}</AnimatedIcon>
-          <RightDivider open={isOpen}>{"]"}</RightDivider>
+        <ControllWrapper open={flag} onClick={() => handler(accessory)}>
+          <LeftDivider open={flag}>{"["}</LeftDivider>
+          <AnimatedIcon open={flag}>{"|>"}</AnimatedIcon>
+          <RightDivider open={flag}>{"]"}</RightDivider>
         </ControllWrapper>
       </DropDownTitle>
-      <DropDownWrapper open={isOpen}>{children}</DropDownWrapper>
+      <DropDownWrapper open={flag}>{children}</DropDownWrapper>
     </DropDownMain>
   );
 };
