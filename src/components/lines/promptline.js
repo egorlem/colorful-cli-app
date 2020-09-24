@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./promptline.scss";
 import { useDrag, useDrop } from "react-dnd";
 import { connect } from "react-redux";
@@ -91,6 +91,34 @@ const LineContainer = (state) => {
 };
 
 const PromptPsOneLine = (state) => {
+  //STATE
+  const {
+    psOneOptions: { status },
+    result: { resPsOneLine },
+    changeModeStatus,
+    updateElement,
+  } = state;
+  //console.log(state);
+
+  function findCard(id, elements) {
+    const [currentElement] = elements.filter((element) => element.id === id);
+    return {
+      currentElement,
+      index: elements.indexOf(currentElement),
+    };
+  }
+
+  useEffect(() => {
+    if (status === "ADD_NEW") {
+      let { currentElement, index } = findCard(
+        resPsOneLine.length,
+        resPsOneLine
+      );
+      //  console.log(currentElement, index);
+      updateElement({ curCard: currentElement, oringIndex: index });
+      changeModeStatus("UDATE_CURRENT");
+    }
+  }, [resPsOneLine]);
   return (
     <>
       <LineContainer {...state} />

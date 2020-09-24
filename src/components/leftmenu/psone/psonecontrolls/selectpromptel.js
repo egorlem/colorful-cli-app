@@ -32,11 +32,9 @@ const ItemPreview = Styled.div`
 const SelectElement = (state) => {
   //STATE
   const {
-    psOneOptions: { psOneSequences, status, currentElement },
-    changeSelection,
+    psOneOptions: { psOneSequences, status },
     setCurrentElement,
     changeModeStatus,
-    addNewPromptElem,
   } = state;
   const statusHandler = (e) => {
     setCurrentElement({ ...e });

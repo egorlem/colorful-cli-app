@@ -94,6 +94,13 @@ export function psOneOptionsReducer(state = initialState, action) {
           e.name === action.payload ? { ...e, flag: true } : e
         ),
       };
+    case "CLOSE_ALL_CONTROLS":
+      return {
+        ...state,
+        activeControls: state.activeControls.map((e) => {
+          return { ...e, flag: true };
+        }),
+      };
 
     //// ELEMTN SETORS
     case "SET_CURRENT_ELEMENT":
@@ -185,4 +192,7 @@ export const removeElemtStyle = (payload) => {
 
 export const changeModeStatus = (payload) => {
   return { type: "PSONE/CHANGE_EDIT_MOD_STATUS", payload };
+};
+export const closeAllControls = () => {
+  return { type: "CLOSE_ALL_CONTROLS" };
 };

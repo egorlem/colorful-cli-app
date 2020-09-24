@@ -1,6 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { getResultCodeLine } from "../../redux/codeReducer";
 
-export const Result = () => {
+const Result = (state) => {
+  //STATE
+  const {
+    code: { basePsOneVar, variables, codeline },
+    result: { resPsOneLine },
+    getResultCodeLine,
+  } = state;
+  console.log(variables);
+  useEffect(() => {
+    getResultCodeLine();
+  }, [resPsOneLine]);
+
+  const vari = variables.map((e) => {
+    return (
+      <tr className="result__string">
+        <td className="result__line">#</td>
+        <td className="result__text">
+          <div>
+            {e.letit.bg.name}
+            {"="}
+            {'"'}
+            {e.letit.bg.code}
+            {'"'}
+          </div>
+          <div>
+            {e.letit.fg.name}
+            {"="}
+            {'"'}
+            {e.letit.fg.code}
+            {'"'}
+          </div>
+        </td>
+      </tr>
+    );
+  });
   return (
     <div className="result--container">
       <div className="result--limiter">
@@ -16,9 +52,10 @@ export const Result = () => {
               <td className="result__line">#</td>
               <td className="result__text"></td>
             </tr>
+            {vari}
             <tr className="result__string">
               <td className="result__line">#</td>
-              <td className="result__text"></td>
+              <td className="result__text">{codeline}</td>
             </tr>
           </tbody>
         </table>
@@ -26,3 +63,9 @@ export const Result = () => {
     </div>
   );
 };
+
+const mstp = (state) => {
+  return state;
+};
+
+export default connect(mstp, { getResultCodeLine })(Result);
