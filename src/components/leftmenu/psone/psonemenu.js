@@ -7,15 +7,28 @@ import { TextDecorationOption } from "./psoneoptions/textdecor";
 export const PsOneMenu = (state) => {
   const {
     psOneOptions: { status, currentElement, orignIndex },
+    result: { resPsOneLine },
     updateSelectedElement,
     deleteSelectedElement,
     changeModeStatus,
+    closeAllControls,
+    addNewPromptElem,
   } = state;
+
+  const setupNewPromptElemnt = (arr, currentElement) => {
+    let index = arr.length;
+    return { ...currentElement, id: ++index };
+  };
+
   useEffect(() => {
     if (status === "UDATE_CURRENT") {
       updateSelectedElement({ index: orignIndex, element: currentElement });
+    } else if (status === "ADD_NEW") {
+      let newElement = setupNewPromptElemnt(resPsOneLine, currentElement);
+      addNewPromptElem(newElement);
     }
   }, [currentElement]);
+
   return (
     <div className="psone-container">
       {/* SEQUENCES */}
@@ -45,7 +58,7 @@ export const PsOneMenu = (state) => {
       {status === "ADD_NEW" && (
         <div
           onClick={() => {
-            changeModeStatus(null);
+            closeAllControls();
           }}
         >
           add

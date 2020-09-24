@@ -14,7 +14,7 @@ const DropDownMain = styled.div`
   position: relative;
 `;
 const DropDownWrapper = styled.div`
-  transition: max-height 0.4s, opacity 0.4s;
+  transition: max-height 0.3s, opacity 0.3s;
   width: 100%;
   visibility: ${(props) => (props.open ? "hidden" : "visible")};
   opacity: ${(props) => (props.open ? "0" : "1")};
@@ -23,7 +23,7 @@ const DropDownWrapper = styled.div`
   overflow-y: auto;
 `;
 const DropDownTitle = styled.div`
-  transition: padding-bottom 0.4s;
+  transition: padding-bottom 0.3s;
   display: flex;
   justify-content: space-between;
   padding-bottom: ${(props) => (props.open ? "0" : "4px")};

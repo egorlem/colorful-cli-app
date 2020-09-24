@@ -12,6 +12,7 @@ import {
   setElementStyle,
   removeElemtStyle,
   changeModeStatus,
+  closeAllControls,
 } from "../../redux/psOneOptionsReducer";
 import {
   updateSelectedElement,
@@ -47,4 +48,5 @@ export default connect(mapStateToProps, {
   changeModeStatus,
   updateSelectedElement,
   deleteSelectedElement,
+  closeAllControls,
 })(LeftNavMenu);
