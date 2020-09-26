@@ -19,7 +19,7 @@ export const PsOneMenu = (state) => {
     let index = arr.length;
     return { ...currentElement, id: ++index };
   };
-
+  // если и нажать по томуже элементу стейт не меняется
   useEffect(() => {
     if (status === "UDATE_CURRENT") {
       updateSelectedElement({ index: orignIndex, element: currentElement });
@@ -27,7 +27,7 @@ export const PsOneMenu = (state) => {
       let newElement = setupNewPromptElemnt(resPsOneLine, currentElement);
       addNewPromptElem(newElement);
     }
-  }, [currentElement]);
+  }, [currentElement, status]);
 
   return (
     <div className="psone-container">
