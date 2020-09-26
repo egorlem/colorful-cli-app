@@ -1,0 +1,47 @@
+.psone-options-info {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+.psone-options-info.close {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.psone-options-info__title {
+  font-size: 3rem;
+  color: #1a65f0;
+  background-color: #b1c4e9;
+  margin-bottom: 6px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.psone-options-info__title .disclaimer--close {
+  color: black;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.psone-options-info__text {
+  border-top: 1px solid black;
+  font-size: 1.4rem;
+  padding: 10px;
+  border: 1px solid #b1c4e9;
+}
+
+.psone-options-info__text .info-cont {
+  padding: 3px 0;
+}
+
+.psone-options-info__text .c-name {
+  padding: 2px 0;
+  background-color: #f7f7f7;
+}
+
+.psone-options-info__text .c-res {
+  padding-left: 10px;
+}
+/*# sourceMappingURL=colorinfo.css.map */

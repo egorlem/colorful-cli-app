@@ -1,0 +1,495 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 10px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+input::placeholder {
+  color: #626262;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+header {
+  min-height: 30px;
+  background-color: white;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.header-container {
+  font-family: "Ubuntu Mono", monospace;
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  background: #0f292f;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.logo {
+  font-size: 2rem;
+  color: black;
+}
+
+.header-nav {
+  font-size: 1.5rem;
+}
+
+.shell-prompt-line {
+  font-family: "Ubuntu Mono", monospace;
+  position: relative;
+  font-size: 1.8rem;
+  width: 1200px;
+  z-index: 2;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.no-name-line {
+  width: 150px;
+  background-color: white;
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.line--divider {
+  border: 1px solid black;
+  position: relative;
+  border-radius: 6px;
+  min-height: 50px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.line--divider:hover {
+  border: 1px solid #10b5df;
+}
+
+.line--divider:hover .line--divider-icon-left,
+.line--divider:hover .line--divider-icon-right {
+  fill: red;
+}
+
+.line--divider.active {
+  border: 1px solid #10b5df;
+}
+
+.line--divider.active .line--divider-icon-left,
+.line--divider.active .line--divider-icon-right {
+  fill: red;
+}
+
+.line--divider-icon-left {
+  position: absolute;
+  top: calc(50% - 6px);
+  left: -9px;
+  background-color: white;
+  padding: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+.line--divider-icon-right {
+  position: absolute;
+  top: calc(50% - 6px);
+  right: -9px;
+  background-color: white;
+  padding: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+.line {
+  color: black;
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+}
+
+.line__item {
+  display: inline-block;
+}
+
+.line__color {
+  display: inline-block;
+}
+
+.line__line__editbtn {
+  display: block;
+  width: 100%;
+}
+
+.line__line__editbtn::before {
+  content: "\f044";
+}
+
+.global--divider {
+  position: relative;
+  width: 100%;
+  background-color: white;
+  min-height: 60px;
+  z-index: 1;
+}
+
+.global--divider::after {
+  content: "";
+  position: absolute;
+  border-bottom: 1px solid black;
+  width: 100%;
+  top: 31px;
+}
+
+.terminal-options {
+  background-color: white;
+  padding: 10px;
+  font-family: "Ubuntu Mono", monospace;
+  position: absolute;
+  width: 295px;
+  top: 0;
+  right: 50px;
+  display: block;
+}
+
+.terminal-options.open {
+  display: block;
+}
+
+.terminal-select {
+  font-size: 2.4rem;
+  border-bottom: 1px solid #e1e4e8;
+  padding: 10px;
+}
+
+.terminal-shell {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e1e4e8;
+  padding: 10px;
+}
+
+.terminal-shell__title {
+  padding-right: 2px;
+}
+
+.term-color-line {
+  border-bottom: 1px solid #e1e4e8;
+  padding: 10px;
+}
+
+.term-color-line-dark {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.term-color-line-light {
+  display: flex;
+  justify-content: space-between;
+}
+
+.term-color-line__item-l, .term-color-line__item-d {
+  border-radius: 3px;
+  border: 1px solid #e1e4e8;
+  width: 30px;
+  height: 15px;
+}
+
+.terminal-font {
+  display: flex;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e1e4e8;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.terminal-font .font--container {
+  display: flex;
+}
+
+.terminal-font__name {
+  margin-right: 4px;
+}
+
+.terminal-font__typeface {
+  margin-right: 4px;
+}
+
+.terminal-font .font--select {
+  color: black;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.terminal-options-disclaimer {
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}
+
+.terminal-options-disclaimer.close {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.terminal-options-disclaimer__title {
+  font-size: 2.6rem;
+  color: red;
+  background-color: #ffdcdc;
+  margin-bottom: 6px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.terminal-options-disclaimer__title .disclaimer--close {
+  color: black;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.terminal-options-disclaimer__text {
+  border-top: 1px solid black;
+  font-size: 1.4rem;
+  padding: 10px;
+  border: 1px solid #ffdcdc;
+}
+
+.result--container {
+  font-family: "Ubuntu Mono", monospace;
+}
+
+.result--limiter {
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 6px 6px 0 0;
+  border: 1px solid #e1e4e8;
+  margin-bottom: 10px;
+}
+
+.result-header__title {
+  font-size: 1.4rem;
+}
+
+.result-header__copybtn {
+  font-size: 1.8rem;
+  transition: all 0.2s ease-in-out;
+  background: transparent;
+  padding: 10px 15px;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+}
+
+.result-header__copybtn::after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f0c5";
+  padding-left: 5px;
+}
+
+.result-header__copybtn:hover {
+  background-color: #e6e6e6;
+}
+
+.result {
+  border-left: 1px solid #e1e4e8;
+  border-right: 1px solid #e1e4e8;
+  border-bottom: 1px solid #e1e4e8;
+  font-size: 1.6rem;
+  border-radius: 0 0 6px 6px;
+  background: white;
+  padding-top: 6px;
+  width: 100%;
+}
+
+.result__string {
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.result__line {
+  border-right: 1px solid #e1e4e8;
+  width: 5%;
+  color: #a0a0a0;
+  text-align: right;
+  padding-right: 4px;
+}
+
+.result__text {
+  width: 95%;
+  padding-left: 4px;
+}
+
+.bold {
+  font-weight: 700;
+  opacity: 100%;
+}
+
+.regular {
+  opacity: 95%;
+  font-weight: 300;
+}
+
+.underscore {
+  text-decoration: underline;
+}
+
+.blink {
+  animation: blink-animation 0.8s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+@font-face {
+  font-family: "JetBrains";
+  src: url("../fonts/JetBrainsMono-Regular.ttf");
+}
+
+main {
+  background-color: #f6f8fa;
+}
+
+.global-style {
+  font-family: "Ubuntu Mono", monospace;
+}
+
+.shell-container {
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.font-test {
+  font-family: "Ubuntu Mono", monospace;
+}
+
+.font-test .reg {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.font-test .bold {
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+.nav-handler {
+  font-family: "JetBrains";
+  color: black;
+  font-size: 1.2rem;
+  cursor: pointer;
+  user-select: none;
+}
+/*# sourceMappingURL=style.css.map */

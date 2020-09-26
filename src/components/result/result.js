@@ -5,11 +5,10 @@ import { getResultCodeLine } from "../../redux/codeReducer";
 const Result = (state) => {
   //STATE
   const {
-    code: { basePsOneVar, variables, codeline },
+    code: { variables = [], codeline, bgVariables, fgVariables },
     result: { resPsOneLine },
     getResultCodeLine,
   } = state;
-  console.log(variables);
   useEffect(() => {
     getResultCodeLine();
   }, [resPsOneLine]);
@@ -55,7 +54,11 @@ const Result = (state) => {
             {vari}
             <tr className="result__string">
               <td className="result__line">#</td>
-              <td className="result__text">{codeline}</td>
+              <td className="result__text">
+                {'export PS1="'}
+                {codeline}
+                {'"'}
+              </td>
             </tr>
           </tbody>
         </table>

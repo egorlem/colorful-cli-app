@@ -1,4 +1,4 @@
-import { composePromptResult } from "./composePromptResult";
+import { composePrmopt } from "./composePromptResult";
 import { setResultCodeLine } from "../codeReducer";
 
 export function composePromptResultMiddleware({ dispatch, getState }) {
@@ -6,8 +6,8 @@ export function composePromptResultMiddleware({ dispatch, getState }) {
     return function (action) {
       if (action.type === "GET_RESULT_CODE_LINE") {
         let resPsOneline = getState().result.resPsOneLine;
-        let codeline = composePromptResult(resPsOneline);
-        dispatch(setResultCodeLine({ codeline: codeline }));
+        let codeline = composePrmopt(resPsOneline);
+        dispatch(setResultCodeLine({ codeline }));
       }
       return next(action);
     };
