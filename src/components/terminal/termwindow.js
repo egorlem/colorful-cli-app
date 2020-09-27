@@ -44,7 +44,7 @@ const Window = ({ state }) => {
         <div className="shell-window-header"> bash ⸻ 24 rows ⸻ 80 columns;</div>
         <div className="prompt">
           <div className="test--line short test-typing">
-            {layOut}
+            {/* {layOut} */}
             {line}
           </div>
         </div>
