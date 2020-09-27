@@ -1,5 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap");
+// FONTS
+$mainfont: "Ubuntu Mono", monospace;
+$dividergray: #e1e4e8;
+$bggray: #f6f8fa;
+
 .result--container {
   font-family: $mainfont;
+  width: 100%;
 }
 
 .result--limiter {
