@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getResultCodeLine } from "../../redux/codeReducer";
+import "./_result.scss";
 
 const Result = (state) => {
   //STATE
