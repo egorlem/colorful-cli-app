@@ -1,0 +1,40 @@
+@import "./var";
+@import "./reset.scss";
+@import "./header";
+@import "./shellline";
+@import "./terminaloptions";
+@import "./elglobal.scss";
+@import "./headerArea.scss";
+@import "./termArea.scss";
+
+// @font-face {
+//   font-family: "JetBrains";
+//   src: url("../fonts/JetBrainsMono-Regular.ttf");
+// }
+//GLOBAL STYLE
+//ALL NAV BUTTONS
+.nav-handler {
+  font-family: "JetBrains";
+  color: black;
+  font-size: 1.2rem;
+  cursor: pointer;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
+// GLOBAL STYLE CONTENT LIMITER  --- Header Main Footer
+// main {
+//   background-color: red; //$bggray;
+// }
+.content--limiter {
+  max-width: 1552px; // 48px reserve
+  margin: 0 auto;
+  @media (max-width: 1550px) {
+    padding: 0 24px;
+  }
+}
+.global-style {
+  font-family: $mainfont;
+  height: 100%;
+  // background-color: red;
+}

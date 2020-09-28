@@ -1,0 +1,59 @@
+// @font-face {
+//   font-family: "JetBrains";
+//   src: url("../");
+// }
+
+// .term-bg-container {
+//   background-color: #d82f2f;
+//   flex: 1;
+//   height: 400px;
+//   width: 100%;
+// }
+
+.shell-window {
+  margin: 0 auto;
+  border-right: 1px solid #1f1f1f;
+  border-left: 1px solid #1f1f1f;
+  //margin: 0 auto;
+  background: transparent;
+  width: 576px;
+  min-height: 337px;
+  padding: 4px 6px 2px 6px;
+  font-size: 1.4rem;
+  line-height: 1;
+  &-header {
+    color: #b4b4b4;
+    font-size: 1rem;
+    font-weight: 300;
+    border-bottom: 1px solid #1f1f1f;
+  }
+  .prompt {
+    background: transparent;
+    &__name {
+      color: white;
+    }
+  }
+}
+
+.test--line {
+  font-size: 1.4rem;
+  color: white;
+  font-weight: 400;
+}
+.test-typing {
+  animation: test2222 0.3s steps(100);
+  overflow: hidden;
+  white-space: nowrap;
+  color: cyan;
+  font-size: 1.4rem;
+  transition-delay: 5s;
+}
+
+@keyframes test2222 {
+  0% {
+    width: 0ch;
+  }
+  100% {
+    width: 60ch;
+  }
+}

@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap");
+// FONTS
+$mainfont: "Ubuntu Mono", monospace;
+$dividergray: #e1e4e8;
+$bggray: #f6f8fa;
+
+.result--container {
+  font-family: $mainfont;
+  width: 100%;
+}
+
+.result--limiter {
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(240, 240, 240);
+  padding: 10px;
+  border-radius: 6px 6px 0 0;
+  border: 1px solid $dividergray;
+  margin-bottom: 10px;
+  &__title {
+    font-size: 1.4rem;
+  }
+  &__copybtn {
+    font-size: 1.8rem;
+    transition: all 0.2s ease-in-out;
+    background: transparent;
+    padding: 10px 15px;
+    border: 1px solid $dividergray;
+    border-radius: 6px;
+    &::after {
+      font-family: "Font Awesome 5 Free";
+      content: "\f0c5";
+      padding-left: 5px;
+    }
+    &:hover {
+      background-color: rgb(230, 230, 230);
+    }
+  }
+}
+.result {
+  border-left: 1px solid $dividergray;
+  border-right: 1px solid $dividergray;
+  border-bottom: 1px solid $dividergray;
+  font-size: 1.6rem;
+  border-radius: 0 0 6px 6px;
+  background: white;
+  padding-top: 6px;
+  width: 100%;
+  &__string {
+    border-bottom: 1px solid $dividergray;
+  }
+  &__line {
+    border-right: 1px solid $dividergray;
+    width: 5%;
+    color: rgb(160, 160, 160);
+    text-align: right;
+    padding-right: 4px;
+  }
+  &__text {
+    width: 95%;
+    padding-left: 4px;
+  }
+}

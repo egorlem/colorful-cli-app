@@ -1,0 +1,59 @@
+//@import "../../style/var";
+
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap");
+// FONTS
+$mainfont: "Ubuntu Mono", monospace;
+$dividergray: #e1e4e8;
+$bggray: #f6f8fa;
+// LAYOUT COLORS
+
+// @font-face {
+//   font-family: "JetBrains";
+//   src: url("../../fonts/JetBrainsMono-Regular.ttf");
+// }
+
+//// HANDLERS
+.color-mode-nandler {
+  cursor: pointer;
+  font-family: "JetBrains";
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+  font-size: 1.2rem;
+  color: rgb(180, 180, 180);
+  transition: color 0.2s ease-in-out;
+  &:hover {
+    color: black;
+  }
+}
+
+/// PS ONE OPTIONS CONTROLOS AND BLOCK STYLES
+/// MUST REUSE IN FUTURE
+
+.psone-container {
+  border-right: $dividergray;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: $mainfont;
+  background-color: white;
+  top: 0;
+  left: 45px;
+  background-color: white;
+}
+.option-item {
+  font-size: 1.4rem;
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $dividergray;
+    padding: 5px 0;
+  }
+  &-controlls {
+    border-bottom: 1px solid $dividergray;
+    padding: 5px 0;
+  }
+}
+
+//  display: ${(props) => (props.open ? "none" : "block")};

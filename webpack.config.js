@@ -43,17 +43,24 @@ const babelLoader = (ext) => {
 module.exports = {
   context: path.resolve(__dirname, "src"),
   mode: "development",
-  entry: "./index.js",
+  entry: "./app/index.js",
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
   },
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    historyApiFallback: true,
+    port: 9000,
+  },
+  devtool: "source-map",
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
     new HTMLWebpackPlugin({
-      template: "./index.html",
+      template: "./app/index.html",
     }),
     new CleanWebpackPlugin({
       verbose: true,
