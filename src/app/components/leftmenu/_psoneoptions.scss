@@ -1,8 +1,16 @@
-@import "../../style/var";
-@font-face {
-  font-family: "JetBrains";
-  src: url("../../fonts/JetBrainsMono-Regular.ttf");
-}
+//@import "../../style/var";
+
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap");
+// FONTS
+$mainfont: "Ubuntu Mono", monospace;
+$dividergray: #e1e4e8;
+$bggray: #f6f8fa;
+// LAYOUT COLORS
+
+// @font-face {
+//   font-family: "JetBrains";
+//   src: url("../../fonts/JetBrainsMono-Regular.ttf");
+// }
 
 //// HANDLERS
 .color-mode-nandler {

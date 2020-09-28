@@ -13,6 +13,7 @@ export const PsOneMenu = (state) => {
     changeModeStatus,
     closeAllControls,
     addNewPromptElem,
+    resetOptions,
   } = state;
 
   const setupNewPromptElemnt = (arr, currentElement) => {
@@ -50,6 +51,8 @@ export const PsOneMenu = (state) => {
         <div
           onClick={() => {
             changeModeStatus(null);
+            closeAllControls();
+            resetOptions();
           }}
         >
           update
