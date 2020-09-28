@@ -1,5 +1,7 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { PsOneMenu } from "./psone/psonemenu";
+import { SettingsMenu } from "./settings/settingsmenu";
 import { connect } from "react-redux";
 import {
   getFgColor,
@@ -23,9 +25,11 @@ import "./_psoneoptions.scss";
 import "./leftmenu.scss";
 
 const LeftNavMenu = (state) => {
+  const { pathname } = useLocation();
   return (
     <div className="left-menu">
-      <PsOneMenu {...state} />
+      {pathname === "/psone" && <PsOneMenu {...state} />}
+      {pathname === "/settings" && <SettingsMenu />}
     </div>
   );
 };

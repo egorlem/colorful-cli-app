@@ -4,35 +4,13 @@
 @import "./shellline";
 @import "./terminaloptions";
 @import "./elglobal.scss";
+@import "./headerArea.scss";
+@import "./termArea.scss";
+
 // @font-face {
 //   font-family: "JetBrains";
 //   src: url("../fonts/JetBrainsMono-Regular.ttf");
 // }
-main {
-  background-color: $bggray;
-}
-
-.global-style {
-  font-family: $mainfont;
-}
-.shell-container {
-  display: flex;
-  margin: 0 auto;
-  justify-content: space-between;
-}
-
-.font-test {
-  font-family: $mainfont;
-  .reg {
-    font-size: 1.8rem;
-    font-weight: 700;
-  }
-  .bold {
-    font-size: 1.8rem;
-    font-weight: 400;
-  }
-}
-
 //GLOBAL STYLE
 //ALL NAV BUTTONS
 .nav-handler {
@@ -43,4 +21,20 @@ main {
   -moz-user-select: none;
   -khtml-user-select: none;
   user-select: none;
+}
+// GLOBAL STYLE CONTENT LIMITER  --- Header Main Footer
+// main {
+//   background-color: red; //$bggray;
+// }
+.content--limiter {
+  max-width: 1552px; // 48px reserve
+  margin: 0 auto;
+  @media (max-width: 1550px) {
+    padding: 0 24px;
+  }
+}
+.global-style {
+  font-family: $mainfont;
+  min-height: 100vh;
+  background-color: red;
 }

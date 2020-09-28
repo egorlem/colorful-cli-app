@@ -55,9 +55,9 @@ const Window = ({ state }) => {
 
 const TerminalWindow = (state) => {
   return (
-    <div className="term-bg-container">
+    <>
       <Window state={state} />
-    </div>
+    </>
   );
 };
 

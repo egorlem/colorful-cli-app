@@ -1,51 +1,50 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import "./topmenu.scss";
-import Styled from "styled-components";
+import styled from "styled-components";
 
-const TopMenuContainer = Styled.div`
+const TopMenuContainer = styled.div`
   display: flex;
   border-bottom: 1px solid #e1e4e8;
-  margin-bottom: 10px;
+  background: transparent;
 `;
-const TonMenuItem = Styled.div`
-  transition:  border-bottom 0.2s, color 0.2s;
+const TonMenuItem = styled.div`
+  transition: border-bottom 0.2s, color 0.2s;
   font-size: 1.4rem;
   padding: 10px;
   border-bottom: ${(props) =>
     props.flag ? "2px solid red" : "2px solid transparent"};
   color: red;
   .TopMenuLink {
-    color: ${(props) => (props.flag ? "black" : "#e1e4e8")}
+    color: ${(props) => (props.flag ? "black" : "#e1e4e8")};
   }
   &:hover {
     border-bottom: ${(props) =>
       props.flag ? "2px solid red" : "2px solid #e1e4e8"};
-     .TopMenuLink {
+    .TopMenuLink {
       color: black;
-    } 
+    }
   }
 `;
-const TopMenuLink = Styled(NavLink)`
- transition:  border-bottom 0.2s, color 0.2s;
+const TopMenuLink = styled(NavLink)`
+  transition: border-bottom 0.2s, color 0.2s;
 `;
 
 const TopNavigationMenu = () => {
-  let location = useLocation();
+  const { pathname } = useLocation();
   return (
     <TopMenuContainer>
-      <TonMenuItem flag={location.pathname === "/"}>
-        <TopMenuLink className="TopMenuLink" to="/">
+      <TonMenuItem flag={pathname === "/psone"}>
+        <TopMenuLink className="TopMenuLink" to="/psone">
           {"${...} Prompt"}
         </TopMenuLink>
       </TonMenuItem>
-      <TonMenuItem flag={location.pathname === "/result"}>
+      <TonMenuItem flag={pathname === "/result"}>
         <TopMenuLink className="TopMenuLink" to="/result">
           {"<...> Result"}
         </TopMenuLink>
       </TonMenuItem>
-      <TonMenuItem flag={location.pathname === "/setings"}>
-        <TopMenuLink className="TopMenuLink" to="/setings">
+      <TonMenuItem flag={pathname === "/settings"}>
+        <TopMenuLink className="TopMenuLink" to="/settings">
           {"[[ ]] Setings"}
         </TopMenuLink>
       </TonMenuItem>
