@@ -43,7 +43,7 @@ const babelLoader = (ext) => {
 module.exports = {
   context: path.resolve(__dirname, "src"),
   mode: "development",
-  entry: "./index.js",
+  entry: "./app/index.js",
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
@@ -60,7 +60,7 @@ module.exports = {
       filename: "[name].css",
     }),
     new HTMLWebpackPlugin({
-      template: "./index.html",
+      template: "./app/index.html",
     }),
     new CleanWebpackPlugin({
       verbose: true,
@@ -103,6 +103,3 @@ module.exports = {
     ],
   },
 };
-// devServer: {
-//   historyApiFallback: true,
-// }

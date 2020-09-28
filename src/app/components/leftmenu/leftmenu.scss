@@ -1,0 +1,14 @@
+$dividergray: #e1e4e8;
+//  background-color: rgb(255, 255, 255);
+.left-menu {
+  border-right: 1px solid $dividergray;
+  // background-color: rgb(255, 121, 121);
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+}
+.left-menu-container {
+  background-color: white;
+  padding: 20px 2px;
+  position: fixed;
+}
