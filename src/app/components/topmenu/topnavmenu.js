@@ -7,19 +7,21 @@ const TopMenuContainer = styled.div`
   border-bottom: 1px solid #e1e4e8;
   background: transparent;
 `;
+//#f2f2f2
 const TonMenuItem = styled.div`
   transition: border-bottom 0.2s, color 0.2s;
   font-size: 1.4rem;
   padding: 10px;
+  background: ${(props) => (props.flag ? "#f8f8f8" : "transparent")};
   border-bottom: ${(props) =>
-    props.flag ? "2px solid red" : "2px solid transparent"};
+    props.flag ? "2px solid cyan" : "2px solid transparent"};
   color: red;
   .TopMenuLink {
     color: ${(props) => (props.flag ? "black" : "#e1e4e8")};
   }
   &:hover {
     border-bottom: ${(props) =>
-      props.flag ? "2px solid red" : "2px solid #e1e4e8"};
+      props.flag ? "2px solid cyan" : "2px solid #e1e4e8"};
     .TopMenuLink {
       color: black;
     }

@@ -7,18 +7,21 @@ import LeftNavMenu from "../components/leftmenu/leftmenu";
 import TerminalWindow from "../components/terminal/termwindow";
 import PromptPsOneLine from "../components/lines/promptline";
 
-const ContentContainer = styled.div`
-  width: 100%;
-`;
 const PsOnePromptCustomizstion = () => {
   return (
     <div className="term-aria--background-container">
       <div className="content--limiter">
-        <LeftNavMenu />
-        <TerminalWindow />
-        <DndProvider backend={HTML5Backend}>
-          <PromptPsOneLine />
-        </DndProvider>
+        <div className="term-aria">
+          <div className="term-aria__options">
+            <LeftNavMenu />
+          </div>
+          <div className="term-aria__window">
+            <TerminalWindow />
+            <DndProvider backend={HTML5Backend}>
+              <PromptPsOneLine />
+            </DndProvider>
+          </div>
+        </div>
       </div>
     </div>
   );
