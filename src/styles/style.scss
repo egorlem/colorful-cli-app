@@ -33,9 +33,19 @@
     width: calc(100% - 48px);
   }
 }
-.global-style {
+.app {
   font-family: $mainfont;
-  height: 100vh;
   background: #f6f8fa;
-  // background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  &-header {
+  }
+  &-main {
+    flex: 2;
+  }
+  &-footer {
+    background-color: red;
+  }
 }
