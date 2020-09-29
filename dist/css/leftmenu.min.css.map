@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAEA,AAAA,UAAU,AAAC,CACT,KAAK,CAAE,KAAK,CACZ,OAAO,CAAE,GAAG,CACZ,YAAY,CAAE,GAAG,CAAC,KAAK,CALX,OAAO,CAMnB,gBAAgB,CAAE,KAAK,CACxB,AACD,AAAA,oBAAoB,AAAC,CACnB,gBAAgB,CAAE,KAAK,CACvB,OAAO,CAAE,QAAQ,CACjB,QAAQ,CAAE,KAAK,CAChB",
-    "sources": [
-        "../../src/components/leftmenu/leftmenu.scss"
-    ],
-    "names": [],
-    "file": "leftmenu.min.css"
-}

@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 //
@@ -9,21 +8,32 @@ import PromptPsOneLine from "../components/lines/promptline";
 
 const PsOnePromptCustomizstion = () => {
   return (
-    <div className="term-aria--background-container">
-      <div className="content--limiter">
-        <div className="term-aria">
-          <div className="term-aria__options">
-            <LeftNavMenu />
-          </div>
-          <div className="term-aria__window">
-            <TerminalWindow />
-            <DndProvider backend={HTML5Backend}>
-              <PromptPsOneLine />
-            </DndProvider>
+    <>
+      <div className="term-aria--primary-background-container">
+        <div className="content--limiter">
+          <div className="term-aria">
+            <div className="term-aria__options">
+              <LeftNavMenu />
+            </div>
+            <div className="term-aria__window">
+              <TerminalWindow />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <div className="term-aria--secondary-background-container">
+        <div className="content--limiter">
+          <div className="term-aria">
+            <div className="term-aria__options"></div>
+            <div className="term-aria__window">
+              <DndProvider backend={HTML5Backend}>
+                <PromptPsOneLine />
+              </DndProvider>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
