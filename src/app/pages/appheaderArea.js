@@ -1,5 +1,6 @@
 import React from "react";
-import TopNavigationMenu from "../components/topmenu/topnavmenu";
+import TopNavigationMenu from "../components/header/topmenu/topnavmenu";
+import AppHeader from "../components/header/AppHeader";
 
 // const MainHeader = () => {
 //   return (
@@ -74,9 +75,14 @@ import TopNavigationMenu from "../components/topmenu/topnavmenu";
 export const HeaderArea = () => {
   return (
     <>
+      <div>
+        <div className="content--limiter">
+          <AppHeader />
+        </div>
+      </div>
       <div className="header-submenu--background-container">
         <div className="content--limiter">
-          <TopNavigationMenu />{" "}
+          <TopNavigationMenu />
         </div>
       </div>
     </>

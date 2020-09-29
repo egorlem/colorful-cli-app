@@ -30,11 +30,12 @@
   max-width: 1552px; // 48px reserve
   margin: 0 auto;
   @media (max-width: 1550px) {
-    padding: 0 24px;
+    width: calc(100% - 48px);
   }
 }
 .global-style {
   font-family: $mainfont;
-  height: 100%;
+  height: 100vh;
+  background: #f6f8fa;
   // background-color: red;
 }
