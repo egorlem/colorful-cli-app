@@ -27,7 +27,11 @@ const cssLoader = (ext) => {
 };
 const babelLoader = (ext) => {
   const config = {
-    presets: ["@babel/preset-env", "@babel/preset-react"],
+    presets: [
+      "@babel/preset-env",
+      "@babel/preset-react",
+      "@babel/preset-typescript",
+    ],
     plugins: [
       "@babel/plugin-syntax-class-properties",
       "@babel/plugin-proposal-class-properties",
@@ -71,7 +75,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         loader: {
           loader: "babel-loader",

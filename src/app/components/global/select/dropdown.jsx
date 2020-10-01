@@ -43,7 +43,7 @@ const DropDownMenu = ({
         {selectedItem}
         <ControllWrapper open={flag} onClick={() => handler(accessory)}>
           <LeftDivider open={flag}>{"["}</LeftDivider>
-          <AnimatedIcon open={flag}>{"|>"}</AnimatedIcon>
+          <AnimatedIcon open={flag}>{"❯"}</AnimatedIcon>
           <RightDivider open={flag}>{"]"}</RightDivider>
         </ControllWrapper>
       </DropDownTitle>

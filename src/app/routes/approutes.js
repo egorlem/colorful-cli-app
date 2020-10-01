@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import { AboutPage } from "../pages/aboutPage";
 import { PromptEditorPage } from "../pages/prompteditorPage";
 import { ResultPage } from "../pages/resultPage";
@@ -7,22 +7,22 @@ import { GolobalSettingsPage } from "../pages/settingsPage";
 
 export const AppPages = () => {
   return (
-    <>
-      <Route exact path="/psone">
+    <Switch>
+      <Route path="/psone">
         <PromptEditorPage />
       </Route>
-      <Route exact path="/result">
+      <Route path="/result">
         <ResultPage />
       </Route>
-      <Route exact path="/settings">
+      {/* <Route path="/settings">
         <GolobalSettingsPage />
-      </Route>
-      <Route exact path="/about">
+      </Route> */}
+      <Route path="/about">
         <AboutPage />
       </Route>
-      <Route exact path="/">
+      <Route path="/">
         <Redirect to="/psone" />
       </Route>
-    </>
+    </Switch>
   );
 };
