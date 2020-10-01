@@ -45,11 +45,11 @@ const TopNavigationMenu = () => {
           {"<...> Result"}
         </TopMenuLink>
       </TonMenuItem>
-      <TonMenuItem flag={pathname === "/settings"}>
+      {/* <TonMenuItem flag={pathname === "/settings"}>
         <TopMenuLink className="TopMenuLink" to="/settings">
           {"[[ ]] Setings"}
         </TopMenuLink>
-      </TonMenuItem>
+      </TonMenuItem> */}
     </TopMenuContainer>
   );
 };

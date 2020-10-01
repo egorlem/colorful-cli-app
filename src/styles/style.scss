@@ -1,16 +1,16 @@
 @import "./var";
 @import "./reset.scss";
-@import "./header";
 @import "./shellline";
 @import "./terminaloptions";
 @import "./elglobal.scss";
 @import "./headerArea.scss";
 @import "./termArea.scss";
+@import "./aboutpage.scss";
 
-// @font-face {
-//   font-family: "JetBrains";
-//   src: url("../fonts/JetBrainsMono-Regular.ttf");
-// }
+@font-face {
+  font-family: "JetBrains";
+  src: url("../public/fonts/JetBrainsMono/ttf/JetBrainsMono-Regular.ttf");
+}
 //GLOBAL STYLE
 //ALL NAV BUTTONS
 .nav-handler {
@@ -41,11 +41,23 @@
   justify-content: space-between;
   min-height: 100vh;
   &-header {
+    font-size: 1.4rem;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    a {
+      font-size: 1.4rem;
+      color: white;
+      :hover {
+        text-decoration: underline;
+      }
+    }
   }
   &-main {
     flex: 2;
   }
   &-footer {
-    background-color: red;
+    font-size: 1.4rem;
+    background-color: rgb(0, 0, 0);
+    color: white;
   }
 }

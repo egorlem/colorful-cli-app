@@ -22,15 +22,11 @@ const TextDecoration = (state) => {
       return styleIndex;
     };
     let index = curStyleIndex(currentElement);
-
+    const decorationHandeler = () => {
+      active ? removeElemtStyle(index) : setElementStyle(e.style);
+    };
     return (
-      <DecorButton
-        active={active}
-        onClick={() => {
-          active ? removeElemtStyle(index) : setElementStyle(e.style);
-        }}
-        key={e.style}
-      >
+      <DecorButton active={active} onClick={decorationHandeler} key={e.style}>
         {e.style}
       </DecorButton>
     );
