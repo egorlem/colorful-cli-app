@@ -42,6 +42,7 @@ export const PsOneMenu = (state) => {
           onClick={() => {
             deleteSelectedElement({ index: orignIndex });
             changeModeStatus(null);
+            resetOptions();
           }}
         >
           del
@@ -56,15 +57,6 @@ export const PsOneMenu = (state) => {
           }}
         >
           update
-        </div>
-      )}
-      {status === "ADD_NEW" && (
-        <div
-          onClick={() => {
-            closeAllControls();
-          }}
-        >
-          add
         </div>
       )}
     </div>

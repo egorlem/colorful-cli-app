@@ -69,6 +69,12 @@ export function resultReducer(state = initialState, action) {
       return update(state, {
         resPsOneLine: {
           $splice: [[action.payload.index, 1]],
+          $apply: (arr) => {
+            return arr.map((e, i) => {
+              let id = i + 1;
+              return { ...e, id: id };
+            });
+          },
         },
       });
     case "RESULT/ADD_NEW_PROMPT_ELEMENT":

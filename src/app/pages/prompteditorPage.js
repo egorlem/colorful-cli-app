@@ -1,11 +1,10 @@
 import React from "react";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { DndProvider } from "react-dnd";
 //
 import LeftNavMenu from "../components/leftmenu/leftmenu";
 import TerminalWindow from "../components/terminal/termwindow";
-import PromptPsOneLine from "../components/lines/promptline";
+import PromptPsOneLine from "../components/positionMenu/psoneline/promptline";
 import ForkBanner from "../components/global/githubbanner";
+import ElementsLocationMenu from "../components/positionMenu/elementsMenu";
 
 const PsOnePromptCustomizstion = () => {
   return (
@@ -28,9 +27,7 @@ const PsOnePromptCustomizstion = () => {
           <div className="term-aria">
             <div className="term-aria__options"></div>
             <div className="term-aria__window">
-              <DndProvider backend={HTML5Backend}>
-                <PromptPsOneLine />
-              </DndProvider>
+              <ElementsLocationMenu />
             </div>
           </div>
         </div>

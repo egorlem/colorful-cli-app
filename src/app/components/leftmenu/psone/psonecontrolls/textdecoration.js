@@ -16,7 +16,6 @@ const TextDecoration = (state) => {
 
   const DecorationProperty = textdecoration.map((e) => {
     const active = currentElement.style.includes(e.style);
-
     const curStyleIndex = (arr) => {
       let styleIndex = arr.style.indexOf(e.style);
       return styleIndex;
@@ -26,7 +25,12 @@ const TextDecoration = (state) => {
       active ? removeElemtStyle(index) : setElementStyle(e.style);
     };
     return (
-      <DecorButton active={active} onClick={decorationHandeler} key={e.style}>
+      <DecorButton
+        active={active}
+        onClick={decorationHandeler}
+        key={e.style}
+        id={e.style}
+      >
         {e.style}
       </DecorButton>
     );
