@@ -179,7 +179,6 @@ export const closeControl = (payload) => {
   return { type: "CLOSE_CURRENT_CONTROL", payload };
 };
 export const updateElement = (payload) => {
-  console.log(payload);
   return { type: "UPDATE_CURRENT_ELEMENT", payload };
 };
 
