@@ -37,7 +37,6 @@ export const editModOff = () => {
   return { type: "TERM/EDIT_MODE_OFF" };
 };
 
-
 /*   
 
 ////  LS должен быть initial state для результируюшейго редюсера

@@ -25,6 +25,5 @@ export const getResultCodeLine = () => {
   return { type: "GET_RESULT_CODE_LINE" };
 };
 export const setResultCodeLine = (payload) => {
-  console.log(payload);
   return { type: "SET_RESULT_CODE_LINE", payload };
 };

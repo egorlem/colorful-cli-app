@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 //
 import LeftNavMenu from "../components/leftmenu/leftmenu";
 import TerminalWindow from "../components/terminal/termwindow";
-import PromptPsOneLine from "../components/positionMenu/psoneline/promptline";
+import PromptPsOneLine from "../components/positionmenu/psoneline/promptline";
 import ForkBanner from "../components/global/githubbanner";
-import ElementsLocationMenu from "../components/positionMenu/elementsMenu";
+import ElementsLocationMenu from "../components/positionmenu/elementsmenu";
 
 const PsOnePromptCustomizstion = () => {
+  useEffect(() => {
+    document.title = "Colorful CLI / PS1";
+  }, []);
+
   return (
     <>
       <div className="term-aria--primary-background-container">

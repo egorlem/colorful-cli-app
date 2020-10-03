@@ -1,10 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { changeElemPosition } from "../../redux/resultReducer";
+import {
+  changeElemPosition,
+  moveElementBack,
+  moveElementForward,
+} from "../../redux/resultreducer";
 import {
   changeModeStatus,
   updateElement,
-} from "../../redux/psoneoptionsReducer";
+} from "../../redux/psoneoptionsreducer";
 
 import PromptPsOneLine from "./psoneline/promptpsoneline";
 
@@ -24,4 +28,6 @@ export default connect(mstp, {
   changeElemPosition,
   updateElement,
   changeModeStatus,
+  moveElementBack,
+  moveElementForward,
 })(ElementsLocationMenu);

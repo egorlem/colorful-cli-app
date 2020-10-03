@@ -86,7 +86,6 @@ export function resultReducer(state = initialState, action) {
 export const changeElemPosition = (payload) => {
   return { type: "DND/RESULT/EDIT_ELEMENT_POSITION", payload };
 };
-
 export const addNewPromptElem = (payload) => {
   return { type: "RESULT/ADD_NEW_PROMPT_ELEMENT", payload };
 };
@@ -95,4 +94,10 @@ export const updateSelectedElement = (payload) => {
 };
 export const deleteSelectedElement = (payload) => {
   return { type: "RESULT/DELETE_SELECTED_ELEMENT", payload };
+};
+export const moveElementForward = (payload) => {
+  console.log(payload);
+};
+export const moveElementBack = (payload) => {
+  console.log(payload);
 };
