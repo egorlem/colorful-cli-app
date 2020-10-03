@@ -12,17 +12,33 @@ const InLinePromptElement = styled.div`
 `;
 const ElementContainer = styled.div`
   display: flex;
-  background: blue;
+  align-items: center;
+  background: gray;
   padding: 5px;
   margin: 5px;
 `;
-const MoveForwardControll = styled.div`
-  font-size: 2rem;
-  color: white;
+const MoveControll = styled.div`
+  cursor: pointer;
+  font-size: 1.2rem;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+  color: #e1e4e8;
+  &:hover {
+    color: black;
+  }
 `;
-const MoveBackControll = styled.div`
-  font-size: 2rem;
-  color: white;
+const MoveBackControll = styled(MoveControll)`
+  ::before {
+    content: ">";
+    padding-right: 4px;
+  }
+`;
+const MoveForwardControll = styled(MoveControll)`
+  ::after {
+    content: "<";
+    padding-left: 4px;
+  }
 `;
 
 const PsOneItem = ({ id, text, findCard, moveCard, state }) => {
@@ -66,13 +82,6 @@ const PsOneItem = ({ id, text, findCard, moveCard, state }) => {
   const blockWhenEditMode = (node) => {
     if (!status) return drag(drop(node));
   };
-
-  const findStartAndEndIndex = (arr) => {
-    // find first and last index
-    return arr;
-  };
-  // console.log(findStartAndEndIndex(resPsOneLine));
-
   const opacity = isDragging || status ? 0.3 : 1;
   return (
     <ElementContainer>
@@ -80,11 +89,16 @@ const PsOneItem = ({ id, text, findCard, moveCard, state }) => {
         <MoveBackControll
           onClick={() => {
             if (!status) {
-              moveElementBack("НАЗАД");
+              let forvIndex = oringIndex - 1;
+              moveElementBack({
+                index: oringIndex,
+                card: curCard,
+                atIndex: forvIndex,
+              });
             }
           }}
         >
-          {" < "}
+          {"❮"}
         </MoveBackControll>
       )}
       <InLinePromptElement
@@ -106,11 +120,16 @@ const PsOneItem = ({ id, text, findCard, moveCard, state }) => {
         <MoveForwardControll
           onClick={() => {
             if (!status) {
-              moveElementForward("ВПЕРЕД");
+              let toIndex = oringIndex + 1;
+              moveElementForward({
+                index: oringIndex,
+                card: curCard,
+                atIndex: toIndex,
+              });
             }
           }}
         >
-          {" > "}
+          {"❯"}
         </MoveForwardControll>
       )}
     </ElementContainer>
@@ -121,6 +140,7 @@ const LineDndContainer = (state) => {
   // STATE
   const {
     result: { resPsOneLine },
+    changeElemPosition,
   } = state;
 
   if (!resPsOneLine.length) return <>Опаньки</>;
@@ -128,8 +148,9 @@ const LineDndContainer = (state) => {
   // const [cards, setCards] = useState(items);
   function moveCard(id, atIndex) {
     const { card, index } = findCard(id);
-    state.changeElemPosition({ index, card, atIndex });
+    changeElemPosition({ index, card, atIndex });
   }
+
   function findCard(id) {
     const card = resPsOneLine.filter((c) => `${c.id}` === id)[0];
     return {
@@ -152,6 +173,7 @@ const LineDndContainer = (state) => {
 
   return (
     <div>
+      <div className="psone-line-title">{"line 1"}</div>
       <div ref={drop} className="psone-line-container">
         {currentLine}
       </div>

@@ -31,11 +31,11 @@ const PromptPsOneLine = (state) => {
   }, [resPsOneLine]);
 
   return (
-    <>
+    <div>
       <DndProvider backend={HTML5Backend}>
         <LineDndContainer {...state} />
       </DndProvider>
-    </>
+    </div>
   );
 };
 

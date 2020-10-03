@@ -2,7 +2,7 @@ import styled from "styled-components";
 export const ControllWrapper = styled.div`
   transition: color 0.2s;
   width: 35px;
-  font-size: 12px;
+  font-size: 1.2rem;
   text-align: center;
   -moz-user-select: none;
   -khtml-user-select: none;

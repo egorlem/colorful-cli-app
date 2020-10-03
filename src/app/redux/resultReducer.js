@@ -79,6 +79,24 @@ export function resultReducer(state = initialState, action) {
       });
     case "RESULT/ADD_NEW_PROMPT_ELEMENT":
       return update(state, { resPsOneLine: { $push: [action.payload] } });
+    case "RESULT/MOVE_ELEMENT_FORWARD":
+      return update(state, {
+        resPsOneLine: {
+          $splice: [
+            [action.payload.index, 1],
+            [action.payload.atIndex, 0, action.payload.card],
+          ],
+        },
+      });
+    case "RESULT/MOVE_ELEMENT_BACK":
+      return update(state, {
+        resPsOneLine: {
+          $splice: [
+            [action.payload.index, 1],
+            [action.payload.atIndex, 0, action.payload.card],
+          ],
+        },
+      });
   }
   return state;
 }
@@ -96,8 +114,8 @@ export const deleteSelectedElement = (payload) => {
   return { type: "RESULT/DELETE_SELECTED_ELEMENT", payload };
 };
 export const moveElementForward = (payload) => {
-  console.log(payload);
+  return { type: "RESULT/MOVE_ELEMENT_FORWARD", payload };
 };
 export const moveElementBack = (payload) => {
-  console.log(payload);
+  return { type: "RESULT/MOVE_ELEMENT_BACK", payload };
 };
