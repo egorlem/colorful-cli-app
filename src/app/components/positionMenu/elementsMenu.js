@@ -9,7 +9,6 @@ import {
   changeModeStatus,
   updateElement,
 } from "../../redux/psoneoptionsreducer";
-
 import PromptPsOneLine from "./psoneline/promptpsoneline";
 
 const ElementsLocationMenu = (state) => {

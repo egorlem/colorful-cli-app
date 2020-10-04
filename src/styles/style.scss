@@ -6,11 +6,8 @@
 @import "./headerArea.scss";
 @import "./termArea.scss";
 @import "./aboutpage.scss";
+@import "./fonts.scss";
 
-@font-face {
-  font-family: "JetBrains";
-  src: url("../public/fonts/JetBrainsMono/ttf/JetBrainsMono-Regular.ttf");
-}
 //GLOBAL STYLE
 //ALL NAV BUTTONS
 .nav-handler {

@@ -91,7 +91,7 @@ module.exports = {
         use: cssLoader("sass-loader"),
       },
       {
-        test: /\.(ttf|eot|woff)$/,
+        test: /\.(ttf|eot|woff|woff2)$/,
         use: ["file-loader"],
       },
       {
