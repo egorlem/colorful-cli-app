@@ -2,6 +2,11 @@ import React, { useEffect } from "react";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
 import LineDndContainer from "./promptline";
+import styled from "styled-components";
+
+const PromptLineStyleWrapper = styled.div`
+  font-family: "JetBrains";
+`;
 
 const PromptPsOneLine = (state) => {
   const {
@@ -11,14 +16,13 @@ const PromptPsOneLine = (state) => {
     updateElement,
   } = state;
 
-  function findCard(id, elements) {
+  const findCard = (id, elements) => {
     const [currentElement] = elements.filter((element) => element.id === id);
     return {
       currentElement,
       index: elements.indexOf(currentElement),
     };
-  }
-
+  };
   useEffect(() => {
     if (status === "ADD_NEW") {
       let { currentElement, index } = findCard(
@@ -31,11 +35,11 @@ const PromptPsOneLine = (state) => {
   }, [resPsOneLine]);
 
   return (
-    <div>
+    <PromptLineStyleWrapper>
       <DndProvider backend={HTML5Backend}>
         <LineDndContainer {...state} />
       </DndProvider>
-    </div>
+    </PromptLineStyleWrapper>
   );
 };
 

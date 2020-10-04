@@ -3,12 +3,25 @@ import "./promptline.scss";
 import { useDrag, useDrop } from "react-dnd";
 import styled from "styled-components";
 
+const PromptLineNumber = styled.div`
+  font-weight: bold;
+  font-size: 1.4rem;
+  padding: 4px 0 4px 4px;
+  margin-top: 2px;
+  margin-left: 24px;
+  border-top: 1px solid black;
+`;
+
 const InLinePromptElement = styled.div`
+  cursor: move;
+  font-weight: regular;
+  font-size: 1.3rem;
+  word-spacing: -0.2rem;
+  line-height: 0.97;
   margin: 4px;
   padding: 4px 4px;
-  background-color: white;
+  background-color: transparent;
   border: 1px solid black;
-  font-size: 1.5rem;
 `;
 const ElementContainer = styled.div`
   display: flex;
@@ -109,7 +122,6 @@ const PsOneItem = ({ id, text, findCard, moveCard, state }) => {
           }
         }}
         style={{ opacity }}
-        className="psone-line__item"
         ref={(node) => {
           blockWhenEditMode(node);
         }}
@@ -173,7 +185,7 @@ const LineDndContainer = (state) => {
 
   return (
     <div>
-      <div className="psone-line-title">{"line 1"}</div>
+      <PromptLineNumber>{"Line 1"}</PromptLineNumber>
       <div ref={drop} className="psone-line-container">
         {currentLine}
       </div>
