@@ -6,6 +6,7 @@
 @import "./headerArea.scss";
 @import "./termArea.scss";
 @import "./aboutpage.scss";
+@import "../public/fonts/JetBrainsMono/fonts.css";
 
 //GLOBAL STYLE
 //ALL NAV BUTTONS
@@ -56,4 +57,13 @@
     background-color: rgb(0, 0, 0);
     color: white;
   }
+}
+
+.loading {
+  opacity: 0;
+}
+
+.cli-app-main {
+  //  transition: opacity 0.1s ease-in-out;
+  opacity: 1;
 }

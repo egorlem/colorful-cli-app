@@ -5,7 +5,7 @@ import LineDndContainer from "./promptline";
 import styled from "styled-components";
 
 const PromptLineStyleWrapper = styled.div`
-  font-family: "JetBrains";
+  font-family: "JetBrains", monospace; ;
 `;
 
 const PromptPsOneLine = (state) => {
