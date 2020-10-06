@@ -3,6 +3,9 @@ const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require("autoprefixer");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
 const cssLoader = (ext) => {
   const config = [
@@ -47,7 +50,7 @@ const babelLoader = (ext) => {
 module.exports = {
   context: path.resolve(__dirname, "src"),
   mode: "development",
-  entry: "./app/index.js",
+  entry: { index: "./app/index.js", preloader: "./preloader.js" },
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
@@ -58,18 +61,36 @@ module.exports = {
     historyApiFallback: true,
     port: 9000,
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          name: "vendors",
+          test: /node_modules/,
+          chunks: "all",
+          enforce: true,
+        },
+      },
+    },
+  },
   devtool: "source-map",
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
     new HTMLWebpackPlugin({
-      template: "./app/index.html",
+      template: "./index.html",
+      chunks: ["preloader", "index"],
     }),
     new CleanWebpackPlugin({
       verbose: true,
       dry: false,
-      cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, "./icons")],
+    }),
+    //new BundleAnalyzerPlugin(),
+    new CopyPlugin({
+      patterns: [
+        { from: path.resolve(__dirname, "src", "public"), to: "public" },
+      ],
     }),
   ],
   module: {
@@ -91,8 +112,16 @@ module.exports = {
         use: cssLoader("sass-loader"),
       },
       {
-        test: /\.(ttf|eot|woff)$/,
-        use: ["file-loader"],
+        test: /\.(ttf|eot|woff|woff2)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "public/fonts/",
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jpg|svg|gif)$/i,

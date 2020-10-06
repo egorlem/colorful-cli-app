@@ -2,17 +2,14 @@
   padding: 10px;
   display: inline-block;
 }
+
 .psone-line-container {
-  background-color: rgb(219, 219, 219);
+  background-color: transparent;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: start;
   width: 100%;
-  font-size: 1rem;
-  border-radius: 4px;
-}
-.line-two {
-  width: 100%;
-  height: 50px;
-  background-color: coral;
+  margin-top: 12px;
+  border-left: 1px solid black;
+  padding-left: 4px;
 }
