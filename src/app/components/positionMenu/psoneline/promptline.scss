@@ -2,12 +2,14 @@
   padding: 10px;
   display: inline-block;
 }
+
 .psone-line-container {
   background-color: transparent;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: start;
   width: 100%;
-  font-size: 1rem;
-  border-radius: 4px;
+  margin-top: 12px;
+  border-left: 1px solid black;
+  padding-left: 4px;
 }
