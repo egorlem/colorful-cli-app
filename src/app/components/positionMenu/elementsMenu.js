@@ -4,6 +4,7 @@ import {
   changeElemPosition,
   moveElementBack,
   moveElementForward,
+  changeLineTest,
 } from "../../redux/resultreducer";
 import {
   changeModeStatus,
@@ -29,4 +30,5 @@ export default connect(mstp, {
   changeModeStatus,
   moveElementBack,
   moveElementForward,
+  changeLineTest,
 })(ElementsLocationMenu);

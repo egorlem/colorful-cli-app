@@ -46,10 +46,78 @@ let initialState = {
       },
     },
   ],
+  twoline: [
+    [
+      {
+        id: 1,
+        text: "The hostname (short) [ln1]",
+        sequences: "LocalHost",
+        code: "\\h",
+      },
+      {
+        id: 2,
+        text: "The base name of term [ln1]",
+        sequences: "ttys001",
+        code: "\\l",
+      },
+    ],
+
+    [
+      {
+        id: 1,
+        text: "The hostname (short) [ln2]",
+        sequences: "LocalHost",
+        code: "\\h",
+      },
+      {
+        id: 2,
+        text: "The base name of term [ln2]",
+        sequences: "ttys001",
+        code: "\\l",
+      },
+    ],
+
+    [
+      {
+        id: 1,
+        text: "The hostname (short) [ln3]",
+        sequences: "LocalHost",
+        code: "\\h",
+      },
+      {
+        id: 2,
+        text: "The base name of term [ln3]",
+        sequences: "ttys001",
+        code: "\\l",
+      },
+    ],
+  ],
 };
 
 export function resultReducer(state = initialState, action) {
   switch (action.type) {
+    case "RESULT/MLTARRTEST":
+      return update(state, {
+        twoline: {
+          [action.payload.lineIndex]: {
+            $splice: [
+              [action.payload.index, 1],
+              [action.payload.atIndex, 0, action.payload.card],
+            ],
+          },
+        },
+      });
+    case "RESULT/CHANE_LINE_TEST":
+      return update(state, {
+        twoline: {
+          [action.payload.fromLineIndex]: {
+            $splice: [[action.payload.index, 1]],
+          },
+          [action.payload.toLineIndex]: {
+            $push: [[action.payload.card]],
+          },
+        },
+      });
     case "DND/RESULT/EDIT_ELEMENT_POSITION":
       return update(state, {
         resPsOneLine: {
@@ -118,4 +186,11 @@ export const moveElementForward = (payload) => {
 };
 export const moveElementBack = (payload) => {
   return { type: "RESULT/MOVE_ELEMENT_BACK", payload };
+};
+export const mltArrTest = (payload) => {
+  return { type: "RESULT/MLTARRTEST", payload };
+};
+export const changeLineTest = (payload) => {
+  console.log(payload);
+  return { type: "RESULT/CHANE_LINE_TEST", payload };
 };
