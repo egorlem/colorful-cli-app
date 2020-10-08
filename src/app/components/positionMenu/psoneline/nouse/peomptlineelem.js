@@ -6,7 +6,7 @@ import {
   MoveControll,
   MoveBackControll,
   MoveForwardControll,
-} from "./styledcom";
+} from "../styledcom";
 
 const PsOneItem = ({ id, text, findCard, moveCard, state }) => {
   // STATE

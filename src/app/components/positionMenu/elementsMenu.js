@@ -4,11 +4,13 @@ import {
   changeElemPosition,
   moveElementBack,
   moveElementForward,
-  changeLineTest,
+  addNewLine,
+  deleteCurrentLine,
 } from "../../redux/resultreducer";
 import {
   changeModeStatus,
   updateElement,
+  selectPsOneLine,
 } from "../../redux/psoneoptionsreducer";
 import PromptPsOneLine from "./psoneline/promptpsoneline";
 
@@ -30,5 +32,7 @@ export default connect(mstp, {
   changeModeStatus,
   moveElementBack,
   moveElementForward,
-  changeLineTest,
+  selectPsOneLine,
+  addNewLine,
+  deleteCurrentLine,
 })(ElementsLocationMenu);

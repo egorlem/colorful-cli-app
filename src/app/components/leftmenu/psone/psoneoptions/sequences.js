@@ -5,7 +5,7 @@ import DropDownMenu from "../../../global/select/dropdown.jsx";
 export const SelectSequences = (state) => {
   // STATE
   const {
-    psOneOptions: { activeControls, currentElement, status },
+    psOneOptions: { activeControls, currentElement },
     closeControl,
     openControl,
   } = state;

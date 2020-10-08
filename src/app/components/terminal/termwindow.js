@@ -6,47 +6,44 @@ import "./term.scss";
 let vt220Lont = new Array(134);
 
 const Window = ({ state }) => {
-  let line = state.curLine.map((e) => {
-    let decoration = e.style.join(" ");
-    return (
-      <span
-        key={e.id}
-        style={{ color: e.fg.hexString, background: e.bg.hexString }}
-        className={`${decoration}`}
-      >
-        {e.sequences}
-      </span>
-    );
-  });
+  // let line = state.curLine.map((e) => {
+  //   let decoration = e.style.join(" ");
+  //   return (
+  //     <span
+  //       key={e.id}
+  //       style={{ color: e.fg.hexString, background: e.bg.hexString }}
+  //       className={`${decoration}`}
+  //     >
+  //       {e.sequences}
+  //     </span>
+  //   );
+  // });
 
-  let vt220Short = new Array(80).fill("M");
-  let vt220Long = new Array(134).fill("░");
-  let colums = new Array(23).fill("");
+  // let vt220Short = new Array(80).fill("M");
+  // let vt220Long = new Array(134).fill("░");
+  // let colums = new Array(23).fill("");
 
-  let layOut = colums.map((e, i) => {
-    let shortString = vt220Short.map((e, i) => {
-      return (
-        <span key={i} className="term-short-symbol">
-          {e}
-        </span>
-      );
-    });
-    return (
-      <div key={i} className="test--line short">
-        {shortString}
-      </div>
-    );
-  });
+  // let layOut = colums.map((e, i) => {
+  //   let shortString = vt220Short.map((e, i) => {
+  //     return (
+  //       <span key={i} className="term-short-symbol">
+  //         {e}
+  //       </span>
+  //     );
+  //   });
+  //   return (
+  //     <div key={i} className="test--line short">
+  //       {shortString}
+  //     </div>
+  //   );
+  // });
 
   return (
     <>
       <div className="shell-window">
         <div className="shell-window-header"> bash ⸻ 24 rows ⸻ 80 columns;</div>
         <div className="prompt">
-          <div className="test--line short test-typing">
-            {/* {layOut} */}
-            {line}
-          </div>
+          <div className="test--line short test-typing">{"layOut"}</div>
         </div>
       </div>
     </>

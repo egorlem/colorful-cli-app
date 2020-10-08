@@ -19,9 +19,7 @@ export const BackgroundColors = (state) => {
 
   return (
     <div className="option-item">
-      <div className="option-item-header">
-        <div className="option-item__title">Background colors</div>
-        {/* <ControllWrapper
+      {/* <ControllWrapper
           open={open}
           onClick={() => {
             open ? OpenClose(false) : OpenClose(true);
@@ -31,14 +29,13 @@ export const BackgroundColors = (state) => {
           <StaticIcon>{"i"}</StaticIcon>
           <RightDivider open={open}>{"]"}</RightDivider>
         </ControllWrapper> */}
-      </div>
       <div className="option-item-controlls">
         <DropDownMenu
           flag={bgSubMenu.flag}
           handler={bgSubMenu.flag ? openControl : closeControl}
           accessory={"bgColorMenu"}
-          selectedItem={bg.name ? bg.name : ""}
-          preview={<Preview style={{ color: bg.hexString }}>{"░░░"}</Preview>}
+          selectedItem={"Background colors"}
+          // preview={<Preview style={{ color: bg.hexString }}>{"░░░"}</Preview>}
         >
           <Palate state={state} colorHandler={getBgColor} />
         </DropDownMenu>

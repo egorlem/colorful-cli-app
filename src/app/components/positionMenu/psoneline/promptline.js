@@ -1,15 +1,16 @@
 import React from "react";
 import "./promptline.scss";
-import { useDrag, useDrop } from "react-dnd";
 import { PromptLineNumber } from "./styledcom";
-import PsOneItem from "./peomptlineelem";
 import PsOneItemMlt from "./multylineElm";
+import { BaseButton } from "../../global/buttons/basebnt";
 
 const LineDndContainer = (state) => {
   // STATE
   const {
-    result: { resPsOneLine, twoline },
-    changeLineTest,
+    result: { resPsOneLine },
+    selectPsOneLine,
+    addNewLine,
+    deleteCurrentLine,
   } = state;
 
   function moveCard(id, atIndex, atLine) {
@@ -18,15 +19,13 @@ const LineDndContainer = (state) => {
   }
 
   function findCard(id, lineindex) {
-    const card = twoline[lineindex].filter((c) => `${c.id}` === id)[0];
+    const card = resPsOneLine[lineindex].filter((c) => `${c.id}` === id)[0];
     return {
       card,
-      index: twoline[lineindex].indexOf(card),
+      index: resPsOneLine[lineindex].indexOf(card),
       lineindex,
     };
   }
-
-  const [, drop] = useDrop({ accept: "TEST_TWO" });
 
   const displaycard = (cards, lineindex) => {
     return cards.map((card) => {
@@ -34,7 +33,7 @@ const LineDndContainer = (state) => {
         <PsOneItemMlt
           key={card.id}
           id={`${card.id}`}
-          text={card.text}
+          text={card.sequences}
           findCard={findCard}
           moveCard={moveCard}
           state={state}
@@ -44,19 +43,40 @@ const LineDndContainer = (state) => {
       );
     });
   };
-
-  const mltline = twoline.map((line, index) => {
+  const mltline = resPsOneLine.map((line, index) => {
     const cardline = displaycard(line, index);
     return (
-      <div key={`line${index}`} id={index} ref={drop}>
-        {index}
-        <div>{cardline}</div>
+      <div
+        key={`line${index}`}
+        id={index}
+        onClick={() => {
+          selectPsOneLine(index);
+        }}
+        className="curr-line"
+      >
+        <div className="curr-line__title">
+          {"Line"}
+          {index}
+          {index !== 0 && (
+            <BaseButton
+              onClick={() => {
+                deleteCurrentLine({ index: index });
+              }}
+            >
+              Remove line
+            </BaseButton>
+          )}
+        </div>
+        <div className="curr-line__items">{cardline}</div>
       </div>
     );
   });
-
   return (
     <div className="psone-line-dnd">
+      <div className="pspne-line-navmenu">
+        <div className="pspne-line-navmenu__title">Line nav menu:</div>
+        <BaseButton onClick={addNewLine}>Add new line</BaseButton>
+      </div>
       {mltline}
       {/* <PromptLineNumber>{"Line 1"}</PromptLineNumber>
       <div ref={drop} className="psone-line-container">

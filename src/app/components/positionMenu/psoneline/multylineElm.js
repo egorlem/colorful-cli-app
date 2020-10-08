@@ -1,5 +1,4 @@
 import React from "react";
-import { useDrag, useDrop } from "react-dnd";
 import {
   InLinePromptElement,
   ElementContainer,
@@ -8,92 +7,40 @@ import {
   MoveForwardControll,
 } from "./styledcom";
 
-const PsOneItemMlt = ({
-  id,
-  text,
-  findCard,
-  moveCard,
-  state,
-  curline,
-  lineindex,
-}) => {
+const PsOneItemMlt = ({ id, text, state, lineindex, findCard }) => {
   // STATE
   const {
     psOneOptions: { status },
     result: { resPsOneLine },
-    changeLineTest,
+    updateElement,
+    changeModeStatus,
   } = state;
 
-  const curCard = resPsOneLine.find((e) => +e.id === +id);
-  const { card, index: oringIndex, lineindex: origLineIndex } = findCard(
-    id,
-    lineindex
-  );
-
-  const [{ isDragging }, drag] = useDrag({
-    item: { type: "TEST_TWO", id, oringIndex, lineindex },
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-    begin: () => {
-      console.log("подняли");
-    },
-
-    end: (dropResult, monitor) => {
-      const { id: droppedID, oringIndex } = monitor.getItem();
-      const didDrop = monitor.didDrop();
-      if (!didDrop) {
-        //  moveCard(droppedID, oringIndex);
-        console.log("упал");
-      }
-    },
-  });
-
-  const [, drop] = useDrop({
-    accept: "TEST_TWO",
-    canDrop: () => false,
-    hover({ id: draggedID, lineindex: draggedIndex }) {
-      // if (draggedID !== id) {
-      // const { index: overIndex } = findCard(id);
-      if (draggedIndex !== lineindex) {
-        const curcard2 = findCard(draggedID, draggedIndex);
-        const hovercard = findCard(id, lineindex);
-        console.log(curcard2);
-
-        changeLineTest({
-          fromLineIndex: curcard2.lineindex,
-          toLineIndex: hovercard.lineindex,
-          card: curcard2.card,
-        });
-        //   }
-        // const { index: overIndex } = findCard(id);
-        // moveCard(draggedID, overIndex);
-      }
-    },
-  });
-
-  const blockWhenEditMode = (node) => {
-    if (!status) return drag(drop(node));
+  const opacity = status ? 0.3 : 1;
+  const { card, index, lineindex: selectedLineIndex } = findCard(id, lineindex);
+  const selectElement = () => {
+    const { card, index, lineindex: selectedLineIndex } = findCard(
+      id,
+      lineindex
+    );
+    console.log(card, index, selectedLineIndex);
   };
-  const opacity = isDragging || status ? 0.3 : 1;
-
   return (
     <ElementContainer>
-      {oringIndex !== 0 && <MoveBackControll>{"<=="}</MoveBackControll>}
-
+      <MoveBackControll>{"<=="}</MoveBackControll>
       <InLinePromptElement
         flag={status}
         style={{ opacity }}
-        ref={(node) => {
-          blockWhenEditMode(node);
+        onClick={() => {
+          if (!status) {
+            updateElement({ curCard: card, oringIndex: index });
+            changeModeStatus("UDATE_CURRENT");
+          }
         }}
       >
         <span>{text}</span>
       </InLinePromptElement>
-
-      {oringIndex !== resPsOneLine.length - 1 && (
-        <MoveForwardControll>{"==>"}</MoveForwardControll>
-      )}
+      <MoveForwardControll>{"==>"}</MoveForwardControll>
     </ElementContainer>
   );
 };

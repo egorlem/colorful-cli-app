@@ -4,6 +4,7 @@ import { textdecoration } from "./techstate/textdecoration";
 import update from "immutability-helper";
 
 let initialState = {
+  selectedLine: 0,
   status: null,
   initElement: {
     id: null,
@@ -127,7 +128,6 @@ export function psOneOptionsReducer(state = initialState, action) {
     case "UPDATE_CURRENT_ELEMENT":
       return update(state, {
         currentElement: { $set: action.payload.curCard },
-        isElementSelected: { $set: true },
         orignIndex: { $set: action.payload.oringIndex },
       });
     case "SET_TEXT_STYLE":
@@ -141,6 +141,10 @@ export function psOneOptionsReducer(state = initialState, action) {
     case "PSONE/CHANGE_EDIT_MOD_STATUS":
       return update(state, {
         status: { $set: action.payload },
+      });
+    case "SELECT_LINE":
+      return update(state, {
+        selectedLine: { $set: action.payload },
       });
   }
   return state;
@@ -194,4 +198,7 @@ export const changeModeStatus = (payload) => {
 };
 export const closeAllControls = () => {
   return { type: "CLOSE_ALL_CONTROLS" };
+};
+export const selectPsOneLine = (payload) => {
+  return { type: "SELECT_LINE", payload };
 };
