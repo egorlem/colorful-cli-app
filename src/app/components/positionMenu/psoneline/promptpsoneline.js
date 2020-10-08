@@ -5,13 +5,13 @@ import LineDndContainer from "./promptline";
 import styled from "styled-components";
 
 const PromptLineStyleWrapper = styled.div`
-  font-family: "JetBrains", monospace;
+  font-family: "JetBrains", "monospace";
   margin-left: 24px;
 `;
 
 const PromptPsOneLine = (state) => {
   const {
-    psOneOptions: { status },
+    psOneOptions: { status, selectedLine },
     result: { resPsOneLine },
     changeModeStatus,
     updateElement,
@@ -27,19 +27,20 @@ const PromptPsOneLine = (state) => {
   useEffect(() => {
     if (status === "ADD_NEW") {
       let { currentElement, index } = findCard(
-        resPsOneLine.length,
-        resPsOneLine
+        resPsOneLine[selectedLine].length,
+        resPsOneLine[selectedLine]
       );
-      updateElement({ curCard: currentElement, oringIndex: index });
+      updateElement({
+        curCard: currentElement,
+        oringIndex: index,
+      });
       changeModeStatus("UDATE_CURRENT");
     }
   }, [resPsOneLine]);
 
   return (
     <PromptLineStyleWrapper>
-      <DndProvider backend={HTML5Backend}>
-        <LineDndContainer {...state} />
-      </DndProvider>
+      <LineDndContainer {...state} />
     </PromptLineStyleWrapper>
   );
 };

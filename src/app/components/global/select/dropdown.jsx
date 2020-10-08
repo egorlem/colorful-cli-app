@@ -7,6 +7,8 @@ import {
   RightDivider,
 } from "./controls";
 const DropDownMain = styled.div`
+  font-family: "JetBrains", monospace;
+  font-weight: 300;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -23,6 +25,7 @@ const DropDownWrapper = styled.div`
   overflow-y: auto;
 `;
 const DropDownTitle = styled.div`
+  font-weight: 500;
   transition: padding-bottom 0.3s;
   display: flex;
   justify-content: space-between;

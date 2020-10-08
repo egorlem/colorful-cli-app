@@ -25,7 +25,7 @@ export const ElementContainer = styled.div`
 `;
 export const InLinePromptElement = styled.div`
   cursor: ${(props) => (props.flag ? "default" : "move")};
-  font-weight: regular;
+  font-weight: 400;
   font-size: 1.3rem;
   word-spacing: -0.2rem;
   line-height: 0.97;
@@ -33,7 +33,7 @@ export const InLinePromptElement = styled.div`
 `;
 export const MoveControll = styled.div`
   cursor: ${(props) => (props.flag ? "default" : "pointer")};
-  font-weight: regular;
+  font-weight: 400;
   font-size: 1.3rem;
   -moz-user-select: none;
   -khtml-user-select: none;

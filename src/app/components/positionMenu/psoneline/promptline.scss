@@ -13,3 +13,30 @@
   border-left: 1px solid black;
   padding-left: 4px;
 }
+
+.pspne-line-navmenu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid black;
+  margin-bottom: 4px;
+}
+
+.curr-line {
+  border-bottom: 1px solid black;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    margin-bottom: 3px;
+    border-bottom: 1px solid black;
+  }
+  &__items {
+    display: flex;
+    justify-content: start;
+  }
+}

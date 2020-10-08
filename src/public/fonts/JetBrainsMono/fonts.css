@@ -25,7 +25,7 @@
     url("./web/eot/JetBrainsMono-Regular.eot") format("eot"),
     url("./web/woff/JetBrainsMono-Regular.woff") format("woff"),
     url("./web/woff2/JetBrainsMono-Regular.woff2") format("woff2");
-  font-weight: "regular";
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -36,7 +36,7 @@
     url("./web/eot/JetBrainsMono-SemiLight.eot") format("eot"),
     url("./web/woff/JetBrainsMono-SemiLight.woff") format("woff"),
     url("./web/woff2/JetBrainsMono-SemiLight.woff2") format("woff2");
-  font-weight: 400;
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
@@ -46,7 +46,7 @@
     url("./web/eot/JetBrainsMono-Light.eot") format("eot"),
     url("./web/woff/JetBrainsMono-Light.woff") format("woff"),
     url("./web/woff2/JetBrainsMono-Light.woff2") format("woff2");
-  font-weight: 300;
+  font-weight: 200;
   font-style: normal;
   font-display: swap;
 }

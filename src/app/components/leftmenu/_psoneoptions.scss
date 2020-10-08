@@ -36,7 +36,8 @@ $bggray: #f6f8fa;
   display: flex;
   flex-direction: column;
   width: 100%;
-  font-family: $mainfont;
+  font-family: "JetBrains", monospace;
+  font-weight: 400;
   background-color: white;
   top: 0;
   left: 45px;
@@ -45,6 +46,7 @@ $bggray: #f6f8fa;
 .option-item {
   font-size: 1.4rem;
   &-header {
+    font-weight: 500;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid $dividergray;
@@ -54,6 +56,10 @@ $bggray: #f6f8fa;
     border-bottom: 1px solid $dividergray;
     padding: 5px 0;
   }
+}
+.ps-btn--container {
+  display: flex;
+  justify-content: start;
 }
 
 //  display: ${(props) => (props.open ? "none" : "block")};

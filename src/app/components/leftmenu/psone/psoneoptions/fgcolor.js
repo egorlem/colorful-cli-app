@@ -19,9 +19,7 @@ export const ForegroundColors = (state) => {
 
   return (
     <div className="option-item">
-      <div className="option-item-header">
-        <div className="option-item__title">Foreground colors</div>
-        {/* <ControllWrapper
+      {/* <ControllWrapper
           open={open}
           onClick={() => {
             open ? OpenClose(false) : OpenClose(true);
@@ -31,14 +29,14 @@ export const ForegroundColors = (state) => {
           <StaticIcon>{"i"}</StaticIcon>
           <RightDivider open={open}>{"]"}</RightDivider>
         </ControllWrapper> */}
-      </div>
+
       <div className="option-item-controlls">
         <DropDownMenu
           flag={fgSubMenu.flag}
           handler={fgSubMenu.flag ? openControl : closeControl}
           accessory={"fgColorMenu"}
-          selectedItem={fg.name ? fg.name : ""}
-          preview={<Preview style={{ color: fg.hexString }}>{"░░░"}</Preview>}
+          selectedItem={"Foreground color"}
+          // preview={<Preview style={{ color: fg.hexString }}>{"░░░"}</Preview>}
         >
           <Palate state={state} colorHandler={getFgColor} />
         </DropDownMenu>
