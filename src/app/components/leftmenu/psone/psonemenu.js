@@ -58,9 +58,9 @@ export const PsOneMenu = (state) => {
     <div className="psone-container">
       {/* SEQUENCES */}
       <SelectSequences {...state} />
-      {status && <ForegroundColors {...state} />}
-      {status && <BackgroundColors {...state} />}
-      {status && <TextDecorationOption {...state} />}
+      {<ForegroundColors {...state} />}
+      {<BackgroundColors {...state} />}
+      {<TextDecorationOption {...state} />}
       <div className="ps-btn--container">
         {status === "UDATE_CURRENT" && (
           <BaseButton onClick={deleteHandler}>Delete</BaseButton>

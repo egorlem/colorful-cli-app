@@ -17,7 +17,7 @@ const BannerContainer = styled.a`
   &:hover {
     opacity: 1;
   }
-  @media (max-width: 1023px) {
+  @media (max-width: 1025px) {
     display: none;
   }
 `;

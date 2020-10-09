@@ -7,4 +7,7 @@ export const BaseButton = styled.button`
   padding: 2px 5px;
   border-bottom: 4px double black;
   margin-right: 4px;
+  &:hover {
+    background: gray;
+  }
 `;
