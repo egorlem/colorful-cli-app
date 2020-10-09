@@ -13,7 +13,7 @@ const SelectItem = Styled.li`
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #e1e4e8;
-  padding: 5px 0 5px 2px;
+  padding: 6px 0 6px 2px;
   &:first-child {
     border-top: 1px solid #e1e4e8;
   }

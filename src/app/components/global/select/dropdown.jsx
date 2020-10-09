@@ -16,6 +16,7 @@ const DropDownMain = styled.div`
   position: relative;
 `;
 const DropDownWrapper = styled.div`
+  font-size: 1.3rem;
   transition: max-height 0.3s, opacity 0.3s;
   width: 100%;
   visibility: ${(props) => (props.open ? "hidden" : "visible")};

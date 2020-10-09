@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const PromptLineNumber = styled.div`
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   padding: 4px 0 4px 4px;
   margin-top: 2px;
   margin-bottom: 2px;
@@ -25,10 +25,10 @@ export const ElementContainer = styled.div`
 `;
 export const InLinePromptElement = styled.div`
   cursor: ${(props) => (props.flag ? "default" : "move")};
-  font-weight: 400;
+  font-weight: 300;
   font-size: 1.3rem;
-  word-spacing: -0.2rem;
-  line-height: 0.97;
+  /* word-spacing: -0.2rem; */
+  /* line-height: 0.97; */
   background-color: transparent;
 `;
 export const MoveControll = styled.div`
