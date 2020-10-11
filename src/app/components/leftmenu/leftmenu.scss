@@ -1,10 +1,12 @@
 $dividergray: #e1e4e8;
 //  background-color: rgb(255, 255, 255);
 .left-menu {
-  border-right: 1px solid $dividergray;
+  // border-right: 1px solid $dividergray;
   // background-color: rgb(255, 121, 121);
   position: absolute;
   z-index: 10;
-  background: white;
-  width: 100%;
+  background: #252526;
+  padding: 10px;
+  border-right: 1px solid #333333;
+  min-height: 50vh;
 }

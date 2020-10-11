@@ -34,7 +34,7 @@ const Window = (state) => {
     return (
       <div key={`termline${index}`}>
         {cardline}
-        {lastindex === index && <Crs />}
+        {/* {lastindex === index && <Crs />} */}
       </div>
     );
   });

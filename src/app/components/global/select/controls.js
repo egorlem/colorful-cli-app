@@ -2,15 +2,15 @@ import styled from "styled-components";
 export const ControllWrapper = styled.div`
   transition: color 0.2s;
   width: 35px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   text-align: center;
   -moz-user-select: none;
   -khtml-user-select: none;
   user-select: none;
   cursor: pointer;
-  color: ${(props) => (props.open ? "#e1e4e8" : "black")};
+  color: ${(props) => (props.open ? "#878ac0" : "#acb0f8")};
   &:hover {
-    color: black;
+    color: #acb0f8;
   }
 `;
 const Icon = styled.div`
@@ -35,12 +35,14 @@ export const LeftDivider = styled.div`
   display: inline-block;
   transition: padding 0.1s;
   padding-right: ${(props) => (props.open ? "0" : "4px")};
+  color: ${(props) => (props.open ? "#474747" : "#acb0f8")};
 `;
 export const RightDivider = styled.div`
   font-family: "Arial";
   display: inline-block;
   transition: padding 0.1s;
   padding-left: ${(props) => (props.open ? "0" : "4px")};
+  color: ${(props) => (props.open ? "#474747" : "#acb0f8")};
 `;
 
 export const Preview = styled.div`

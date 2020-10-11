@@ -5,12 +5,12 @@ import { composePromptResultMiddleware } from "./middleware/promptresultmiddlewa
 import logger from "redux-logger";
 
 // const persistedState = loadState();
-
-//applyMiddleware(logger)
+// composePromptResultMiddleware
+applyMiddleware(logger);
 export const store = createStore(
   rootReducer,
   // persistedState,
-  applyMiddleware(logger, composePromptResultMiddleware)
+  applyMiddleware(logger)
 );
 
 // store.subscribe(() => {

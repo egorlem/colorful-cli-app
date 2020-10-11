@@ -1,6 +1,7 @@
 import { globalcolors } from "./techstate/colors";
 import { psOneSequences } from "./techstate/promptsequences";
 import { textdecoration } from "./techstate/textdecoration";
+import { unicode } from "./techstate/unicode";
 import update from "immutability-helper";
 
 let initialState = {
@@ -33,9 +34,11 @@ let initialState = {
     { name: "elementMenu", flag: true },
     { name: "bgColorMenu", flag: true },
     { name: "fgColorMenu", flag: true },
+    { name: "symbolMenu", flag: true },
   ],
   globalcolors: globalcolors,
   textdecoration: textdecoration,
+  symbols: unicode,
   fgcolor: {
     colorInfo: false,
     colorId: 255,
@@ -55,6 +58,7 @@ let initialState = {
   psOneSequences: psOneSequences,
   orignIndex: null,
   currentElement: {
+    options: null,
     id: null,
     text: null,
     sequences: null,

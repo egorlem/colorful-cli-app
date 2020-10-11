@@ -1,7 +1,7 @@
 import React from "react";
 import DropDownMenu from "../../../global/select/dropdown.jsx";
 import Palate from "../psonecontrolls/palate";
-import { Preview } from "../../../global/select/controls";
+import { PsOneItem } from "../styled.psone";
 
 export const ForegroundColors = (state) => {
   // STATE
@@ -18,7 +18,7 @@ export const ForegroundColors = (state) => {
   const [, , fgSubMenu] = activeControls;
 
   return (
-    <div className="option-item">
+    <PsOneItem flag={fgSubMenu.flag}>
       {/* <ControllWrapper
           open={open}
           onClick={() => {
@@ -41,6 +41,6 @@ export const ForegroundColors = (state) => {
           <Palate state={state} colorHandler={getFgColor} />
         </DropDownMenu>
       </div>
-    </div>
+    </PsOneItem>
   );
 };

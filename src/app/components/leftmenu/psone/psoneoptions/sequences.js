@@ -1,6 +1,7 @@
 import React from "react";
 import SelectElement from "../psonecontrolls/selectpromptel";
 import DropDownMenu from "../../../global/select/dropdown.jsx";
+import { PsOneItem } from "../styled.psone";
 
 export const SelectSequences = (state) => {
   // STATE
@@ -12,12 +13,12 @@ export const SelectSequences = (state) => {
   // OPEN && CLOSED FLAG
   const [elementSubMenu] = activeControls;
   return (
-    <div className="option-item">
+    <PsOneItem flag={elementSubMenu.flag}>
       <div className="option-item-controlls">
         <DropDownMenu
           flag={elementSubMenu.flag}
           selectedItem={
-            currentElement.text
+            currentElement.text && currentElement.type === "SEQUENCES"
               ? currentElement.text
               : "Select escape sequences"
           }
@@ -27,6 +28,6 @@ export const SelectSequences = (state) => {
           <SelectElement {...state} />
         </DropDownMenu>
       </div>
-    </div>
+    </PsOneItem>
   );
 };

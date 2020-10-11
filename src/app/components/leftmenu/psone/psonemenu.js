@@ -3,7 +3,9 @@ import { SelectSequences } from "./psoneoptions/sequences";
 import { ForegroundColors } from "./psoneoptions/fgcolor";
 import { BackgroundColors } from "./psoneoptions/bgcolor";
 import { TextDecorationOption } from "./psoneoptions/textdecor";
-import { BaseButton } from "../../global/buttons/basebnt";
+import { SymbolOptions } from "./psoneoptions/symbols";
+import { PsOneDeleteBtn, PsOneApplyBtn } from "../../global/buttons/basebnt";
+import { PsOneControllsWrapper, PsOneButtonWrapper } from "./styled.psone";
 
 export const PsOneMenu = (state) => {
   const {
@@ -29,7 +31,11 @@ export const PsOneMenu = (state) => {
         element: currentElement,
         lineIndex: selectedLine,
       });
-    } else if (status === "ADD_NEW") {
+    }
+  }, [currentElement, status]);
+
+  useEffect(() => {
+    if (status === "ADD_NEW") {
       let newElement = setupNewPromptElemnt(
         resPsOneLine,
         currentElement,
@@ -54,21 +60,22 @@ export const PsOneMenu = (state) => {
     resetOptions();
   };
 
+  const update = true; //status === "UDATE_CURRENT";
+
   return (
-    <div className="psone-container">
+    <PsOneControllsWrapper>
       {/* SEQUENCES */}
       <SelectSequences {...state} />
-      {<ForegroundColors {...state} />}
-      {<BackgroundColors {...state} />}
-      {<TextDecorationOption {...state} />}
-      <div className="ps-btn--container">
-        {status === "UDATE_CURRENT" && (
-          <BaseButton onClick={deleteHandler}>Delete</BaseButton>
+      <SymbolOptions {...state} />
+      {update && <ForegroundColors {...state} />}
+      {update && <BackgroundColors {...state} />}
+      {update && <TextDecorationOption {...state} />}
+      <PsOneButtonWrapper>
+        {update && (
+          <PsOneDeleteBtn onClick={deleteHandler}>Delete</PsOneDeleteBtn>
         )}
-        {status === "UDATE_CURRENT" && (
-          <BaseButton onClick={applyHandler}>Apply</BaseButton>
-        )}
-      </div>
-    </div>
+        {update && <PsOneApplyBtn onClick={applyHandler}>Apply</PsOneApplyBtn>}
+      </PsOneButtonWrapper>
+    </PsOneControllsWrapper>
   );
 };

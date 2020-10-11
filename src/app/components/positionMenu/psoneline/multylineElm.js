@@ -14,6 +14,8 @@ const PsOneItemMlt = ({ id, text, state, lineindex, findCard }) => {
     result: { resPsOneLine },
     updateElement,
     changeModeStatus,
+    moveElementBack,
+    moveElementForward,
   } = state;
 
   const opacity = status ? 0.3 : 1;
@@ -27,7 +29,22 @@ const PsOneItemMlt = ({ id, text, state, lineindex, findCard }) => {
   };
   return (
     <ElementContainer>
-      <MoveBackControll>{"<=="}</MoveBackControll>
+      <MoveBackControll
+        flag={status}
+        onClick={() => {
+          if (!status) {
+            let forvIndex = index - 1;
+            moveElementBack({
+              index: index,
+              card: card,
+              atIndex: forvIndex,
+              lineIndex: selectedLineIndex,
+            });
+          }
+        }}
+      >
+        {"<=="}
+      </MoveBackControll>
       <InLinePromptElement
         flag={status}
         style={{ opacity }}
@@ -40,7 +57,22 @@ const PsOneItemMlt = ({ id, text, state, lineindex, findCard }) => {
       >
         <span>{text}</span>
       </InLinePromptElement>
-      <MoveForwardControll>{"==>"}</MoveForwardControll>
+      <MoveForwardControll
+        flag={status}
+        onClick={() => {
+          if (!status) {
+            let toIndex = index + 1;
+            moveElementForward({
+              index: index,
+              card: card,
+              atIndex: toIndex,
+              lineIndex: selectedLineIndex,
+            });
+          }
+        }}
+      >
+        {"==>"}
+      </MoveForwardControll>
     </ElementContainer>
   );
 };
