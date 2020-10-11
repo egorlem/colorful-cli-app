@@ -2,11 +2,21 @@ import React from "react";
 import "./promptline.scss";
 import { PromptLineNumber } from "./styledcom";
 import PsOneItemMlt from "./multylineElm";
-import { BaseButton } from "../../global/buttons/basebnt";
+import { LineButton, BaseButton } from "../../global/buttons/basebnt";
+import styled from "styled-components";
+import { ElementStatus } from "./options/elemstatus";
+
+const SelectedLine = styled.div`
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: ${(props) => (props.flag ? "500" : "300")};
+  color: ${(props) => (props.flag ? "black" : "#e1e4e8")};
+`;
 
 const LineDndContainer = (state) => {
   // STATE
   const {
+    psOneOptions: { selectedLine, status },
     result: { resPsOneLine },
     selectPsOneLine,
     addNewLine,
@@ -46,7 +56,8 @@ const LineDndContainer = (state) => {
   const mltline = resPsOneLine.map((line, index) => {
     const cardline = displaycard(line, index);
     return (
-      <div
+      <SelectedLine
+        flag={selectedLine === index}
         key={`line${index}`}
         id={index}
         onClick={() => {
@@ -58,30 +69,39 @@ const LineDndContainer = (state) => {
           {"Line"}
           {index}
           {index !== 0 && (
-            <BaseButton
+            <LineButton
+              flag={status}
               onClick={() => {
-                deleteCurrentLine({ index: index });
+                if (!status) {
+                  deleteCurrentLine({ index: index });
+                }
               }}
             >
               Remove line
-            </BaseButton>
+            </LineButton>
           )}
         </div>
         <div className="curr-line__items">{cardline}</div>
-      </div>
+      </SelectedLine>
     );
   });
   return (
     <div className="psone-line-dnd">
       <div className="pspne-line-navmenu">
         <div className="pspne-line-navmenu__title">Line nav menu:</div>
-        <BaseButton onClick={addNewLine}>Add new line</BaseButton>
+        {status && <ElementStatus {...state} />}
+        <LineButton
+          flag={status}
+          onClick={() => {
+            if (!status) {
+              addNewLine();
+            }
+          }}
+        >
+          Add new line
+        </LineButton>
       </div>
       {mltline}
-      {/* <PromptLineNumber>{"Line 1"}</PromptLineNumber>
-      <div ref={drop} className="psone-line-container">
-        {currentLine}
-      </div> */}
     </div>
   );
 };

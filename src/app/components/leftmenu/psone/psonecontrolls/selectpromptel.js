@@ -36,9 +36,14 @@ const SelectElement = (state) => {
     setCurrentElement,
     changeModeStatus,
   } = state;
+
   const statusHandler = (e) => {
-    setCurrentElement({ ...e });
-    if (status === null && status !== "UDATE_CURRENT") {
+    // if (e.text === "Character") {
+    //   changeModeStatus("SELECT_SYMBOL");
+    //   return;
+    // }
+    if (status === null) {
+      setCurrentElement({ ...e });
       changeModeStatus("ADD_NEW");
     }
   };

@@ -11,3 +11,11 @@ export const BaseButton = styled.button`
     background: gray;
   }
 `;
+
+export const LineButton = styled(BaseButton)`
+  cursor: ${(props) => (props.flag ? "default" : "pointer")};
+  color: ${(props) => (props.flag ? "gray" : "black")};
+  &:hover {
+    background: ${(props) => (props.flag ? "none" : "gray")};
+  }
+`;

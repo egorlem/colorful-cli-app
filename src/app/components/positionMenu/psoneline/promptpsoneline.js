@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { DndProvider } from "react-dnd";
 import LineDndContainer from "./promptline";
 import styled from "styled-components";
 
@@ -15,6 +13,7 @@ const PromptPsOneLine = (state) => {
     result: { resPsOneLine },
     changeModeStatus,
     updateElement,
+    selectPsOneLine,
   } = state;
 
   const findCard = (id, elements) => {
@@ -37,6 +36,9 @@ const PromptPsOneLine = (state) => {
       changeModeStatus("UDATE_CURRENT");
     }
   }, [resPsOneLine]);
+  useEffect(() => {
+    selectPsOneLine(0);
+  }, [resPsOneLine.length]);
 
   return (
     <PromptLineStyleWrapper>

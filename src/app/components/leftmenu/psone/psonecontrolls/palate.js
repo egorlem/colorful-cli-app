@@ -1,11 +1,24 @@
 import React from "react";
-import Styled from "styled-components";
+import styled from "styled-components";
 import "./palate.scss";
-const PalateWrapper = Styled.div`
+const PalateWrapper = styled.div`
   width: 100%;
   background: white;
   visibility: ${(props) => (props.flag ? "hidden" : "visible")};
   border-left: 5px solid #f1f1f1;
+  display: flex;
+  flex-wrap: wrap;
+`;
+const ColorElement = styled.div`
+  width: 40px;
+  min-height: 25px;
+  font-size: 20px;
+  background-color: ${(props) => props.color || "black"};
+  border: 1px solid transparent;
+  padding: 2px;
+  &:hover {
+    border: 1px solid #f1f1f1;
+  }
 `;
 
 const Palate = ({ state, colorHandler }) => {
@@ -26,13 +39,13 @@ const Palate = ({ state, colorHandler }) => {
       return;
     }
     return (
-      <div
+      <ColorElement
         onClick={paletteHantler}
-        className="palette__item"
+        // className="palette__item"
         id={e.colorId}
         key={e.colorId}
-        style={{ background: e.hexString }}
-      ></div>
+        color={e.hexString}
+      ></ColorElement>
     );
   });
 
@@ -41,22 +54,19 @@ const Palate = ({ state, colorHandler }) => {
       return;
     }
     return (
-      <div
+      <ColorElement
         onClick={paletteHantler}
-        className="palette__item"
         id={e.colorId}
         key={e.colorId}
-        style={{ background: e.hexString }}
-      ></div>
+        color={e.hexString}
+      ></ColorElement>
     );
   });
 
   return (
     <PalateWrapper>
-      <div className="palette">
-        {GradientColor}
-        {BaseColor}
-      </div>{" "}
+      {GradientColor}
+      {BaseColor}
     </PalateWrapper>
   );
 };

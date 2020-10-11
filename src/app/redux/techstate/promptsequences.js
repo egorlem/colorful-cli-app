@@ -98,7 +98,12 @@ export const psOneSequences = [
   },
   {
     sequences: " ",
-    text: "space",
+    text: "Space",
+    code: " ",
+  },
+  {
+    sequences: "$%#",
+    text: "Character",
     code: " ",
   },
 ];

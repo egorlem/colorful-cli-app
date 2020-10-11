@@ -102,19 +102,35 @@ export function resultReducer(state = initialState, action) {
     case "RESULT/MOVE_ELEMENT_FORWARD":
       return update(state, {
         resPsOneLine: {
-          $splice: [
-            [action.payload.index, 1],
-            [action.payload.atIndex, 0, action.payload.card],
-          ],
+          [action.payload.lineIndex]: {
+            $splice: [
+              [action.payload.index, 1],
+              [action.payload.atIndex, 0, action.payload.card],
+            ],
+            $apply: (arr) => {
+              return arr.map((e, i) => {
+                let id = i + 1;
+                return { ...e, id: id };
+              });
+            },
+          },
         },
       });
     case "RESULT/MOVE_ELEMENT_BACK":
       return update(state, {
         resPsOneLine: {
-          $splice: [
-            [action.payload.index, 1],
-            [action.payload.atIndex, 0, action.payload.card],
-          ],
+          [action.payload.lineIndex]: {
+            $splice: [
+              [action.payload.index, 1],
+              [action.payload.atIndex, 0, action.payload.card],
+            ],
+            $apply: (arr) => {
+              return arr.map((e, i) => {
+                let id = i + 1;
+                return { ...e, id: id };
+              });
+            },
+          },
         },
       });
   }

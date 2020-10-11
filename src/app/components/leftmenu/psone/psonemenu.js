@@ -3,6 +3,7 @@ import { SelectSequences } from "./psoneoptions/sequences";
 import { ForegroundColors } from "./psoneoptions/fgcolor";
 import { BackgroundColors } from "./psoneoptions/bgcolor";
 import { TextDecorationOption } from "./psoneoptions/textdecor";
+import { SymbolOptions } from "./psoneoptions/symbols";
 import { BaseButton } from "../../global/buttons/basebnt";
 
 export const PsOneMenu = (state) => {
@@ -54,20 +55,19 @@ export const PsOneMenu = (state) => {
     resetOptions();
   };
 
+  const update = status === "UDATE_CURRENT";
+
   return (
     <div className="psone-container">
       {/* SEQUENCES */}
       <SelectSequences {...state} />
-      {<ForegroundColors {...state} />}
-      {<BackgroundColors {...state} />}
-      {<TextDecorationOption {...state} />}
+      {true && <SymbolOptions {...state} />}
+      {update && <ForegroundColors {...state} />}
+      {update && <BackgroundColors {...state} />}
+      {update && <TextDecorationOption {...state} />}
       <div className="ps-btn--container">
-        {status === "UDATE_CURRENT" && (
-          <BaseButton onClick={deleteHandler}>Delete</BaseButton>
-        )}
-        {status === "UDATE_CURRENT" && (
-          <BaseButton onClick={applyHandler}>Apply</BaseButton>
-        )}
+        {update && <BaseButton onClick={deleteHandler}>Delete</BaseButton>}
+        {update && <BaseButton onClick={applyHandler}>Apply</BaseButton>}
       </div>
     </div>
   );
