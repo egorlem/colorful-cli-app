@@ -4,7 +4,8 @@ import { ForegroundColors } from "./psoneoptions/fgcolor";
 import { BackgroundColors } from "./psoneoptions/bgcolor";
 import { TextDecorationOption } from "./psoneoptions/textdecor";
 import { SymbolOptions } from "./psoneoptions/symbols";
-import { BaseButton } from "../../global/buttons/basebnt";
+import { PsOneDeleteBtn, PsOneApplyBtn } from "../../global/buttons/basebnt";
+import { PsOneControllsWrapper, PsOneButtonWrapper } from "./styled.psone";
 
 export const PsOneMenu = (state) => {
   const {
@@ -30,7 +31,11 @@ export const PsOneMenu = (state) => {
         element: currentElement,
         lineIndex: selectedLine,
       });
-    } else if (status === "ADD_NEW") {
+    }
+  }, [currentElement, status]);
+
+  useEffect(() => {
+    if (status === "ADD_NEW") {
       let newElement = setupNewPromptElemnt(
         resPsOneLine,
         currentElement,
@@ -55,20 +60,22 @@ export const PsOneMenu = (state) => {
     resetOptions();
   };
 
-  const update = status === "UDATE_CURRENT";
+  const update = true; //status === "UDATE_CURRENT";
 
   return (
-    <div className="psone-container">
+    <PsOneControllsWrapper>
       {/* SEQUENCES */}
       <SelectSequences {...state} />
-      {true && <SymbolOptions {...state} />}
+      <SymbolOptions {...state} />
       {update && <ForegroundColors {...state} />}
       {update && <BackgroundColors {...state} />}
       {update && <TextDecorationOption {...state} />}
-      <div className="ps-btn--container">
-        {update && <BaseButton onClick={deleteHandler}>Delete</BaseButton>}
-        {update && <BaseButton onClick={applyHandler}>Apply</BaseButton>}
-      </div>
-    </div>
+      <PsOneButtonWrapper>
+        {update && (
+          <PsOneDeleteBtn onClick={deleteHandler}>Delete</PsOneDeleteBtn>
+        )}
+        {update && <PsOneApplyBtn onClick={applyHandler}>Apply</PsOneApplyBtn>}
+      </PsOneButtonWrapper>
+    </PsOneControllsWrapper>
   );
 };

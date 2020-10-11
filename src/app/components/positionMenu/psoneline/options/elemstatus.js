@@ -76,7 +76,6 @@ const displayDecoration = (element, i) => {
 };
 
 const DecorationPreview = ({ style }) => {
-  console.log(style);
   const DecorPreviewLien = style.map((e, i) => displayDecoration(e, i));
   return <>{DecorPreviewLien}</>;
 };

@@ -1,29 +1,35 @@
 import React from "react";
 import Styled from "styled-components";
-import update from "immutability-helper";
 
 const SelectWrapper = Styled.ul`
   width: 100%;
-  background: white;
+  background: #252526;
   visibility: ${(props) => (props.flag ? "hidden" : "visible")};
-  border-left: 5px solid #f1f1f1;
 `;
 const SelectItem = Styled.li`
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #e1e4e8;
+  border-bottom: 1px solid #474747;
   padding: 6px 0 6px 2px;
+  border-left: 5px solid ${(props) => props.color || "#6ebb70"};
   &:first-child {
-    border-top: 1px solid #e1e4e8;
+    border-top: 1px solid #474747;
+  }
+  &:last-child {
+    margin-bottom: 10px;
   }
   &:hover {
-    background: #f2f2f2;
+    background: #55555d;
+    color: #fafafa;
   }
 `;
-const ItemTitele = Styled.div``;
+const ItemTitele = Styled.div`
+  font-size: 1.4rem;
+  font-weight: 400;
+`;
 const ItemPreview = Styled.div`
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   padding-right: 10px;
   &:before {
     content: '|'
@@ -38,19 +44,17 @@ const SelectElement = (state) => {
   } = state;
 
   const statusHandler = (e) => {
-    // if (e.text === "Character") {
-    //   changeModeStatus("SELECT_SYMBOL");
-    //   return;
-    // }
-    if (status === null) {
-      setCurrentElement({ ...e });
+    setCurrentElement({ ...e, type: "SEQUENCES" });
+    if (status === null && status !== "UDATE_CURRENT") {
       changeModeStatus("ADD_NEW");
     }
   };
 
   const PromptSequence = psOneSequences.map((e) => {
+    let color = e.text === "Space" ? "#0d74db" : "#2d5f5d";
     return (
       <SelectItem
+        color={color}
         selected={e.selected}
         data-name={e.text}
         key={e.text}

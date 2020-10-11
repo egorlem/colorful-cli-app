@@ -25,6 +25,7 @@ const PromptPsOneLine = (state) => {
   };
   useEffect(() => {
     if (status === "ADD_NEW") {
+      console.log("from line");
       let { currentElement, index } = findCard(
         resPsOneLine[selectedLine].length,
         resPsOneLine[selectedLine]
@@ -36,6 +37,7 @@ const PromptPsOneLine = (state) => {
       changeModeStatus("UDATE_CURRENT");
     }
   }, [resPsOneLine]);
+
   useEffect(() => {
     selectPsOneLine(0);
   }, [resPsOneLine.length]);

@@ -8,16 +8,17 @@ const DecorBtnsWrapper = styled.div`
   -moz-user-select: none;
   -khtml-user-select: none;
   user-select: none;
+  padding-top: 6px;
 `;
 
 const DecorButton = styled.div`
   display: flex;
-  font-size: 1.3rem;
-  font-weight: ${(props) => (props.active ? "500" : "300")};
+  font-size: 1.2rem;
+  font-weight: 400;
   &:hover {
-    font-weight: 500;
+    color: #fafafa;
     .cb-divider {
-      color: black;
+      color: "#acb0f8";
     }
   }
 `;
@@ -26,10 +27,10 @@ const CheckBox = styled.div`
   display: flex;
 `;
 const CbDivider = styled.div`
-  color: ${(props) => (props.active ? "black" : "#e1e4e8")};
+  color: ${(props) => (props.active ? "#acb0f8" : "#474747")};
 `;
 const CbSymbol = styled.div`
-  color: ${(props) => (props.active ? "black" : "transparent")};
+  color: ${(props) => (props.active ? "#acb0f8" : "transparent")};
 `;
 
 const TextDecoration = (state) => {

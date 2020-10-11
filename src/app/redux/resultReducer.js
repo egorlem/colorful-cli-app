@@ -24,6 +24,7 @@ let initialState = {
           hsl: { h: 100, s: 100, l: 76 },
           name: "PaleGreen1",
         },
+        type: "SEQUENCES",
       },
       {
         id: 2,
@@ -45,6 +46,7 @@ let initialState = {
           hsl: { h: 100, s: 100, l: 76 },
           name: "PaleGreen1",
         },
+        type: "SEQUENCES",
       },
     ],
   ],

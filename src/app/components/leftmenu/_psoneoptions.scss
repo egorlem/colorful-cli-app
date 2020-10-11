@@ -1,60 +1,41 @@
-//@import "../../style/var";
-
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap");
-// FONTS
-$mainfont: "Ubuntu Mono", monospace;
 $dividergray: #e1e4e8;
 $bggray: #f6f8fa;
-// LAYOUT COLORS
-
-// @font-face {
-//   font-family: "JetBrains";
-//   src: url("../../fonts/JetBrainsMono-Regular.ttf");
-// }
-
-//// HANDLERS
-.color-mode-nandler {
-  cursor: pointer;
-  font-family: "JetBrains";
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  user-select: none;
-  font-size: 1.2rem;
-  color: rgb(180, 180, 180);
-  transition: color 0.2s ease-in-out;
-  &:hover {
-    color: black;
-  }
-}
 
 /// PS ONE OPTIONS CONTROLOS AND BLOCK STYLES
 /// MUST REUSE IN FUTURE
 
-.psone-container {
-  border-right: $dividergray;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  font-family: "JetBrains", monospace;
-  font-weight: 400;
-  background-color: white;
-  top: 0;
-  left: 45px;
-  background-color: white;
-}
+$leftmenuMainBg: #252526;
+$fontColor: #e9e9e9;
+$leftmenuSubBg: #37373d;
+$hoverBg: #55555d;
+$hoverColor: #fafafa;
+$divider: #474747;
+
+// .psone-container {
+//   border-right: $dividergray;
+//   display: flex;
+//   flex-direction: column;
+//   width: 100%;
+//   font-family: "JetBrains", monospace;
+//   font-weight: 400;
+//   background-color: $leftmenuMainBg;
+//   top: 0;
+//   left: 45px;
+//   color: $fontColor;
+//   padding-left: 6px;
+//   padding-right: 6px;
+//   width: 365px;
+// }
 .option-item {
-  font-size: 1.4rem;
+  background: #acb0f8f2;
+  font-size: 1.5rem;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid $divider;
   &-header {
-    font-weight: 500;
+    font-weight: 400;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid $dividergray;
-    padding: 5px 0;
-  }
-  &-controlls {
-    border-bottom: 1px solid $dividergray;
-    padding: 5px 0;
   }
 }
 .ps-btn--container {

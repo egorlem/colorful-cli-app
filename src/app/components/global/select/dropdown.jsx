@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import {
   ControllWrapper,
@@ -17,13 +17,15 @@ const DropDownMain = styled.div`
 `;
 const DropDownWrapper = styled.div`
   font-size: 1.3rem;
-  transition: max-height 0.3s, opacity 0.3s;
+  transition: max-height 0.3s, opacity 0.3s, margin-top 0.3s;
   width: 100%;
   visibility: ${(props) => (props.open ? "hidden" : "visible")};
   opacity: ${(props) => (props.open ? "0" : "1")};
   max-height: ${(props) => (props.open ? "0" : "130px")};
-  background: white;
+  background: transparent;
+  color: #e9e9e9;
   overflow-y: auto;
+  margin-top: ${(props) => (props.open ? "0" : "6px")};
 `;
 const DropDownTitle = styled.div`
   font-weight: 500;
