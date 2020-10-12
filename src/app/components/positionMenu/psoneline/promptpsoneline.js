@@ -5,6 +5,9 @@ import styled from "styled-components";
 const PromptLineStyleWrapper = styled.div`
   font-family: "JetBrains", "monospace";
   margin-left: 24px;
+  background: #252526;
+  color: #e9e9e9;
+  margin-bottom: 96px;
 `;
 
 const PromptPsOneLine = (state) => {
