@@ -1,14 +1,5 @@
 import styled from "styled-components";
 
-export const PromptLineNumber = styled.div`
-  font-weight: bold;
-  font-size: 1.4rem;
-  padding: 4px 0 4px 4px;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  border-top: 1px solid black;
-  border-bottom: 4px double black;
-`;
 export const ElementContainer = styled.div`
   display: flex;
   align-items: center;
@@ -17,30 +8,47 @@ export const ElementContainer = styled.div`
   /* border-radius: 4px;
   border: 1px solid #e1e4e8; */
   padding-bottom: 4px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid transparent;
-  &:hover {
+  margin-bottom: 2px;
+  /* &:hover {
     border-bottom: 1px solid red;
+  } */
+  &:after {
+    content: "⋰";
+    color: #474747;
+  }
+  &:last-child {
+    &:after {
+      content: "";
+    }
   }
 `;
 export const InLinePromptElement = styled.div`
-  cursor: ${(props) => (props.flag ? "default" : "move")};
-  font-weight: 300;
-  font-size: 1.3rem;
+  cursor: ${(props) => (props.flag ? "default" : "pointer")};
+  font-weight: 400;
+  font-size: 1.4rem;
   /* word-spacing: -0.2rem; */
   /* line-height: 0.97; */
   background-color: transparent;
+  &:hover {
+    color: #fafafa;
+  }
 `;
 export const MoveControll = styled.div`
   cursor: ${(props) => (props.flag ? "default" : "pointer")};
   font-weight: 400;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   -moz-user-select: none;
   -khtml-user-select: none;
   user-select: none;
   color: black;
   &:hover {
-    color: ${(props) => (props.flag ? "#e1e4e8" : "black")};
+    color: ${(props) => (props.flag ? "#e1e4e8" : "#e9e9e9")};
+    .line__divider {
+      color: #acb0f8;
+    }
+    .line__icon {
+      color: #acb0f8;
+    }
   }
 `;
 export const MoveBackControll = styled(MoveControll)`
@@ -53,4 +61,15 @@ export const MoveForwardControll = styled(MoveControll)`
   ::after {
     content: "";
   }
+`;
+
+export const InLineDivider = styled.span`
+  color: #474747;
+`;
+
+export const InLineControll = styled.span`
+  color: #8386ba;
+`;
+export const InLineText = styled.span`
+  color: ${(props) => props.color || "#e9e9e9"};
 `;

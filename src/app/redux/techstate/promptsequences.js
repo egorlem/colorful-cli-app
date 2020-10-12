@@ -36,6 +36,7 @@ export const psOneSequences = [
   // },
 
   // NEW
+
   {
     sequences: "Userhost",
     text: "The FQDN hostname",
@@ -95,6 +96,11 @@ export const psOneSequences = [
     sequences: "clrcli",
     text: "The base name of working dir",
     code: "\\W",
+  },
+  {
+    sequences: "Master",
+    text: "Git branch",
+    code: "",
   },
   {
     sequences: " ",

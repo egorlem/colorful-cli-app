@@ -9,13 +9,16 @@ export const BaseButton = styled.button`
   border-bottom: 4px double #474747;
   margin-right: 4px;
   color: #e9e9e9;
+  height: 22px;
 `;
 
 export const LineButton = styled(BaseButton)`
+  background: ${(props) => (props.flag ? "transparent" : "#acb0f8")};
   cursor: ${(props) => (props.flag ? "default" : "pointer")};
-  color: ${(props) => (props.flag ? "gray" : "black")};
+  color: ${(props) => (props.flag ? "#474747" : "#e9e9e9")};
   &:hover {
-    background: ${(props) => (props.flag ? "none" : "gray")};
+    background: ${(props) => (props.flag ? "transparent" : "gray")};
+    color: ${(props) => (props.flag ? "#474747" : "#fafafa")};
   }
 `;
 

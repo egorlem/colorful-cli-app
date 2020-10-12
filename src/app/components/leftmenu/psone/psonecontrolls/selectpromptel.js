@@ -44,14 +44,29 @@ const SelectElement = (state) => {
   } = state;
 
   const statusHandler = (e) => {
-    setCurrentElement({ ...e, type: "SEQUENCES" });
+    if (e.text === "Space") {
+      setCurrentElement({ ...e, type: "SPACE" });
+    } else if (e.text === "Git branch") {
+      setCurrentElement({ ...e, type: "FUNCTION" });
+    } else {
+      setCurrentElement({ ...e, type: "SEQUENCES" });
+    }
     if (status === null && status !== "UDATE_CURRENT") {
       changeModeStatus("ADD_NEW");
     }
   };
 
   const PromptSequence = psOneSequences.map((e) => {
-    let color = e.text === "Space" ? "#0d74db" : "#2d5f5d";
+    const getHighlighter = (elm) => {
+      if (elm.text === "Space") {
+        return "#0d74db";
+      } else if (elm.text === "Git branch") {
+        return "#2dafaa";
+      } else {
+        return "#2d5f5d";
+      }
+    };
+    let color = getHighlighter(e);
     return (
       <SelectItem
         color={color}

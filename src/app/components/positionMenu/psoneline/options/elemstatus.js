@@ -4,22 +4,24 @@ import styled from "styled-components";
 const ElmtStutusWrapper = styled.div`
   display: flex;
   font-size: 1.2rem;
-  font-weight: 400;
+  font-weight: 300;
 `;
 const CurrentColor = styled.div`
-  color: ${(props) => props.color || black};
+  color: ${(props) => props.color || "black"};
   &:after {
-    color: black;
+    color: #474747;
     content: ">";
   }
 `;
 const CurrentDecor = styled.div`
   &:after {
+    color: #474747;
     content: ">";
   }
 `;
 const SlectedSequnces = styled.div`
   &:after {
+    color: #474747;
     content: ">";
   }
 `;

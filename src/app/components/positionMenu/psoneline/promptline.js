@@ -1,16 +1,37 @@
 import React from "react";
-import "./promptline.scss";
-import { PromptLineNumber } from "./styledcom";
-import PsOneItemMlt from "./multylineElm";
-import { LineButton, BaseButton } from "../../global/buttons/basebnt";
 import styled from "styled-components";
-import { ElementStatus } from "./options/elemstatus";
+import "./promptline.scss";
 
-const SelectedLine = styled.div`
+import PsOneItemMlt from "./multylineElm";
+import { LineStatusHeader } from "./options/linestatusheader";
+import { LineButton } from "../../global/buttons/basebnt";
+
+const SelectedLineWrapper = styled.div`
   cursor: pointer;
-  font-size: 1.4rem;
-  font-weight: ${(props) => (props.flag ? "500" : "300")};
-  color: ${(props) => (props.flag ? "black" : "#e1e4e8")};
+  font-size: 1.5rem;
+  font-weight: ${(props) => (props.flag ? "500" : "400")};
+  color: ${(props) => (props.flag ? "#e9e9e9" : "#474747")};
+`;
+const SingleLine = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 10px;
+  border-left: 5px solid ${(props) => (props.flag ? "#1e5751" : "#474747")};
+  margin-left: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
+const SingleLineTitle = styled.div`
+  min-height: 32px;
+  border-bottom: 1px solid #474747;
+  border-top: 1px solid #474747;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+const AllLines = styled.div`
+  border-left: 1px solid #474747;
+  padding-left: 4px;
 `;
 
 const LineDndContainer = (state) => {
@@ -19,14 +40,8 @@ const LineDndContainer = (state) => {
     psOneOptions: { selectedLine, status },
     result: { resPsOneLine },
     selectPsOneLine,
-    addNewLine,
     deleteCurrentLine,
   } = state;
-
-  function moveCard(id, atIndex, atLine) {
-    const { card, index } = findCard(id);
-    //   changeElemPosition({ index, card, atIndex });
-  }
 
   function findCard(id, lineindex) {
     const card = resPsOneLine[lineindex].filter((c) => `${c.id}` === id)[0];
@@ -37,7 +52,7 @@ const LineDndContainer = (state) => {
     };
   }
 
-  const displaycard = (cards, lineindex) => {
+  const displayCard = (cards, lineindex) => {
     return cards.map((card) => {
       return (
         <PsOneItemMlt
@@ -45,7 +60,6 @@ const LineDndContainer = (state) => {
           id={`${card.id}`}
           text={card.sequences}
           findCard={findCard}
-          moveCard={moveCard}
           state={state}
           curline={cards}
           lineindex={lineindex}
@@ -53,75 +67,44 @@ const LineDndContainer = (state) => {
       );
     });
   };
-  const mltline = resPsOneLine.map((line, index) => {
-    const cardline = displaycard(line, index);
+
+  const displayLines = resPsOneLine.map((line, index) => {
+    const cardline = displayCard(line, index);
     return (
-      <SelectedLine
+      <SelectedLineWrapper
         flag={selectedLine === index}
         key={`line${index}`}
         id={index}
         onClick={() => {
           selectPsOneLine(index);
         }}
-        className="curr-line"
       >
-        <div className="curr-line__title">
-          {"Line"}
-          {index}
+        <SingleLineTitle>
+          {"Line "}
+          {index + 1}
           {index !== 0 && (
             <LineButton
               flag={status}
               onClick={() => {
-                if (!status) {
-                  deleteCurrentLine({ index: index });
-                }
+                if (!status) deleteCurrentLine({ index: index });
               }}
             >
-              Remove line
+              {"Remove line"}
             </LineButton>
           )}
-        </div>
-        <div className="curr-line__items">{cardline}</div>
-      </SelectedLine>
+        </SingleLineTitle>
+        <SingleLine flag={selectedLine === index}>{cardline}</SingleLine>
+      </SelectedLineWrapper>
     );
   });
   return (
-    <div className="psone-line-dnd">
-      <div className="pspne-line-navmenu">
-        <div className="pspne-line-navmenu__title">Line nav menu:</div>
-        {status && <ElementStatus {...state} />}
-        <LineButton
-          flag={status}
-          onClick={() => {
-            if (!status) {
-              addNewLine();
-            }
-          }}
-        >
-          Add new line
-        </LineButton>
+    <div>
+      <div>
+        <LineStatusHeader {...state} />
       </div>
-      {mltline}
+      <AllLines>{displayLines}</AllLines>
     </div>
   );
 };
 
 export default LineDndContainer;
-
-// const currentLine = resPsOneLine.map((cards) => {
-//   const elementDecor = (elm) => {
-//     if (elm.length <= 9) {
-//       return `== ${elm} ==`;
-//     } else return elm;
-//   };
-//   return (
-//     <PsOneItem
-//       key={cards.id}
-//       id={`${cards.id}`}
-//       text={elementDecor(cards.sequences)}
-//       findCard={findCard}
-//       moveCard={moveCard}
-//       state={state}
-//     />
-//   );
-// });

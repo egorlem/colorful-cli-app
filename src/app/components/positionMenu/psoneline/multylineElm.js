@@ -2,12 +2,15 @@ import React from "react";
 import {
   InLinePromptElement,
   ElementContainer,
-  MoveControll,
+  InLineDivider,
+  InLineControll,
   MoveBackControll,
   MoveForwardControll,
-} from "./styledcom";
+  InLineText,
+} from "./line.styled";
+import { elementHighLighter } from "./options/elemhighlighter";
 
-const PsOneItemMlt = ({ id, text, state, lineindex, findCard }) => {
+const PsOneItemMlt = ({ id, state, lineindex, findCard }) => {
   // STATE
   const {
     psOneOptions: { status },
@@ -20,31 +23,30 @@ const PsOneItemMlt = ({ id, text, state, lineindex, findCard }) => {
 
   const opacity = status ? 0.3 : 1;
   const { card, index, lineindex: selectedLineIndex } = findCard(id, lineindex);
-  const selectElement = () => {
-    const { card, index, lineindex: selectedLineIndex } = findCard(
-      id,
-      lineindex
-    );
-    console.log(card, index, selectedLineIndex);
-  };
+  const lastIndex = resPsOneLine[lineindex].length - 1;
+  const { text, color } = elementHighLighter(card);
   return (
     <ElementContainer>
-      <MoveBackControll
-        flag={status}
-        onClick={() => {
-          if (!status) {
-            let forvIndex = index - 1;
-            moveElementBack({
-              index: index,
-              card: card,
-              atIndex: forvIndex,
-              lineIndex: selectedLineIndex,
-            });
-          }
-        }}
-      >
-        {"<=="}
-      </MoveBackControll>
+      {index !== 0 && (
+        <MoveBackControll
+          flag={status}
+          onClick={() => {
+            if (!status) {
+              let forvIndex = index - 1;
+              moveElementBack({
+                index: index,
+                card: card,
+                atIndex: forvIndex,
+                lineIndex: selectedLineIndex,
+              });
+            }
+          }}
+        >
+          <InLineDivider className="line__divider">{"["}</InLineDivider>
+          <InLineControll className="line__icon">{"◀"}</InLineControll>
+          <InLineDivider className="line__divider">{"]"}</InLineDivider>
+        </MoveBackControll>
+      )}
       <InLinePromptElement
         flag={status}
         style={{ opacity }}
@@ -55,24 +57,28 @@ const PsOneItemMlt = ({ id, text, state, lineindex, findCard }) => {
           }
         }}
       >
-        <span>{text}</span>
+        <InLineText color={color}>{text}</InLineText>
       </InLinePromptElement>
-      <MoveForwardControll
-        flag={status}
-        onClick={() => {
-          if (!status) {
-            let toIndex = index + 1;
-            moveElementForward({
-              index: index,
-              card: card,
-              atIndex: toIndex,
-              lineIndex: selectedLineIndex,
-            });
-          }
-        }}
-      >
-        {"==>"}
-      </MoveForwardControll>
+      {lastIndex !== index && (
+        <MoveForwardControll
+          flag={status}
+          onClick={() => {
+            if (!status) {
+              let toIndex = index + 1;
+              moveElementForward({
+                index: index,
+                card: card,
+                atIndex: toIndex,
+                lineIndex: selectedLineIndex,
+              });
+            }
+          }}
+        >
+          <InLineDivider className="line__divider">{"["}</InLineDivider>
+          <InLineControll className="line__icon">{"▶"}</InLineControll>
+          <InLineDivider className="line__divider">{"]"}</InLineDivider>
+        </MoveForwardControll>
+      )}
     </ElementContainer>
   );
 };
