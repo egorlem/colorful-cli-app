@@ -1,10 +1,11 @@
-// FIND UNIQ COLORS
-const filterUniqColors = (arr) => {
-  const UNIQ_BG_COLORS = arr.reduce(
+const state = require("./teststate");
+
+const createUniqColorsMap = (arr) => {
+  const { uniqColors } = arr.reduce(
     (acc, el) => {
-      if (acc.map[el.bg.colorId]) return acc;
-      acc.map[el.bg.colorId] = true;
-      acc.uniqColors.push(el.bg);
+      if (acc.map[el["colorId"]]) return acc;
+      acc.map[el["colorId"]] = true;
+      acc.uniqColors.push(el);
       return acc;
     },
     {
@@ -12,73 +13,69 @@ const filterUniqColors = (arr) => {
       map: {},
     }
   );
+  return uniqColors;
+};
 
-  const UNIQ_FG_COLORS = arr.reduce(
-    (acc, el) => {
-      if (acc.map[el.fg.colorId]) return acc;
-      acc.map[el.fg.colorId] = true;
-      acc.uniqColors.push(el.fg);
-      return acc;
-    },
-    {
-      uniqColors: [],
-      map: {},
+const objectifyColors = (e, i, pattern, varname) => {
+  return {
+    id: e.colorId,
+    colorCode: `${pattern}${e.colorId}`,
+    varName: `\$\{${varname}${i}\}`,
+    colorName: e.name,
+  };
+};
+
+const getColors = (state) => {
+  const uniqBgMap = createUniqColorsMap(state.flat().map((e) => e.bg)).map(
+    (e, i) => {
+      return objectifyColors(e, i, "48;05;", "BC");
+    }
+  );
+  const uniqFgMap = createUniqColorsMap(state.flat().map((e) => e.fg)).map(
+    (e, i) => {
+      return objectifyColors(e, i, "38;05;", "FC");
     }
   );
   return {
-    uniqBg: UNIQ_BG_COLORS.uniqColors,
-    uniqFg: UNIQ_FG_COLORS.uniqColors,
+    uniqBgMap: uniqBgMap,
+    uniqFgMap: uniqFgMap,
   };
 };
 
-const ObjectifyColorbg = (e, i) => {
-  if (e.colorId === 0) {
-    return {
-      id: e.colorId,
-      colorCode: `48;05;${e.colorId}`,
-      varName: ``,
-      colorName: e.name,
-    };
-  }
-  return {
-    id: e.colorId,
-    colorCode: `48;05;${e.colorId}`,
-    varName: `\$\{B${i}C\}`,
-    colorName: e.name,
-  };
-};
-const ObjectifyColorfg = (e, i) => {
-  return {
-    id: e.colorId,
-    colorCode: `38;05;${e.colorId}`,
-    varName: `\$\{F${i}C\}`,
-    colorName: e.name,
-  };
-};
+// FIND AND CREATE UNIQ COLORS OBJ
 
-const createColorsObject = (arr) => {
-  const { uniqBg, uniqFg } = filterUniqColors(arr);
-  return {
-    bg: uniqBg.map(ObjectifyColorbg),
-    fg: uniqFg.map(ObjectifyColorfg),
-  };
+const createPromptString = (statepart, bgmap, fgmap) => {
+  return statepart
+    .map((curEl) => {
+      const fgvar = fgmap.find((e) => curEl.fg.colorId === e.id);
+      const bgvar = bgmap.find((e) => curEl.bg.colorId === e.id);
+      return `${fgvar.varName}${bgvar.varName}${curEl.code}\$\{RST\}`;
+    })
+    .join("");
 };
-
-const createPromptString = (arr) => {
-  const { bg, fg } = createColorsObject(arr);
-  const res = arr.map((curEl) => {
-    const fgvar = fg.find((e) => curEl.fg.colorId === e.id);
-    const bgvar = bg.find((e) => curEl.bg.colorId === e.id);
-    return `${fgvar.varName}${bgvar.varName}${curEl.code}\$\{RST\}`;
+const rccode = (state, uniqBgMap, uniqFgMap) => {
+  let a = state.map((e) => {
+    return createPromptString(e, uniqBgMap, uniqFgMap);
   });
-  return {
-    promptString: res,
-    bg: bg,
-    fg: fg,
-  };
+  return a;
 };
 
-export const composePrmopt = (arr) => {
-  const result = createPromptString(arr);
-  return result;
+// CREATE PS STRING PARTS
+
+const createVariableStrings = (colorarr) => {
+  return colorarr.map((e) => {
+    return `${e.varName}=\\[\\e[${e.colorCode}m\\]       #${e.colorName}`;
+  });
+};
+
+export const cmp = (state) => {
+  const { uniqBgMap, uniqFgMap } = getColors(state);
+  const rcFileStringParts = rccode(state, uniqBgMap, uniqFgMap);
+  const fg = createVariableStrings(uniqFgMap);
+  const bg = createVariableStrings(uniqBgMap);
+  return {
+    ps: rcFileStringParts,
+    fg: fg,
+    bg: bg,
+  };
 };
