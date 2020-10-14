@@ -66,7 +66,7 @@ let initialState = {
     style: ["regular"],
     bg: {
       colorInfo: false,
-      colorId: 0,
+      colorId: 'RST',
       hexString: "#000000",
       rgb: { r: 0, g: 0, b: 0 },
       hsl: { h: 0, s: 0, l: 0 },
@@ -74,7 +74,7 @@ let initialState = {
     },
     fg: {
       colorInfo: false,
-      colorId: 255,
+      colorId: 'RST',
       hexString: "#eeeeee",
       rgb: { r: 238, g: 238, b: 238 },
       hsl: { h: 0, s: 0, l: 93 },
