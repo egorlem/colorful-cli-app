@@ -11,14 +11,14 @@ let initialState = {
         style: ["regular"],
         bg: {
           colorInfo: false,
-          colorId: 0,
+          colorId: "RST",
           hexString: "#000000",
           rgb: { r: 0, g: 0, b: 0 },
           hsl: { h: 0, s: 0, l: 0 },
           name: "Black",
         },
         fg: {
-          colorId: 156,
+          colorId: "RST",
           hexString: "#afff87",
           rgb: { r: 175, g: 255, b: 135 },
           hsl: { h: 100, s: 100, l: 76 },
@@ -33,14 +33,14 @@ let initialState = {
         code: "\\l",
         style: ["regular"],
         bg: {
-          colorId: 0,
+          colorId: "RST",
           hexString: "#000000",
           rgb: { r: 0, g: 0, b: 0 },
           hsl: { h: 0, s: 0, l: 0 },
           name: "Black",
         },
         fg: {
-          colorId: 156,
+          colorId: "RST",
           hexString: "#afff87",
           rgb: { r: 175, g: 255, b: 135 },
           hsl: { h: 100, s: 100, l: 76 },

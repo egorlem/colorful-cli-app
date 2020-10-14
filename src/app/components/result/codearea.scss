@@ -1,0 +1,29 @@
+.editor {
+  font-family: "JetBrains";
+  min-height: 100vh;
+  background: #1b1b1b;
+  border-bottom: 6px double #474747;
+  padding: 6px;
+  padding-top: 24px;
+  border-top: 1px solid #474747;
+  &-wrapper {
+    display: flex;
+  }
+  &__line {
+    flex-basis: 20%;
+    text-align: right;
+    padding-right: 18px;
+    margin-right: 4px;
+    border-right: 1px solid #474747;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+  }
+  &__column {
+    flex-basis: 80%;
+  }
+}
+
+.divider--wrapper {
+  border-right: #474747;
+}
