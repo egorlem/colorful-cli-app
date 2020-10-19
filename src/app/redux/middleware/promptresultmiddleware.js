@@ -16,3 +16,19 @@ export function composePromptResultMiddleware({ dispatch, getState }) {
     };
   };
 }
+
+function test() {
+  return {};
+}
+
+test();
+
+class LongClassNeme {
+  constructor() {
+    this.name = "";
+  }
+}
+
+let name = new LongClassNeme();
+
+const test = 10;

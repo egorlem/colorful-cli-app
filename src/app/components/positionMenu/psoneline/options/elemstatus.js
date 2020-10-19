@@ -87,11 +87,13 @@ export const ElementStatus = (state) => {
       currentElement: { bg, fg, sequences, style },
     },
   } = state;
+  const bgColorStatus = bg.colorId === "RST";
+  const fgColorStatus = fg.colorId === "RST";
   return (
     <ElmtStutusWrapper>
       <SlectedSequnces>{sequences}</SlectedSequnces>
-      <BgColorPreview {...bg} />
-      <FgColorPreview {...fg} />
+      {!bgColorStatus && <BgColorPreview {...bg} />}
+      {!fgColorStatus && <FgColorPreview {...fg} />}
       <DecorationPreview style={style} />
     </ElmtStutusWrapper>
   );

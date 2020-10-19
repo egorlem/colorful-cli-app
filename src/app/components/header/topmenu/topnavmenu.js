@@ -35,6 +35,7 @@ const TopNavigationMenu = () => {
   const { pathname } = useLocation();
   return (
     <TopMenuContainer>
+      <div className="test">{"text"}</div>
       <TonMenuItem flag={pathname === "/psone"}>
         <TopMenuLink className="TopMenuLink" to="/psone">
           {"${...} Prompt"}
