@@ -37,7 +37,7 @@ const state = [
         name: "Black",
       },
       fg: {
-        colorId: 156,
+        colorId: "RST",
         hexString: "#afff87",
         rgb: { r: 175, g: 255, b: 135 },
         hsl: { h: 100, s: 100, l: 76 },

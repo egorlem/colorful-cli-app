@@ -22,7 +22,7 @@ export const CodeArea = (state) => {
   ));
 
   const {
-    code: { bgVar, fgVar, codeline },
+    code: { bgVar, fgVar, codeline, toCB },
   } = state;
 
   const bg = bgVar.map((e) => {
@@ -67,8 +67,13 @@ export const CodeArea = (state) => {
       </div>
     );
   });
+  const textarr = ["\tst1\n", "\tst2\n", "st4"].join(" ");
+  const copyText = () => {
+    navigator.clipboard.writeText(toCB);
+  };
   return (
     <div className="editor">
+      <button onClick={copyText}>КНОПКА</button>
       <div className="editor-wrapper">
         <div className="editor__line">ln</div>
         <div className="editor__column">{col}</div>

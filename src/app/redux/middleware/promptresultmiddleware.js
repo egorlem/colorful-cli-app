@@ -9,26 +9,10 @@ export function composePromptResultMiddleware({ dispatch, getState }) {
           result: { resPsOneLine },
         } = getState();
         let a = cmp(resPsOneLine);
-        // console.log("wm");
+
         dispatch(setResultCodeLine(a));
       }
       return next(action);
     };
   };
 }
-
-function test() {
-  return {};
-}
-
-test();
-
-class LongClassNeme {
-  constructor() {
-    this.name = "";
-  }
-}
-
-let name = new LongClassNeme();
-
-const test = 10;

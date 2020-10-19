@@ -6,7 +6,6 @@ const state = require("./teststate");
 
 //// prompt string PS1="${VAR}\s${RST}"
 
-const line = [];
 const getDecorationCode = (code) => {
   if (!code) return "";
   return `${code};`;
@@ -23,12 +22,101 @@ const createStyleString = (bg, fg) => {
   );
   return colorscode;
 };
-const createPsOneSting = () => {
-  const styleString = createStyleString("188", "24");
-  const RST = styleString ? "\\e[0m" : "";
-  return `\\e[${styleString}test${RST}`;
+
+const createStyleVariable = (i, decor, colors) => {
+  if (!colors) {
+    return {
+      varString: "",
+      varName: "",
+      syntax: [],
+    };
+  }
+  const esc = "\\e";
+  const varName = `ST${i}`;
+  return {
+    varString: `${varName}="\\[${esc}[${decor}${colors}\\]`,
+    varName: `\$\{${varName}\}`,
+    varSyntax: [
+      { text: varName, type: "shVariable" },
+      { text: `="\\[`, type: "shString" },
+      { text: esc, type: "shSpecial" },
+      { text: `[`, type: "shString" },
+      { text: decor, type: "shString" },
+      { text: colors, type: "shString" },
+      { text: "\\]", type: "shString" },
+    ],
+  };
 };
-console.log(createPsOneSting());
+
+const createPsOneSting = (bg, fg, decor, type, seqcode = "test", index) => {
+  const styleString = createStyleString(bg, fg);
+  const decorString = getDecorationCode(decor);
+  const { varString, varName, varSyntax } = createStyleVariable(
+    index,
+    decorString,
+    styleString
+  );
+  const RST = styleString ? `\$\{RST\}` : "";
+  return {
+    varibale: {
+      varString: varString,
+      varSyntax: varSyntax,
+    },
+    psone: {
+      psonePart: `${varName}${seqcode}${RST}`,
+      psoneSyntax: [
+        { text: "${", type: "shPreProc" },
+        { text: `ST${index}`, type: "shVariable" },
+        { text: "}", type: "shPreProc" },
+        { text: `${seqcode}`, type: "shSpecial" },
+        { text: "${", type: "shPreProc" },
+        { text: "RST", type: "shVariable" },
+        { text: "}", type: "shPreProc" },
+      ],
+    },
+  };
+};
+// console.log(createPsOneSting());
+
+const cmp2 = (arr) => {
+  return arr.map((line) => {
+    return line.map((elem, index) => {
+      return createPsOneSting(
+        elem.bg.colorId,
+        elem.fg.colorId,
+        "",
+        elem.type,
+        elem.code,
+        index
+      );
+    });
+  });
+};
+
+//const subres = cmp(state);
+
+const cbres = (res) => {
+  const psoneresstr = res.map((e, i, arr) => {
+    let start = i === 0 ? 'PS1="' : "";
+    let end = arr.length - 1 === i ? '"' : "";
+    let line = e.map((e) => e.psone.psonePart).join("");
+    return `${start}${line}${end}\n`;
+  });
+  const varibaleStr = res.flat().map((e, i, arr) => {
+    let varstr = e.varibale.varString;
+    return `${varstr}\n`;
+  });
+  return [...varibaleStr, ...psoneresstr];
+};
+
+export const cmp = (arr) => {
+  const subres = cmp2(arr);
+  const pscbline = cbres(subres);
+  return {
+    res: subres,
+    pscbline: pscbline,
+  };
+};
 
 // let colorObject = {
 //   id: "",
@@ -163,9 +251,3 @@ console.log(createPsOneSting());
 // };
 
 //console.log(cmp(state));
-
-const test = () => {
-  console.log("test");
-};
-
-test();

@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from "redux";
 import { rootReducer } from "./rootReducer";
 import { saveState, loadState } from "./localstorage/localstorage";
 import { composePromptResultMiddleware } from "./middleware/promptresultmiddleware";
-import logger from "redubx-logger";
+import logger from "redux-logger";
 
 const persistedState = loadState();
 //composePromptResultMiddleware;
@@ -12,6 +12,8 @@ export const store = createStore(
   persistedState,
   applyMiddleware(logger, composePromptResultMiddleware)
 );
+
+//composePromptResultMiddleware
 
 store.subscribe(() => {
   saveState({
