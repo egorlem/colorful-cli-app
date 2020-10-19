@@ -13,6 +13,8 @@ export const store = createStore(
   applyMiddleware(logger, composePromptResultMiddleware)
 );
 
+//composePromptResultMiddleware
+
 store.subscribe(() => {
   saveState({
     result: store.getState().result,

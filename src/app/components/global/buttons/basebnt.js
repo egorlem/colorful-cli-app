@@ -13,11 +13,13 @@ export const BaseButton = styled.button`
 `;
 
 export const LineButton = styled(BaseButton)`
-  background: ${(props) => (props.flag ? "transparent" : "#acb0f8")};
+  background: ${(props) =>
+    props.flag ? "transparent" : "#005f87"}; ////TERM 24
   cursor: ${(props) => (props.flag ? "default" : "pointer")};
   color: ${(props) => (props.flag ? "#474747" : "#e9e9e9")};
   &:hover {
-    background: ${(props) => (props.flag ? "transparent" : "gray")};
+    background: ${(props) =>
+      props.flag ? "transparent" : "#0087af"}; //TERM 25
     color: ${(props) => (props.flag ? "#474747" : "#fafafa")};
   }
 `;
@@ -30,9 +32,9 @@ export const PsOneDeleteBtn = styled(BaseButton)`
   }
 `;
 export const PsOneApplyBtn = styled(BaseButton)`
-  background: #acb0f8;
+  background: #005f87; ////TERM 24
   &:hover {
     color: #fafafa;
-    background: #acb0f8f2;
+    background: #0087af; //TERM 31
   }
 `;

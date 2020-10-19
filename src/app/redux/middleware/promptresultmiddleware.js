@@ -9,7 +9,7 @@ export function composePromptResultMiddleware({ dispatch, getState }) {
           result: { resPsOneLine },
         } = getState();
         let a = cmp(resPsOneLine);
-        // console.log("wm");
+
         dispatch(setResultCodeLine(a));
       }
       return next(action);

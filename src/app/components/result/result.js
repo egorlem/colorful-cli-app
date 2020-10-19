@@ -13,11 +13,11 @@ const Result = (state) => {
     code: { codeline, bgVar, fgVar },
     getResultCodeLine,
   } = state;
-  
+
   useEffect(() => {
     getResultCodeLine();
   }, [resPsOneLine]);
-  
+
   return (
     <CodeResultWrapper>
       <CodeHeader />
