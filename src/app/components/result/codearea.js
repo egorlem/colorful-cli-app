@@ -67,9 +67,8 @@ export const CodeArea = (state) => {
       </div>
     );
   });
-  const textarr = ["\tst1\n", "\tst2\n", "st4"].join(" ");
   const copyText = () => {
-    navigator.clipboard.writeText(toCB);
+    navigator.clipboard.writeText(toCB.join(""));
   };
   return (
     <div className="editor">

@@ -6,6 +6,16 @@ const state = require("./teststate");
 
 //// prompt string PS1="${VAR}\s${RST}"
 
+const RST = {
+  clipBorardString: 'RST="\\[\\e[0m\\]"\t#test\n',
+};
+
+const GIT_BRANCH = {
+  str1: "parse_git_branch() {",
+  srt2: `    git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \\(.*\\)/\\1/'`,
+  srt3: "}",
+};
+
 const getDecorationCode = (code) => {
   if (!code) return "";
   return `${code};`;
@@ -23,7 +33,7 @@ const createStyleString = (bg, fg) => {
   return colorscode;
 };
 
-const createStyleVariable = (i, decor, colors) => {
+const createStyleVariable = (i, lni, decor, colors) => {
   if (!colors) {
     return {
       varString: "",
@@ -32,9 +42,9 @@ const createStyleVariable = (i, decor, colors) => {
     };
   }
   const esc = "\\e";
-  const varName = `ST${i}`;
+  const varName = `ST${i}${lni}`;
   return {
-    varString: `${varName}="\\[${esc}[${decor}${colors}\\]`,
+    varString: `${varName}="\\[${esc}[${decor}${colors}\\]"`,
     varName: `\$\{${varName}\}`,
     varSyntax: [
       { text: varName, type: "shVariable" },
@@ -48,11 +58,20 @@ const createStyleVariable = (i, decor, colors) => {
   };
 };
 
-const createPsOneSting = (bg, fg, decor, type, seqcode = "test", index) => {
+const createPsOneSting = (
+  bg,
+  fg,
+  decor,
+  type,
+  seqcode = "test",
+  elIndex,
+  lineIndex
+) => {
   const styleString = createStyleString(bg, fg);
   const decorString = getDecorationCode(decor);
   const { varString, varName, varSyntax } = createStyleVariable(
-    index,
+    elIndex,
+    lineIndex,
     decorString,
     styleString
   );
@@ -66,7 +85,7 @@ const createPsOneSting = (bg, fg, decor, type, seqcode = "test", index) => {
       psonePart: `${varName}${seqcode}${RST}`,
       psoneSyntax: [
         { text: "${", type: "shPreProc" },
-        { text: `ST${index}`, type: "shVariable" },
+        { text: `ST${elIndex}${lineIndex}`, type: "shVariable" },
         { text: "}", type: "shPreProc" },
         { text: `${seqcode}`, type: "shSpecial" },
         { text: "${", type: "shPreProc" },
@@ -79,15 +98,16 @@ const createPsOneSting = (bg, fg, decor, type, seqcode = "test", index) => {
 // console.log(createPsOneSting());
 
 const cmp2 = (arr) => {
-  return arr.map((line) => {
-    return line.map((elem, index) => {
+  return arr.map((line, lineIndex) => {
+    return line.map((elem, elIndex) => {
       return createPsOneSting(
         elem.bg.colorId,
         elem.fg.colorId,
         "",
         elem.type,
         elem.code,
-        index
+        elIndex,
+        lineIndex
       );
     });
   });
@@ -102,11 +122,14 @@ const cbres = (res) => {
     let line = e.map((e) => e.psone.psonePart).join("");
     return `${start}${line}${end}\n`;
   });
-  const varibaleStr = res.flat().map((e, i, arr) => {
-    let varstr = e.varibale.varString;
-    return `${varstr}\n`;
-  });
-  return [...varibaleStr, ...psoneresstr];
+  const varibaleStr = res
+    .flat()
+    .map((e, i, arr) => {
+      let varstr = e.varibale.varString;
+      return `${varstr}\n`;
+    })
+    .filter((e) => e.length > 1);
+  return [RST.clipBorardString, ...varibaleStr, "\n", ...psoneresstr];
 };
 
 export const cmp = (arr) => {
