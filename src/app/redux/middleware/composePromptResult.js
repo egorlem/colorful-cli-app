@@ -157,11 +157,31 @@ const result = state.map((e) => {
 class Document {
   constructor(arr) {
     this.arr = arr;
-    this.varLIst = [];
   }
-  createVariableList() {}
-  createPsoneLine() {}
-  getRusuilt() {}
+  createVariableList() {
+    this.varlist = this.arr
+      .flat()
+      .filter((e) => e.variable)
+      .map((e) => e.variable);
+  }
+  createPsoneLine() {
+    this.psone = this.arr.map((e, i) => {
+      const line = [];
+      if (i === 0) {
+        e.map((e) => {
+          e.psonepart;
+        });
+      }
+    });
+  }
+  getRusuilt() {
+    return {
+      variableList: this.varlist,
+      psonestring: null,
+    };
+  }
 }
 
-console.log(result);
+const doc = new Document(result);
+doc.createVariableList();
+console.log(doc.getRusuilt());
