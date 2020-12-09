@@ -1,28 +1,4 @@
-const state = require('./teststate');
-
-const testStateSimple = {
-  id: 1,
-  text: 'The hostname (short)',
-  sequences: 'LocalHost',
-  code: '\\h',
-  style: ['regular'],
-  bg: {
-    colorInfo: false,
-    colorId: 'RST',
-    hexString: '#000000',
-    rgb: { r: 0, g: 0, b: 0 },
-    hsl: { h: 0, s: 0, l: 0 },
-    name: 'Black',
-  },
-  fg: {
-    colorId: 212,
-    hexString: '#ff87d7',
-    rgb: { r: 255, g: 135, b: 215 },
-    hsl: { h: 320, s: 100, l: 76 },
-    name: 'Orchid2',
-  },
-  type: 'SEQUENCES',
-};
+//const state = require('./teststate');
 
 class Product {
   constructor() {
@@ -37,7 +13,6 @@ class Product {
 /**
  * @description
  * Builder. Create variable string and and prompt part string
- * @param {prop} stateobj
  */
 
 class BashPropmpBuilder {
@@ -69,16 +44,16 @@ class VarBuilder extends BashPropmpBuilder {
   setVarName() {
     if (this._product.hasStyle) {
       const name = super.getVariableName('VR');
-      this._product.var.push(`${name}=${this._product.escCode}`);
+      this._product.var.push(`${name}="${this._product.escCode}`);
     }
   }
-  setColor() {
+  setColors() {
     if (this._product.hasStyle) {
       const fgcolor =
         this.prop.fg.colorId !== 'RST' ? `38;05;${this.prop.fg.colorId};` : '';
       const bgcolor =
         this.prop.bg.colorId !== 'RST' ? `48;05;${this.prop.bg.colorId};` : '';
-      this._product.var.push(`${fgcolor}${bgcolor}m`);
+      this._product.var.push(`${fgcolor}${bgcolor}m"`);
     }
   }
   getPromptPart() {
@@ -134,7 +109,7 @@ class Director {
   }
   createVariableString() {
     this._builder.setVarName();
-    this._builder.setColor();
+    this._builder.setColors();
   }
 }
 
@@ -150,13 +125,11 @@ function client(prop) {
     variable: varbuilder.getPromptPart().join(''),
   };
 }
-const result = state.map((e) => {
-  return e.map((e) => client(e));
-});
 
 class Document {
   constructor(arr) {
     this.arr = arr;
+    this._addShellSyntax();
   }
   createVariableList() {
     this.varlist = this.arr
@@ -165,23 +138,41 @@ class Document {
       .map((e) => e.variable);
   }
   createPsoneLine() {
-    this.psone = this.arr.map((e, i) => {
-      const line = [];
-      if (i === 0) {
-        e.map((e) => {
-          e.psonepart;
-        });
-      }
+    this.psoneline = this.arr.map((line) => {
+      return line
+        .map((linepart) => {
+          return linepart.psonepart;
+        })
+        .join('');
     });
+  }
+  _addShellSyntax() {
+    if (!this.arr) {
+      throw new Error('Errrrrrrr');
+    }
+    if (this.arr.length > 1) {
+      const lastindex = this.arr.length - 1;
+      this.arr[0].unshift({ psonepart: 'PS1="' });
+      this.arr[lastindex].push({ psonepart: '"' });
+    } else if (this.arr.length === 1) {
+      this.arr[0].unshift({ psonepart: 'PS1="' });
+      this.arr[0].push({ psonepart: '"' });
+    }
   }
   getRusuilt() {
     return {
       variableList: this.varlist,
-      psonestring: null,
+      psonestring: this.psoneline,
     };
   }
 }
 
-const doc = new Document(result);
-doc.createVariableList();
-console.log(doc.getRusuilt());
+export function cmp(arr) {
+  const subres = arr.map((e) => {
+    return e.map((e) => client(e));
+  });
+  const doc = new Document(subres);
+  doc.createVariableList();
+  doc.createPsoneLine();
+  return doc.getRusuilt();
+}
