@@ -1,5 +1,4 @@
 .shell-prompt-line {
-  font-family: $mainfont;
   position: relative;
   font-size: 1.8rem;
   width: 1200px;
@@ -69,7 +68,7 @@
     width: 100%;
   }
   &__line__editbtn::before {
-    content: "\f044";
+    content: '\f044';
   }
 }
 .global--divider {
@@ -80,7 +79,7 @@
   z-index: 1;
 }
 .global--divider::after {
-  content: "";
+  content: '';
   position: absolute;
   border-bottom: 1px solid black;
   width: 100%;

@@ -1,10 +1,10 @@
-const path = require("path");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const autoprefixer = require("autoprefixer");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+const path = require('path');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const autoprefixer = require('autoprefixer');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 
 const cssLoader = (ext) => {
@@ -15,9 +15,9 @@ const cssLoader = (ext) => {
         reloadAll: true,
       },
     },
-    "css-loader",
+    'css-loader',
     {
-      loader: "postcss-loader",
+      loader: 'postcss-loader',
       options: {
         plugins: [autoprefixer()],
       },
@@ -31,13 +31,13 @@ const cssLoader = (ext) => {
 const babelLoader = (ext) => {
   const config = {
     presets: [
-      "@babel/preset-env",
-      "@babel/preset-react",
-      "@babel/preset-typescript",
+      '@babel/preset-env',
+      '@babel/preset-react',
+      '@babel/preset-typescript',
     ],
     plugins: [
-      "@babel/plugin-syntax-class-properties",
-      "@babel/plugin-proposal-class-properties",
+      '@babel/plugin-syntax-class-properties',
+      '@babel/plugin-proposal-class-properties',
     ],
   };
 
@@ -48,15 +48,18 @@ const babelLoader = (ext) => {
 };
 
 module.exports = {
-  context: path.resolve(__dirname, "src"),
-  mode: "development",
-  entry: { index: "./app/index.js", preloader: "./preloader.js" },
+  context: path.resolve(__dirname, 'src'),
+  mode: 'development',
+  entry: { index: './app/index.js', preloader: './preloader.js' },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+  },
   output: {
-    filename: "[name].[contenthash].js",
-    path: path.resolve(__dirname, "dist"),
+    filename: '[name].[contenthash].js',
+    path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, 'dist'),
     compress: true,
     historyApiFallback: true,
     port: 9000,
@@ -65,22 +68,22 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         vendor: {
-          name: "vendors",
+          name: 'vendors',
           test: /node_modules/,
-          chunks: "all",
+          chunks: 'all',
           enforce: true,
         },
       },
     },
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css",
+      filename: '[name].css',
     }),
     new HTMLWebpackPlugin({
-      template: "./index.html",
-      chunks: ["preloader", "index"],
+      template: './index.html',
+      chunks: ['preloader', 'index'],
     }),
     new CleanWebpackPlugin({
       verbose: true,
@@ -89,7 +92,7 @@ module.exports = {
     //new BundleAnalyzerPlugin(),
     new CopyPlugin({
       patterns: [
-        { from: path.resolve(__dirname, "src", "public"), to: "public" },
+        { from: path.resolve(__dirname, 'src', 'public'), to: 'public' },
       ],
     }),
   ],
@@ -99,7 +102,7 @@ module.exports = {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         loader: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: babelLoader(),
         },
       },
@@ -109,16 +112,16 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/,
-        use: cssLoader("sass-loader"),
+        use: cssLoader('sass-loader'),
       },
       {
         test: /\.(ttf|eot|woff|woff2)$/,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              name: "[name].[ext]",
-              outputPath: "public/fonts/",
+              name: '[name].[ext]',
+              outputPath: 'public/fonts/',
             },
           },
         ],
@@ -126,10 +129,10 @@ module.exports = {
       {
         test: /\.(png|jpg|svg|gif)$/i,
         loader: {
-          loader: "file-loader",
+          loader: 'file-loader',
           options: {
-            name: "[name].[ext]",
-            outputPath: "icons",
+            name: '[name].[ext]',
+            outputPath: 'icons',
           },
         },
       },

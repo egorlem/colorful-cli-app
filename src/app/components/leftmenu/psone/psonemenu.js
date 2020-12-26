@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { SelectSequences } from "./psoneoptions/sequences";
-import { ForegroundColors } from "./psoneoptions/fgcolor";
-import { BackgroundColors } from "./psoneoptions/bgcolor";
-import { TextDecorationOption } from "./psoneoptions/textdecor";
-import { SymbolOptions } from "./psoneoptions/symbols";
-import { PsOneDeleteBtn, PsOneApplyBtn } from "../../global/buttons/basebnt";
-import { PsOneControllsWrapper, PsOneButtonWrapper } from "./styled.psone";
+import React, { useEffect } from 'react';
+import { SelectSequences } from './psoneoptions/sequences';
+import { ForegroundColors } from './psoneoptions/fgcolor';
+import { BackgroundColors } from './psoneoptions/bgcolor';
+import { TextDecorationOption } from './psoneoptions/textdecor';
+import { SymbolOptions } from './psoneoptions/symbols';
+import { PsOneDeleteBtn, PsOneApplyBtn } from '../../global/buttons/basebnt';
+import { PsOneControllsWrapper, PsOneButtonWrapper } from './styled.psone';
 
 export const PsOneMenu = (state) => {
   const {
@@ -25,7 +25,7 @@ export const PsOneMenu = (state) => {
   };
   // если и нажать по томуже элементу стейт не меняется
   useEffect(() => {
-    if (status === "UDATE_CURRENT") {
+    if (status === 'UDATE_CURRENT') {
       updateSelectedElement({
         index: orignIndex,
         element: currentElement,
@@ -35,7 +35,7 @@ export const PsOneMenu = (state) => {
   }, [currentElement, status]);
 
   useEffect(() => {
-    if (status === "ADD_NEW") {
+    if (status === 'ADD_NEW') {
       let newElement = setupNewPromptElemnt(
         resPsOneLine,
         currentElement,
@@ -61,7 +61,6 @@ export const PsOneMenu = (state) => {
   };
 
   const update = true; //status === "UDATE_CURRENT";
-
   return (
     <PsOneControllsWrapper>
       {/* SEQUENCES */}
