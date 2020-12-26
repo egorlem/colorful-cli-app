@@ -1,5 +1,5 @@
 import { composePrmopt, cmp } from './composePromptResult';
-import { setResultCodeLine } from '../codeReducer';
+import { setResultCodeLine } from '../codereducer.ts';
 
 export function composePromptResultMiddleware({ dispatch, getState }) {
   return function (next) {

@@ -1,14 +1,19 @@
-import React, { useEffect } from "react";
-import Result from "../components/result/result";
-
+import React, { useEffect } from 'react';
+import Result from '../components/result/result.tsx';
+import LeftNavMenu from '../components/leftmenu/leftmenu';
 export const ResultPage = () => {
   useEffect(() => {
-    document.title = "Colorful CLI / Result";
+    document.title = 'Colorful CLI / Result';
   }, []);
 
   return (
-    <div className="content--limiter">
-      <Result />
+    <div className="shell-editor">
+      <div className="left-area">
+        <LeftNavMenu />
+      </div>
+      <div className="right-area">
+        <Result />
+      </div>
     </div>
   );
 };

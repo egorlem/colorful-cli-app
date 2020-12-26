@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 //
-import { AppPages } from "./routes/approutes";
-import { HeaderArea } from "./pages/appheaderArea";
-import { FooterArea } from "./pages/appfooterArea";
+import { AppPages } from './routes/approutes';
+import { HeaderArea } from './pages/appheaderArea';
+import { FooterArea } from './pages/appfooterArea';
 
 //
 function App() {

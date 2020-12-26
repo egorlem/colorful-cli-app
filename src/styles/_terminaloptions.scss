@@ -1,7 +1,7 @@
 .terminal-options {
   background-color: white;
   padding: 10px;
-  font-family: $mainfont;
+
   position: absolute;
   width: 295px;
   top: 0;
@@ -13,23 +13,23 @@
 }
 .terminal-select {
   font-size: 2.4rem;
-  border-bottom: 1px solid $dividergray;
+  //  border-bottom: 1px solid $dividergray;
   padding: 10px;
 }
 .terminal-shell {
-  font-family: $mainfont;
+  // font-family: $mainfont;
   font-size: 1.6rem;
   margin-bottom: 10px;
-  border-bottom: 1px solid $dividergray;
+  // border-bottom: 1px solid $dividergray;
   padding: 10px;
   &__title {
     padding-right: 2px;
   }
-  &__name {
-  }
+  // &__name {
+  // }
 }
 .term-color-line {
-  border-bottom: 1px solid $dividergray;
+  // border-bottom: 1px solid $dividergray;
   padding: 10px;
   &-dark {
     display: flex;
@@ -43,7 +43,7 @@
   &__item-l,
   &__item-d {
     border-radius: 3px;
-    border: 1px solid $dividergray;
+    // border: 1px solid $dividergray;
     width: 30px;
     height: 15px;
   }
@@ -51,10 +51,10 @@
 
 .terminal-font {
   display: flex;
-  font-family: $mainfont;
+  // font-family: $mainfont;
   font-size: 1.6rem;
   margin-bottom: 10px;
-  border-bottom: 1px solid $dividergray;
+  //  border-bottom: 1px solid $dividergray;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -67,8 +67,8 @@
   &__typeface {
     margin-right: 4px;
   }
-  &__size {
-  }
+  // &__size {
+  // }
   .font--select {
     color: black;
     font-size: 1.4rem;

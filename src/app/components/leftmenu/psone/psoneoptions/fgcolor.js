@@ -1,6 +1,6 @@
 import React from "react";
 import DropDownMenu from "../../../global/select/dropdown.jsx";
-import Palate from "../psonecontrolls/palate";
+import Palette from "../psonecontrolls/palette";
 import { PsOneItem } from "../styled.psone";
 
 export const ForegroundColors = (state) => {
@@ -38,7 +38,7 @@ export const ForegroundColors = (state) => {
           selectedItem={"Foreground color"}
           // preview={<Preview style={{ color: fg.hexString }}>{"░░░"}</Preview>}
         >
-          <Palate state={state} colorHandler={getFgColor} />
+          <Palette state={state} colorHandler={getFgColor} />
         </DropDownMenu>
       </div>
     </PsOneItem>
