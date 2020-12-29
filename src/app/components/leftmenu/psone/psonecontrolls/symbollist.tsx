@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const SymbolListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   border-left: 5px solid #0d74db;
-  visibility: ${(props) => (props.flag ? "hidden" : "visible")};
+  visibility: ${(props: any) => (props.flag ? 'hidden' : 'visible')};
 `;
 const SymbolWrapper = styled.div`
   background: #37373d;
@@ -34,21 +34,21 @@ const UniCode = styled.div`
   padding: 2px;
 `;
 
-export const SymbolList = (state) => {
+export const SymbolList = (state: any) => {
   const {
     psOneOptions: { symbols, status },
     setCurrentElement,
     changeModeStatus,
   } = state;
 
-  const statusHandler = (e) => {
-    setCurrentElement({ ...e, type: "SYMBOL" });
-    if (status === null && status !== "UDATE_CURRENT") {
-      changeModeStatus("ADD_NEW");
+  const statusHandler = (e: any) => {
+    setCurrentElement({ ...e, type: 'SYMBOL' });
+    if (status === null && status !== 'UDATE_CURRENT') {
+      changeModeStatus('ADD_NEW');
     }
   };
 
-  const Symbols = symbols.map((e) => {
+  const Symbols = symbols.map((e: any) => {
     return (
       <SymbolWrapper
         onClick={() => {

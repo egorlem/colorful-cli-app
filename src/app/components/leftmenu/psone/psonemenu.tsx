@@ -6,8 +6,9 @@ import { TextDecorationOption } from './psoneoptions/textdecor';
 import { SymbolOptions } from './psoneoptions/symbols';
 import { PsOneDeleteBtn, PsOneApplyBtn } from '../../global/buttons/basebnt';
 import { PsOneControllsWrapper, PsOneButtonWrapper } from './styled.psone';
+import { IPromptElem } from '../../../types/global';
 
-export const PsOneMenu = (state) => {
+export const PsOneMenu = (state: any) => {
   const {
     psOneOptions: { status, currentElement, orignIndex, selectedLine },
     result: { resPsOneLine },
@@ -19,8 +20,16 @@ export const PsOneMenu = (state) => {
     resetOptions,
   } = state;
 
-  const setupNewPromptElemnt = (arr, currentElement, lineindex) => {
-    let index = arr[lineindex].length;
+  const setupNewPromptElemnt = <
+    T extends Array<Array<IPromptElem>>,
+    R extends IPromptElem,
+    A extends number
+  >(
+    arr: T,
+    currentElement: R,
+    lineindex: A
+  ) => {
+    let index: number = arr[lineindex].length;
     return { ...currentElement, id: ++index };
   };
   // если и нажать по томуже элементу стейт не меняется
@@ -60,7 +69,7 @@ export const PsOneMenu = (state) => {
     resetOptions();
   };
 
-  const update = true; //status === "UDATE_CURRENT";
+  const update: boolean = true; //status === "UDATE_CURRENT";
   return (
     <PsOneControllsWrapper>
       {/* SEQUENCES */}

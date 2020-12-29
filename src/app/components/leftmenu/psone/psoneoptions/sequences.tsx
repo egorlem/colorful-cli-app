@@ -1,15 +1,15 @@
-import React from "react";
-import SelectElement from "../psonecontrolls/selectpromptel";
-import DropDownMenu from "../../../global/select/dropdown.jsx";
-import { PsOneItem } from "../styled.psone";
+import React from 'react';
+import SelectElement from '../psonecontrolls/selectpromptel';
+import DropDownMenu from '../../../global/select/dropdown';
+import { PsOneItem } from '../styled.psone';
 
-export const SelectSequences = (state) => {
+export const SelectSequences: React.FC = (state: any) => {
   // STATE
   const {
     psOneOptions: { activeControls, currentElement },
     closeControl,
     openControl,
-  } = state;
+  } = state as any;
   // OPEN && CLOSED FLAG
   const [elementSubMenu] = activeControls;
   return (
@@ -18,11 +18,11 @@ export const SelectSequences = (state) => {
         <DropDownMenu
           flag={elementSubMenu.flag}
           selectedItem={
-            currentElement.text && currentElement.type === "SEQUENCES"
+            currentElement.text && currentElement.type === 'SEQUENCES'
               ? currentElement.text
-              : "Select escape sequences"
+              : 'Select escape sequences'
           }
-          accessory={"elementMenu"}
+          accessory={'elementMenu'}
           handler={elementSubMenu.flag ? openControl : closeControl}
         >
           <SelectElement {...state} />

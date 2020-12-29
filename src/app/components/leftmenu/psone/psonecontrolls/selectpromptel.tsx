@@ -6,15 +6,15 @@ import {
   ItemPreview,
 } from './selectpromptel.styled';
 
-const SelectElement = (state) => {
+const SelectElement: React.FC = (state: any) => {
   //STATE
   const {
     psOneOptions: { psOneSequences, status },
     setCurrentElement,
     changeModeStatus,
-  } = state;
+  } = state as any;
 
-  const statusHandler = (e) => {
+  const statusHandler = (e: any) => {
     if (e.text === 'Space') {
       setCurrentElement({ ...e, type: 'SPACE' });
     } else if (e.text === 'Git branch') {
@@ -27,8 +27,8 @@ const SelectElement = (state) => {
     }
   };
 
-  const PromptSequence = psOneSequences.map((e) => {
-    const getHighlighter = (elm) => {
+  const PromptSequence = psOneSequences.map((e: any) => {
+    const getHighlighter = (elm: any) => {
       if (elm.text === 'Space') {
         return '#0d74db';
       } else if (elm.text === 'Git branch') {

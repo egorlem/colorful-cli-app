@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Result from '../components/result/result.tsx';
+import Result from '../components/result/result';
 import LeftNavMenu from '../components/leftmenu/leftmenu';
 export const ResultPage = () => {
   useEffect(() => {

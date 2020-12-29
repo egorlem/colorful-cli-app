@@ -1,9 +1,9 @@
-import React from "react";
-import DropDownMenu from "../../../global/select/dropdown.jsx";
-import { SymbolList } from "../psonecontrolls/symbollist";
-import { PsOneItem } from "../styled.psone";
+import React from 'react';
+import DropDownMenu from '../../../global/select/dropdown';
+import { SymbolList } from '../psonecontrolls/symbollist';
+import { PsOneItem } from '../styled.psone';
 
-export const SymbolOptions = (state) => {
+export const SymbolOptions: React.FC = (state: any) => {
   const {
     psOneOptions: { activeControls, currentElement },
     closeControl,
@@ -16,11 +16,11 @@ export const SymbolOptions = (state) => {
         <DropDownMenu
           flag={symbolSubMenu.flag}
           handler={symbolSubMenu.flag ? openControl : closeControl}
-          accessory={"symbolMenu"}
+          accessory={'symbolMenu'}
           selectedItem={
-            currentElement.text && currentElement.type === "SYMBOL"
+            currentElement.text && currentElement.type === 'SYMBOL'
               ? currentElement.text
-              : "Select character"
+              : 'Select character'
           }
         >
           <SymbolList {...state} />

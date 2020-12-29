@@ -1,23 +1,23 @@
 import React from 'react';
 import { ColorElement, PaletteWrapper, RangeWrapper } from './palette.styled';
 
-const Palette = ({ state, colorHandler }) => {
+const Palette: React.FC = ({ state, colorHandler }) => {
   // STATE
   const {
     psOneOptions: { globalcolors },
-  } = state;
-  const paletteHantler = (event) => {
+  } = state as any;
+  const paletteHantler = (event: any) => {
     const curColor = globalcolors.find(
-      (elm) => +event.target.id === +elm.colorId
+      (elm: any) => +event.target.id === +elm.colorId
     );
     colorHandler(curColor);
   };
 
-  const BaseColor = [];
-  const FullColor = [];
-  const Grayscale = [];
+  const BaseColor: Array<any> = [];
+  const FullColor: Array<any> = [];
+  const Grayscale: Array<any> = [];
 
-  const paleteArr = globalcolors.forEach((e) => {
+  const paleteArr = globalcolors.forEach((e: any) => {
     if (e.colorId < 16) {
       BaseColor.push(
         <ColorElement

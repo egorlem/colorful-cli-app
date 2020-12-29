@@ -1,3 +1,0 @@
-interface IFlag {
-  flag: boolean;
-}

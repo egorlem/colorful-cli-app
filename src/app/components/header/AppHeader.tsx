@@ -1,7 +1,7 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-const AppHeader = () => {
+const AppHeader: React.FC = () => {
   return (
     <div className="app-header--container">
       <div className="logo">

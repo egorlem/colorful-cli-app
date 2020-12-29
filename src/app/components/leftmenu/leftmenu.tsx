@@ -15,15 +15,15 @@ import {
   removeElemtStyle,
   changeModeStatus,
   closeAllControls,
-} from '../../redux/psoneoptionsreducer.ts';
+} from '../../redux/psoneoptionsreducer';
 import {
   updateSelectedElement,
   deleteSelectedElement,
   addNewPromptElem,
-} from '../../redux/resultreducer.ts';
+} from '../../redux/resultreducer';
 import './leftmenu.scss';
 
-const LeftNavMenu = (state) => {
+const LeftNavMenu = (state: any) => {
   const { pathname } = useLocation();
   return (
     <div className="left-menu">
@@ -33,7 +33,7 @@ const LeftNavMenu = (state) => {
   );
 };
 
-function mapStateToProps(state) {
+function mapStateToProps(state: any) {
   return state;
 }
 
