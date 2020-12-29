@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ISFlag } from './../../../types/global';
 
 export const PsOneControllsWrapper = styled.div`
   display: flex;
@@ -24,6 +25,6 @@ export const PsOneItem = styled.div`
   transition: padding-bottom 0.1s;
   font-size: 1.5rem;
   padding-top: 6px;
-  padding-bottom: ${(props) => (props.flag ? "6px" : "12px")};
+  padding-bottom: ${(props: any) => (props.flag ? "6px" : "12px")};
   border-bottom: 1px solid #474747;
 `;

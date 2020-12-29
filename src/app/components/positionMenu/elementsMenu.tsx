@@ -12,13 +12,13 @@ import {
   updateElement,
   selectPsOneLine,
 } from '../../redux/psoneoptionsreducer';
-import PromptPsOneLine from './psoneline/promptpsoneline.tsx';
+import PromptPsOneLine from './psoneline/promptpsoneline';
 
-const ElementsLocationMenu = (state) => {
+const ElementsLocationMenu = (state: any) => {
   return <PromptPsOneLine {...state} />;
 };
 
-const mstp = (state) => {
+const mstp = (state: any) => {
   return state;
 };
 

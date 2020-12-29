@@ -5,7 +5,7 @@ import { CodeHeader } from './codeheader';
 import { CodeArea } from './codearea';
 import { CodeResultWrapper } from './code.styled';
 
-const Result = (state: any) => {
+const Result: React.FC = (state: any) => {
   //STATE;
   const {
     result: { resPsOneLine },

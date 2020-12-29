@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const DecorBtnsWrapper = styled.div`
   cursor: pointer;
@@ -18,7 +18,7 @@ const DecorButton = styled.div`
   &:hover {
     color: #fafafa;
     .cb-divider {
-      color: "#acb0f8";
+      color: '#acb0f8';
     }
   }
 `;
@@ -27,13 +27,13 @@ const CheckBox = styled.div`
   display: flex;
 `;
 const CbDivider = styled.div`
-  color: ${(props) => (props.active ? "#acb0f8" : "#474747")};
+  color: ${(props: any) => (props.active ? '#acb0f8' : '#474747')};
 `;
 const CbSymbol = styled.div`
-  color: ${(props) => (props.active ? "#acb0f8" : "transparent")};
+  color: ${(props: any) => (props.active ? '#acb0f8' : 'transparent')};
 `;
 
-const TextDecoration = (state) => {
+const TextDecoration: React.FC = (state: any) => {
   // STATE
   const {
     psOneOptions: { textdecoration, currentElement },
@@ -41,9 +41,9 @@ const TextDecoration = (state) => {
     setElementStyle,
   } = state;
 
-  const DecorationProperty = textdecoration.map((e) => {
+  const DecorationProperty = textdecoration.map((e: any) => {
     const active = currentElement.style.includes(e.style);
-    const curStyleIndex = (arr) => {
+    const curStyleIndex = (arr: any) => {
       let styleIndex = arr.style.indexOf(e.style);
       return styleIndex;
     };
@@ -60,11 +60,11 @@ const TextDecoration = (state) => {
       >
         <CheckBox className="cb-divider" active={active}>
           <CbDivider className="cb-divider" active={active}>
-            {"["}
+            {'['}
           </CbDivider>
-          <CbSymbol active={active}>{"⋁"}</CbSymbol>
+          <CbSymbol active={active}>{'⋁'}</CbSymbol>
           <CbDivider className="cb-divider" active={active}>
-            {"]"}
+            {']'}
           </CbDivider>
         </CheckBox>
         {e.style}

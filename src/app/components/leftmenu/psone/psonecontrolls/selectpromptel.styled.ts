@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const SelectWrapper = styled.ul`
   width: 100%;
   background: #252526;
-  visibility: ${(props) => (props.flag ? 'hidden' : 'visible')};
+  visibility: ${(props: any) => (props.flag ? 'hidden' : 'visible')};
 `;
 const SelectItem = styled.li`
   cursor: pointer;
