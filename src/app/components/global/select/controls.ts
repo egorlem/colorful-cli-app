@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { ISFlag } from './../../../types/global';
+
 export const ControllWrapper = styled.div`
   transition: color 0.2s;
   width: 35px;
@@ -8,7 +10,7 @@ export const ControllWrapper = styled.div`
   -khtml-user-select: none;
   user-select: none;
   cursor: pointer;
-  color: ${(props) => (props.open ? "#878ac0" : "#acb0f8")};
+  color: ${(props: ISFlag) => (props.flag ? "#878ac0" : "#acb0f8")};
   &:hover {
     color: #acb0f8;
   }
@@ -27,22 +29,22 @@ export const StaticIcon = styled(Icon)`
   padding: 0 4px;
 `;
 export const AnimatedIcon = styled(Icon)`
-  transform: ${(props) => (props.open ? "rotate(270deg)" : "rotate(90deg);")};
+  transform: ${(props: ISFlag) => (props.flag ? "rotate(270deg)" : "rotate(90deg);")};
   transform-origin: 50% 50%;
 `;
 export const LeftDivider = styled.div`
   font-family: "Arial";
   display: inline-block;
   transition: padding 0.1s;
-  padding-right: ${(props) => (props.open ? "0" : "4px")};
-  color: ${(props) => (props.open ? "#474747" : "#acb0f8")};
+  padding-right: ${(props) => (props.flag ? "0" : "4px")};
+  color: ${(props: ISFlag) => (props.flag ? "#474747" : "#acb0f8")};
 `;
 export const RightDivider = styled.div`
   font-family: "Arial";
   display: inline-block;
   transition: padding 0.1s;
-  padding-left: ${(props) => (props.open ? "0" : "4px")};
-  color: ${(props) => (props.open ? "#474747" : "#acb0f8")};
+  padding-left: ${(props: ISFlag) => (props.flag ? "0" : "4px")};
+  color: ${(props: ISFlag) => (props.flag ? "#474747" : "#acb0f8")};
 `;
 
 export const Preview = styled.div`

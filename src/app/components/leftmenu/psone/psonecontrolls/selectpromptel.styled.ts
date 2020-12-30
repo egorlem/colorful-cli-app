@@ -11,7 +11,7 @@ const SelectItem = styled.li`
   justify-content: space-between;
   border-bottom: 1px solid #474747;
   padding: 6px 0 6px 2px;
-  border-left: 5px solid ${(props) => props.color || '#6ebb70'};
+  border-left: 5px solid ${(props: any) => props.color || '#6ebb70'};
   &:first-child {
     border-top: 1px solid #474747;
   }

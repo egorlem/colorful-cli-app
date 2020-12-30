@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ISFlag } from '../../../../types/global';
 
 const DecorBtnsWrapper = styled.div`
   cursor: pointer;
@@ -27,10 +28,10 @@ const CheckBox = styled.div`
   display: flex;
 `;
 const CbDivider = styled.div`
-  color: ${(props: any) => (props.active ? '#acb0f8' : '#474747')};
+  color: ${(props: ISFlag) => (props.flag ? '#acb0f8' : '#474747')};
 `;
 const CbSymbol = styled.div`
-  color: ${(props: any) => (props.active ? '#acb0f8' : 'transparent')};
+  color: ${(props: ISFlag) => (props.flag ? '#acb0f8' : 'transparent')};
 `;
 
 const TextDecoration: React.FC = (state: any) => {
@@ -42,28 +43,25 @@ const TextDecoration: React.FC = (state: any) => {
   } = state;
 
   const DecorationProperty = textdecoration.map((e: any) => {
-    const active = currentElement.style.includes(e.style);
+    const flag = currentElement.style.includes(e.style) as boolean;
+
     const curStyleIndex = (arr: any) => {
       let styleIndex = arr.style.indexOf(e.style);
       return styleIndex;
     };
     let index = curStyleIndex(currentElement);
+
     const decorationHandeler = () => {
-      active ? removeElemtStyle(index) : setElementStyle(e.style);
+      flag ? removeElemtStyle(index) : setElementStyle(e.style);
     };
     return (
-      <DecorButton
-        active={active}
-        onClick={decorationHandeler}
-        key={e.style}
-        id={e.style}
-      >
-        <CheckBox className="cb-divider" active={active}>
-          <CbDivider className="cb-divider" active={active}>
+      <DecorButton onClick={decorationHandeler} key={e.style} id={e.style}>
+        <CheckBox className="cb-divider">
+          <CbDivider className="cb-divider" flag={flag}>
             {'['}
           </CbDivider>
-          <CbSymbol active={active}>{'⋁'}</CbSymbol>
-          <CbDivider className="cb-divider" active={active}>
+          <CbSymbol flag={flag}>{'⋁'}</CbSymbol>
+          <CbDivider className="cb-divider" flag={flag}>
             {']'}
           </CbDivider>
         </CheckBox>

@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 /*  
   &:hover::-webkit-slider-runnable-track {
@@ -14,7 +14,7 @@ import styled from "styled-components";
 
 */
 
-const initBgColor = "#bdbdbd";
+const initBgColor = '#bdbdbd';
 const RangeContainer = styled.div`
   border: 1px solid #dddddd;
   height: 4rem;
@@ -101,7 +101,7 @@ const Range = styled.input`
   }
 `;
 
-export const Input = ({ color, handler, value }) => {
+export const Input = ({ color, handler, value }: any) => {
   return (
     <RangeContainer>
       <Range

@@ -41,7 +41,6 @@ const SelectElement: React.FC = (state: any) => {
     return (
       <SelectItem
         color={color}
-        selected={e.selected}
         data-name={e.text}
         key={e.text}
         onClick={() => {
