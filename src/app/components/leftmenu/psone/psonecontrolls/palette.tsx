@@ -1,7 +1,7 @@
 import React from 'react';
 import { ColorElement, PaletteWrapper, RangeWrapper } from './palette.styled';
 
-const Palette: React.FC = ({ state, colorHandler }) => {
+const Palette: React.FC = ({ state, colorHandler }: any) => {
   // STATE
   const {
     psOneOptions: { globalcolors },
