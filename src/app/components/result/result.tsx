@@ -4,8 +4,13 @@ import { getResultCodeLine } from '../../redux/codereducer';
 import { CodeHeader } from './codeheader';
 import { CodeArea } from './codearea';
 import { CodeResultWrapper } from './code.styled';
+import { useLocation } from 'react-router-dom';
 
 const Result: React.FC = (state: any) => {
+  function useQuery() {
+    return new URLSearchParams(useLocation().search);
+  }
+  let query = useQuery().get('shell');
   //STATE;
   const {
     result: { resPsOneLine },
