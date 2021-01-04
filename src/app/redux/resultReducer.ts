@@ -1,6 +1,7 @@
 import update from "immutability-helper";
 
 let initialState = {
+  currentshell: 'bash',
   resPsOneLine: [
     [
       {

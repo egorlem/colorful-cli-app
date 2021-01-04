@@ -1,14 +1,16 @@
-const { Router } = require("express");
+const { Router } = require('express');
 const router = Router();
-const cors = require("cors");
+
+const cors = require('cors');
+
 router.use(cors());
 
 router.post(`/test`, function (req, res) {
   try {
-    console.log(req.body);
+    console.log(req);
     const { titleId } = req.body;
     //const currentGamePad = await Gamepad.findOne({ titleId });
-    res.status(201).json("ВСЕ ОК");
+    res.status(201).json('ВСЕ ОК');
   } catch (e) {
     res.status(500).json(e);
   }

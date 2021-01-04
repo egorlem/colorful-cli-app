@@ -11,7 +11,7 @@ let initialState = {
   psonestring: [],
 };
 
-export function codeReducer(state = initialState, action) {
+export function codeReducer(state = initialState, action: any) {
   switch (action.type) {
     case 'SET_RESULT_CODE_LINE':
       //  return state;
@@ -26,7 +26,7 @@ export function codeReducer(state = initialState, action) {
 export const getResultCodeLine = () => {
   return { type: 'GET_RESULT_CODE_LINE' };
 };
-export const setResultCodeLine = (payload) => {
+export const setResultCodeLine = (payload: any) => {
   return { type: 'SET_RESULT_CODE_LINE', payload };
 };
 /* Comment */
