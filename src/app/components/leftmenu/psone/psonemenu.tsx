@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { SelectSequences } from './psoneoptions/sequences';
+import SelectSequences from './psoneoptions/sequences';
 import { CustomText } from './psoneoptions/customtext';
 import ForegroundColors from './psoneoptions/fgcolor';
 import BackgroundColors from './psoneoptions/bgcolor';

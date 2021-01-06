@@ -1,12 +1,13 @@
+import { ISFlag } from './../../../../types/global';
 import styled from 'styled-components';
 
 export const PaletteWrapper = styled.div`
   width: 100%;
-  visibility: ${(props: any) => (props.flag ? 'hidden' : 'visible')};
+  visibility: ${(props: ISFlag) => (props.flag ? 'hidden' : 'visible')};
 `;
 const ColorElement = styled.div`
   cursor: pointer;
-  width: 48px;
+  width: 41px;
   min-height: 25px;
   background-color: ${(props: any) => props.color || 'black'};
   border: 1px solid transparent;

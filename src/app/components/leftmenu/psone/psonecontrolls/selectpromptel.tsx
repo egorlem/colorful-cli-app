@@ -6,13 +6,14 @@ import {
   ItemPreview,
 } from './selectpromptel.styled';
 
-const SelectElement: React.FC = (state: any) => {
+const SelectElement: React.FC = (props) => {
   //STATE
   const {
-    psOneOptions: { psOneSequences, status },
+    psOneSequences,
+    status,
     setCurrentElement,
     changeModeStatus,
-  } = state as any;
+  } = props as any;
 
   const statusHandler = (e: any) => {
     setCurrentElement({ ...e });
@@ -50,4 +51,13 @@ const SelectElement: React.FC = (state: any) => {
   return <SelectWrapper>{PromptSequence}</SelectWrapper>;
 };
 
-export default React.memo(SelectElement);
+function AreEqual(prevProps: any, nextProps: any): boolean {
+  return (
+    prevProps.psOneSequences === nextProps.psOneSequences &&
+    prevProps.status === nextProps.status &&
+    prevProps.setCurrentElement === nextProps.setCurrentElement &&
+    prevProps.changeModeStatus === nextProps.changeModeStatus
+  );
+}
+
+export default React.memo(SelectElement, AreEqual);
