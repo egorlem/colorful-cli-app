@@ -1,4 +1,5 @@
 import update from "immutability-helper";
+import { testFetch } from "../../api/fetch"
 
 let initialState = {
   currentshell: 'bash',
@@ -136,6 +137,12 @@ export function resultReducer(state = initialState, action: any) {
           },
         },
       });
+    case "TEST_TNK":
+      return update(state, {
+        currentshell: {
+          $set: action.payload
+        }
+      })
   }
   return state;
 }
@@ -181,3 +188,16 @@ export const addNewLine = () => {
 export const deleteCurrentLine = (payload: any) => {
   return { type: "RESULT/DELETE_CURRENT_LINE", payload };
 };
+
+export const setCurrentShell = () => {
+  return {}
+}
+const testtnk = (payload) => {
+  return { type: "RESULT/TEST_TNK", payload };
+}
+
+export const getResult = () => {
+  return dispatch => {
+    const result = testFetch().then(data => { console.log(data) });
+  }
+} 

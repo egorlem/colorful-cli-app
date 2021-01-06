@@ -3,6 +3,7 @@ import { psOneSequences } from "./techstate/promptsequences";
 import { textdecoration } from "./techstate/textdecoration";
 import { unicode } from "./techstate/unicode";
 import update from "immutability-helper";
+import { CHANGETEXT } from './reduxtypes'
 
 let initialState = {
   selectedLine: 0,
@@ -146,6 +147,11 @@ export function psOneOptionsReducer(state = initialState, action) {
       return update(state, {
         selectedLine: { $set: action.payload },
       });
+    case CHANGETEXT: {
+      return update(state, {
+        currentElement: { sequences: { $set: action.payload } },
+      })
+    }
   }
   return state;
 }
@@ -202,3 +208,10 @@ export const closeAllControls = () => {
 export const selectPsOneLine = (payload) => {
   return { type: "SELECT_LINE", payload };
 };
+
+/**
+ * @description Change custom text sequences
+*/
+export const ChangeCustomText = (payload: string) => {
+  return { type: CHANGETEXT, payload }
+}

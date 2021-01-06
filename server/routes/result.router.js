@@ -7,6 +7,7 @@ router.use(cors());
 
 router.post('/test', async (req, res) => {
   try {
+    console.log('yo')
     const text = await Test.find({ initialname: 'initialmag' });
     res.status(201).json(text);
   } catch {

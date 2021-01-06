@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { SelectSequences } from './psoneoptions/sequences';
-import { ForegroundColors } from './psoneoptions/fgcolor';
-import { BackgroundColors } from './psoneoptions/bgcolor';
+import { CustomText } from './psoneoptions/customtext';
+import ForegroundColors from './psoneoptions/fgcolor';
+import BackgroundColors from './psoneoptions/bgcolor';
 import { TextDecorationOption } from './psoneoptions/textdecor';
 import { SymbolOptions } from './psoneoptions/symbols';
 import { PsOneDeleteBtn, PsOneApplyBtn } from '../../global/buttons/basebnt';
@@ -75,6 +76,7 @@ export const PsOneMenu = (state: any) => {
       {/* SEQUENCES */}
       <SelectSequences {...state} />
       <SymbolOptions {...state} />
+      {currentElement.type === 'CUSTOM_TEXT' && update && <CustomText />}
       {update && <ForegroundColors {...state} />}
       {update && <BackgroundColors {...state} />}
       {update && <TextDecorationOption {...state} />}
