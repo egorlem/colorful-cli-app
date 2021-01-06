@@ -95,7 +95,7 @@ export const ElementStatus: React.FC = (state: any) => {
 
   return (
     <ElmtStutusWrapper>
-      <SlectedSequnces>{sequences}</SlectedSequnces>
+      <SlectedSequnces></SlectedSequnces>
       {!bgColorStatus && <BgColorPreview {...bg} />}
       {!fgColorStatus && <FgColorPreview {...fg} />}
       <DecorationPreview style={style} />

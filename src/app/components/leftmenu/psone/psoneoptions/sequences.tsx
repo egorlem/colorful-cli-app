@@ -4,6 +4,7 @@ import DropDownMenu from '../../../global/select/dropdown';
 import { PsOneItem } from '../styled.psone';
 
 export const SelectSequences: React.FC = (state: any) => {
+  console.log('Теперь смотрим рендер тут ');
   // STATE
   const {
     psOneOptions: { activeControls, currentElement },

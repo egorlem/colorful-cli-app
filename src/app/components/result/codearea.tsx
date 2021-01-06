@@ -1,16 +1,7 @@
 import React, { useEffect } from 'react';
 import './codearea.scss';
-import axios from 'axios';
 
 export const CodeArea: React.FC = (state: any) => {
-  const fetch = () => {
-    axios
-      .post('http://localhost:5000/api/result/test', { test: 'Test' })
-      .then((response) => {
-        const [obj] = response.data;
-        alert(obj.text);
-      });
-  };
   let col = new Array(100).fill('M').map((e, i) => (
     <span style={{ opacity: '0.3' }} key={`col${i}`}>
       {e}
@@ -35,7 +26,6 @@ export const CodeArea: React.FC = (state: any) => {
   return (
     <div className="editor">
       <button onClick={copyText}>КНОПКА</button>
-      <button onClick={fetch}>запрос</button>
       <div className="editor-wrapper">
         <div className="editor__line">ln</div>
         <div className="editor__column">{varlist}</div>

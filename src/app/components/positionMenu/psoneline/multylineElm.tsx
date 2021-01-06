@@ -10,7 +10,7 @@ import {
 } from './line.styled';
 import { elementHighLighter } from './options/elemhighlighter';
 
-const PsOneItemMlt = ({ id, state, lineindex, findCard }) => {
+const PsOneItemMlt = ({ id, state, lineindex, findCard }: any) => {
   // STATE
   const {
     psOneOptions: { status },

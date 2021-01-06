@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const SymbolListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  border-left: 5px solid #0d74db;
+  border-left: 5px solid #5fafd7;
   visibility: ${(props: any) => (props.flag ? 'hidden' : 'visible')};
 `;
 const SymbolWrapper = styled.div`
@@ -18,7 +18,7 @@ const SymbolWrapper = styled.div`
   &:hover {
     border: 1px solid #474747;
     color: #fafafa;
-    background: #55555d;
+    background: #005f5f;
   }
 `;
 const Character = styled.div`
@@ -30,7 +30,7 @@ const Character = styled.div`
 const UniCode = styled.div`
   font-size: 0.9rem;
   color: white;
-  background: #022140;
+  background: #005f5f;
   padding: 2px;
 `;
 

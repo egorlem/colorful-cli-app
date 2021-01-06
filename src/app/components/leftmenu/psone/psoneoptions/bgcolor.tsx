@@ -3,12 +3,13 @@ import DropDownMenu from '../../../global/select/dropdown';
 import Palette from '../psonecontrolls/palette';
 import { PsOneItem } from '../styled.psone';
 
-export const BackgroundColors: React.FC = (state: any) => {
+const BackgroundColors: React.FC = (state: any): JSX.Element => {
   // STATE
   const {
     psOneOptions: {
       activeControls,
       currentElement: { bg },
+      globalcolors,
     },
     closeControl,
     openControl,
@@ -19,16 +20,6 @@ export const BackgroundColors: React.FC = (state: any) => {
 
   return (
     <PsOneItem flag={bgSubMenu.flag}>
-      {/* <ControllWrapper
-          open={open}
-          onClick={() => {
-            open ? OpenClose(false) : OpenClose(true);
-          }}
-        >
-          <LeftDivider open={open}>{"["}</LeftDivider>
-          <StaticIcon>{"i"}</StaticIcon>
-          <RightDivider open={open}>{"]"}</RightDivider>
-        </ControllWrapper> */}
       <div className="option-item-controlls">
         <DropDownMenu
           flag={bgSubMenu.flag}
@@ -37,9 +28,10 @@ export const BackgroundColors: React.FC = (state: any) => {
           selectedItem={'Background colors'}
           // preview={<Preview style={{ color: bg.hexString }}>{"░░░"}</Preview>}
         >
-          <Palette state={state} colorHandler={getBgColor} />
+          <Palette globalcolors={globalcolors} colorHandler={getBgColor} />
         </DropDownMenu>
       </div>
     </PsOneItem>
   );
 };
+export default React.memo(BackgroundColors);

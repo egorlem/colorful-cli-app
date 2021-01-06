@@ -10,9 +10,9 @@ export const ControllWrapper = styled.div`
   -khtml-user-select: none;
   user-select: none;
   cursor: pointer;
-  color: ${(props: ISFlag) => (props.flag ? "#878ac0" : "#acb0f8")};
+  color: ${(props: ISFlag) => (props.flag ? "#87d7d7" : "#5fd7d7")};
   &:hover {
-    color: #acb0f8;
+    color: #5fd7d7;
   }
 `;
 const Icon = styled.div`
@@ -37,14 +37,14 @@ export const LeftDivider = styled.div`
   display: inline-block;
   transition: padding 0.1s;
   padding-right: ${(props) => (props.flag ? "0" : "4px")};
-  color: ${(props: ISFlag) => (props.flag ? "#474747" : "#acb0f8")};
+  color: ${(props: ISFlag) => (props.flag ? "#3a3a3a" : "#5fd7d7")};
 `;
 export const RightDivider = styled.div`
   font-family: "Arial";
   display: inline-block;
   transition: padding 0.1s;
   padding-left: ${(props: ISFlag) => (props.flag ? "0" : "4px")};
-  color: ${(props: ISFlag) => (props.flag ? "#474747" : "#acb0f8")};
+  color: ${(props: ISFlag) => (props.flag ? "#3a3a3a" : "#5fd7d7")};
 `;
 
 export const Preview = styled.div`

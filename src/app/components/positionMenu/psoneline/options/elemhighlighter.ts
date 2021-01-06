@@ -1,5 +1,7 @@
 export const elementHighLighter = (elm: any) => {
   switch (elm.type) {
+    case "CUSTOM_TEXT":
+      return { text: "OK", color: "#dada1b" };
     case "SYMBOL":
       return { text: `Symbol ${elm.sequences}`, color: "#acb0f8" };
     case "FUNCTION":
