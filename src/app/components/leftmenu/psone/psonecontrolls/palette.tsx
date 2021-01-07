@@ -6,8 +6,11 @@ interface IPalleteProps {
   colorHandler?: any;
 }
 
-const Palette: React.FC = ({ globalcolors, colorHandler }): JSX.Element => {
-  console.log('рендер палитры');
+const Palette: React.FC = ({
+  globalcolors,
+  colorHandler,
+  flag,
+}: any): JSX.Element => {
   const paletteHantler = (event: any) => {
     const curColor = globalcolors.find(
       (elm: any) => +event.target.id === +elm.colorId
@@ -28,7 +31,7 @@ const Palette: React.FC = ({ globalcolors, colorHandler }): JSX.Element => {
     });
   }, [globalcolors]);
   return (
-    <PaletteWrapper>
+    <PaletteWrapper flag={flag}>
       {/* <RangeWrapper color={'#878ac0'}>{FullColor}</RangeWrapper> */}
       {/* <RangeWrapper>{colorlist}</RangeWrapper> */}
       <RangeWrapper color={'#0d74db'}>{colorslist}</RangeWrapper>

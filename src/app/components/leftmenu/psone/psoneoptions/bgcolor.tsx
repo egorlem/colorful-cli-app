@@ -28,7 +28,11 @@ const BackgroundColors: React.FC = (state: any): JSX.Element => {
           selectedItem={'Background colors'}
           // preview={<Preview style={{ color: bg.hexString }}>{"░░░"}</Preview>}
         >
-          <Palette globalcolors={globalcolors} colorHandler={getBgColor} />
+          <Palette
+            globalcolors={globalcolors}
+            colorHandler={getBgColor}
+            flag={bgSubMenu.flag}
+          />
         </DropDownMenu>
       </div>
     </PsOneItem>

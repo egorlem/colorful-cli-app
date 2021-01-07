@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { ElementStatus } from './elemstatus';
 import { ElementControl } from './elementcontroll';
 import { LineButton } from '../../../global/buttons/basebnt';
+import { ISFlag } from '../../../../types/global';
 
 const LineHeaderWrapper = styled.div`
   display: flex;
@@ -14,12 +15,12 @@ const CurrentElementPreviewWrapper = styled.div`
   display: flex;
 `;
 const CELPTitle = styled.div`
-  color: ${(props: IFlag) => (props.flag ? '#e9e9e9' : '#474747')};
+  color: ${(props: ISFlag) => (props.flag ? '#e9e9e9' : '#474747')};
   font-size: 1.2rem;
   font-weight: 300;
   &:after {
     content: '::';
-    color: ${(props: IFlag) => (props.flag ? '#474747' : '#474747')};
+    color: ${(props: ISFlag) => (props.flag ? '#474747' : '#474747')};
     padding: 0 4px;
   }
 `;

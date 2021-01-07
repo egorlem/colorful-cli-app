@@ -29,7 +29,6 @@ const DropDownWrapper = styled.div`
   margin-top: ${(props: ISFlag) => (props.flag ? '0' : '6px')};
 `;
 const DropDownTitle = styled.div`
-  font-weight: 500;
   transition: padding-bottom 0.3s;
   display: flex;
   justify-content: space-between;

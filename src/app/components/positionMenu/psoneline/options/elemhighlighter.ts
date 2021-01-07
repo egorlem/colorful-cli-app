@@ -1,14 +1,14 @@
 export const elementHighLighter = (elm: any) => {
   switch (elm.type) {
     case "CUSTOM_TEXT":
-      return { text: "OK", color: "#dada1b" };
+      return { text: "Custom text", color: "#afd7af" };
     case "SYMBOL":
-      return { text: `Symbol ${elm.sequences}`, color: "#acb0f8" };
+      return { text: `Symbol ${elm.sequences}`, color: "#afafff" };
     case "FUNCTION":
-      return { text: elm.sequences, color: "#2dafaa" };
+      return { text: elm.sequences, color: "#5fd7d7" };
     case "SPACE":
-      return { text: "Space", color: "#0d74db" };
+      return { text: "Space", color: "#5fffaf" };
     case "SEQUENCES":
-      return { text: elm.sequences, color: "#e9e9e9" };
+      return { text: elm.sequences, color: "#5fafd7" };
   }
 };

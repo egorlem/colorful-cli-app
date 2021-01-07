@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { TextAreaWrapper, CustomTextArea } from './customtext.styled';
 import { ChangeCustomText } from '../../../../redux/psoneoptionsreducer';
+import { PsOneItem } from '../styled.psone';
 
 export const CustomText: React.FC = () => {
   const state = useSelector((state: any) => state);
@@ -12,15 +14,20 @@ export const CustomText: React.FC = () => {
   } = state;
 
   const changeHandler = (event: any): void => {
-    if (sequences.length) {
-      const currenttext = event.target.value;
-      dispatch(ChangeCustomText(currenttext));
-    }
+    const currenttext = event.target.value;
+    dispatch(ChangeCustomText(currenttext));
   };
   return (
-    <div>
-      <div>{sequences.length}/60</div>
-      <textarea value={sequences} onChange={changeHandler}></textarea>
-    </div>
+    <TextAreaWrapper>
+      <PsOneItem flag={true}>
+        <div>Custom text {sequences.length}/60</div>
+        <CustomTextArea
+          className="custom__text"
+          value={sequences}
+          onChange={changeHandler}
+          placeholder="Start typing"
+        ></CustomTextArea>
+      </PsOneItem>
+    </TextAreaWrapper>
   );
 };

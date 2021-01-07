@@ -1,3 +1,4 @@
+import { ISFlag } from './../../../types/global';
 import styled from "styled-components";
 
 export const BaseButton = styled.button`
@@ -12,14 +13,14 @@ export const BaseButton = styled.button`
   height: 22px;
 `;
 export const LineButton = styled(BaseButton)`
-  background: ${(props: any) =>
+  background: ${(props: ISFlag) =>
     props.flag ? "transparent" : "#005f87"}; ////TERM 24
-  cursor: ${(props: any) => (props.flag ? "default" : "pointer")};
-  color: ${(props: any) => (props.flag ? "#474747" : "#e9e9e9")};
+  cursor: ${(props: ISFlag) => (props.flag ? "default" : "pointer")};
+  color: ${(props: ISFlag) => (props.flag ? "#474747" : "#e9e9e9")};
   &:hover {
-    background: ${(props: any) =>
+    background: ${(props: ISFlag) =>
     props.flag ? "transparent" : "#0087af"}; //TERM 25
-    color: ${(props: any) => (props.flag ? "#474747" : "#fafafa")};
+    color: ${(props: ISFlag) => (props.flag ? "#474747" : "#fafafa")};
   }
 `;
 
