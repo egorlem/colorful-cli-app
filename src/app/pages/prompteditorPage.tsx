@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import LeftNavMenu from '../components/leftmenu/leftmenu';
+import LeftMenu from '../components/leftmenu/leftmenu';
+import BottomMenu from '../components/bottommenu/bottommenu';
 import TerminalWindow from '../components/terminal/termwindow';
-import ElementsLocationMenu from '../components/positionmenu/elementsmenu';
 
 const PsOnePromptCustomizstion = () => {
   useEffect(() => {
@@ -11,11 +11,11 @@ const PsOnePromptCustomizstion = () => {
   return (
     <div className="shell-editor">
       <div className="left-area">
-        <LeftNavMenu />
+        <LeftMenu />
       </div>
       <div className="right-area">
         <TerminalWindow />
-        <ElementsLocationMenu />
+        <BottomMenu />
       </div>
     </div>
   );

@@ -10,7 +10,6 @@ export const PsOneControllsWrapper = styled.div`
   color: #dadada;
   padding-left: 4px;
   padding-right: 4px;
-  //width: 365px;
 `;
 export const PsOneButtonWrapper = styled.div`
   display: flex;

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import LineDndContainer from './promptline';
+import PsOneLines from './psoneontions/psonelines';
 import styled from 'styled-components';
 
 const PromptLineStyleWrapper = styled.div`
@@ -7,7 +7,7 @@ const PromptLineStyleWrapper = styled.div`
   color: #e9e9e9;
 `;
 
-const PromptPsOneLine = (state: any) => {
+const PsOnePositionMenu = (state: any) => {
   const {
     psOneOptions: { status, selectedLine },
     result: { resPsOneLine },
@@ -27,6 +27,7 @@ const PromptPsOneLine = (state: any) => {
   };
   useEffect(() => {
     if (status === 'ADD_NEW') {
+      console.log('попал юз ефект 3', status);
       let { currentElement, index } = findCard(
         resPsOneLine[selectedLine].length,
         resPsOneLine[selectedLine]
@@ -45,9 +46,11 @@ const PromptPsOneLine = (state: any) => {
 
   return (
     <PromptLineStyleWrapper>
-      <LineDndContainer {...state} />
+      <PsOneLines {...state} />
+      МЕНЮ
+      {/* <BottomMenu {...state} /> */}
     </PromptLineStyleWrapper>
   );
 };
 
-export default PromptPsOneLine;
+export default PsOnePositionMenu;

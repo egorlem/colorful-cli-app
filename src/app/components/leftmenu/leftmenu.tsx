@@ -1,12 +1,11 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { PsOneMenu } from './psone/psonemenu';
+import PsOneStyleMenu from './psone/psonestylemenu';
 import { ResultMenu } from './result/resultmenu';
 import { connect } from 'react-redux';
 import {
   getFgColor,
   getBgColor,
-  changeSelection,
   setCurrentElement,
   resetOptions,
   openControl,
@@ -23,11 +22,11 @@ import {
 } from '../../redux/resultreducer';
 import './leftmenu.scss';
 
-const LeftNavMenu = (state: any) => {
+const LeftMenu = (state: any) => {
   const { pathname } = useLocation();
   return (
     <div className="left-menu">
-      {pathname === '/psone' && <PsOneMenu {...state} />}
+      {pathname === '/psone' && <PsOneStyleMenu {...state} />}
       {pathname === '/result' && <ResultMenu />}
     </div>
   );
@@ -42,7 +41,6 @@ export default connect(mapStateToProps, {
   getBgColor,
   addNewPromptElem,
   setCurrentElement,
-  changeSelection,
   resetOptions,
   openControl,
   closeControl,
@@ -52,4 +50,4 @@ export default connect(mapStateToProps, {
   updateSelectedElement,
   deleteSelectedElement,
   closeAllControls,
-})(LeftNavMenu);
+})(LeftMenu);

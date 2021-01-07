@@ -1,16 +1,16 @@
 import React from 'react';
-import PsOneItemMlt from './multylineElm';
-import { StatusLineHeader } from './options/statuslineheader';
-import { LineButton } from '../../global/buttons/basebnt';
+import PsOneSingleLine from './psonesingleline';
+//import { StatusLineHeader } from '../options/statuslineheader';
+import { LineButton } from '../../../global/buttons/basebnt';
 import {
   SelectedLineWrapper,
   SingleLine,
   SingleLineTitle,
   AllLines,
 } from './prompline.styled';
-import { IPromptElem } from '../../../types/global';
+import { IPromptElem } from '../../../../types/global';
 
-const LineDndContainer: React.FC = (state) => {
+const PsOneLines: React.FC = (state) => {
   // STATE
   const {
     psOneOptions: { selectedLine, status },
@@ -19,7 +19,10 @@ const LineDndContainer: React.FC = (state) => {
     deleteCurrentLine,
   } = state as any;
 
-  function findCard<T extends string, R extends number>(id: T, lineindex: R) {
+  function findCard<CurrentElemId extends string, R extends number>(
+    id: CurrentElemId,
+    lineindex: R
+  ) {
     const [card]: [IPromptElem] = resPsOneLine[lineindex].filter(
       (c: IPromptElem) => `${c.id}` === id
     );
@@ -37,7 +40,7 @@ const LineDndContainer: React.FC = (state) => {
     return cards.map(
       <T extends IPromptElem>(card: T): JSX.Element => {
         return (
-          <PsOneItemMlt
+          <PsOneSingleLine
             key={card.id}
             id={`${card.id}`}
             text={card.sequences}
@@ -84,13 +87,9 @@ const LineDndContainer: React.FC = (state) => {
   );
   return (
     <div>
-      <div>
-        Рендер?
-        <StatusLineHeader {...state} />
-      </div>
       <AllLines>{displayLines}</AllLines>
     </div>
   );
 };
 
-export default LineDndContainer;
+export default PsOneLines;

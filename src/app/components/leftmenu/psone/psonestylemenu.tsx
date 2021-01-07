@@ -9,7 +9,7 @@ import { PsOneDeleteBtn, PsOneApplyBtn } from '../../global/buttons/basebnt';
 import { PsOneControllsWrapper, PsOneButtonWrapper } from './styled.psone';
 import { IPromptElem } from '../../../types/global';
 
-export const PsOneMenu = (state: any) => {
+const PsOneStyleMenu = (state: any) => {
   const {
     psOneOptions: { status, currentElement, orignIndex, selectedLine },
     result: { resPsOneLine },
@@ -36,6 +36,7 @@ export const PsOneMenu = (state: any) => {
   // если и нажать по томуже элементу стейт не меняется
   useEffect(() => {
     if (status === 'UDATE_CURRENT') {
+      console.log('Попал в юз ефект 1', status);
       updateSelectedElement({
         index: orignIndex,
         element: currentElement,
@@ -46,6 +47,7 @@ export const PsOneMenu = (state: any) => {
 
   useEffect(() => {
     if (status === 'ADD_NEW') {
+      console.log('Попал в повал в юз ефект 2', status);
       let newElement = setupNewPromptElemnt(
         resPsOneLine,
         currentElement,
@@ -89,3 +91,4 @@ export const PsOneMenu = (state: any) => {
     </PsOneControllsWrapper>
   );
 };
+export default PsOneStyleMenu;

@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { IPromptElem } from '../../../../types/global';
 import {
   SelectWrapper,
   SelectItem,
@@ -15,9 +16,14 @@ const SelectElement: React.FC = (props) => {
     changeModeStatus,
   } = props as any;
 
-  const statusHandler = (e: any) => {
+  console.log('статус', status);
+
+  // ВОТ ТУТ БАГ 
+
+  const statusHandler = (e: IPromptElem) => {
     setCurrentElement({ ...e });
     if (status === null && status !== 'UDATE_CURRENT') {
+      console.log('поподаю в хандлер', status);
       changeModeStatus('ADD_NEW');
     }
   };

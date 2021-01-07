@@ -23,7 +23,7 @@ const DropDownWrapper = styled.div`
   visibility: ${(props: ISFlag) => (props.flag ? 'hidden' : 'visible')};
   opacity: ${(props: ISFlag) => (props.flag ? '0' : '1')};
   max-height: ${(props: ISFlag) => (props.flag ? '0' : '130px')};
-  background: transparent;
+  background: #2b2b2b;
   color: #dadada;
   overflow-y: auto;
   margin-top: ${(props: ISFlag) => (props.flag ? '0' : '6px')};

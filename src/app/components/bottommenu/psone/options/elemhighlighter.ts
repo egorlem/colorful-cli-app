@@ -1,4 +1,15 @@
-export const elementHighLighter = (elm: any) => {
+import { IPromptElem } from './../../../../types/global';
+
+export interface IElmColorSyntax {
+  text: string
+  color: string
+}
+
+interface IElemHighLighter {
+  (elm: IPromptElem): IElmColorSyntax | undefined
+}
+
+export const elementHighLighter: IElemHighLighter = (elm) => {
   switch (elm.type) {
     case "CUSTOM_TEXT":
       return { text: "Custom text", color: "#afd7af" };

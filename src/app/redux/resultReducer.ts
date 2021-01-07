@@ -192,7 +192,7 @@ export const deleteCurrentLine = (payload: any) => {
 export const setCurrentShell = () => {
   return {}
 }
-const testtnk = (payload) => {
+const testtnk = (payload: any) => {
   return { type: "RESULT/TEST_TNK", payload };
 }
 
