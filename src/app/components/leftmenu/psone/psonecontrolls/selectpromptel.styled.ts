@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled, { StyledComponent } from 'styled-components';
 
 const SelectWrapper = styled.ul`
   width: 100%;
-  background: #303030;
+  background: #2b2b2b;
   visibility: ${(props: any) => (props.flag ? 'hidden' : 'visible')};
 `;
 const SelectItem = styled.li`
@@ -29,7 +29,8 @@ const ItemTitele = styled.div`
 `;
 const ItemPreview = styled.div`
   font-size: 1.2rem;
-  padding-right: 10px;
+  padding-right: 5px;
+  color: #8a8a8a;
   &:before {
     content: '|'
   }

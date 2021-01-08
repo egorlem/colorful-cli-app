@@ -8,9 +8,12 @@ import {
   MoveForwardControll,
   InLineText,
 } from './line.styled';
-import { elementHighLighter } from './options/elemhighlighter';
+import {
+  elementHighLighter,
+  IElmColorSyntax,
+} from '../options/elemhighlighter';
 
-const PsOneItemMlt = ({ id, state, lineindex, findCard }: any) => {
+const PsOneSingleLine = ({ id, state, lineindex, findCard }: any) => {
   // STATE
   const {
     psOneOptions: { status },
@@ -24,7 +27,8 @@ const PsOneItemMlt = ({ id, state, lineindex, findCard }: any) => {
   const opacity = status ? 0.3 : 1;
   const { card, index, lineindex: selectedLineIndex } = findCard(id, lineindex);
   const lastIndex = resPsOneLine[lineindex].length - 1;
-  const { text, color } = elementHighLighter(card);
+
+  const { text, color } = elementHighLighter(card) as Partial<IElmColorSyntax>;
 
   return (
     <ElementContainer>
@@ -84,4 +88,4 @@ const PsOneItemMlt = ({ id, state, lineindex, findCard }: any) => {
   );
 };
 
-export default PsOneItemMlt;
+export default PsOneSingleLine;

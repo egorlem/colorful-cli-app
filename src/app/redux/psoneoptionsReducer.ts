@@ -1,38 +1,52 @@
+import { IEColor, IPromptElem } from './../types/global';
+import {
+  IPsOneElmStyleActions, IPsOneLineActions, ISequences, IAppStatus, IpsOneOptionsState
+} from './../types/redux';
 import { globalcolors } from "./techstate/colors";
 import { psOneSequences } from "./techstate/promptsequences";
 import { textdecoration } from "./techstate/textdecoration";
 import { unicode } from "./techstate/unicode";
 import update from "immutability-helper";
-import { CHANGETEXT } from './reduxtypes'
+import {
+  SETFGCOLOR, SETBGCOLOR, CHANGETEXT, SETTEXTDECOR, REMOVETEXTDECOR, SETCURELEM,
+  UPDATECURELEM, CHANGEMODSTATUS, SETLINE, SETELEMTOINIT, CLOSEALLCONTROLS, CLOSECONTROL,
+  OPENCONTROL
+} from './actiontypes'
 
-let initialState = {
+let initialState: IpsOneOptionsState = {
   selectedLine: 0,
   status: null,
-  initElement: {
+  activeControls: [
+    { name: "elementMenu", flag: false },
+    { name: "bgColorMenu", flag: true },
+    { name: "fgColorMenu", flag: true },
+    { name: "symbolMenu", flag: false },
+  ],
+  initialElement: {
     id: null,
-    text: null,
-    sequences: null,
-    code: null,
+    options: null,
+    text: '',
+    sequences: '',
+    code: '',
     style: ["regular"],
     bg: {
+      colorInfo: false,
       colorId: "RST",
       hexString: "#000000",
       rgb: { r: 0, g: 0, b: 0 },
+      hsl: { h: 0, s: 0, l: 0 },
       name: "Black",
     },
     fg: {
+      colorInfo: false,
       colorId: "RST",
       hexString: "#eeeeee",
       rgb: { r: 238, g: 238, b: 238 },
+      hsl: { h: 0, s: 0, l: 93 },
       name: "Grey93",
     },
+    type: ''
   },
-  activeControls: [
-    { name: "elementMenu", flag: true },
-    { name: "bgColorMenu", flag: true },
-    { name: "fgColorMenu", flag: true },
-    { name: "symbolMenu", flag: true },
-  ],
   globalcolors: globalcolors,
   textdecoration: textdecoration,
   symbols: unicode,
@@ -55,11 +69,11 @@ let initialState = {
   psOneSequences: psOneSequences,
   orignIndex: null,
   currentElement: {
+    id: 0,
     options: null,
-    id: null,
-    text: null,
-    sequences: null,
-    code: null,
+    text: '',
+    sequences: '',
+    code: '',
     style: ["regular"],
     bg: {
       colorInfo: false,
@@ -77,73 +91,72 @@ let initialState = {
       hsl: { h: 0, s: 0, l: 93 },
       name: "Grey93",
     },
+    type: ''
   },
 };
 
-export function psOneOptionsReducer(state = initialState, action) {
+type optionReduser = IPsOneElmStyleActions | IPsOneLineActions | IAppStatus
+
+export function psOneOptionsReducer(state = initialState, action: optionReduser): IpsOneOptionsState {
   switch (action.type) {
-    case "OPEN_CURRENT_CONTROL":
+    case SETCURELEM:
+      return update(state, {
+        currentElement: { $merge: action.payload },
+      });
+    case REMOVETEXTDECOR:
+      return update(state, {
+        currentElement: { style: { $splice: [[action.payload.index, 1]] } },
+      });
+    case SETBGCOLOR:
+      return update(state, {
+        currentElement: { bg: { $set: action.payload } },
+      });
+    case SETFGCOLOR:
+      return update(state, {
+        currentElement: { fg: { $set: action.payload } },
+      });
+    case SETTEXTDECOR:
+      return update(state, {
+        currentElement: { style: { $push: [action.payload] } },
+      });
+    case UPDATECURELEM:
+      return update(state, {
+        currentElement: { $set: action.payload.curCard },
+        orignIndex: { $set: action.payload.oringIndex },
+      });
+    case OPENCONTROL:
       return {
         ...state,
         activeControls: state.activeControls.map((e) =>
           e.name === action.payload ? { ...e, flag: false } : e
         ),
       };
-    case "CLOSE_CURRENT_CONTROL":
+    case CLOSECONTROL:
       return {
         ...state,
         activeControls: state.activeControls.map((e) =>
           e.name === action.payload ? { ...e, flag: true } : e
         ),
       };
-    case "CLOSE_ALL_CONTROLS":
+    case CLOSEALLCONTROLS:
       return {
         ...state,
         activeControls: state.activeControls.map((e) => {
           return { ...e, flag: true };
         }),
       };
-
-    //// ELEMTN SETORS
-    case "SET_CURRENT_ELEMENT":
+    case SETELEMTOINIT:
       return update(state, {
-        currentElement: { $merge: action.payload },
+        //      isElementSelected: { $set: false },
+        currentElement: { $set: state.initialElement },
+        // fgcolor: { $set: state.globalcolors.find((e) => 255 === e.colorId) },
+        // bgcolor: { $set: state.globalcolors.find((e) => 0 === e.colorId) },
       });
-    case "SET_BG_COLOR":
-      return update(state, {
-        currentElement: { bg: { $set: action.payload } },
-      });
-    case "SET_FG_COLOR":
-      return update(state, {
-        currentElement: { fg: { $set: action.payload } },
-      });
-    case "LEFT_MENU_STATUS/ENABLE_ELEMENT_OPTIONS":
-      return update(state, { isElementSelected: { $set: action.payload } });
-    case "LEFT_MENU_STATUS/RESET/DISABLE_ELEMENT_OPTIONS":
-      return update(state, {
-        isElementSelected: { $set: false },
-        currentElement: { $set: state.initElement },
-        fgcolor: { $set: state.globalcolors.find((e) => 255 === e.colorId) },
-        bgcolor: { $set: state.globalcolors.find((e) => 0 === e.colorId) },
-      });
-    case "UPDATE_CURRENT_ELEMENT":
-      return update(state, {
-        currentElement: { $set: action.payload.curCard },
-        orignIndex: { $set: action.payload.oringIndex },
-      });
-    case "SET_TEXT_STYLE":
-      return update(state, {
-        currentElement: { style: { $push: [action.payload] } },
-      });
-    case "REMOVE_TEXT_STYLE":
-      return update(state, {
-        currentElement: { style: { $splice: [[action.payload.index, 1]] } },
-      });
-    case "PSONE/CHANGE_EDIT_MOD_STATUS":
+    case CHANGEMODSTATUS: // DONE
       return update(state, {
         status: { $set: action.payload },
       });
-    case "SELECT_LINE":
+    case SETLINE:
       return update(state, {
         selectedLine: { $set: action.payload },
       });
@@ -152,66 +165,72 @@ export function psOneOptionsReducer(state = initialState, action) {
         currentElement: { sequences: { $set: action.payload } },
       })
     }
+    default:
+      return state;
   }
-  return state;
 }
-
-/// AC
-export const getFgColor = (payload) => {
+// Stylize element
+/** @description Change or add to element's foregraound color*/
+export const getFgColor = (payload: IEColor): IPsOneElmStyleActions => {
   return {
-    type: "SET_FG_COLOR",
-    payload: payload,
-  };
-};
-
-export const getBgColor = (payload) => {
-  return {
-    type: "SET_BG_COLOR",
-    payload: payload,
-  };
-};
-export const changeSelection = (payload) => {
-  return {
-    type: "LEFT_MENU_STATUS/ENABLE_ELEMENT_OPTIONS",
+    type: SETFGCOLOR,
     payload,
   };
 };
-export const setCurrentElement = (payload) => {
-  return { type: "SET_CURRENT_ELEMENT", payload };
+/** @description Change or add element's background color*/
+export const getBgColor = (payload: IEColor): IPsOneElmStyleActions => {
+  return {
+    type: SETFGCOLOR,
+    payload,
+  };
 };
-export const resetOptions = () => {
-  return { type: "LEFT_MENU_STATUS/RESET/DISABLE_ELEMENT_OPTIONS" };
+/** @description Add text decoration to element*/
+export const setElementStyle = (payload: string): IPsOneElmStyleActions => {
+  return { type: SETTEXTDECOR, payload };
 };
-export const openControl = (payload) => {
-  return { type: "OPEN_CURRENT_CONTROL", payload };
+/** @description Remove element's decoration*/
+export const removeElemtStyle = (payload: number): IPsOneElmStyleActions => {
+  return { type: REMOVETEXTDECOR, payload };
 };
-export const closeControl = (payload) => {
-  return { type: "CLOSE_CURRENT_CONTROL", payload };
-};
-export const updateElement = (payload) => {
-  return { type: "UPDATE_CURRENT_ELEMENT", payload };
-};
-
-export const setElementStyle = (payload) => {
-  return { type: "SET_TEXT_STYLE", payload };
-};
-export const removeElemtStyle = (payload) => {
-  return { type: "REMOVE_TEXT_STYLE", payload };
-};
-
-export const changeModeStatus = (payload) => {
-  return { type: "PSONE/CHANGE_EDIT_MOD_STATUS", payload };
-};
-export const closeAllControls = () => {
-  return { type: "CLOSE_ALL_CONTROLS" };
-};
-export const selectPsOneLine = (payload) => {
-  return { type: "SELECT_LINE", payload };
-};
-
-/**
- * @description Change custom text sequences
-*/
-export const ChangeCustomText = (payload: string) => {
+/**@description Change custom text sequences*/
+export const ChangeCustomText = (payload: string): IPsOneElmStyleActions => {
   return { type: CHANGETEXT, payload }
 }
+
+// Modify
+/** @description Set current element for modification*/
+export const setCurrentElement = (payload: ISequences): IPsOneLineActions => {
+  return { type: SETCURELEM, payload };
+};
+/** @description Applies settings to the current element*/
+export const updateElement = (payload: {
+  curCard: IPromptElem
+  oringIndex: number
+}): IPsOneLineActions => {
+  return { type: UPDATECURELEM, payload };
+};
+export const selectPsOneLine = (payload: number): IPsOneLineActions => {
+  return { type: SETLINE, payload };
+};
+
+// App status
+/**@description any*/
+export const changeModeStatus = (payload: string): IAppStatus => {
+  return { type: CHANGEMODSTATUS, payload };
+};
+export const openControl = (payload: string): IAppStatus => {
+  return { type: OPENCONTROL, payload };
+};
+export const closeControl = (payload: string): IAppStatus => {
+  return { type: CLOSECONTROL, payload };
+};
+export const closeAllControls = (): IAppStatus => {
+  return { type: CLOSEALLCONTROLS };
+};
+/**@description Set current element to initial value */
+export const resetOptions = (): IAppStatus => {
+  return { type: SETELEMTOINIT };
+};
+
+
+

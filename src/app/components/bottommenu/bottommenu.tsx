@@ -12,10 +12,10 @@ import {
   updateElement,
   selectPsOneLine,
 } from '../../redux/psoneoptionsreducer';
-import PromptPsOneLine from './psoneline/promptpsoneline';
+import PsOnePositionMenu from './psone/psonepositionmenu';
 
-const ElementsLocationMenu = (state: any) => {
-  return <PromptPsOneLine {...state} />;
+const BottomMenu = (state: any) => {
+  return <PsOnePositionMenu {...state} />;
 };
 
 const mstp = (state: any) => {
@@ -31,4 +31,4 @@ export default connect(mstp, {
   selectPsOneLine,
   addNewLine,
   deleteCurrentLine,
-})(ElementsLocationMenu);
+})(BottomMenu);

@@ -2,8 +2,9 @@ export interface ISFlag {
   flag: boolean
 }
 
-interface IEColor {
-  colorInfo: boolean
+export interface IEColor {
+  colorId: number | 'RST'
+  colorInfo?: boolean
   hexString: string
   rgb: object
   hsl: object
@@ -11,12 +12,13 @@ interface IEColor {
 }
 
 export interface IPromptElem {
-  options: null
   id: number | null
+  options: null
   text: string
   sequences: string
   code: string
   style: Array<string>
-  bg: IEColor
-  fg: IEColor
+  bg: IEColor | undefined
+  fg: IEColor | undefined
+  type: string
 }

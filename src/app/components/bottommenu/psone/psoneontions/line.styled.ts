@@ -1,3 +1,4 @@
+import { ISFlag } from './../../../../types/global';
 import styled from 'styled-components';
 
 export const ElementContainer = styled.div`
@@ -23,7 +24,7 @@ export const ElementContainer = styled.div`
   }
 `;
 export const InLinePromptElement = styled.div`
-  cursor: ${(props: IFlag) => (props.flag ? 'default' : 'pointer')};
+  cursor: ${(props: ISFlag) => (props.flag ? 'default' : 'pointer')};
   font-weight: 400;
   font-size: 1.4rem;
   /* word-spacing: -0.2rem; */
@@ -34,7 +35,7 @@ export const InLinePromptElement = styled.div`
   }
 `;
 export const MoveControll = styled.div`
-  cursor: ${(props: IFlag) => (props.flag ? 'default' : 'pointer')};
+  cursor: ${(props: ISFlag) => (props.flag ? 'default' : 'pointer')};
   font-weight: 400;
   font-size: 1.4rem;
   -moz-user-select: none;
@@ -42,7 +43,7 @@ export const MoveControll = styled.div`
   user-select: none;
   color: black;
   &:hover {
-    color: ${(props: IFlag) => (props.flag ? '#e1e4e8' : '#e9e9e9')};
+    color: ${(props: ISFlag) => (props.flag ? '#e1e4e8' : '#e9e9e9')};
     .line__divider {
       color: #acb0f8;
     }
