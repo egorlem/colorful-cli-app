@@ -34,28 +34,28 @@ const PsOneStyleMenu = (state: any) => {
     return { ...currentElement, id: ++index };
   };
   // если и нажать по томуже элементу стейт не меняется
-  useEffect(() => {
-    if (status === 'UDATE_CURRENT') {
-      console.log('Попал в юз ефект 1', status);
-      updateSelectedElement({
-        index: orignIndex,
-        element: currentElement,
-        lineIndex: selectedLine,
-      });
-    }
-  }, [currentElement, status]);
+  // useEffect(() => {
+  //   if (status === 'UDATE_CURRENT') {
+  //     console.log('Попал в юз ефект 1', status);
+  //     updateSelectedElement({
+  //       index: orignIndex,
+  //       element: currentElement,
+  //       lineIndex: selectedLine,
+  //     });
+  //   }
+  // }, [currentElement, status]);
 
-  useEffect(() => {
-    if (status === 'ADD_NEW') {
-      console.log('Попал в повал в юз ефект 2', status);
-      let newElement = setupNewPromptElemnt(
-        resPsOneLine,
-        currentElement,
-        selectedLine
-      );
-      addNewPromptElem({ lineIndex: selectedLine, element: newElement });
-    }
-  }, [currentElement, status]);
+  // useEffect(() => {
+  //   if (status === 'UDATE_CURRENT') {
+  //     console.log('Попал в повал в юз ефект 2', status);
+  //     let newElement = setupNewPromptElemnt(
+  //       resPsOneLine,
+  //       currentElement,
+  //       selectedLine
+  //     );
+  //     addNewPromptElem({ lineIndex: selectedLine, element: newElement });
+  //   }
+  // }, [currentElement, status]);
 
   const applyHandler = () => {
     changeModeStatus(null);

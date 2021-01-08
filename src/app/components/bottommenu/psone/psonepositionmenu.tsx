@@ -16,29 +16,28 @@ const PsOnePositionMenu = (state: any) => {
     selectPsOneLine,
   } = state;
 
-  const findCard = (id: any, elements: any) => {
-    const [currentElement] = elements.filter(
-      (element: any) => element.id === id
-    );
-    return {
-      currentElement,
-      index: elements.indexOf(currentElement),
-    };
-  };
-  useEffect(() => {
-    if (status === 'ADD_NEW') {
-      console.log('попал юз ефект 3', status);
-      let { currentElement, index } = findCard(
-        resPsOneLine[selectedLine].length,
-        resPsOneLine[selectedLine]
-      );
-      updateElement({
-        curCard: currentElement,
-        oringIndex: index,
-      });
-      changeModeStatus('UDATE_CURRENT');
-    }
-  }, [resPsOneLine]);
+  // const findCard = (id: any, elements: any) => {
+  //   const [currentElement] = elements.filter(
+  //     (element: any) => element.id === id
+  //   );
+  //   return {
+  //     currentElement,
+  //     index: elements.indexOf(currentElement),
+  //   };
+  // };
+  // useEffect(() => {
+  //   if (status === 'UPDATE') {
+  //     console.log('попал юз ефект 3', status);
+  //     let { currentElement, index } = findCard(
+  //       resPsOneLine[selectedLine].length,
+  //       resPsOneLine[selectedLine]
+  //     );
+  //     updateElement({
+  //       curCard: currentElement,
+  //       oringIndex: index,
+  //     });
+  //   }
+  // }, [resPsOneLine]);
 
   useEffect(() => {
     selectPsOneLine(0);

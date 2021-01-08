@@ -2,6 +2,7 @@ import React from 'react';
 import SelectElement from '../psonecontrolls/selectpromptel';
 import DropDownMenu from '../../../global/select/dropdown';
 import { PsOneItem } from '../styled.psone';
+import { IPromptElem } from '../../../../types/global';
 
 // const {
 //   psOneOptions: { psOneSequences, status },
@@ -15,6 +16,10 @@ interface ISequncesProps {
     currentElement: any;
     status?: string;
     psOneSequences: any;
+    selectedLine: number;
+  };
+  result: {
+    resPsOneLine: IPromptElem[][];
   };
   closeControl: any;
   openControl: any;
@@ -25,7 +30,14 @@ interface ISequncesProps {
 const SelectSequences: React.FC = (state: any) => {
   // STATE
   const {
-    psOneOptions: { activeControls, currentElement, status, psOneSequences },
+    psOneOptions: {
+      activeControls,
+      currentElement,
+      status,
+      psOneSequences,
+      selectedLine,
+    },
+    result: { resPsOneLine },
     closeControl,
     openControl,
     setCurrentElement,
@@ -51,6 +63,8 @@ const SelectSequences: React.FC = (state: any) => {
             psOneSequences={psOneSequences}
             setCurrentElement={setCurrentElement}
             changeModeStatus={changeModeStatus}
+            selectedLine={selectedLine}
+            resPsOneLine={resPsOneLine}
           />
         </DropDownMenu>
       </div>

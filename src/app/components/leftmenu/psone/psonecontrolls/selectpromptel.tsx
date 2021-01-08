@@ -8,23 +8,29 @@ import {
 } from './selectpromptel.styled';
 
 const SelectElement: React.FC = (props) => {
+  console.log('render');
   //STATE
   const {
     psOneSequences,
     status,
+    resPsOneLine,
     setCurrentElement,
     changeModeStatus,
+    selectedLine,
   } = props as any;
 
-  console.log('статус', status);
-
-  // ВОТ ТУТ БАГ 
+  const setId = (arr: IPromptElem[][], lineIndex: number): number => {
+    return arr[lineIndex].length + 1;
+  };
 
   const statusHandler = (e: IPromptElem) => {
-    setCurrentElement({ ...e });
-    if (status === null && status !== 'UDATE_CURRENT') {
-      console.log('поподаю в хандлер', status);
-      changeModeStatus('ADD_NEW');
+    if (status === null) {
+      console.log(status);
+      const id = setId(resPsOneLine, selectedLine);
+      setCurrentElement({ ...e, id });
+      changeModeStatus('ADD');
+    } else if (status === 'UPDATE') {
+      setCurrentElement({ ...e });
     }
   };
   const PromptSequence = useMemo(() => {
@@ -53,7 +59,7 @@ const SelectElement: React.FC = (props) => {
         </SelectItem>
       );
     });
-  }, [psOneSequences]);
+  }, [psOneSequences, status]);
   return <SelectWrapper>{PromptSequence}</SelectWrapper>;
 };
 
