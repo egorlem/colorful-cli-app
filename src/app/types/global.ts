@@ -17,7 +17,7 @@ export interface IPromptElem {
   text: string
   sequences: string
   code: string
-  style: Array<string>
+  style: Array<{ style: string, code: string } | undefined>
   bg: IEColor | undefined
   fg: IEColor | undefined
   type: string

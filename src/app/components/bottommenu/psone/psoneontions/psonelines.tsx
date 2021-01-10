@@ -85,11 +85,7 @@ const PsOneLines: React.FC = (state) => {
       );
     }
   );
-  return (
-    <div>
-      <AllLines>{displayLines}</AllLines>
-    </div>
-  );
+  return <AllLines>{displayLines}</AllLines>;
 };
 
 export default PsOneLines;

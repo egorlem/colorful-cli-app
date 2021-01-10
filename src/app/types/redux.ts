@@ -35,7 +35,7 @@ interface IAddBgColor {
 }
 interface IAddTextDecor {
   type: typeof SETTEXTDECOR
-  payload: string
+  payload: { code: string, style: string }
 }
 interface IRemoveTextDecor {
   type: typeof REMOVETEXTDECOR
@@ -64,7 +64,7 @@ interface ISetLine {
 // PSONE actions App status
 interface IEditModStatus {
   type: typeof CHANGEMODSTATUS
-  payload: string
+  payload: string | null
 }
 interface IResetCurElem {
   type: typeof SETELEMTOINIT
@@ -120,6 +120,21 @@ interface IaddNewLine {
 interface IdeleteCurrLine {
   type: typeof REMOVELINE
   payload: any
+}
+// STATE
+export interface IpsOneOptionsState {
+  selectedLine: number
+  status: string | null
+  activeControls: IAppControls[]
+  initialElement: IPromptElem
+  globalcolors: IEColor[]
+  textdecoration: any
+  symbols: any
+  fgcolor: IEColor
+  bgcolor: IEColor
+  psOneSequences: ISequences[]
+  orignIndex: number | null
+  currentElement: IPromptElem
 }
 
 

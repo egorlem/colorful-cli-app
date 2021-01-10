@@ -17,7 +17,10 @@ let initialState: IresultState = {
         text: "The hostname (short)",
         sequences: "LocalHost",
         code: "\\h",
-        style: ["regular"],
+        style: [{
+          style: "regular",
+          code: "00",
+        }],
         bg: {
           colorInfo: false,
           colorId: "RST",
@@ -41,7 +44,10 @@ let initialState: IresultState = {
         text: "The base name of term",
         sequences: "ttys001",
         code: "\\l",
-        style: ["regular"],
+        style: [{
+          style: "regular",
+          code: "00",
+        },],
         bg: {
           colorId: "RST",
           hexString: "#000000",
@@ -172,12 +178,10 @@ export const updateSelectedElement = (payload: IResultElement): IResultActions =
 /**@description */
 type DeleteElmPayload = { index: number, lineIndex: number }
 export const deleteSelectedElement = (payload: DeleteElmPayload): IResultActions => {
-  debugger;
   return { type: DELETESELECTRD, payload };
 };
 /**@description */
 export const moveElementForward = (payload: IElementPosition): IResultActions => {
-  debugger;
   return { type: MOVEFORWARD, payload };
 };
 /**@description*/

@@ -11,11 +11,6 @@ export const PsOneControllsWrapper = styled.div`
   padding-left: 4px;
   padding-right: 4px;
 `;
-export const PsOneButtonWrapper = styled.div`
-  display: flex;
-  justify-content: start;
-  margin-top: 12px;
-`;
 
 export const PsOneItem = styled.div`
   transition: padding-bottom 0.1s;

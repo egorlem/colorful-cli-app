@@ -1,93 +1,29 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import SelectSequences from './psoneoptions/sequences';
 import { CustomText } from './psoneoptions/customtext';
 import ForegroundColors from './psoneoptions/fgcolor';
 import BackgroundColors from './psoneoptions/bgcolor';
 import { TextDecorationOption } from './psoneoptions/textdecor';
 import { SymbolOptions } from './psoneoptions/symbols';
-import { PsOneDeleteBtn, PsOneApplyBtn } from '../../global/buttons/basebnt';
-import { PsOneControllsWrapper, PsOneButtonWrapper } from './styled.psone';
-import { IPromptElem } from '../../../types/global';
+import { PsOneControllsWrapper } from './styled.psone';
 
 const PsOneStyleMenu = (state: any) => {
   const {
     psOneOptions: { status, currentElement, orignIndex, selectedLine },
-    result: { resPsOneLine },
-    updateSelectedElement,
-    deleteSelectedElement,
-    changeModeStatus,
-    closeAllControls,
-    addNewPromptElem,
-    resetOptions,
   } = state;
 
-  const setupNewPromptElemnt = <
-    T extends Array<Array<IPromptElem>>,
-    R extends IPromptElem,
-    A extends number
-  >(
-    arr: T,
-    currentElement: R,
-    lineindex: A
-  ) => {
-    let index: number = arr[lineindex].length;
-    return { ...currentElement, id: ++index };
-  };
-  // если и нажать по томуже элементу стейт не меняется
-  // useEffect(() => {
-  //   if (status === 'UDATE_CURRENT') {
-  //     console.log('Попал в юз ефект 1', status);
-  //     updateSelectedElement({
-  //       index: orignIndex,
-  //       element: currentElement,
-  //       lineIndex: selectedLine,
-  //     });
-  //   }
-  // }, [currentElement, status]);
-
-  // useEffect(() => {
-  //   if (status === 'UDATE_CURRENT') {
-  //     console.log('Попал в повал в юз ефект 2', status);
-  //     let newElement = setupNewPromptElemnt(
-  //       resPsOneLine,
-  //       currentElement,
-  //       selectedLine
-  //     );
-  //     addNewPromptElem({ lineIndex: selectedLine, element: newElement });
-  //   }
-  // }, [currentElement, status]);
-
-  const applyHandler = () => {
-    changeModeStatus(null);
-    closeAllControls();
-    resetOptions();
-  };
-
-  const deleteHandler = () => {
-    deleteSelectedElement({
-      index: orignIndex,
-      lineIndex: selectedLine,
-    });
-    changeModeStatus(null);
-    resetOptions();
-  };
-
   const update: boolean = true; //status === "UDATE_CURRENT";
+  const nodecortype: boolean =
+    currentElement.type !== 'SPACE' && currentElement.type !== 'FUNCTION';
   return (
     <PsOneControllsWrapper>
       {/* SEQUENCES */}
       <SelectSequences {...state} />
       <SymbolOptions {...state} />
       {currentElement.type === 'CUSTOM_TEXT' && update && <CustomText />}
-      {update && <ForegroundColors {...state} />}
-      {update && <BackgroundColors {...state} />}
-      {update && <TextDecorationOption {...state} />}
-      <PsOneButtonWrapper>
-        {update && (
-          <PsOneDeleteBtn onClick={deleteHandler}>Delete</PsOneDeleteBtn>
-        )}
-        {update && <PsOneApplyBtn onClick={applyHandler}>Apply</PsOneApplyBtn>}
-      </PsOneButtonWrapper>
+      {update && nodecortype && <ForegroundColors {...state} />}
+      {update && nodecortype && <BackgroundColors {...state} />}
+      {update && nodecortype && <TextDecorationOption {...state} />}
     </PsOneControllsWrapper>
   );
 };

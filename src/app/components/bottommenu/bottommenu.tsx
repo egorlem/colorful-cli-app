@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  changeElemPosition,
+  //changeElemPosition,
   moveElementBack,
   moveElementForward,
   addNewLine,
@@ -23,7 +23,7 @@ const mstp = (state: any) => {
 };
 
 export default connect(mstp, {
-  changeElemPosition,
+  //  changeElemPosition,
   updateElement,
   changeModeStatus,
   moveElementBack,
