@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PsOneLines from './psoneontions/psonelines';
+import LineOptionsHeader from './psoneontions/linesoptionheader';
 import styled from 'styled-components';
 
 const PromptLineStyleWrapper = styled.div`
@@ -45,9 +46,8 @@ const PsOnePositionMenu = (state: any) => {
 
   return (
     <PromptLineStyleWrapper>
+      <LineOptionsHeader />
       <PsOneLines {...state} />
-      МЕНЮ
-      {/* <BottomMenu {...state} /> */}
     </PromptLineStyleWrapper>
   );
 };

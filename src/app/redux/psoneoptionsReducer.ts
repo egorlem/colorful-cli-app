@@ -28,7 +28,7 @@ let initialState: IpsOneOptionsState = {
     text: '',
     sequences: '',
     code: '',
-    style: ["regular"],
+    style: [],
     bg: {
       colorInfo: false,
       colorId: "RST",
@@ -74,7 +74,7 @@ let initialState: IpsOneOptionsState = {
     text: '',
     sequences: '',
     code: '',
-    style: ["regular"],
+    style: [],
     bg: {
       colorInfo: false,
       colorId: "RST",
@@ -96,6 +96,10 @@ let initialState: IpsOneOptionsState = {
 };
 
 type optionReduser = IPsOneElmStyleActions | IPsOneLineActions | IAppStatus
+interface IMenuControl {
+  name: string
+  flag: boolean
+}
 
 export function psOneOptionsReducer(state = initialState, action: optionReduser): IpsOneOptionsState {
   switch (action.type) {
@@ -105,7 +109,7 @@ export function psOneOptionsReducer(state = initialState, action: optionReduser)
       });
     case REMOVETEXTDECOR:
       return update(state, {
-        currentElement: { style: { $splice: [[action.payload.index, 1]] } },
+        currentElement: { style: { $splice: [[action.payload, 1]] } },
       });
     case SETBGCOLOR:
       return update(state, {
@@ -127,21 +131,21 @@ export function psOneOptionsReducer(state = initialState, action: optionReduser)
     case OPENCONTROL:
       return {
         ...state,
-        activeControls: state.activeControls.map((e) =>
+        activeControls: state.activeControls.map((e: IMenuControl) =>
           e.name === action.payload ? { ...e, flag: false } : e
         ),
       };
     case CLOSECONTROL:
       return {
         ...state,
-        activeControls: state.activeControls.map((e) =>
+        activeControls: state.activeControls.map((e: IMenuControl) =>
           e.name === action.payload ? { ...e, flag: true } : e
         ),
       };
     case CLOSEALLCONTROLS:
       return {
         ...state,
-        activeControls: state.activeControls.map((e) => {
+        activeControls: state.activeControls.map((e: IMenuControl) => {
           return { ...e, flag: true };
         }),
       };
@@ -185,7 +189,7 @@ export const getBgColor = (payload: IEColor): IPsOneElmStyleActions => {
   };
 };
 /** @description Add text decoration to element*/
-export const setElementStyle = (payload: string): IPsOneElmStyleActions => {
+export const setElementStyle = (payload: { style: string, code: string }): IPsOneElmStyleActions => {
   return { type: SETTEXTDECOR, payload };
 };
 /** @description Remove element's decoration*/
@@ -215,7 +219,7 @@ export const selectPsOneLine = (payload: number): IPsOneLineActions => {
 
 // App status
 /**@description any*/
-export const changeModeStatus = (payload: string): IAppStatus => {
+export const changeModeStatus = (payload: string | null): IAppStatus => {
   return { type: CHANGEMODSTATUS, payload };
 };
 export const openControl = (payload: string): IAppStatus => {

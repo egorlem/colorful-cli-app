@@ -2,7 +2,9 @@ import { IEColor, IPromptElem } from './global';
 import {
   SETFGCOLOR, SETBGCOLOR, SETTEXTDECOR, REMOVETEXTDECOR, SETCURELEM, UPDATECURELEM,
   CHANGETEXT, CHANGEMODSTATUS, SETELEMTOINIT, SETLINE, CLOSEALLCONTROLS, CLOSECONTROL,
-  OPENCONTROL
+  OPENCONTROL, ADDNEWELEM, ADDNEWLINE, REMOVELINE, DELETESELECTRD, UPDATESELECTEDELEM,
+  MOVEFORWARD, MOVEBACK
+
 } from './../redux/actiontypes';
 
 interface IAppControls {
@@ -15,8 +17,14 @@ export interface ISequences {
   text: string
   type: string
 }
-// ACTIONS 
-// Stylize element
+
+export interface IresultState {
+  currentshell: String
+  resPsOneLine: IPromptElem[][]
+}
+
+
+// PSONE actions Stylize element
 interface IAddFgColor {
   type: typeof SETFGCOLOR
   payload: IEColor
@@ -26,18 +34,18 @@ interface IAddBgColor {
   payload: IEColor
 }
 interface IAddTextDecor {
-  type: typeof SETTEXTDECOR | typeof REMOVETEXTDECOR
-  payload: string
+  type: typeof SETTEXTDECOR
+  payload: { code: string, style: string }
 }
 interface IRemoveTextDecor {
   type: typeof REMOVETEXTDECOR
-  payload: number | strgin
+  payload: number
 }
 interface IChangeText {
   type: typeof CHANGETEXT
   payload: string
 }
-// Modify line
+// PSONE actions Modify line
 interface IAddCurElem {
   type: typeof SETCURELEM
   payload: ISequences
@@ -53,10 +61,10 @@ interface ISetLine {
   type: typeof SETLINE
   payload: number
 }
-// App status
+// PSONE actions App status
 interface IEditModStatus {
   type: typeof CHANGEMODSTATUS
-  payload: string
+  payload: string | null
 }
 interface IResetCurElem {
   type: typeof SETELEMTOINIT
@@ -73,6 +81,47 @@ interface ICloseAllCtrls {
   type: typeof CLOSEALLCONTROLS
 }
 
+//RESULT actions  
+export interface IResultElement {
+  lineIndex: number
+  index: number
+  element: IPromptElem
+}
+interface IaddNewElem {
+  type: typeof ADDNEWELEM
+  payload: IResultElement
+}
+interface IupdateSelectedElem {
+  type: typeof UPDATESELECTEDELEM
+  payload: IResultElement
+}
+interface IdeleteElem {
+  type: typeof DELETESELECTRD
+  payload: {
+    index: number
+    lineIndex: number
+  }
+}
+export interface IElementPosition extends IResultElement {
+  atIndex: number
+  card: IPromptElem
+}
+interface ImoveElemForward {
+  type: typeof MOVEFORWARD
+  payload: IElementPosition
+}
+interface ImoveElemBack {
+  type: typeof MOVEBACK
+  payload: IElementPosition
+}
+interface IaddNewLine {
+  type: typeof ADDNEWLINE
+}
+interface IdeleteCurrLine {
+  type: typeof REMOVELINE
+  payload: any
+}
+// STATE
 export interface IpsOneOptionsState {
   selectedLine: number
   status: string | null
@@ -88,6 +137,7 @@ export interface IpsOneOptionsState {
   currentElement: IPromptElem
 }
 
+
 export type IPsOneElmStyleActions = IAddFgColor | IAddBgColor | IAddTextDecor
   | IRemoveTextDecor | IChangeText
 
@@ -95,4 +145,9 @@ export type IPsOneLineActions = IAddCurElem | IUpdateCurElem | ISetLine
 
 export type IAppStatus = IEditModStatus | IResetCurElem | ICloseAllCtrls | ICloseCtrl
   | IOpenCtrl
+
+// result 
+export type IResultActions = IaddNewElem | IupdateSelectedElem | IdeleteElem
+  | ImoveElemForward | ImoveElemBack | IaddNewLine | IdeleteCurrLine
+
 

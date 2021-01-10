@@ -32,7 +32,7 @@ const DropDownTitle = styled.div`
   transition: padding-bottom 0.3s;
   display: flex;
   justify-content: space-between;
-  padding-bottom: ${(props: ISFlag) => (props.flag ? '0' : '4px')};
+  padding-bottom: ${(props: ISFlag) => (props.flag ? '0' : '10px')};
 `;
 const DropDownMenu = ({
   children,
