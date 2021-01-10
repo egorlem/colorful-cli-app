@@ -1,11 +1,18 @@
+import {
+  ADDNEWELEM, ADDNEWLINE, REMOVELINE, MOVEFORWARD, MOVEBACK, UPDATESELECTEDELEM,
+  DELETESELECTRD
+} from './actiontypes';
+import { IresultState, IResultActions, IResultElement, IElementPosition } from './../types/redux';
 import update from "immutability-helper";
 import { testFetch } from "../../api/fetch"
+import { Dispatch } from 'redux';
 
-let initialState = {
+let initialState: IresultState = {
   currentshell: 'bash',
   resPsOneLine: [
     [
       {
+        options: null,
         id: 1,
         text: "The hostname (short)",
         sequences: "LocalHost",
@@ -30,6 +37,7 @@ let initialState = {
       },
       {
         id: 2,
+        options: null,
         text: "The base name of term",
         sequences: "ttys001",
         code: "\\l",
@@ -54,28 +62,28 @@ let initialState = {
   ],
 };
 
-export function resultReducer(state = initialState, action: any) {
+export function resultReducer(state = initialState, action: IResultActions): IresultState {
   switch (action.type) {
-    case "RESULT/ADD_NEW_LINE":
+    case ADDNEWLINE:
       return update(state, {
         resPsOneLine: { $push: [[]] },
       });
-    case "RESULT/DELETE_CURRENT_LINE":
+    case REMOVELINE:
       return update(state, {
         resPsOneLine: {
           $splice: [[action.payload.index, 1]],
         },
       });
-    case "DND/RESULT/EDIT_ELEMENT_POSITION":
-      return update(state, {
-        resPsOneLine: {
-          $splice: [
-            [action.payload.index, 1],
-            [action.payload.atIndex, 0, action.payload.card],
-          ],
-        },
-      });
-    case "RESULT/UPDATE_SELECTED_ELEMENT":
+    // case "DND/RESULT/EDIT_ELEMENT_POSITION": //????
+    //   return update(state, {
+    //     resPsOneLine: {
+    //       $splice: [
+    //         [action.payload.index, 1],
+    //         [action.payload.atIndex, 0, action.payload.card],
+    //       ],
+    //     },
+    //   });
+    case UPDATESELECTEDELEM:
       return update(state, {
         resPsOneLine: {
           [action.payload.lineIndex]: {
@@ -83,7 +91,7 @@ export function resultReducer(state = initialState, action: any) {
           },
         },
       });
-    case "RESULT/DELETE_SELECTED_ELEMENT":
+    case DELETESELECTRD:
       return update(state, {
         resPsOneLine: {
           [action.payload.lineIndex]: {
@@ -97,30 +105,13 @@ export function resultReducer(state = initialState, action: any) {
           },
         },
       });
-    case "RESULT/ADD_NEW_PROMPT_ELEMENT":
+    case ADDNEWELEM: // DONE
       return update(state, {
         resPsOneLine: {
-          [action.lineIndex]: { $push: [action.element] },
+          [action.payload.lineIndex]: { $push: [action.payload.element] },
         },
       });
-    case "RESULT/MOVE_ELEMENT_FORWARD":
-      return update(state, {
-        resPsOneLine: {
-          [action.payload.lineIndex]: {
-            $splice: [
-              [action.payload.index, 1],
-              [action.payload.atIndex, 0, action.payload.card],
-            ],
-            $apply: (arr: any) => {
-              return arr.map((e: any, i: number) => {
-                let id = i + 1;
-                return { ...e, id: id };
-              });
-            },
-          },
-        },
-      });
-    case "RESULT/MOVE_ELEMENT_BACK":
+    case MOVEFORWARD:
       return update(state, {
         resPsOneLine: {
           [action.payload.lineIndex]: {
@@ -137,67 +128,77 @@ export function resultReducer(state = initialState, action: any) {
           },
         },
       });
-    case "TEST_TNK":
+    case MOVEBACK:
       return update(state, {
-        currentshell: {
-          $set: action.payload
-        }
-      })
+        resPsOneLine: {
+          [action.payload.lineIndex]: {
+            $splice: [
+              [action.payload.index, 1],
+              [action.payload.atIndex, 0, action.payload.card],
+            ],
+            $apply: (arr: any) => {
+              return arr.map((e: any, i: number) => {
+                let id = i + 1;
+                return { ...e, id: id };
+              });
+            },
+          },
+        },
+      });
+    // case "TEST_TNK":
+    //   return update(state, {
+    //     currentshell: {
+    //       $set: action.payload
+    //     }
+    //   })
+    default:
+      return state;
   }
-  return state;
 }
 
-export const changeElemPosition = <T>(payload: T) => {
+// export const changeElemPosition = <T>(payload: T) => {
+//   return { type: "DND/RESULT/EDIT_ELEMENT_POSITION", payload };
+// };
+
+
+/**@description Add new new element to result PS1 line*/
+export const addNewPromptElem = (payload: IResultElement): IResultActions => {
+  return { type: ADDNEWELEM, payload };
+};
+/**@description Update selected element. Selected === Current*/
+export const updateSelectedElement = (payload: IResultElement): IResultActions => {
+  return { type: UPDATESELECTEDELEM, payload };
+};
+/**@description */
+type DeleteElmPayload = { index: number, lineIndex: number }
+export const deleteSelectedElement = (payload: DeleteElmPayload): IResultActions => {
   debugger;
-  return { type: "DND/RESULT/EDIT_ELEMENT_POSITION", payload };
+  return { type: DELETESELECTRD, payload };
+};
+/**@description */
+export const moveElementForward = (payload: IElementPosition): IResultActions => {
+  debugger;
+  return { type: MOVEFORWARD, payload };
+};
+/**@description*/
+export const moveElementBack = (payload: IElementPosition): IResultActions => {
+  return { type: MOVEBACK, payload };
+};
+/**@description*/
+export const addNewLine = (): IResultActions => {
+  return { type: ADDNEWLINE };
+};
+/**@description*/
+export const deleteCurrentLine = (payload: any): IResultActions => {
+  return { type: REMOVELINE, payload } as any
 };
 
-interface IANPE {
-  lineIndex: number
-  element: object
-};
-
-export const addNewPromptElem = <T extends IANPE>(payload: T) => {
-  return {
-    type: "RESULT/ADD_NEW_PROMPT_ELEMENT",
-    lineIndex: payload.lineIndex, element: payload.element
-  };
-};
-interface USE {
-  lineIndex: number
-  index: number
-  element: object
-}
-
-export const updateSelectedElement = <T extends USE>(payload: T) => {
-  return { type: "RESULT/UPDATE_SELECTED_ELEMENT", payload };
-};
-
-export const deleteSelectedElement = (payload: any) => {
-  return { type: "RESULT/DELETE_SELECTED_ELEMENT", payload };
-};
-export const moveElementForward = (payload: any) => {
-  return { type: "RESULT/MOVE_ELEMENT_FORWARD", payload };
-};
-export const moveElementBack = (payload: any) => {
-  return { type: "RESULT/MOVE_ELEMENT_BACK", payload };
-};
-export const addNewLine = () => {
-  return { type: "RESULT/ADD_NEW_LINE" };
-};
-export const deleteCurrentLine = (payload: any) => {
-  return { type: "RESULT/DELETE_CURRENT_LINE", payload };
-};
-
-export const setCurrentShell = () => {
-  return {}
-}
 const testtnk = (payload: any) => {
   return { type: "RESULT/TEST_TNK", payload };
 }
 
 export const getResult = () => {
-  return dispatch => {
-    const result = testFetch().then(data => { console.log(data) });
+  return (dispatch: Dispatch<IResultActions>) => {
+    const result = testFetch('ok').then(data => { console.log(data) });
   }
-} 
+}

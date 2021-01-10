@@ -58,7 +58,7 @@ const PsOneSingleLine = ({ id, state, lineindex, findCard }: any) => {
         onClick={() => {
           if (!status) {
             updateElement({ curCard: card, oringIndex: index });
-            changeModeStatus('UDATE_CURRENT');
+            changeModeStatus('UPDATE');
           }
         }}
       >

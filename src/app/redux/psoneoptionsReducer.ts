@@ -104,8 +104,9 @@ export function psOneOptionsReducer(state = initialState, action: optionReduser)
         currentElement: { $merge: action.payload },
       });
     case REMOVETEXTDECOR:
+      debugger;
       return update(state, {
-        currentElement: { style: { $splice: [[action.payload.index, 1]] } },
+        currentElement: { style: { $splice: [[action.payload, 1]] } },
       });
     case SETBGCOLOR:
       return update(state, {
