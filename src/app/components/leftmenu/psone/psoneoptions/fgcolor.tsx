@@ -10,6 +10,7 @@ const ForegroundColors: React.FC = (state: any) => {
       activeControls,
       currentElement: { fg },
       globalcolors,
+      status,
     },
     closeControl,
     openControl,
@@ -23,12 +24,17 @@ const ForegroundColors: React.FC = (state: any) => {
       <div className="option-item-controlls">
         <DropDownMenu
           flag={fgSubMenu.flag}
-          handler={fgSubMenu.flag ? openControl : closeControl}
+          handler={fgSubMenu.flag && status ? openControl : closeControl}
           accessory={'fgColorMenu'}
           selectedItem={'Foreground color'}
+          status={!!status}
           // preview={<Preview style={{ color: fg.hexString }}>{"░░░"}</Preview>}
         >
-          <Palette globalcolors={globalcolors} colorHandler={getFgColor} />
+          <Palette
+            globalcolors={globalcolors}
+            colorHandler={getFgColor}
+            flag={fgSubMenu.flag}
+          />
         </DropDownMenu>
       </div>
     </PsOneItem>

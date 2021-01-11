@@ -21,9 +21,9 @@ const PsOneStyleMenu = (state: any) => {
       <SelectSequences {...state} />
       <SymbolOptions {...state} />
       {currentElement.type === 'CUSTOM_TEXT' && update && <CustomText />}
-      {update && nodecortype && <ForegroundColors {...state} />}
-      {update && nodecortype && <BackgroundColors {...state} />}
-      {update && nodecortype && <TextDecorationOption {...state} />}
+      {nodecortype && <ForegroundColors {...state} />}
+      {nodecortype && <BackgroundColors {...state} />}
+      {nodecortype && <TextDecorationOption {...state} />}
     </PsOneControllsWrapper>
   );
 };

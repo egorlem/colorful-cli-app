@@ -1,5 +1,6 @@
 export interface ISFlag {
   flag: boolean
+  status?: boolean
 }
 
 export interface IEColor {

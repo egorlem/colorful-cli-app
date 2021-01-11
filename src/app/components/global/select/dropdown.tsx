@@ -8,7 +8,7 @@ import {
   RightDivider,
 } from './controls';
 const DropDownMain = styled.div`
-  font-family: 'JetBrains', monospace;
+  font-family: 'consolas';
   font-weight: 300;
   display: flex;
   justify-content: space-between;
@@ -29,6 +29,7 @@ const DropDownWrapper = styled.div`
   margin-top: ${(props: ISFlag) => (props.flag ? '0' : '6px')};
 `;
 const DropDownTitle = styled.div`
+  color: ${(props: ISFlag) => (props.status ? '#dadada' : '#606060')};
   transition: padding-bottom 0.3s;
   display: flex;
   justify-content: space-between;
@@ -39,15 +40,20 @@ const DropDownMenu = ({
   selectedItem,
   preview = null,
   flag = true,
+  status = true,
   accessory,
   handler,
 }: any) => {
   return (
     <DropDownMain>
-      <DropDownTitle flag={flag}>
+      <DropDownTitle status={status} flag={flag}>
         {preview}
         {selectedItem}
-        <ControllWrapper flag={flag} onClick={() => handler(accessory)}>
+        <ControllWrapper
+          status={status}
+          flag={flag}
+          onClick={() => handler(accessory)}
+        >
           <LeftDivider flag={flag}>{'['}</LeftDivider>
           <AnimatedIcon flag={flag}>{'❯'}</AnimatedIcon>
           <RightDivider flag={flag}>{']'}</RightDivider>

@@ -2,15 +2,14 @@ import React, { useMemo } from 'react';
 import { ColorElement, PaletteWrapper, RangeWrapper } from './palette.styled';
 
 interface IPalleteProps {
-  globalcolors?: any;
-  colorHandler?: any;
+  globalcolors: any;
+  colorHandler: any;
+  flag: boolean;
 }
 
-const Palette: React.FC = ({
-  globalcolors,
-  colorHandler,
-  flag,
-}: any): JSX.Element => {
+const Palette: React.FC = (props): JSX.Element => {
+  const { globalcolors, colorHandler, flag, status } = props as any;
+
   const paletteHantler = (event: any) => {
     const curColor = globalcolors.find(
       (elm: any) => +event.target.id === +elm.colorId
@@ -32,8 +31,6 @@ const Palette: React.FC = ({
   }, [globalcolors]);
   return (
     <PaletteWrapper flag={flag}>
-      {/* <RangeWrapper color={'#878ac0'}>{FullColor}</RangeWrapper> */}
-      {/* <RangeWrapper>{colorlist}</RangeWrapper> */}
       <RangeWrapper color={'#0d74db'}>{colorslist}</RangeWrapper>
     </PaletteWrapper>
   );

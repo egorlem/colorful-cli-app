@@ -9,7 +9,7 @@ export const ControllWrapper = styled.div`
   -moz-user-select: none;
   -khtml-user-select: none;
   user-select: none;
-  cursor: pointer;
+  cursor: ${(props: ISFlag) => props.status ? "pointer" : "default"};
   color: ${(props: ISFlag) => (props.flag ? "#87d7d7" : "#5fd7d7")};
   &:hover {
     color: #5fd7d7;

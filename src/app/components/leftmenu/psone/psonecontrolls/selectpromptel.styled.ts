@@ -30,7 +30,7 @@ const ItemTitele = styled.div`
 const ItemPreview = styled.div`
   font-size: 1.2rem;
   padding-right: 5px;
-  color: #8a8a8a;
+  color: #606060;
   &:before {
     content: '|'
   }

@@ -10,6 +10,7 @@ const BackgroundColors: React.FC = (state: any): JSX.Element => {
       activeControls,
       currentElement: { bg },
       globalcolors,
+      status,
     },
     closeControl,
     openControl,
@@ -23,9 +24,10 @@ const BackgroundColors: React.FC = (state: any): JSX.Element => {
       <div className="option-item-controlls">
         <DropDownMenu
           flag={bgSubMenu.flag}
-          handler={bgSubMenu.flag ? openControl : closeControl}
+          handler={bgSubMenu.flag && status ? openControl : closeControl}
           accessory={'bgColorMenu'}
           selectedItem={'Background colors'}
+          status={!!status}
           // preview={<Preview style={{ color: bg.hexString }}>{"░░░"}</Preview>}
         >
           <Palette

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { ISFlag } from '../../../../types/global';
+import { IPromptElem, ISFlag } from '../../../../types/global';
 
 const DecorBtnsWrapper = styled.div`
-  cursor: pointer;
+  cursor: ${(props: ISFlag) => (props.flag ? 'pointer' : 'default')};
   display: flex;
   justify-content: space-between;
   -moz-user-select: none;
@@ -16,10 +16,11 @@ const DecorButton = styled.div`
   display: flex;
   font-size: 1.2rem;
   font-weight: 400;
+  color: ${(props: ISFlag) => (props.flag ? '#dadada' : '#606060')};
   &:hover {
-    color: #fafafa;
+    color: ${(props: ISFlag) => (props.flag ? '#fafafa' : 'none')};
     .cb-divider {
-      color: '#acb0f8';
+      color: '#87d7d7';
     }
   }
 `;
@@ -28,34 +29,66 @@ const CheckBox = styled.div`
   display: flex;
 `;
 const CbDivider = styled.div`
-  color: ${(props: ISFlag) => (props.flag ? '#acb0f8' : '#474747')};
+  color: ${(props: ISFlag) => (props.flag ? '#87d7d7' : '#3a3a3a')};
 `;
 const CbSymbol = styled.div`
-  color: ${(props: ISFlag) => (props.flag ? '#acb0f8' : 'transparent')};
+  color: ${(props: ISFlag) => (props.flag ? '#87d7d7' : 'transparent')};
 `;
 
 const TextDecoration: React.FC = (state: any) => {
   // STATE
   const {
-    psOneOptions: { textdecoration, currentElement },
+    psOneOptions: { textdecoration, currentElement, status },
     removeElemtStyle,
     setElementStyle,
   } = state;
 
+  const haveStyle = (curelem: IPromptElem, styleelem: any): boolean => {
+    return curelem.style.some((e: any) => e.style === styleelem.style);
+  };
+
+  const getStyleIndex = (arr: any, elem: any) => {
+    let styleIndex = arr.style.findIndex((e: any) => {
+      return e.style === elem.style;
+    });
+    return styleIndex;
+  };
+
+  const removeOpposite = (stylename: string): void => {
+    const [regular, bold] = textdecoration;
+    switch (stylename) {
+      case 'bold':
+        if (haveStyle(currentElement, regular)) {
+          removeElemtStyle(getStyleIndex(currentElement, regular));
+        }
+        break;
+      case 'regular':
+        if (haveStyle(currentElement, bold)) {
+          removeElemtStyle(getStyleIndex(currentElement, bold));
+        }
+        break;
+      default:
+        break;
+    }
+  };
   const DecorationProperty = textdecoration.map((e: any) => {
-    const flag = currentElement.style.includes(e.style) as boolean;
-
-    const curStyleIndex = (arr: any) => {
-      let styleIndex = arr.style.indexOf(e.style);
-      return styleIndex;
-    };
-    let index = curStyleIndex(currentElement);
-
-    const decorationHandeler = () => {
-      flag ? removeElemtStyle(index) : setElementStyle(e.style);
+    const flag = haveStyle(currentElement, e);
+    const decorationHandeler = (): void => {
+      if (status && flag) {
+        let index = getStyleIndex(currentElement, e);
+        removeElemtStyle(index);
+      } else if (status && !flag) {
+        removeOpposite(e.style);
+        setElementStyle(e);
+      }
     };
     return (
-      <DecorButton onClick={decorationHandeler} key={e.style} id={e.style}>
+      <DecorButton
+        flag={status}
+        onClick={decorationHandeler}
+        key={e.style}
+        id={e.style}
+      >
         <CheckBox className="cb-divider">
           <CbDivider className="cb-divider" flag={flag}>
             {'['}
@@ -70,7 +103,9 @@ const TextDecoration: React.FC = (state: any) => {
     );
   });
 
-  return <DecorBtnsWrapper>{DecorationProperty}</DecorBtnsWrapper>;
+  return (
+    <DecorBtnsWrapper flag={status}>{DecorationProperty}</DecorBtnsWrapper>
+  );
 };
 
 export default TextDecoration;
