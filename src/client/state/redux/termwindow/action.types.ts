@@ -1,0 +1,4 @@
+const MODEOFF = "TERM/EDIT_MODE_OFF"
+const MODEON = "TERM/EDIT_MODE_ON"
+
+export default { MODEOFF, MODEON }
