@@ -4,7 +4,7 @@ import { IPsOneLineModel, IPsOnePositon, IPsOneEelement } from './types'
 import update from "immutability-helper";
 
 let initialState: IPsOneLineModel = {
-  psone: [
+  psonemodel: [
     [
       {
         options: null,
@@ -63,21 +63,21 @@ let initialState: IPsOneLineModel = {
   ],
 };
 
-export function psoneresult(state = initialState, action: IPsOnePositon): IPsOneLineModel {
+export function psonecrud(state = initialState, action: IPsOnePositon): IPsOneLineModel {
   switch (action.type) {
     case types.ADDNEWLINE:
       return update(state, {
-        psone: { $push: [[]] },
+        psonemodel: { $push: [[]] },
       });
     case types.REMOVELINE:
       return update(state, {
-        psone: {
+        psonemodel: {
           $splice: [[action.payload.index, 1]],
         },
       });
     case types.MOVEFORWARD:
       return update(state, {
-        psone: {
+        psonemodel: {
           [action.payload.lineIndex]: {
             $splice: [
               [action.payload.index, 1],
@@ -94,7 +94,7 @@ export function psoneresult(state = initialState, action: IPsOnePositon): IPsOne
       });
     case types.MOVEBACK:
       return update(state, {
-        psone: {
+        psonemodel: {
           [action.payload.lineIndex]: {
             $splice: [
               [action.payload.index, 1],
@@ -111,7 +111,7 @@ export function psoneresult(state = initialState, action: IPsOnePositon): IPsOne
       });
     case types.UPDATESELECTEDELEM:
       return update(state, {
-        psone: {
+        psonemodel: {
           [action.payload.lineIndex]: {
             [action.payload.index]: { $merge: action.payload.element },
           },
@@ -119,7 +119,7 @@ export function psoneresult(state = initialState, action: IPsOnePositon): IPsOne
       });
     case types.DELETESELECTRD:
       return update(state, {
-        psone: {
+        psonemodel: {
           [action.payload.lineIndex]: {
             $splice: [[action.payload.index, 1]],
             $apply: (arr: any) => {
@@ -133,7 +133,7 @@ export function psoneresult(state = initialState, action: IPsOnePositon): IPsOne
       });
     case types.ADDNEWELEM: // DONE
       return update(state, {
-        psone: {
+        psonemodel: {
           [action.payload.lineIndex]: { $push: [action.payload.element] },
         },
       });
@@ -143,6 +143,6 @@ export function psoneresult(state = initialState, action: IPsOnePositon): IPsOne
   }
 }
 const reducer = combineReducers({
-  psoneresult: psoneresult,
+  psonecrud: psonecrud,
 })
 export default reducer

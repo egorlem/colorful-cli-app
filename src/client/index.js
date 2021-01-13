@@ -1,4 +1,4 @@
-//import './styles/style.scss';
+import './styles/style.scss';
 import { store } from './state/store';
 import React from 'react';
 import ReactDOM from 'react-dom';

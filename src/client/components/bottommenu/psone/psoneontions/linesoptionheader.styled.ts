@@ -9,5 +9,3 @@ export const HeaderOptionsWrapper = styled.div`
 `
 export const HeaderOptionsButtons = styled.div``
 export const HeaderOptionsElementStatus = styled.div``
-
-

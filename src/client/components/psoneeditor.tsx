@@ -1,27 +1,28 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import LeftMenu from '../components/leftmenu/leftmenu';
-import BottomMenu from '../components/bottommenu/bottommenu';
-import TerminalWindow from '../components/terminal/termwindow';
-import { changeModeStatus, updateElement } from '../redux/psoneoptionsreducer';
-import {
-  addNewPromptElem,
-  updateSelectedElement,
-} from '../redux/resultreducer';
+import { crudActions } from '../state/redux/crud';
+import { appConditionActions } from '../state/redux/condition';
+import PsOneLeftMenu from './leftmenu/psonemenu';
+import PsOneBottomMenu from './bottommenu/psonemenu';
+import TerminalWindow from './terminal/termwindow';
+import { TAppState } from '../state/store';
+import { IPromptElem } from '../types/global';
 
-const PsOneEditor = () => {
+interface IThisStatePart {
+  status: null | string;
+  element: IPromptElem;
+  lineIndex: number;
+  resultArr: IPromptElem[][];
+}
+
+const PsOneEditor: React.FC = () => {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    document.title = 'Colorful CLI / PS1';
-  }, []);
-
-  const state: any = useSelector<any>((state) => {
+  const state: IThisStatePart = useSelector((state: TAppState) => {
     return {
-      status: state.psOneOptions.status,
-      element: state.psOneOptions.currentElement,
-      lineIndex: state.psOneOptions.selectedLine,
-      resultArr: state.result.resPsOneLine,
+      status: state.condition.appcondition.status,
+      element: state.style.psoneelement.currentElement,
+      lineIndex: state.style.psoneelement.selectedLine,
+      resultArr: state.crud.psonecrud.psonemodel,
     };
   });
 
@@ -38,9 +39,12 @@ const PsOneEditor = () => {
   useEffect(() => {
     if (state.status === 'ADD') {
       dispatch(
-        addNewPromptElem({ lineIndex: state.lineIndex, element: state.element })
+        crudActions.addNewPromptElem({
+          lineIndex: state.lineIndex,
+          element: state.element,
+        })
       );
-      dispatch(changeModeStatus('UPDATE'));
+      dispatch(appConditionActions.changeModeStatus('UPDATE'));
     }
   }, [state.status]);
 
@@ -50,28 +54,24 @@ const PsOneEditor = () => {
       const currentLine = state.resultArr[state.lineIndex];
       const { currentElement, index } = findCard(state.element.id, currentLine);
       dispatch(
-        updateSelectedElement({
+        crudActions.updateSelectedElement({
           lineIndex: state.lineIndex,
           index: index,
           element: state.element,
         })
-        // updateElement({
-        //   curCard: state.element,
-        //   oringIndex: index,
-        // })
       );
     }
   }, [state.element]);
 
   return (
     <div className="shell-editor">
-      {/* <div className="left-area">
-        <LeftMenu />
+      <div className="left-area">
+        <PsOneLeftMenu />
       </div>
       <div className="right-area">
         <TerminalWindow />
-        <BottomMenu />
-      </div> */}
+        <PsOneBottomMenu />
+      </div>
     </div>
   );
 };

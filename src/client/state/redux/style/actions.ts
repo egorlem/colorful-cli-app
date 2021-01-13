@@ -13,7 +13,7 @@ export const getFgColor = <T extends IEColor>(payload: T): IPsOneStyle => {
 /** @description Change or add element's background color*/
 export const getBgColor = <T extends IEColor>(payload: T): IPsOneStyle => {
   return {
-    type: types.SETFGCOLOR,
+    type: types.SETBGCOLOR,
     payload,
   };
 };

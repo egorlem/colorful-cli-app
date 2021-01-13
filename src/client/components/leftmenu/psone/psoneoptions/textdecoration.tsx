@@ -1,5 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { styleActions } from '../../../../state/redux/style';
+
+import { TAppState } from '../../../../state/store';
 import { IPromptElem, ISFlag } from '../../../../types/global';
 
 const DecorBtnsWrapper = styled.div`
@@ -35,13 +39,25 @@ const CbSymbol = styled.div`
   color: ${(props: ISFlag) => (props.flag ? '#87d7d7' : 'transparent')};
 `;
 
-const TextDecoration: React.FC = (state: any) => {
-  // STATE
+interface IThisStatePart {
+  textdecoration: any[];
+  currentElement: IPromptElem;
+  status: string | null;
+}
+
+const TextDecoration: React.FC = () => {
+  const dispatch = useDispatch();
   const {
-    psOneOptions: { textdecoration, currentElement, status },
-    removeElemtStyle,
-    setElementStyle,
-  } = state;
+    textdecoration,
+    currentElement,
+    status,
+  }: IThisStatePart = useSelector((state: TAppState) => {
+    return {
+      textdecoration: state.style.psoneelement.textdecoration,
+      currentElement: state.style.psoneelement.currentElement,
+      status: state.condition.appcondition.status,
+    };
+  });
 
   const haveStyle = (curelem: IPromptElem, styleelem: any): boolean => {
     return curelem.style.some((e: any) => e.style === styleelem.style);
@@ -59,12 +75,18 @@ const TextDecoration: React.FC = (state: any) => {
     switch (stylename) {
       case 'bold':
         if (haveStyle(currentElement, regular)) {
-          removeElemtStyle(getStyleIndex(currentElement, regular));
+          dispatch(
+            styleActions.removeElemtStyle(
+              getStyleIndex(currentElement, regular)
+            )
+          );
         }
         break;
       case 'regular':
         if (haveStyle(currentElement, bold)) {
-          removeElemtStyle(getStyleIndex(currentElement, bold));
+          dispatch(
+            styleActions.removeElemtStyle(getStyleIndex(currentElement, bold))
+          );
         }
         break;
       default:
@@ -76,15 +98,15 @@ const TextDecoration: React.FC = (state: any) => {
     const decorationHandeler = (): void => {
       if (status && flag) {
         let index = getStyleIndex(currentElement, e);
-        removeElemtStyle(index);
+        dispatch(styleActions.removeElemtStyle(index));
       } else if (status && !flag) {
         removeOpposite(e.style);
-        setElementStyle(e);
+        dispatch(styleActions.setElementStyle(e));
       }
     };
     return (
       <DecorButton
-        flag={status}
+        flag={!!status}
         onClick={decorationHandeler}
         key={e.style}
         id={e.style}
@@ -104,7 +126,7 @@ const TextDecoration: React.FC = (state: any) => {
   });
 
   return (
-    <DecorBtnsWrapper flag={status}>{DecorationProperty}</DecorBtnsWrapper>
+    <DecorBtnsWrapper flag={!!status}>{DecorationProperty}</DecorBtnsWrapper>
   );
 };
 

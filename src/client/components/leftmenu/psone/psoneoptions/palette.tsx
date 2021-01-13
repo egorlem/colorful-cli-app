@@ -1,19 +1,21 @@
 import React, { useMemo } from 'react';
 import { ColorElement, PaletteWrapper, RangeWrapper } from './palette.styled';
 
-interface IPalleteProps {
+interface IPaletteProps {
   globalcolors: any;
   colorHandler: any;
   flag: boolean;
+  //status: null | boolean;
 }
 
-const Palette: React.FC = (props): JSX.Element => {
-  const { globalcolors, colorHandler, flag, status } = props as any;
+const Palette = (props: IPaletteProps): JSX.Element => {
+  const { globalcolors, flag, colorHandler } = props;
 
   const paletteHantler = (event: any) => {
     const curColor = globalcolors.find(
       (elm: any) => +event.target.id === +elm.colorId
     );
+    console.dir(colorHandler);
     colorHandler(curColor);
   };
 

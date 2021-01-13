@@ -1,6 +1,6 @@
 import reducer from './reducers'
 
-export { default as AppConditionActions } from './actions'
-export { default as AppconditionActionsTypes } from './action.types'
+export { default as appConditionActions } from './actions'
+export { default as appconditionActionsTypes } from './action.types'
 
 export default reducer;

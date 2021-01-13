@@ -3,16 +3,16 @@ import types from "./action.types"
 
 export interface IElementCrud {
   lineIndex: number,
-  index: number
-  element: IPromptElem
+  index?: number | null
+  element?: IPromptElem
 }
 export interface IElementPosition extends IElementCrud {
-  atIndex: number
+  atIndex?: number
   card: IPromptElem
 }
 // Initial state.
 export interface IPsOneLineModel {
-  psone: Array<Array<IPromptElem>>
+  psonemodel: Array<Array<IPromptElem>>
 }
 
 // Element crud actions 

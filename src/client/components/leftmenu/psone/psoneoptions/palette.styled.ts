@@ -1,4 +1,4 @@
-import { ISFlag } from './../../../../types/global';
+import { ISFlag } from '../../../../types/global';
 import styled from 'styled-components';
 
 export const PaletteWrapper = styled.div`

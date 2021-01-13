@@ -7,6 +7,7 @@ export interface ILeftMenuControls {
 export interface IGlobalAppCondition {
   status: string | null
   activeControls: ILeftMenuControls[]
+  currentshell: string
 }
 
 // app condition actions

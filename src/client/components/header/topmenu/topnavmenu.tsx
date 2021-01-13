@@ -6,13 +6,15 @@ import {
   TonMenuItem,
   TopMenuLink,
 } from './topnavmenu.styled';
+import { TAppState } from '../../../state/store';
 
 const TopNavigationMenu: React.FC = () => {
-  const currentshell = useSelector((state: any) => state.result.currentshell);
+  const currentshell = useSelector(
+    (state: TAppState) => state.condition.appcondition.currentshell
+  );
   const { pathname } = useLocation();
   return (
     <TopMenuContainer>
-      <div className="test">{'text'}</div>
       <TonMenuItem flag={pathname === '/psone'}>
         <TopMenuLink
           className="TopMenuLink"

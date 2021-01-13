@@ -4,6 +4,7 @@ import types from './action.types'
 import update from 'immutability-helper'
 
 const initialState: IGlobalAppCondition = {
+  currentshell: "bash",
   status: null,
   activeControls: [
     { name: "elementMenu", flag: false },
@@ -44,7 +45,6 @@ function appcondition(state = initialState, action: IAddCondition) {
       return state;
   }
 }
-
 
 const reducer = combineReducers({
   appcondition: appcondition

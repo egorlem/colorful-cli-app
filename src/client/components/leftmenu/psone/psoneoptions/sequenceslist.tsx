@@ -1,4 +1,7 @@
 import React, { useMemo } from 'react';
+import { useDispatch } from 'react-redux';
+import { appConditionActions } from '../../../../state/redux/condition';
+import { styleActions } from '../../../../state/redux/style';
 import { IPromptElem } from '../../../../types/global';
 import {
   SelectWrapper,
@@ -7,30 +10,29 @@ import {
   ItemPreview,
 } from './selectpromptel.styled';
 
-const SelectElement: React.FC = (props) => {
-  console.log('render');
-  //STATE
-  const {
-    psOneSequences,
-    status,
-    resPsOneLine,
-    setCurrentElement,
-    changeModeStatus,
-    selectedLine,
-  } = props as any;
+interface ISequnsecListProps {
+  psOneSequences: any[];
+  status: null | string;
+  psonemodel: IPromptElem[][];
+  selectedLine: number;
+}
+
+const SequencesList = (props: ISequnsecListProps): JSX.Element => {
+  const { psOneSequences, status, psonemodel, selectedLine } = props;
 
   const setId = (arr: IPromptElem[][], lineIndex: number): number => {
     return arr[lineIndex].length + 1;
   };
+  const dispatch = useDispatch();
 
   const statusHandler = (e: IPromptElem) => {
     if (status === null) {
       console.log(status);
-      const id = setId(resPsOneLine, selectedLine);
-      setCurrentElement({ ...e, id });
-      changeModeStatus('ADD');
+      const id = setId(psonemodel, selectedLine);
+      dispatch(styleActions.setCurrentElement({ ...e, id }));
+      dispatch(appConditionActions.changeModeStatus('ADD'));
     } else if (status === 'UPDATE') {
-      setCurrentElement({ ...e });
+      dispatch(styleActions.setCurrentElement({ ...e }));
     }
   };
   const PromptSequence = useMemo(() => {
@@ -66,10 +68,8 @@ const SelectElement: React.FC = (props) => {
 function AreEqual(prevProps: any, nextProps: any): boolean {
   return (
     prevProps.psOneSequences === nextProps.psOneSequences &&
-    prevProps.status === nextProps.status &&
-    prevProps.setCurrentElement === nextProps.setCurrentElement &&
-    prevProps.changeModeStatus === nextProps.changeModeStatus
+    prevProps.status === nextProps.status
   );
 }
 
-export default React.memo(SelectElement, AreEqual);
+export default React.memo(SequencesList, AreEqual);

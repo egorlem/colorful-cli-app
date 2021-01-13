@@ -19,7 +19,11 @@ export interface IPromptElem {
   sequences: string
   code: string
   style: Array<{ style: string, code: string } | undefined>
-  bg: IEColor | undefined
-  fg: IEColor | undefined
+  bg: IEColor
+  fg: IEColor
   type: string
+}
+
+export interface IPromptLineModel {
+  psonemodel: IPromptElem[][]
 }

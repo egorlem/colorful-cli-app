@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ISFlag } from './../../../types/global';
+import { ISFlag } from '../../types/global';
 
 export const PsOneControllsWrapper = styled.div`
   display: flex;
