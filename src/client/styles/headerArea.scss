@@ -1,0 +1,27 @@
+// HEADERAREA GLOBAL STYLE
+.header-submenu--background-container {
+  width: 100%;
+  background-color: #303030;
+}
+.app-header--container {
+  font-family: "JetBrains", monospace;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  &__img {
+    padding-right: 8px;
+  }
+  &__text {
+    font-size: 1.6rem;
+  }
+}
+
+.png-test {
+  background: white;
+  width: 40%;
+}

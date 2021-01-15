@@ -1,0 +1,71 @@
+@import './reset.scss';
+@import './shellline';
+@import './terminaloptions';
+@import './elglobal.scss';
+@import './headerArea.scss';
+@import './shelleditorlayout.scss';
+
+//@import '../public/fonts/JetBrainsMono/fonts.css';
+
+//GLOBAL STYLE
+//ALL NAV BUTTONS
+.nav-handler {
+  font-family: 'monospace';
+  color: black;
+  font-size: 1.2rem;
+  cursor: pointer;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
+// GLOBAL STYLE CONTENT LIMITER  --- Header Main Footer
+// main {
+//   background-color: red; //$bggray;
+// }
+.content--limiter {
+  max-width: 1552px; // 48px reserve
+  margin: 0 auto;
+  @media (max-width: 1550px) {
+    width: calc(100% - 48px);
+  }
+}
+.app {
+  font-family: 'consolas';
+  background: #303030;
+  color: #dadada;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  min-width: 1024px;
+  &-header {
+    font-size: 1.4rem;
+    background-color: #1c1c1c;
+    color: white;
+    a {
+      font-size: 1.4rem;
+      color: white;
+      :hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  &-main {
+    flex: 2;
+    background: #1c1c1c;
+  }
+  &-footer {
+    font-size: 1.4rem;
+    background-color: rgb(0, 0, 0);
+    color: white;
+  }
+}
+
+.loading {
+  opacity: 0;
+}
+
+.cli-app-main {
+  //  transition: opacity 0.1s ease-in-out;
+  opacity: 1;
+}

@@ -50,7 +50,10 @@ const babelLoader = (ext) => {
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
-  entry: { index: './app/index.js', preloader: './preloader.js' },
+  entry: {
+    index: './client/index.js',
+    preloader: './client/preloader.js',
+  },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
@@ -82,7 +85,7 @@ module.exports = {
       filename: '[name].css',
     }),
     new HTMLWebpackPlugin({
-      template: './index.html',
+      template: './public/index.html',
       chunks: ['preloader', 'index'],
     }),
     new CleanWebpackPlugin({
@@ -92,7 +95,10 @@ module.exports = {
     //new BundleAnalyzerPlugin(),
     new CopyPlugin({
       patterns: [
-        { from: path.resolve(__dirname, 'src', 'public'), to: 'public' },
+        {
+          from: path.resolve(__dirname, 'src', 'public'),
+          to: 'public',
+        },
       ],
     }),
   ],
