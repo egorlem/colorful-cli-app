@@ -10,8 +10,6 @@ import {
 } from '../options/elemhighlighter';
 import { useDispatch, useSelector } from 'react-redux';
 import { TAppState } from '../../../../state/store';
-// import { crudActions } from '../../../../state/redux/crud';
-// import { condition } from '../../../../state/redux';
 import { appConditionActions } from '../../../../state/redux/condition';
 import { styleActions } from '../../../../state/redux/style';
 
