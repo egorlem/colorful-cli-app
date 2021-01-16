@@ -1,13 +1,14 @@
 import React from 'react';
 import PsOneSingleLine from './psoneontions/psonesingleline';
 //import { StatusLineHeader } from '../options/statuslineheader';
-import { LineButton } from '../../global/buttons/basebnt';
+//import { LineButton } from '../../global/buttons/basebnt';
 import {
   SelectedLineWrapper,
   SingleLine,
-  SingleLineTitle,
+  LineNumber,
+  //  SingleLineTitle,
   AllLines,
-} from './psoneontions/prompline.styled';
+} from './psonelines.styled';
 import { IPromptElem } from '../../../types/global';
 import { useDispatch, useSelector } from 'react-redux';
 import { TAppState } from '../../../state/store';
@@ -67,17 +68,15 @@ const PsOneLines: React.FC = () => {
         flag={selectedLine === index}
         key={`line${index}`}
         id={`${index}`}
-        onClick={selectLine}
       >
-        <SingleLineTitle>
-          {'Line '}
-          {index + 1}
+        {/* <SingleLineTitle>
           {index !== 0 && (
             <LineButton flag={!!status} onClick={deleteLine}>
               {'Remove line'}
             </LineButton>
           )}
-        </SingleLineTitle>
+        </SingleLineTitle> */}
+        <LineNumber onClick={selectLine}>{`Line ${index + 1}`}</LineNumber>
         <SingleLine flag={selectedLine === index}>{cardline}</SingleLine>
       </SelectedLineWrapper>
     );

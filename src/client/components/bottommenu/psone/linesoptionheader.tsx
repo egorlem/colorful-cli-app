@@ -4,12 +4,12 @@ import {
   HeaderOptionsWrapper,
   HeaderOptionsButtons,
   HeaderOptionsElementStatus,
-} from './psoneontions/linesoptionheader.styled';
+} from './linesoptionheader.styled';
 import {
   AddLineButton,
   DeleteButton,
   ApplyButton,
-} from '../../global/buttons/basebnt';
+} from '../../global/buttons.styled';
 import { crudActions } from '../../../state/redux/crud';
 import { styleActions } from '../../../state/redux/style';
 import { appConditionActions } from '../../../state/redux/condition';

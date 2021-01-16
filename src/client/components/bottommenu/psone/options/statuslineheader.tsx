@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ElementStatus } from './elemstatus';
 import { ElementControl } from './elementcontroll';
-import { LineButton } from '../../../global/buttons/basebnt';
+import { LineButton } from '../../../global/buttons.styled';
 import { ISFlag } from '../../../../types/global';
 
 const LineHeaderWrapper = styled.div`
