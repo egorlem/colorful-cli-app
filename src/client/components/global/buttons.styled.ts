@@ -1,34 +1,45 @@
-import { ISFlag } from './../../../types/global';
+import { ISFlag } from '../../types/global';
 import styled from "styled-components";
 
 export const BaseButton = styled.button`
   cursor: pointer;
   transition: 0.1s;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 400;
-  padding: 4px 10px;
-  margin-right: 4px;
   color: #dadada;
   background: transparent;
   //height: 22px;
-  border-radius: 4px;
+  //border-radius: 4px;
 `;
 
 export const AddLineButton = styled(BaseButton)`
   border: 1px solid #3a3a3a;
   color: #87d7d7;
+  padding: 6px 10px;
+  border-radius: 4px;
   &:hover {
     border: 1px solid #87d7d7;
   }
 `;
 export const DeleteButton = styled(BaseButton)`
-border: 1px solid #3a3a3a;
+border-top: 1px solid #3a3a3a;
+border-bottom: 1px solid #3a3a3a;
+border-left: 1px solid #3a3a3a;
+border-right: 1px solid transparent;
+border-radius: 4px 0 0 4px;
+padding: 6px 6px 6px 10px;
   color: #d75f5f;
   &:hover {
     border: 1px solid #d75f5f;
   }`;
 export const ApplyButton = styled(BaseButton)`
-border: 1px solid #3a3a3a;
+border-top: 1px solid #3a3a3a;
+border-bottom: 1px solid #3a3a3a;
+border-left: 1px solid #3a3a3a;
+border-right: 1px solid #3a3a3a;
+border-radius: 4px 0 0 4px;
+border-radius: 0 4px 4px 0;
+padding: 6px 10px 6px 6px;
   color: #afd7af;
   &:hover {
     border: 1px solid #afd7af;

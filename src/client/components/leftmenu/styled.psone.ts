@@ -8,8 +8,8 @@ export const PsOneControllsWrapper = styled.div`
   font-weight: 400;
   background-color: #303030;
   color: #dadada;
-  padding-left: 4px;
-  padding-right: 4px;
+  /* padding-left: 4px;
+  padding-right: 4px; */
 `;
 
 export const PsOneItem = styled.div`

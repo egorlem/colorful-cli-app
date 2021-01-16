@@ -35,7 +35,12 @@ const Window: React.FC = (): JSX.Element => {
   const promptlines = psonemodel.map((line: IPromptElem[], index: number) => {
     const lastindex = (psonemodel.length - 1) as number;
     const cardline = displaycard(line, index);
-    return <div key={`termline${index}`}>{cardline}</div>;
+    return (
+      <div key={`termline${index}`}>
+        {cardline}
+        {'█'}
+      </div>
+    );
   });
 
   return (

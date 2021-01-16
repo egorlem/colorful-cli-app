@@ -7,7 +7,7 @@ export const PaletteWrapper = styled.div`
 `;
 const ColorElement = styled.div`
   cursor: pointer;
-  width: 41px;
+  width: 42px;
   min-height: 25px;
   background-color: ${(props: any) => props.color || 'black'};
   border: 1px solid transparent;
@@ -19,7 +19,7 @@ const ColorElement = styled.div`
 `;
 const RangeWrapper = styled.div`
   margin-bottom: 6px;
-  border-left: 4px solid ${(props: any) => props.color || '#f1f1f1'};
+  border-left: 6px solid ${(props: any) => props.color || '#f1f1f1'};
   display: flex;
   flex-wrap: wrap;
   background: transparent;
