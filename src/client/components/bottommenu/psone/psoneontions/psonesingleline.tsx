@@ -15,16 +15,24 @@ import { styleActions } from '../../../../state/redux/style';
 
 const PsOneSingleLine = ({ id, lineindex, findCard }: any) => {
   const dispatch = useDispatch();
-  const { status, psonemodel } = useSelector((state: TAppState) => {
-    return {
-      status: state.condition.appcondition.status,
-      psonemodel: state.crud.psonecrud.psonemodel,
-    };
-  });
+  const { status, psonemodel, currentElement } = useSelector(
+    (state: TAppState) => {
+      return {
+        status: state.condition.appcondition.status,
+        psonemodel: state.crud.psonecrud.psonemodel,
+        currentElement: state.style.psoneelement.currentElement,
+      };
+    }
+  );
 
   const opacity = status ? 0.3 : 1;
+
+  //const isSelected = currentElement.id === id && status;
+
   const { card, index, lineindex: selectedLineIndex } = findCard(id, lineindex);
-  const lastIndex = psonemodel[lineindex].length - 1;
+
+  // const lastIndex = psonemodel[lineindex].length - 1;
+
   const { text, color } = elementHighLighter(card) as Partial<IElmColorSyntax>;
 
   const inlineHandeler = () => {

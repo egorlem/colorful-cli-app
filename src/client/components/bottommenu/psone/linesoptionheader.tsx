@@ -47,41 +47,7 @@ const LineOptionsHeader: React.FC = (): JSX.Element => {
     );
     dispatch(appConditionActions.changeModeStatus(null));
     dispatch(styleActions.resetOptions());
-  };
-
-  function findCard(id = 0, lineindex: number) {
-    const [card] = psonemodel[lineindex].filter(
-      (c: IPromptElem) => +c.id === +id
-    );
-    return {
-      card,
-      index: psonemodel[lineindex].indexOf(card),
-    };
-  }
-
-  const toForward = () => {
-    const { card, index } = findCard(currentElement.id, lineIndex);
-    let atIndex = index + 1;
-    dispatch(
-      crudActions.moveElementForward({
-        atIndex: atIndex,
-        card: card,
-        index: index,
-        lineIndex: lineIndex,
-      })
-    );
-  };
-  const toBack = () => {
-    const { card, index } = findCard(currentElement.id, lineIndex);
-    let atIndex = index - 1;
-    dispatch(
-      crudActions.moveElementBack({
-        atIndex: atIndex,
-        card: card,
-        index: index,
-        lineIndex: lineIndex,
-      })
-    );
+    dispatch(appConditionActions.closeAllControls());
   };
 
   return (
@@ -93,8 +59,6 @@ const LineOptionsHeader: React.FC = (): JSX.Element => {
         )}
         {status === 'UPDATE' && (
           <>
-            <div onClick={toForward}>вперед</div>
-            <div onClick={toBack}>назад</div>
             <DeleteButton onClick={deleteHandler}>Delete</DeleteButton>
             <ApplyButton onClick={applyHandler}>Apply</ApplyButton>
           </>

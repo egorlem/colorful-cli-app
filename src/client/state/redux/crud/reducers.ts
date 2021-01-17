@@ -12,6 +12,7 @@ let initialState: IPsOneLineModel = {
         text: "The hostname (short)",
         sequences: "LocalHost",
         code: "\\h",
+        position: 0,
         style: [{
           style: "regular",
           code: "00",
@@ -39,6 +40,7 @@ let initialState: IPsOneLineModel = {
         text: "The base name of term",
         sequences: "ttys001",
         code: "\\l",
+        position: 1,
         style: [{
           style: "regular",
           code: "00",
@@ -86,7 +88,7 @@ export function psonecrud(state = initialState, action: IPsOnePositon): IPsOneLi
             $apply: (arr: any) => {
               return arr.map((e: any, i: number) => {
                 let id = i + 1;
-                return { ...e, id: id };
+                return { ...e, id: id, position: i };
               });
             },
           },
@@ -103,7 +105,7 @@ export function psonecrud(state = initialState, action: IPsOnePositon): IPsOneLi
             $apply: (arr: any) => {
               return arr.map((e: any, i: number) => {
                 let id = i + 1;
-                return { ...e, id: id };
+                return { ...e, id: id, position: i };
               });
             },
           },
@@ -125,13 +127,13 @@ export function psonecrud(state = initialState, action: IPsOnePositon): IPsOneLi
             $apply: (arr: any) => {
               return arr.map((e: any, i: number) => {
                 let id = i + 1;
-                return { ...e, id: id };
+                return { ...e, id: id, position: i };
               });
             },
           },
         },
       });
-    case types.ADDNEWELEM: // DONE
+    case types.ADDNEWELEM:
       return update(state, {
         psonemodel: {
           [action.payload.lineIndex]: { $push: [action.payload.element] },
