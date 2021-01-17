@@ -16,9 +16,11 @@ export const ElementContainer = styled.div`
   }
 `;
 export const InLinePromptElement = styled.div`
-  cursor: ${(props: ISFlag) => (props.flag ? 'default' : 'pointer')};
+  //cursor: ${(props: ISFlag) => (props.flag ? 'default' : 'pointer')};
+  cursor: pointer;
   font-weight: 400;
   font-size: 1.4rem;
+  opacity: ${(props: ISFlag) => props.flag ? '0.3' : "1.0"};
   background-color: transparent;
   padding: 0 4px;
   &:hover {

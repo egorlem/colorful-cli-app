@@ -20,16 +20,21 @@ interface ISequnsecListProps {
 const SequencesList = (props: ISequnsecListProps): JSX.Element => {
   const { psOneSequences, status, psonemodel, selectedLine } = props;
 
-  const setId = (arr: IPromptElem[][], lineIndex: number): number => {
-    return arr[lineIndex].length + 1;
+  const setId = (
+    arr: IPromptElem[][],
+    lineIndex: number
+  ): { id: number; position: number } => {
+    return {
+      id: arr[lineIndex].length + 1,
+      position: arr[lineIndex].length,
+    };
   };
   const dispatch = useDispatch();
 
   const statusHandler = (e: IPromptElem) => {
     if (status === null) {
-      console.log(status);
-      const id = setId(psonemodel, selectedLine);
-      dispatch(styleActions.setCurrentElement({ ...e, id }));
+      const { id, position } = setId(psonemodel, selectedLine);
+      dispatch(styleActions.setCurrentElement({ ...e, id, position }));
       dispatch(appConditionActions.changeModeStatus('ADD'));
     } else if (status === 'UPDATE') {
       dispatch(styleActions.setCurrentElement({ ...e }));

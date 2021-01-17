@@ -34,7 +34,8 @@ function appcondition(state = initialState, action: IAddCondition) {
       return {
         ...state,
         activeControls: state.activeControls.map((e: ILeftMenuControls) => {
-          return { ...e, flag: true };
+          let flag = e.name !== "elementMenu"
+          return { ...e, flag: flag };
         }),
       };
     case types.CHANGEMODSTATUS: // DONE

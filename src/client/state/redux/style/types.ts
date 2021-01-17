@@ -58,6 +58,12 @@ interface IUpdateCurElem {
     oringIndex: number
   }
 }
+interface IUpdateElementPosition {
+  type: typeof types.UPDATEPOSITION
+  payload: {
+    arPosition: number
+  }
+}
 interface ISetCurElemToInit {
   type: typeof types.SETELEMTOINIT
   payload?: any
@@ -67,6 +73,6 @@ interface ISetLine {
   payload: number
 }
 export type IPsOneCondition = IAddCurElem | IUpdateCurElem | ISetCurElemToInit
-  | ISetLine
+  | ISetLine | IUpdateElementPosition
 
 
