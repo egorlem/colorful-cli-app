@@ -50,7 +50,6 @@ const PsOneEditor: React.FC = () => {
 
   useEffect(() => {
     if (state.status === 'UPDATE') {
-      console.log('Я ТУТЮ');
       const currentLine = state.resultArr[state.lineIndex];
       const { currentElement, index } = findCard(state.element.id, currentLine);
       dispatch(

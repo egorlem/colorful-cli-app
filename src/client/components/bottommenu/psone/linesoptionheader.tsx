@@ -14,17 +14,22 @@ import { crudActions } from '../../../state/redux/crud';
 import { styleActions } from '../../../state/redux/style';
 import { appConditionActions } from '../../../state/redux/condition';
 import { TAppState } from '../../../state/store';
+import { IPromptElem } from '../../../types/global';
 
 const LineOptionsHeader: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
 
-  const state = useSelector((state: TAppState) => {
-    return {
-      status: state.condition.appcondition.status,
-      index: state.style.psoneelement.orignIndex,
-      lineIndex: state.style.psoneelement.selectedLine,
-    };
-  });
+  const { status, index, lineIndex, psonemodel, currentElement } = useSelector(
+    (state: TAppState) => {
+      return {
+        status: state.condition.appcondition.status,
+        index: state.style.psoneelement.orignIndex,
+        lineIndex: state.style.psoneelement.selectedLine,
+        psonemodel: state.crud.psonecrud.psonemodel,
+        currentElement: state.style.psoneelement.currentElement,
+      };
+    }
+  );
   const addLine = () => dispatch(crudActions.addNewLine());
 
   const applyHandler = () => {
@@ -36,21 +41,23 @@ const LineOptionsHeader: React.FC = (): JSX.Element => {
   const deleteHandler = () => {
     dispatch(
       crudActions.deleteSelectedElement({
-        index: state.index,
-        lineIndex: state.lineIndex,
+        index: index,
+        lineIndex: lineIndex,
       })
     );
     dispatch(appConditionActions.changeModeStatus(null));
     dispatch(styleActions.resetOptions());
+    dispatch(appConditionActions.closeAllControls());
   };
+
   return (
     <HeaderOptionsWrapper>
       <HeaderOptionsElementStatus>Инфо об элементе</HeaderOptionsElementStatus>
       <HeaderOptionsButtons>
-        {!state.status && (
+        {!status && (
           <AddLineButton onClick={addLine}>Add new line</AddLineButton>
         )}
-        {state.status === 'UPDATE' && (
+        {status === 'UPDATE' && (
           <>
             <DeleteButton onClick={deleteHandler}>Delete</DeleteButton>
             <ApplyButton onClick={applyHandler}>Apply</ApplyButton>

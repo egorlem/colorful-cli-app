@@ -13,12 +13,13 @@ let initialState: IPsOneStyleAndCondition = {
   selectedLine: 0,
   status: null,
   initialElement: {
-    id: null,
+    id: 0,
     options: null,
     text: '',
     sequences: '',
     code: '',
     style: [],
+    position: 0,
     bg: {
       colorInfo: false,
       colorId: "RST",
@@ -65,6 +66,7 @@ let initialState: IPsOneStyleAndCondition = {
     sequences: '',
     code: '',
     style: [],
+    position: 0,
     bg: {
       colorInfo: false,
       colorId: "RST",
@@ -116,6 +118,10 @@ function psoneelement(state = initialState, action: IPsOneStyle): IPsOneStyleAnd
         currentElement: { $set: action.payload.curCard },
         orignIndex: { $set: action.payload.oringIndex },
       });
+    case types.UPDATEPOSITION:
+      return update(state, {
+        currentElement: { position: { $set: action.payload.atPosition } }
+      })
     case types.SETELEMTOINIT:
       return update(state, {
         //      isElementSelected: { $set: false },
