@@ -15,6 +15,18 @@ import { styleActions } from '../../../../state/redux/style';
 
 const PsOneSingleLine = ({ id, lineindex, findCard }: any) => {
   const dispatch = useDispatch();
+<<<<<<< HEAD
+=======
+  const { status, psonemodel, currentElement } = useSelector(
+    (state: TAppState) => {
+      return {
+        status: state.condition.appcondition.status,
+        psonemodel: state.crud.psonecrud.psonemodel,
+        currentElement: state.style.psoneelement.currentElement,
+      };
+    }
+  );
+>>>>>>> 92c7ed79eb7952816127f4ad4887ed1146104455
 
   const { status, psonemodel, currentElement } = useSelector(
     (state: TAppState) => {
@@ -30,6 +42,10 @@ const PsOneSingleLine = ({ id, lineindex, findCard }: any) => {
   //const isSelected = currentElement.id === id && status;
 
   const { card, index, lineindex: selectedLineIndex } = findCard(id, lineindex);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 92c7ed79eb7952816127f4ad4887ed1146104455
   // const lastIndex = psonemodel[lineindex].length - 1;
 
   const { text, color } = elementHighLighter(card) as Partial<IElmColorSyntax>;
