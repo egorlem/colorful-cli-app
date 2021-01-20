@@ -6,15 +6,15 @@ import { ResultPage } from '../pages/resultPage';
 export const AppPages = () => {
   return (
     <Switch>
-      <Route path="/">
+      <Route exact path="/psone">
         <EditorPage />
       </Route>
-      {/* <Route path="/result">
+      <Route exact path="/result">
         <ResultPage />
       </Route>
       <Route path="/">
         <Redirect to="/psone" />
-      </Route> */}
+      </Route>
     </Switch>
   );
 };

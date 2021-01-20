@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Result from '../components/result/result';
-import LeftNavMenu from '../components/leftmenu/leftmenu';
+// import LeftNavMenu from '../components/leftmenu/leftmenu';
 export const ResultPage = () => {
   useEffect(() => {
     document.title = 'Colorful CLI / Result';
@@ -8,10 +8,11 @@ export const ResultPage = () => {
 
   return (
     <div className="shell-editor">
-      <div className="left-area">
+      {/* <div className="left-area">
         <LeftNavMenu />
-      </div>
+      </div> */}
       <div className="right-area">
+        ресулт
         <Result />
       </div>
     </div>

@@ -18,7 +18,8 @@ const TopNavigationMenu: React.FC = () => {
       <TonMenuItem flag={pathname === '/psone'}>
         <TopMenuLink
           className="TopMenuLink"
-          to={`/psone?shell=${currentshell}`}
+          //to={`/psone?shell=${currentshell}`}
+          to={`/psone`}
         >
           {'${.} Prompt'}
         </TopMenuLink>
@@ -26,7 +27,8 @@ const TopNavigationMenu: React.FC = () => {
       <TonMenuItem flag={pathname === '/result'}>
         <TopMenuLink
           className="TopMenuLink"
-          to={`/result?shell=${currentshell}`}
+          // to={`/result?shell=${currentshell}`}
+          to={`/result`}
         >
           {'<.> Result'}
         </TopMenuLink>

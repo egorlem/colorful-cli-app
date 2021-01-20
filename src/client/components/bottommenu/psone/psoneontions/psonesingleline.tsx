@@ -15,6 +15,7 @@ import { styleActions } from '../../../../state/redux/style';
 
 const PsOneSingleLine = ({ id, lineindex, findCard }: any) => {
   const dispatch = useDispatch();
+
   const { status, psonemodel, currentElement } = useSelector(
     (state: TAppState) => {
       return {
@@ -24,7 +25,6 @@ const PsOneSingleLine = ({ id, lineindex, findCard }: any) => {
       };
     }
   );
-
   const opacity = status ? 0.3 : 1;
 
   //const isSelected = currentElement.id === id && status;
@@ -36,19 +36,16 @@ const PsOneSingleLine = ({ id, lineindex, findCard }: any) => {
   const { text, color } = elementHighLighter(card) as Partial<IElmColorSyntax>;
 
   const inlineHandeler = () => {
-    if (!status) {
-      dispatch(
-        styleActions.updateElement({ curCard: card, oringIndex: index })
-      );
-      dispatch(appConditionActions.changeModeStatus('UPDATE'));
-    }
+    //if (status) {
+    dispatch(styleActions.updateElement({ curCard: card, oringIndex: index }));
+    dispatch(appConditionActions.changeModeStatus('UPDATE'));
+    //  }
   };
 
   return (
     <ElementContainer>
       <InLinePromptElement
-        flag={!!status}
-        style={{ opacity }}
+        flag={!!status && currentElement.id !== +id}
         onClick={inlineHandeler}
       >
         <InLineText color={color}>{text}</InLineText>
