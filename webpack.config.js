@@ -38,6 +38,7 @@ const babelLoader = (ext) => {
     plugins: [
       '@babel/plugin-syntax-class-properties',
       '@babel/plugin-proposal-class-properties',
+      '@babel/plugin-transform-runtime',
     ],
   };
 
