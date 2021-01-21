@@ -7,8 +7,8 @@ export interface ICodeStete {
   codeline: any[],
   bgVar: any[],
   fgVar: any[],
-  variableList: any[],
   psonestring: any[],
+  variableList: any[],
 }
 
 interface IsetResultCodeLine {
