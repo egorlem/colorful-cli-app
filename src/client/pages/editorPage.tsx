@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// import { useSelector } from 'react-redux';
 import PsOneEditor from '../components/psoneeditor';
 
 const EditorPage = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Result from '../components/result/result';
+import Result from '../components/result';
 // import LeftNavMenu from '../components/leftmenu/leftmenu';
 export const ResultPage = () => {
   useEffect(() => {
@@ -12,7 +12,6 @@ export const ResultPage = () => {
         <LeftNavMenu />
       </div> */}
       <div className="right-area">
-        ресулт
         <Result />
       </div>
     </div>
