@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 //import { getResultCodeLine } from '../../redux/codereducer';
-import { CodeHeader } from './codeheader';
-import { CodeArea } from './codearea';
-import { CodeResultWrapper } from './code.styled';
+import { CodeHeader } from './result/codeheader';
+import { CodeArea } from './result/codearea';
+import { CodeResultWrapper } from './result/code.styled';
 import { useLocation } from 'react-router-dom';
-import { testFromApi } from '../../state/redux/code/reducers';
-import { TAppState } from '../../state/store';
+import { testFromApi } from '../state/redux/code/reducers';
+import { TAppState } from '../state/store';
 //import { getResult } from '../../redux/resultreducer';
 
 const Result: React.FC = () => {
@@ -44,11 +44,13 @@ const Result: React.FC = () => {
   // }, []);
 
   return (
-    <CodeResultWrapper>
-      и это ресулт
-      {/* <CodeHeader />*/}
-      <CodeArea />
-    </CodeResultWrapper>
+    <div className="shell-editor">
+      <div className="left-area">левое меню</div>
+      <div className="right-area">
+        <CodeHeader />
+        <CodeArea />
+      </div>
+    </div>
   );
 };
 
