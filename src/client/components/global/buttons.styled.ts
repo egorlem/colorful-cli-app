@@ -45,6 +45,19 @@ padding: 6px 10px 6px 6px;
     border: 1px solid #afd7af;
   }`;
 
+
+export const CopyButton = styled(BaseButton)`
+  border: 1px solid #3a3a3a;
+  color: #87d7d7;
+  padding: 6px 10px;
+  border-radius: 4px;
+  &:hover {
+    border: 1px solid #87d7d7;
+  }
+`
+
+
+
 export const LineButton = styled(BaseButton)`
   background: ${(props: ISFlag) =>
     props.flag ? "transparent" : "#005f87"}; ////TERM 24

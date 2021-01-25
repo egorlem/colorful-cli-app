@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { TextAreaWrapper, CustomTextArea } from './customtext.styled';
 import { styleActions } from '../../../state/redux/style';
-import { PsOneItem } from '../styled.psone';
+import { PsOneItem } from '../leftmenu.styled';
 import { TAppState } from '../../../state/store';
 
 export const CustomText: React.FC = () => {

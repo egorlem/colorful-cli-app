@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Palette from './psoneoptions/palette';
-import { PsOneItem } from '../styled.psone';
+import { PsOneItem } from '../leftmenu.styled';
 import DropDownMenu from '../../global/select/dropdown';
 import { TAppState } from '../../../state/store';
 import { styleActions } from '../../../state/redux/style';

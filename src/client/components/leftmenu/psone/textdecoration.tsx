@@ -1,6 +1,6 @@
 import React from 'react';
 import TextDecoration from '../psone/psoneoptions/textdecoration';
-import { PsOneItem } from '../styled.psone';
+import { PsOneItem } from '../leftmenu.styled';
 
 export const TextDecorationOption: React.FC = () => {
   return (

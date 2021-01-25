@@ -9,7 +9,6 @@ import { styleActions } from '../../state/redux/style';
 const PromptLineStyleWrapper = styled.div`
   background: #303030;
   color: #dadada;
-  margin-left: 10px;
   border: 1px solid #3a3a3a;
   padding: 8px 8px 16px 8px;
 `;

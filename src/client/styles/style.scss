@@ -1,14 +1,9 @@
-@import './reset.scss';
-@import './shellline';
+@import './reset';
 @import './terminaloptions';
-@import './elglobal.scss';
-@import './headerArea.scss';
-@import './shelleditorlayout.scss';
+@import './elglobal';
+@import './headerArea';
+@import './shelleditorlayout';
 
-//@import '../public/fonts/JetBrainsMono/fonts.css';
-
-//GLOBAL STYLE
-//ALL NAV BUTTONS
 .nav-handler {
   font-family: 'monospace';
   color: black;
@@ -18,30 +13,25 @@
   -khtml-user-select: none;
   user-select: none;
 }
-// GLOBAL STYLE CONTENT LIMITER  --- Header Main Footer
-// main {
-//   background-color: red; //$bggray;
-// }
 .content--limiter {
-  max-width: 1552px; // 48px reserve
+  max-width: 1240px; // 48px reserve
   margin: 0 auto;
-  @media (max-width: 1550px) {
-    width: calc(100% - 48px);
-  }
+  // @media (max-width: 1550px) {
+  //   width: calc(100% - 48px);
+  // }
 }
 .app {
   font-family: 'consolas';
-  background: #303030;
+  background: red; // #303030;
   color: #dadada;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
-  min-width: 1024px;
+  //width: 1200px;
   &-header {
     font-size: 1.4rem;
-    background-color: #1c1c1c;
-    color: white;
+    background-color: #2b2b2b; //#1c1c1c;
     a {
       font-size: 1.4rem;
       color: white;
@@ -52,7 +42,8 @@
   }
   &-main {
     flex: 2;
-    background: #1c1c1c;
+    background: #333333;
+
   }
   &-footer {
     font-size: 1.4rem;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ISFlag } from '../../types/global';
 
-export const PsOneControllsWrapper = styled.div`
+export const LeftMenuControllsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;

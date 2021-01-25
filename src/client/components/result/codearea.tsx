@@ -1,59 +1,35 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { TAppState } from '../../state/store';
-import './codearea.scss';
+import {
+  ResultCode,
+  CodeSection,
+  CodeLine,
+  CodeColumn,
+} from './codearea.styled';
 
-export const CodeArea: React.FC = () => {
-  // let col = new Array(100).fill('M').map((e, i) => (
-  //   <span style={{ opacity: '0.3' }} key={`col${i}`}>
-  //     {e}
-  //   </span>
-  // ));
+import { codeSelectors } from '../../state/redux/code/';
 
-  const { psonestring, variableList } = useSelector((state: TAppState) => {
-    return {
-      psonestring: state.code.code.psonestring,
-      variableList: state.code.code.variableList,
-    };
-  });
+const CodeArea: React.FC = () => {
+  const result = useSelector(codeSelectors.getCombinedResultWithId);
 
-  // const {
-  //   code: { psonestring, variableList },
-  // } = state;
-
-  // const copyText = () => {
-  //   const toCleapboard = [...variableList, '', ...psonestring];
-  //   navigator.clipboard.writeText(toCleapboard.join('\n'));
-  // };
-
-  const varlist = variableList.map((e: any, i: number) => {
-    return <div key={i}>{e}</div>;
-  });
-  const result = psonestring.map((e: any, i: number) => {
-    return <div key={i}>{e}</div>;
+  const resultDocument = result.map((e) => {
+    return (
+      <CodeSection key={e.id}>
+        <CodeLine>{e.linenum}</CodeLine>
+        <CodeColumn>{e.section}</CodeColumn>
+      </CodeSection>
+    );
   });
 
   return (
-    <div className="editor">
-      {/* <button onClick={copyText}>КНОПКА</button> */}
-      <div className="editor-wrapper">
-        <div className="editor__line">ln</div>
-        <div className="editor__column">{varlist}</div>
-      </div>
-      <div className="editor-wrapper">
-        <div className="editor__line">~</div>
-        <div className="editor__column">{result}</div>
-      </div>
-
-      <div className="editor-wrapper">
-        <div className="editor__line">ln</div>
-        <div className="editor__column"> </div>
-      </div>
-
-      <div className="editor-wrapper">
-        <div className="editor__line">ln</div>
-        <div className="editor__column"> </div>
-      </div>
-    </div>
+    <ResultCode>
+      {resultDocument}
+      <CodeSection>
+        <CodeLine>~</CodeLine>
+        <CodeColumn></CodeColumn>
+      </CodeSection>
+    </ResultCode>
   );
 };
+
+export default CodeArea;

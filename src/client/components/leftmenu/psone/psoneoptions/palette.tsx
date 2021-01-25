@@ -5,7 +5,6 @@ interface IPaletteProps {
   globalcolors: any;
   colorHandler: any;
   flag: boolean;
-  //status: null | boolean;
 }
 
 const Palette = (props: IPaletteProps): JSX.Element => {
@@ -15,7 +14,6 @@ const Palette = (props: IPaletteProps): JSX.Element => {
     const curColor = globalcolors.find(
       (elm: any) => +event.target.id === +elm.colorId
     );
-    console.dir(colorHandler);
     colorHandler(curColor);
   };
 
