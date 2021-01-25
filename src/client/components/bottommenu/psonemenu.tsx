@@ -7,10 +7,9 @@ import { TAppState } from '../../state/store';
 import { styleActions } from '../../state/redux/style';
 
 const PromptLineStyleWrapper = styled.div`
-  background: #303030;
   color: #dadada;
-  border: 1px solid #3a3a3a;
-  padding: 8px 8px 16px 8px;
+  //border: 1px solid #3a3a3a;
+  //padding: 8px 8px 16px 8px;
 `;
 
 const PsOnePositionMenu = () => {

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 const ResultCode = styled.div`
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   min-height: 100vh;
-  background: #1b1b1b;
+  background: #1c1c1c;
   padding: 6px;
-  padding-top: 24px;
+  padding-top: 12px;
   line-height: 120%;
   border: 1px solid #1f1f1f;
 `

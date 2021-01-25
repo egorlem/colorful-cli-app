@@ -17,15 +17,15 @@ export const TonMenuItem = styled.div`
   transition: border-bottom 0.2s, color 0.2s;
   font-size: 1.4rem;
   padding: 15px 10px 10px 10px;
-  background: ${(props: ISFlag) => (props.flag ? '#2b2b2b' : 'transparent')};
-  border-bottom: ${(props: ISFlag) =>
-    props.flag ? '2px solid #87d7d7' : '2px solid transparent'};
+  background: ${(props: ISFlag) => (props.flag ? '#005f5f' : 'transparent')};
+  /* border-bottom: ${(props: ISFlag) =>
+    props.flag ? '2px solid #87d7d7' : '2px solid transparent'}; */
   .TopMenuLink {
     color: ${(props: ISFlag) => (props.flag ? '#dadada' : '#606060')};
   }
   &:hover {
-    border-bottom: ${(props: ISFlag) =>
-    props.flag ? '2px solid #87d7d7' : '2px solid #dadada'};
+    /* border-bottom: ${(props: ISFlag) =>
+    props.flag ? '2px solid #87d7d7' : '2px solid #dadada'}; */
     .TopMenuLink {
       color: #dadada;
     }

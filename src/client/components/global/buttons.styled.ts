@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const BaseButton = styled.button`
   cursor: pointer;
   transition: 0.1s;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: #dadada;
   background: transparent;
