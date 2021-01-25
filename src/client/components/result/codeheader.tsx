@@ -12,6 +12,7 @@ const HeaderOptionsWrapper = styled.div`
   background: #303030;
   border: 1px solid #3a3a3a;
   padding: 8px 8px 8px 8px;
+  margin-bottom: 8px;
 `;
 export const HeaderOptionsButtons = styled.div``;
 export const HeaderOptionsElementStatus = styled.div`

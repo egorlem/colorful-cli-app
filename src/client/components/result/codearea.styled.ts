@@ -7,7 +7,7 @@ const ResultCode = styled.div`
   padding: 6px;
   padding-top: 24px;
   line-height: 120%;
-  border-bottom: 1px solid #3a3a3a;
+  border: 1px solid #1f1f1f;
 `
 const CodeSection = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ const CodeLine = styled.div`
   color: #606060;
   flex-basis: 5%;
   text-align: right;
-  padding-right: 4px;
+  padding-right: 15px;
   margin-right: 10px;
   border-right: 1px solid #474747;
   -moz-user-select: none;
