@@ -2,7 +2,7 @@ import React from 'react';
 import DropDownMenu from '../../global/select/dropdown';
 import { appConditionActions } from '../../../state/redux/condition';
 import Palette from './psoneoptions/palette';
-import { PsOneItem } from '../styled.psone';
+import { PsOneItem } from '../leftmenu.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { TAppState } from '../../../state/store';
 import { styleActions } from '../../../state/redux/style/';

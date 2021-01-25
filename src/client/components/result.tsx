@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-//import { getResultCodeLine } from '../../redux/codereducer';
-import { CodeHeader } from './result/codeheader';
-import { CodeArea } from './result/codearea';
-import { CodeResultWrapper } from './result/code.styled';
 import { useLocation } from 'react-router-dom';
+
+import CodeHeader from './result/codeheader';
+import CodeArea from './result/codearea';
+import ResultLeftMenu from './leftmenu/resultmenu';
+
 import { testFromApi } from '../state/redux/code/reducers';
 import { TAppState } from '../state/store';
-//import { getResult } from '../../redux/resultreducer';
 
 const Result: React.FC = () => {
   const dispatch = useDispatch();
@@ -25,27 +25,12 @@ const Result: React.FC = () => {
   useEffect(() => {
     dispatch(testFromApi(psonemodel));
   }, []);
-  //console.log(query);
-
-  //STATE;
-  // const {
-  //   result: { resPsOneLine },
-  //   code: { codeline, bgVar, fgVasr },
-  //   getResultCodeLine,
-  //   getResult,
-  // } = state;
-
-  // useEffect(() => {
-  //   getResultCodeLine();
-  // }, [resPsOneLine]);
-
-  // useEffect(() => {
-  //   getResult();
-  // }, []);
 
   return (
     <div className="shell-editor">
-      <div className="left-area">левое меню</div>
+      <div className="left-area">
+        <ResultLeftMenu />
+      </div>
       <div className="right-area">
         <CodeHeader />
         <CodeArea />
@@ -53,9 +38,4 @@ const Result: React.FC = () => {
     </div>
   );
 };
-
-// const mstp = (state: any) => {
-//   return state;
-// };
-
 export default Result;

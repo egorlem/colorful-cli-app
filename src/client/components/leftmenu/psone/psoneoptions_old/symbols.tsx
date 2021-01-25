@@ -1,7 +1,7 @@
 import React from 'react';
 import DropDownMenu from '../../../global/select/dropdown';
 import { SymbolList } from '../psoneoptions/symbollist';
-import { PsOneItem } from '../../styled.psone';
+import { PsOneItem } from '../../leftmenu.styled';
 
 export const SymbolOptions: React.FC = (state: any) => {
   const {

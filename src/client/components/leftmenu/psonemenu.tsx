@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { PsOneControllsWrapper } from './styled.psone';
+import { LeftMenuControllsWrapper } from './leftmenu.styled';
 import './leftmenu.scss';
 import Sequences from './psone/sequences';
 import BackgroundColors from './psone/bgcolor';
@@ -20,19 +20,14 @@ const PsOneLeftMenu = () => {
 
   return (
     <div className="left-menu">
-      <PsOneControllsWrapper>
+      <LeftMenuControllsWrapper>
         <Sequences />
         {currentElement.type === 'CUSTOM_TEXT' && update && <CustomText />}
         {nodecortype && <ForegroundColors />}
         {nodecortype && <BackgroundColors />}
         {nodecortype && <TextDecorationOption />}
-        {/* <SelectSequences {...state} />
-        <SymbolOptions {...state} />
-        {currentElement.type === 'CUSTOM_TEXT' && update && <CustomText />}
-        {nodecortype && <ForegroundColors {...state} />}
-        {nodecortype && <BackgroundColors {...state} />}
-        {nodecortype && <TextDecorationOption {...state} />} */}
-      </PsOneControllsWrapper>
+        {/*<SymbolOptions {...state} />*/}
+      </LeftMenuControllsWrapper>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { appConditionActions } from '../../../state/redux/condition';
 import SequencesList from './psoneoptions/sequenceslist';
 import DropDownMenu from '../../global/select/dropdown';
 
-import { PsOneItem } from '../styled.psone';
+import { PsOneItem } from '../leftmenu.styled';
 import { IPromptElem } from '../../../types/global';
 import { TAppState } from '../../../state/store';
 
