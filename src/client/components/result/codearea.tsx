@@ -7,7 +7,7 @@ import {
   CodeColumn,
 } from './codearea.styled';
 
-import codeSelectors from '../../state/redux/code/selectors';
+import { codeSelectors } from '../../state/redux/code/';
 
 const CodeArea: React.FC = () => {
   const result = useSelector(codeSelectors.getCombinedResultWithId);

@@ -27,6 +27,20 @@ const DropDownWrapper = styled.div`
   color: #dadada;
   overflow-y: auto;
   margin-top: ${(props: ISFlag) => (props.flag ? '0' : '6px')};
+  &::-webkit-scrollbar {
+  width: 10px;
+  opacity: 0.3;
+}
+  &::-webkit-scrollbar-track {
+  background: transparent;
+  border-left: 1px solid #3a3a3a;
+}
+  &::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.13);
+}
+  &::-webkit-scrollbar-thumb:hover {
+  background: rgba(85, 85, 85, 0.1);
+}
 `;
 const DropDownTitle = styled.div`
   color: ${(props: ISFlag) => (props.status ? '#dadada' : '#606060')};

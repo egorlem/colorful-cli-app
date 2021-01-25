@@ -1,6 +1,8 @@
 import React from 'react';
-import { CopyButton } from '../global/buttons.styled';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { codeSelectors } from '../../state/redux/code/';
+import { CopyButton } from '../global/buttons.styled';
 
 const HeaderOptionsWrapper = styled.div`
   display: flex;
@@ -8,7 +10,6 @@ const HeaderOptionsWrapper = styled.div`
   font-size: 1.4rem;
   color: #dadada;
   background: #303030;
-  margin-left: 10px; // ??? УБРАТЬ ПОЗЖЕ у всего меню должен быть margin
   border: 1px solid #3a3a3a;
   padding: 8px 8px 8px 8px;
 `;
@@ -18,7 +19,18 @@ export const HeaderOptionsElementStatus = styled.div`
 `;
 
 const CodeHeader: React.FC = () => {
+  const resultText = useSelector(codeSelectors.getResultForCopying);
+
   const shell = 'zsh';
+
+  const copyHandler = async () => {
+    try {
+      await navigator.clipboard.writeText(resultText);
+      alert('text skipirovan');
+    } catch (e) {
+      alert(e);
+    }
+  };
 
   return (
     <div>
@@ -27,7 +39,7 @@ const CodeHeader: React.FC = () => {
           {` copy and paste into your .${shell}rc file`}
         </HeaderOptionsElementStatus>
         <HeaderOptionsButtons>
-          <CopyButton>{'Copy'}</CopyButton>
+          <CopyButton onClick={copyHandler}>{'Copy'}</CopyButton>
         </HeaderOptionsButtons>
       </HeaderOptionsWrapper>
     </div>

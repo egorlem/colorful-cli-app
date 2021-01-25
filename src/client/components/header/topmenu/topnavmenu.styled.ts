@@ -6,10 +6,12 @@ import { ISFlag } from './../../../types/global';
 export const TopMenuContainer = styled.div`
   cursor: pointer;
   display: flex;
-  border-bottom: 1px solid #3a3a3a;
-  background: #303030;
+  //border-bottom: 1px solid #3a3a3a;
+  border-right: 1px solid #3a3a3a;
+  border-left: 1px solid #3a3a3a;
+
+  background: transparent;
   color: #dadada;
-  margin-bottom: 10px;
 `;
 export const TonMenuItem = styled.div`
   transition: border-bottom 0.2s, color 0.2s;

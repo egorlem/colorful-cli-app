@@ -1,18 +1,22 @@
 // SHELL PAGE LAYOUT
 
 .shell-editor {
-  width: 1240px;
+  max-width: 1240px;
   margin: 0 auto;
   display: flex;
-  min-height: 100%;
+  min-height: 100vh;
 }
 .left-area {
   display: inline-block;
   width: 400px;
-  background: transparent;
+  background: #303030;
+  padding: 16px 8px 8px 8px;
+  border-right: 1px solid #3a3a3a;
+  border-left: 1px solid #3a3a3a;
 }
 .right-area {
   display: inline-block;
-  width: 69%;
+  width: 840px;
   background: #1c1c1c;
+  padding: 8px 8px 8px 8px;
 }

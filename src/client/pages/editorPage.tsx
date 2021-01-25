@@ -5,7 +5,7 @@ const EditorPage = () => {
   useEffect(() => {
     document.title = 'Colorful CLI / PS1';
   }, []);
-  //const state = useSelector((state) => state);
+
 
   return (
     <>
