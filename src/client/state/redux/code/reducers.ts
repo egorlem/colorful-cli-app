@@ -13,6 +13,7 @@ let initialState: ICodeStete = {
   fgVar: [],
   variableList: [],
   psonestring: [],
+  emptyLines: 24,
 };
 
 export function code(state = initialState, action: ICodeLine): ICodeStete {

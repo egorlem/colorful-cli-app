@@ -1,5 +1,11 @@
 import styled from "styled-components"
 
+const AllLines = styled.div`
+  border: 1px solid #3a3a3a;
+  padding: 4px 8px 4px 8px;
+  background: #303030;
+`;
+
 interface IFlag {
   flag: boolean
 }
@@ -9,10 +15,7 @@ const SelectedLineWrapper = styled.div`
   border-bottom: 1px solid #3a3a3a;
   padding: 4px 0;
 `;
-const AllLines = styled.div`
-  //border-left: 1px solid #474747;
-  //padding-left: 4px;
-`;
+
 const LineNumber = styled.div`
   font-size: 1.4rem;
   max-height: 20px;

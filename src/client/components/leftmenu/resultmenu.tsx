@@ -54,7 +54,9 @@ const ShellList: React.FC = () => {
 const ResultLeftMenu: React.FC = () => {
   const [menuFlag, changeMenuFlag] = useState(true);
   const openClose = () => {
-    menuFlag ? changeMenuFlag(false) : changeMenuFlag(true);
+    if (status) {
+      return menuFlag ? changeMenuFlag(false) : changeMenuFlag(true);
+    }
   };
   return (
     <div>
@@ -63,8 +65,9 @@ const ResultLeftMenu: React.FC = () => {
           <div className="option-item-controlls">
             <DropDownMenu
               flag={menuFlag}
-              selectedItem={`Current shell: bash`}
+              selectedItem={`bash`}
               handler={openClose}
+              status={false}
             >
               <ShellList />
             </DropDownMenu>

@@ -9,9 +9,10 @@ const HeaderOptionsWrapper = styled.div`
   justify-content: space-between;
   font-size: 1.4rem;
   color: #dadada;
-  background: #303030;
+  //background: #303030;
   border: 1px solid #3a3a3a;
-  padding: 8px 8px 8px 8px;
+  padding: 4px 8px 4px 8px;
+  margin-bottom: 8px;
 `;
 export const HeaderOptionsButtons = styled.div``;
 export const HeaderOptionsElementStatus = styled.div`

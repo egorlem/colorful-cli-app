@@ -9,6 +9,7 @@ export interface ICodeStete {
   fgVar: any[],
   psonestring: string[] | never[],
   variableList: string[] | never[],
+  emptyLines: number
 }
 
 interface IsetResultCodeLine {
