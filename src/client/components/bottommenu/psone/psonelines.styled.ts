@@ -7,7 +7,8 @@ const AllLines = styled.div`
 `;
 
 interface IFlag {
-  flag: boolean
+  flag?: boolean
+  isSelectible?: boolean
 }
 const SelectedLineWrapper = styled.div`
   display: flex;
@@ -20,8 +21,8 @@ const LineNumber = styled.div`
   font-size: 1.4rem;
   max-height: 20px;
   line-height: calc(2rem - 1px);
-  white-space: nowrap;
-  cursor: pointer;
+  cursor: ${(props: IFlag) => (props.isSelectible ? "pointer" : "default")};
+  //cursor: pointer;
   &::after {
     content: ":";
     padding: 0px 4px;
@@ -33,6 +34,7 @@ const SingleLine = styled.div`
   flex-wrap: wrap;
   line-height: calc(2rem - 1px);
   border-left: 1px solid #3a3a3a;
+  //opacity: ${(props: IFlag) => (props.flag ? "1.0" : "0.3")}
   /* padding-left: 10px;
   border-left: 5px solid ${(props: IFlag) => (props.flag ? "#1e5751" : "#474747")};
   margin-left: 5px;

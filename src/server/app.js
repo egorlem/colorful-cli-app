@@ -12,6 +12,16 @@ app.use(express.json({ extended: true }));
 app.use('/api', cors(), require('./routes/result.router'));
 
 //app.use(bodyParser.urlencoded({ extended: true }));
+// вот эта дич запускает шелл скрипты
+// const { exec } = require('child_process');
+// var yourscript = exec('sh ./scripts/terminfo.sh', (error, stdout, stderr) => {
+//   console.log('мы сюда попали?');
+//   console.log(stdout);
+//   console.log(stderr);
+//   if (error !== null) {
+//     console.log(`exec error: ${error}`);
+//   }
+// });
 
 async function start() {
   try {
@@ -20,6 +30,7 @@ async function start() {
       useUnifiedTopology: true,
       useCreateIndex: true,
     });
+
     app.listen(port, () => {
       console.log(`App: work on http://localhost:${port}`);
     });

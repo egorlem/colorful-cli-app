@@ -13,42 +13,51 @@ import { TAppState } from '../../../../state/store';
 import { appConditionActions } from '../../../../state/redux/condition';
 import { styleActions } from '../../../../state/redux/style';
 
-const PsOneSingleLine = ({ id, lineindex, findCard }: any) => {
+const PsOneSingleLine = ({ id, lineIndex, findCard }: any) => {
   const dispatch = useDispatch();
 
-  const { status, psonemodel, currentElement } = useSelector(
+  const { status, psonemodel, currentElement, selectedLine } = useSelector(
     (state: TAppState) => {
       return {
         status: state.condition.appcondition.status,
         psonemodel: state.crud.psonecrud.psonemodel,
         currentElement: state.style.psoneelement.currentElement,
+        selectedLine: state.style.psoneelement.selectedLine,
       };
     }
   );
-  const opacity = status ? 0.3 : 1;
-
+  console.log(lineIndex === selectedLine);
   //const isSelected = currentElement.id === id && status;
 
-  const { card, index, lineindex: selectedLineIndex } = findCard(id, lineindex);
+  const { card, index, lineindex: selectedLineIndex } = findCard(id, lineIndex);
 
   // const lastIndex = psonemodel[lineindex].length - 1;
 
   const { text, color } = elementHighLighter(card) as Partial<IElmColorSyntax>;
 
+  const isLineSelected = lineIndex === selectedLine;
+  const isEditMode: boolean =
+    !!status && currentElement.id !== +id && isLineSelected;
+
   const inlineHandeler = () => {
-    //if (status) {
-    dispatch(styleActions.updateElement({ curCard: card, oringIndex: index }));
-    dispatch(appConditionActions.changeModeStatus('UPDATE'));
-    //  }
+    if (isLineSelected) {
+      dispatch(
+        styleActions.updateElement({ curCard: card, oringIndex: index })
+      );
+      dispatch(appConditionActions.changeModeStatus('UPDATE'));
+    }
   };
 
   return (
     <ElementContainer>
       <InLinePromptElement
-        flag={!!status && currentElement.id !== +id}
+        isEditMode={isEditMode}
+        isEditable={isLineSelected}
         onClick={inlineHandeler}
       >
-        <InLineText color={color}>{text}</InLineText>
+        <InLineText color={color} isEditable={isLineSelected}>
+          {text}
+        </InLineText>
       </InLinePromptElement>
     </ElementContainer>
   );

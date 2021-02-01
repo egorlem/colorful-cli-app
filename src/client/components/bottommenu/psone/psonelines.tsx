@@ -1,12 +1,9 @@
 import React from 'react';
 import PsOneSingleLine from './psoneontions/psonesingleline';
-//import { StatusLineHeader } from '../options/statuslineheader';
-//import { LineButton } from '../../global/buttons/basebnt';
 import {
   SelectedLineWrapper,
   SingleLine,
   LineNumber,
-  //  SingleLineTitle,
   AllLines,
 } from './psonelines.styled';
 import { IPromptElem } from '../../../types/global';
@@ -38,49 +35,58 @@ const PsOneLines: React.FC = () => {
     };
   }
 
-  const displayCard = (cards: IPromptElem[], lineindex: number) => {
+  const displayCard = (cards: IPromptElem[], lineIndex: number) => {
     return cards.map(
       (card: IPromptElem): JSX.Element => {
         return (
           <PsOneSingleLine
             key={card.id}
             id={`${card.id}`}
-            text={card.sequences}
             findCard={findCard}
-            curline={cards}
-            lineindex={lineindex}
+            lineIndex={lineIndex}
           />
         );
       }
     );
   };
 
-  const displayLines = psonemodel.map((line: IPromptElem[], index: number) => {
-    const cardline = displayCard(line, index);
-    const deleteLine = () => {
-      if (!status) dispatch(crudActions.deleteCurrentLine({ index: index }));
-    };
-    const selectLine = () => {
-      dispatch(styleActions.selectPsOneLine(index));
-    };
-    return (
-      <SelectedLineWrapper
-        flag={selectedLine === index}
-        key={`line${index}`}
-        id={`${index}`}
-      >
-        {/* <SingleLineTitle>
+  const displayLines = psonemodel.map(
+    (line: IPromptElem[], lineIndex: number) => {
+      const cardline = displayCard(line, lineIndex);
+
+      const deleteLine = () => {
+        if (!status)
+          dispatch(crudActions.deleteCurrentLine({ index: lineIndex }));
+      };
+
+      const selectLine = () => {
+        if (!status) {
+          dispatch(styleActions.selectPsOneLine(lineIndex));
+        }
+      };
+      const isSelectible = selectedLine === lineIndex && !status;
+
+      return (
+        <SelectedLineWrapper
+          flag={isSelectible}
+          key={`line${lineIndex}`}
+          id={`${lineIndex}`}
+        >
+          {/* <SingleLineTitle>
           {index !== 0 && (
             <LineButton flag={!!status} onClick={deleteLine}>
               {'Remove line'}
             </LineButton>
           )}
         </SingleLineTitle> */}
-        <LineNumber onClick={selectLine}>{`Line ${index + 1}`}</LineNumber>
-        <SingleLine flag={selectedLine === index}>{cardline}</SingleLine>
-      </SelectedLineWrapper>
-    );
-  });
+          <LineNumber isSelectible={isSelectible} onClick={selectLine}>{`Line ${
+            lineIndex + 1
+          }`}</LineNumber>
+          <SingleLine flag={isSelectible}>{cardline}</SingleLine>
+        </SelectedLineWrapper>
+      );
+    }
+  );
 
   return <AllLines>{displayLines}</AllLines>;
 };

@@ -1,6 +1,9 @@
 export interface ISFlag {
-  flag: boolean
+  flag?: boolean
   status?: boolean
+  isEditMode?: boolean
+  isEditable?: boolean
+
 }
 
 export interface IEColor {

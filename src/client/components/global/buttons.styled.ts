@@ -21,6 +21,7 @@ export const AddLineButton = styled(BaseButton)`
     border: 1px solid #87d7d7;
   }
 `;
+
 export const DeleteButton = styled(BaseButton)`
 border-top: 1px solid #3a3a3a;
 border-bottom: 1px solid #3a3a3a;
@@ -43,6 +44,12 @@ padding: 6px 10px 6px 6px;
   color: #afd7af;
   &:hover {
     border: 1px solid #afd7af;
+  }`;
+
+export const AddLineSplitButton = styled(ApplyButton)`
+  color: #87d7d7;
+  &:hover {
+    border: 1px solid #87d7d7;
   }`;
 
 

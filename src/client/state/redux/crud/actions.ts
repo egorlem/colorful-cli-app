@@ -29,7 +29,7 @@ export const addNewLine = (): IPsOnePositon => {
   return { type: types.ADDNEWLINE };
 };
 /**@description*/
-export const deleteCurrentLine = (payload: any): IPsOnePositon => {
+export const deleteCurrentLine = (payload: { index: number }): IPsOnePositon => {
   return { type: types.REMOVELINE, payload } as any
 };
 export default {
