@@ -9,8 +9,9 @@ import {
   AddLineButton,
   DeleteButton,
   ApplyButton,
+  AddLineSplitButton,
 } from '../../global/buttons.styled';
-import { crudActions } from '../../../state/redux/crud';
+import { crudActions, crudSelectors } from '../../../state/redux/crud';
 import { styleActions } from '../../../state/redux/style';
 import { appConditionActions } from '../../../state/redux/condition';
 import { TAppState } from '../../../state/store';
@@ -19,26 +20,32 @@ import { IPromptElem } from '../../../types/global';
 const LineOptionsHeader: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
 
-  const { status, index, lineIndex, psonemodel, currentElement } = useSelector(
+  const { status, index, lineIndex, selectedLine } = useSelector(
     (state: TAppState) => {
       return {
         status: state.condition.appcondition.status,
         index: state.style.psoneelement.orignIndex,
         lineIndex: state.style.psoneelement.selectedLine,
-        psonemodel: state.crud.psonecrud.psonemodel,
-        currentElement: state.style.psoneelement.currentElement,
+        selectedLine: state.style.psoneelement.selectedLine,
       };
     }
   );
+  const prevLineIndex: number = useSelector(crudSelectors.getPrevLineIndex);
+
   const addLine = () => dispatch(crudActions.addNewLine());
 
-  const applyHandler = () => {
+  const deleteSelectedLineHandler = () => {
+    dispatch(crudActions.deleteCurrentLine({ index: selectedLine }));
+    //dispatch(styleActions.selectPsOneLine(prevLineIndex));
+  };
+
+  const applyElementHandler = () => {
     dispatch(appConditionActions.changeModeStatus(null));
     dispatch(appConditionActions.closeAllControls());
     dispatch(styleActions.resetOptions());
   };
 
-  const deleteHandler = () => {
+  const deleteElementHandler = () => {
     dispatch(
       crudActions.deleteSelectedElement({
         index: index,
@@ -50,19 +57,35 @@ const LineOptionsHeader: React.FC = (): JSX.Element => {
     dispatch(appConditionActions.closeAllControls());
   };
 
+  const isFirstLine = !status && selectedLine === 0;
+  const isNotFirstLine = !status && selectedLine !== 0;
+  const isUpdate = status === 'UPDATE';
+
+  const AddLineButtonBlock = (
+    <AddLineButton onClick={addLine}>Add new line</AddLineButton>
+  );
+  const LineCrudButtonBlock = (
+    <>
+      <DeleteButton onClick={deleteSelectedLineHandler}>
+        Delete line
+      </DeleteButton>
+      <AddLineSplitButton onClick={addLine}>Add new line</AddLineSplitButton>
+    </>
+  );
+  const ElementCrudButtonBlock = (
+    <>
+      <DeleteButton onClick={deleteElementHandler}>Delete</DeleteButton>
+      <ApplyButton onClick={applyElementHandler}>Apply</ApplyButton>
+    </>
+  );
+
   return (
     <HeaderOptionsWrapper>
       <HeaderOptionsElementStatus>Инфо об элементе</HeaderOptionsElementStatus>
       <HeaderOptionsButtons>
-        {!status && (
-          <AddLineButton onClick={addLine}>Add new line</AddLineButton>
-        )}
-        {status === 'UPDATE' && (
-          <>
-            <DeleteButton onClick={deleteHandler}>Delete</DeleteButton>
-            <ApplyButton onClick={applyHandler}>Apply</ApplyButton>
-          </>
-        )}
+        {isFirstLine && AddLineButtonBlock}
+        {isNotFirstLine && LineCrudButtonBlock}
+        {isUpdate && ElementCrudButtonBlock}
       </HeaderOptionsButtons>
     </HeaderOptionsWrapper>
   );

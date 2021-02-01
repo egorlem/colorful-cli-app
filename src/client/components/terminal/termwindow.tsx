@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { crudSelectors } from '../../state/redux/crud';
 import { IPsOneLineModel } from '../../state/redux/crud/types';
 import { TAppState } from '../../state/store';
 import { IPromptElem } from '../../types/global';
@@ -12,10 +13,7 @@ const Window: React.FC = (): JSX.Element => {
   const { psonemodel }: IPsOneLineModel = useSelector((state: TAppState) => {
     return { psonemodel: state.crud.psonecrud.psonemodel };
   });
-
-  // const Crs = () => {
-  //   return <span style={{ color: 'white' }}>{'$ |'}</span>;
-  // };
+  const lastLineIndex = useSelector(crudSelectors.getLastLineIndex);
 
   const displaycard = (cards: IPromptElem[], lineindex: number) => {
     return cards.map((card: IPromptElem) => {
@@ -33,12 +31,12 @@ const Window: React.FC = (): JSX.Element => {
   };
 
   const promptlines = psonemodel.map((line: IPromptElem[], index: number) => {
-    const lastindex = (psonemodel.length - 1) as number;
+    const cursor = index === lastLineIndex ? '█' : '';
     const cardline = displaycard(line, index);
     return (
       <div key={`termline${index}`}>
         {cardline}
-        {'█'}
+        {cursor}
       </div>
     );
   });
@@ -64,4 +62,3 @@ const TerminalWindow = () => {
 };
 
 export default TerminalWindow;
-// IT IS a ematation of string with 80 sybols ok _______999999 000 GUEZWHOZZZZZ

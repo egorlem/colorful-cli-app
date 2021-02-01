@@ -1,0 +1,4 @@
+const SETCODE = 'SET_RESULT_CODE_LINE'
+const GETCODE = 'GET_RESULT_CODE_LINE'
+
+export default { SETCODE, GETCODE }
