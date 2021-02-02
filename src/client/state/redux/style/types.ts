@@ -12,7 +12,7 @@ export interface IPsOneStyleAndCondition {
   selectedLine: number
   status: string | null
   initialElement: IPromptElem
-  globalcolors: IEColor[]
+  colors: IEColor[] | never[]
   textdecoration: any
   symbols: any
   fgcolor: IEColor
@@ -72,7 +72,13 @@ interface ISetLine {
   type: typeof types.SETLINE
   payload: number
 }
+
+interface ISetColorsList {
+  type: typeof types.SETCOLORSLIST
+  payload: IEColor[]
+
+}
 export type IPsOneCondition = IAddCurElem | IUpdateCurElem | ISetCurElemToInit
-  | ISetLine | IUpdateElementPosition
+  | ISetLine | IUpdateElementPosition | ISetColorsList
 
 

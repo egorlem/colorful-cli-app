@@ -26,7 +26,6 @@ const PsOneSingleLine = ({ id, lineIndex, findCard }: any) => {
       };
     }
   );
-  console.log(lineIndex === selectedLine);
   //const isSelected = currentElement.id === id && status;
 
   const { card, index, lineindex: selectedLineIndex } = findCard(id, lineIndex);

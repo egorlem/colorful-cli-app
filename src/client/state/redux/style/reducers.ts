@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
 import update from "immutability-helper";
 import types from "./action.types"
-
-import globalcolors from "./techstate/colors";
 import psOneSequences from "./techstate/promptsequences";
 import textdecoration from "./techstate/textdecoration";
 import unicode from "./techstate/unicode";
@@ -38,7 +36,7 @@ let initialState: IPsOneStyleAndCondition = {
     },
     type: ''
   },
-  globalcolors: globalcolors,
+  colors: [],
   textdecoration: textdecoration,
   symbols: unicode,
   fgcolor: {
@@ -88,6 +86,11 @@ let initialState: IPsOneStyleAndCondition = {
 };
 function psoneelement(state = initialState, action: IPsOneStyle): IPsOneStyleAndCondition {
   switch (action.type) {
+    case types.SETCOLORSLIST: {
+      return update(state, {
+        colors: { $set: action.payload }
+      })
+    }
     case types.SETBGCOLOR:
       return update(state, {
         currentElement: { bg: { $set: action.payload } },
