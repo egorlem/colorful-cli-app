@@ -8,6 +8,7 @@ export interface IGlobalAppCondition {
   status: string | null
   activeControls: ILeftMenuControls[]
   currentshell: string
+  isLoading: boolean;
 }
 
 // app condition actions
@@ -28,4 +29,10 @@ interface ICloseAllCtrls {
   payload?: any
 }
 
-export type IAddCondition = IEditModStatus | ICloseCtrl | IOpenCtrl | ICloseAllCtrls
+interface IChangeLoadStatus {
+  type: typeof types.CHANGELOADSTATUS
+  payload: boolean
+}
+
+export type IAppCondition = IEditModStatus | ICloseCtrl | IOpenCtrl | ICloseAllCtrls
+  | IChangeLoadStatus

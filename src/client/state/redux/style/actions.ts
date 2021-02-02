@@ -2,6 +2,13 @@ import types from "./action.types"
 import { IEColor, IPromptElem } from '../../../types/global';
 import { IPsOneStyle, IPsOneCondition, ISequences } from './types'
 
+
+// app init actions
+/**@description sel color pallete from server*/
+const setColorsList = (payload: IEColor[]): IPsOneStyle => {
+  return { type: types.SETCOLORSLIST, payload }
+}
+
 // element style crud actions
 /** @description Change or add to element's foregraound color*/
 const getFgColor = <T extends IEColor>(payload: T): IPsOneStyle => {
@@ -10,6 +17,7 @@ const getFgColor = <T extends IEColor>(payload: T): IPsOneStyle => {
     payload,
   };
 };
+
 /** @description Change or add element's background color*/
 const getBgColor = <T extends IEColor>(payload: T): IPsOneStyle => {
   return {
@@ -54,6 +62,6 @@ const updatePosition = (payload: { atPosition: number }): IPsOneCondition => {
   return { type: types.UPDATEPOSITION, payload }
 }
 export default {
-  getFgColor, getBgColor, setElementStyle, removeElemtStyle, ChangeCustomText,
+  setColorsList, getFgColor, getBgColor, setElementStyle, removeElemtStyle, ChangeCustomText,
   setCurrentElement, updateElement, selectPsOneLine, resetOptions, updatePosition
 }

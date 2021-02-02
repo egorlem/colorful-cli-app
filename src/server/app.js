@@ -6,10 +6,11 @@ const port = 5000;
 const cors = require('cors');
 const app = express();
 
-//app.use(cors());
+app.use(cors());
 app.use(express.json({ extended: true }));
-//app.use(express.json({ extended: true }));
-app.use('/api', cors(), require('./routes/result.router'));
+
+app.use('/v1/api', cors(), require('./routes/result.router'));
+app.use('/v1/api/initialize', cors(), require('./routes/initialize.router'));
 
 //app.use(bodyParser.urlencoded({ extended: true }));
 // вот эта дич запускает шелл скрипты

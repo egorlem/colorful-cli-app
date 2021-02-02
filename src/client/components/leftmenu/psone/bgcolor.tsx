@@ -14,7 +14,7 @@ const BackgroundColors: React.FC = (): JSX.Element => {
       return {
         status: state.condition.appcondition.status,
         activeControls: state.condition.appcondition.activeControls,
-        globalcolors: state.style.psoneelement.globalcolors,
+        globalcolors: state.style.psoneelement.colors,
         currentElement: state.style.psoneelement.currentElement,
       };
     }

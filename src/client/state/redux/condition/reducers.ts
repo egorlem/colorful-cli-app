@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
-import { IAddCondition, IGlobalAppCondition, ILeftMenuControls } from './types';
+import { IAppCondition, IGlobalAppCondition, ILeftMenuControls } from './types';
 import types from './action.types'
 import update from 'immutability-helper'
 
 const initialState: IGlobalAppCondition = {
   currentshell: "bash",
+  isLoading: false,
   status: null,
   activeControls: [
     { name: "elementMenu", flag: false },
@@ -14,8 +15,13 @@ const initialState: IGlobalAppCondition = {
   ],
 }
 
-function appcondition(state = initialState, action: IAddCondition) {
+function appcondition(state = initialState, action: IAppCondition) {
   switch (action.type) {
+    case types.CHANGELOADSTATUS:
+      return update(state, {
+        isLoading: { $set: action.payload }
+      })
+
     case types.OPENCONTROL:
       return {
         ...state,
