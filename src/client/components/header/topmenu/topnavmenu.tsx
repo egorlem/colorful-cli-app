@@ -13,6 +13,7 @@ const TopNavigationMenu: React.FC = () => {
     (state: TAppState) => state.condition.appcondition.currentshell
   );
   const { pathname } = useLocation();
+  
   return (
     <TopMenuContainer>
       <TonMenuItem flag={pathname === '/psone'}>
@@ -21,9 +22,30 @@ const TopNavigationMenu: React.FC = () => {
           //to={`/psone?shell=${currentshell}`}
           to={`/psone`}
         >
-          {'${.} Prompt'}
+          {'<.> $PSONE'}
         </TopMenuLink>
       </TonMenuItem>
+      {/* 
+      <TonMenuItem flag={pathname === '/less'}>
+        <TopMenuLink
+          className="TopMenuLink"
+          //to={`/psone?shell=${currentshell}`}
+          to={`/less`}
+        >
+          {'<.> $LESS'}
+        </TopMenuLink>
+      </TonMenuItem>
+
+      <TonMenuItem flag={pathname === '/lscolors'}>
+        <TopMenuLink
+          className="TopMenuLink"
+          //to={`/psone?shell=${currentshell}`}
+          to={`/lscolors`}
+        >
+          {'<.> $LSCOLORS'}
+        </TopMenuLink>
+      </TonMenuItem> */}
+
       <TonMenuItem flag={pathname === '/result'}>
         <TopMenuLink
           className="TopMenuLink"

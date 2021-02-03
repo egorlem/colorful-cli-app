@@ -10,7 +10,11 @@ import { TAppState } from '../../state/store';
 import { styleOperations } from '../../state/redux/style';
 
 const PsOneLeftMenu = () => {
-  console.log('render menu')
+  const colors = useSelector(
+    (state: TAppState) => state.style.psoneelement.colors
+  );
+  console.log('render menu');
+
   const dispatch = useDispatch();
   const currentElement = useSelector(
     (state: TAppState) => state.style.psoneelement.currentElement
@@ -20,18 +24,26 @@ const PsOneLeftMenu = () => {
   const nodecortype: boolean =
     currentElement.type !== 'SPACE' && currentElement.type !== 'FUNCTION';
 
+  const fetchColors = () => {
+    colors.length === 0 && dispatch(styleOperations.initializeBasicOptions());
+  };
+
   useEffect(() => {
-    dispatch(styleOperations.initializeBasicOptions());
-  },[]);
+    fetchColors();
+  }, []);
 
   return (
     <div className="left-menu">
       <LeftMenuControllsWrapper>
         <Sequences />
         {currentElement.type === 'CUSTOM_TEXT' && update && <CustomText />}
-        {nodecortype && <ForegroundColors />}
-        {nodecortype && <BackgroundColors />}
-        {nodecortype && <TextDecorationOption />}
+        {nodecortype && (
+          <>
+            <ForegroundColors />
+            <BackgroundColors />
+            <TextDecorationOption />
+          </>
+        )}
         {/*<SymbolOptions {...state} />*/}
       </LeftMenuControllsWrapper>
     </div>

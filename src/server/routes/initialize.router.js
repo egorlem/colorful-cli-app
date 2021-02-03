@@ -1,10 +1,7 @@
 const { Router } = require('express');
-const router = Router();
-
 const colors = require('../models/colors');
-const cors = require('cors');
 
-router.use(cors());
+const router = Router();
 
 router.get('/colors', async (req, res) => {
   try {
