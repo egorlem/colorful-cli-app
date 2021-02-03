@@ -12,7 +12,7 @@ const initializeBasicOptions = () => {
     try {
       dispatch(appConditionActions.changeLoadStatus(true))
       const colorlist: IEColor[] = await fetchColors();
-      if (colorlist.list) {
+      if (colorlist) {
         dispatch(actions.setColorsList(colorlist))
       }
     } catch (e) {

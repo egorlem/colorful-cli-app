@@ -1,9 +1,14 @@
 const express = require('express');
-const path = require('path');
-var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const port = 5000;
+const config = require('config');
+//const path = require('path');
+//const bodyParser = require('body-parser');
+
 const cors = require('cors');
+const Loger = require('./lib/loger');
+
+const port = 5000;
+const log = new Loger();
 const app = express();
 
 app.use(cors());
@@ -26,17 +31,22 @@ app.use('/v1/api/initialize', cors(), require('./routes/initialize.router'));
 
 async function start() {
   try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/colorful_cli', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    });
+    await mongoose
+      .connect(config.get('mongoUrl'), {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+      })
+      .then(() => log.ok(`MongoDB work on ${config.get('mongoUrl')}`))
+      .catch((e) => {
+        log.err('MondoDB ', e.message);
+      });
 
     app.listen(port, () => {
-      console.log(`App: work on http://localhost:${port}`);
+      log.msg(`Server work on http://localhost:${config.get('port')}`);
     });
   } catch (e) {
-    console.log(e.message, `Опаньки`);
+    log.err(e.message);
     process.exit(1);
   }
 }

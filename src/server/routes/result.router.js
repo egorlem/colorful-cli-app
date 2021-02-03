@@ -1,10 +1,7 @@
 const { Router } = require('express');
-const Test = require('../models/init');
-const router = Router();
-const client = require('../getresult/compose');
-const cors = require('cors');
+const client = require('../lib/composer/composer');
 
-router.use(cors());
+const router = Router();
 
 router.post('/test', async (req, res) => {
   try {
