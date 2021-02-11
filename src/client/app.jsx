@@ -1,13 +1,13 @@
-import React from 'react';
-import { AppPages } from './routes/approutes';
-import { HeaderArea } from './pages/appheaderArea';
-import { FooterArea } from './pages/appfooterArea';
+import React from 'react'
+import { AppPages } from './routes/approutes'
+import { HeaderArea } from './pages/appheaderArea'
+import { FooterArea } from './pages/appfooterArea'
 
 function App() {
   return (
     <div className="app">
       <div className="app-header">
-        <HeaderArea />{' '}
+        <HeaderArea />
       </div>
       <div className="app-main">
         <AppPages />
@@ -17,6 +17,6 @@ function App() {
         {/* <FooterArea /> */}
       </div>
     </div>
-  );
+  )
 }
-export default App;
+export default App

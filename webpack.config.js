@@ -1,11 +1,11 @@
-const path = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const autoprefixer = require('autoprefixer');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
+const path = require('path')
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const autoprefixer = require('autoprefixer')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin;
+  .BundleAnalyzerPlugin
 
 const cssLoader = (ext) => {
   const config = [
@@ -22,12 +22,12 @@ const cssLoader = (ext) => {
         plugins: [autoprefixer()],
       },
     },
-  ];
+  ]
   if (ext) {
-    config.push(ext);
+    config.push(ext)
   }
-  return config;
-};
+  return config
+}
 const babelLoader = (ext) => {
   const config = {
     presets: [
@@ -40,20 +40,19 @@ const babelLoader = (ext) => {
       '@babel/plugin-proposal-class-properties',
       '@babel/plugin-transform-runtime',
     ],
-  };
+  }
 
   if (ext) {
-    config.presets.push(ext);
+    config.presets.push(ext)
   }
-  return config;
-};
+  return config
+}
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
   entry: {
     index: './client/index.js',
-    preloader: './client/preloader.js',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -87,7 +86,7 @@ module.exports = {
     }),
     new HTMLWebpackPlugin({
       template: './public/index.html',
-      chunks: ['preloader', 'index'],
+      chunks: ['index'],
     }),
     new CleanWebpackPlugin({
       verbose: true,
@@ -145,4 +144,4 @@ module.exports = {
       },
     ],
   },
-};
+}
