@@ -1,36 +1,36 @@
-import React, { useEffect, useLayoutEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { LeftMenuControllsWrapper } from './leftmenu.styled';
-import Sequences from './psone/sequences';
-import BackgroundColors from './psone/bgcolor';
-import ForegroundColors from './psone/fgcolor';
-import { TextDecorationOption } from './psone/textdecoration';
-import { CustomText } from './psone/customtext';
-import { TAppState } from '../../state/store';
-import { styleOperations } from '../../state/redux/style';
+import React, { useEffect, useLayoutEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { LeftMenuControllsWrapper } from './leftmenu.styled'
+import Sequences from './psone/sequences'
+import BackgroundColors from './psone/bgcolor'
+import ForegroundColors from './psone/fgcolor'
+import { TextDecorationOption } from './psone/textdecoration'
+import { CustomText } from './psone/customtext'
+import { TAppState } from '../../state/store'
+import { styleOperations } from '../../state/redux/style'
 
 const PsOneLeftMenu = () => {
   const colors = useSelector(
     (state: TAppState) => state.style.psoneelement.colors
-  );
-  console.log('render menu');
+  )
+  console.log('render menu')
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const currentElement = useSelector(
     (state: TAppState) => state.style.psoneelement.currentElement
-  );
+  )
 
-  const update: boolean = true; //status === "UDATE_CURRENT";
+  const update: boolean = true //status === "UDATE_CURRENT";
   const nodecortype: boolean =
-    currentElement.type !== 'SPACE' && currentElement.type !== 'FUNCTION';
+    currentElement.type !== 'SPACE' && currentElement.type !== 'FUNCTION'
 
   const fetchColors = () => {
-    colors.length === 0 && dispatch(styleOperations.initializeBasicOptions());
-  };
+    colors.length === 0 && dispatch(styleOperations.initializeBasicOptions())
+  }
 
   useEffect(() => {
-    fetchColors();
-  }, []);
+    fetchColors()
+  }, [])
 
   return (
     <div className="left-menu">
@@ -47,6 +47,6 @@ const PsOneLeftMenu = () => {
         {/*<SymbolOptions {...state} />*/}
       </LeftMenuControllsWrapper>
     </div>
-  );
-};
-export default PsOneLeftMenu;
+  )
+}
+export default PsOneLeftMenu
