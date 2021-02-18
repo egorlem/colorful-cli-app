@@ -1,21 +1,21 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const config = require('config');
+const express = require('express')
+const mongoose = require('mongoose')
+const config = require('config')
 //const path = require('path');
 //const bodyParser = require('body-parser');
 
-const cors = require('cors');
-const Loger = require('./lib/loger');
+const cors = require('cors')
+const Loger = require('./lib/loger')
 
-const port = 5000;
-const log = new Loger();
-const app = express();
+const port = 5000
+const log = new Loger()
+const app = express()
 
-app.use(cors());
-app.use(express.json({ extended: true }));
+app.use(cors())
+app.use(express.json({ extended: true }))
 
-app.use('/v1/api', cors(), require('./routes/result.router'));
-app.use('/v1/api/initialize', cors(), require('./routes/initialize.router'));
+app.use('/v1/api', cors(), require('./routes/result.router'))
+app.use('/v1/api/initialize', cors(), require('./routes/initialize.router'))
 
 //app.use(bodyParser.urlencoded({ extended: true }));
 // вот эта дич запускает шелл скрипты
@@ -39,18 +39,18 @@ async function start() {
       })
       .then(() => log.ok(`MongoDB work on ${config.get('mongoUrl')}`))
       .catch((e) => {
-        log.err('MondoDB ', e.message);
-      });
+        log.err('MondoDB ', e.message)
+      })
 
     app.listen(port, () => {
-      log.msg(`Server work on http://localhost:${config.get('port')}`);
-    });
+      log.msg(`Server work on http://localhost:${config.get('port')}`)
+    })
   } catch (e) {
-    log.err(e.message);
-    process.exit(1);
+    log.err(e.message)
+    process.exit(1)
   }
 }
-start();
+start()
 
 // app.listen(5000);
 
