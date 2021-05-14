@@ -16,7 +16,10 @@ const Palette = (props: IPaletteProps): JSX.Element => {
     )
     colorHandler(curColor)
   }
-  console.dir(React)
+  
+  if(globalcolors) {
+    return <></>
+  }
   /**
    * @ETENTION globalcolor is area variable not from state
    * @fix drop error in server offline

@@ -127,10 +127,7 @@ function psoneelement(state = initialState, action: IPsOneStyle): IPsOneStyleAnd
       })
     case types.SETELEMTOINIT:
       return update(state, {
-        //      isElementSelected: { $set: false },
         currentElement: { $set: state.initialElement },
-        // fgcolor: { $set: state.globalcolors.find((e) => 255 === e.colorId) },
-        // bgcolor: { $set: state.globalcolors.find((e) => 0 === e.colorId) },
       });
     case types.SETLINE:
       return update(state, {

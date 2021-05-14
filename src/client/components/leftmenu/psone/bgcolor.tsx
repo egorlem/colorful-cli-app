@@ -19,17 +19,7 @@ const BackgroundColors: React.FC = (): JSX.Element => {
       };
     }
   );
-  // STATE
-  // const {
-  //   psOneOptions: {
-  //     currentElement: { bg },
-
-  //   },
-  //   closeControl,
-  //   openControl,
-  //   getBgColor,
-  // } = state as any;
-  // // OPEN && CLOSED FLAG
+  
   const [, bgSubMenu] = activeControls;
   const BgColorHandler = (color: any) => {
     dispatch(styleActions.getBgColor(color));
