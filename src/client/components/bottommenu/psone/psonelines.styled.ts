@@ -34,12 +34,6 @@ const SingleLine = styled.div`
   flex-wrap: wrap;
   line-height: calc(2rem - 1px);
   border-left: 1px solid #3a3a3a;
-  //opacity: ${(props: IFlag) => (props.flag ? "1.0" : "0.3")}
-  /* padding-left: 10px;
-  border-left: 5px solid ${(props: IFlag) => (props.flag ? "#1e5751" : "#474747")};
-  margin-left: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px; */
 `;
 const SingleLineTitle = styled.div`
   min-height: 32px;

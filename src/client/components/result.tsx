@@ -16,11 +16,11 @@ const Result: React.FC = () => {
     return { psonemodel: state.crud.psonecrud.psonemodel };
   });
 
-  function useQuery() {
+  function useQueryParams() {
     return new URLSearchParams(useLocation().search);
   }
 
-  let query = useQuery().get('shell');
+  let query = useQueryParams().get('shell');
 
   useEffect(() => {
     dispatch(testFromApi(psonemodel));

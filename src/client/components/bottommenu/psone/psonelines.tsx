@@ -72,16 +72,8 @@ const PsOneLines: React.FC = () => {
           key={`line${lineIndex}`}
           id={`${lineIndex}`}
         >
-          {/* <SingleLineTitle>
-          {index !== 0 && (
-            <LineButton flag={!!status} onClick={deleteLine}>
-              {'Remove line'}
-            </LineButton>
-          )}
-        </SingleLineTitle> */}
-          <LineNumber isSelectible={isSelectible} onClick={selectLine}>{`Line ${
-            lineIndex + 1
-          }`}</LineNumber>
+          <LineNumber isSelectible={isSelectible} onClick={selectLine}>{`Line ${lineIndex + 1
+            }`}</LineNumber>
           <SingleLine flag={isSelectible}>{cardline}</SingleLine>
         </SelectedLineWrapper>
       );
